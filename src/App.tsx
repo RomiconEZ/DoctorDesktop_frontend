@@ -9,7 +9,7 @@ import PostContainer2 from "./components/PostContainer2";
 
 function App() {
     // const dispatch = useAppDispatch()
-    // const {users, isLoading, error} = useAppSelector(state => state.userReducer)
+    // const {users, isLoading, error} = useAppSelector(state => state.userReducer) // достаем переменные из хранилища
     //
     // useEffect(() => {
     //     dispatch(fetchUsers())

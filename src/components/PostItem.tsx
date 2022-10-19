@@ -1,8 +1,9 @@
 import React, {FC} from 'react';
 import {IPost} from "../models/IPost";
 
+// ОБЪЕКТ ПОСТ
 
-interface PostItemProps {
+interface PostItemProps { // интерфейс для props
     post: IPost;
     remove: (post: IPost) => void;
     update: (post: IPost) => void;

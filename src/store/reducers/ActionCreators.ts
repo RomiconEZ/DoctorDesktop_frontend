@@ -14,6 +14,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 //     }
 // }
 
+// Упрощение для toolkit
 export const fetchUsers = createAsyncThunk(
     'user/fetchAll',
     async (_, thunkAPI) => {

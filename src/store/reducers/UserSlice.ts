@@ -14,10 +14,12 @@ const initialState: UserState = {
     error: '',
 }
 
+// slice - reducer в контексте toolkit
+// Затем можем вытащить отдельно reducer и action creator
 export const userSlice = createSlice({
-    name: 'user',
+    name: 'user', // у каждого слайса уникальное название
     initialState,
-    reducers: {},
+    reducers: {}, // аналогично switch/case как в обычном reducer
     extraReducers: {
         [fetchUsers.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
             state.isLoading = false;
@@ -34,4 +36,4 @@ export const userSlice = createSlice({
     }
 })
 
-export default userSlice.reducer;
+export default userSlice.reducer; // вытаскиваем reducer
