@@ -1,11 +1,78 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './App.css';
 import {userSlice} from "./store/reducers/UserSlice";
 import {useDispatch} from "react-redux";
 import {useAppDispatch, useAppSelector} from "./hooks/redux";
 import {fetchUsers} from "./store/reducers/ActionCreators";
 import PostContainer from "./components/PostContainer";
-import PostContainer2 from "./components/PostContainer2";
+import {Route, Link, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom';
+import AppRouter from './components/AppRouter';
+import Navbar from "./components/UI/Navbar/Navbar";
+import {adminRoutes, codeveloperRoutes, developerRoutes, doctorRoutes, expertRoutes, regisRoutes} from "./router";
+// нужно импортнуть стриницы
+const router = createBrowserRouter(createRoutesFromElements(<Route path="/" element={<Navbar />}>
+    if (Role==1) {
+    developerRoutes.map(route =>
+        <Route
+            element={route.element}
+            path={route.path}
+            key={route.path}
+        />
+    )
+
+}
+    if (Role==2) {
+    codeveloperRoutes.map(route =>
+        <Route
+            element={route.element}
+            path={route.path}
+            key={route.path}
+        />
+    )
+
+}
+    if (Role==3) {
+    adminRoutes.map(route =>
+        <Route
+            element={route.element}
+            path={route.path}
+            key={route.path}
+        />
+    )
+
+}
+    if (Role==4) {
+    doctorRoutes.map(route =>
+        <Route
+            element={route.element}
+            path={route.path}
+            key={route.path}
+        />
+    )
+
+}
+    if (Role==5) {
+    regisRoutes.map(route =>
+        <Route
+            element={route.element}
+            path={route.path}
+            key={route.path}
+        />
+    )
+
+}
+    if (Role==6) {
+    expertRoutes.map(route =>
+        <Route
+            element={route.element}
+            path={route.path}
+            key={route.path}
+        />
+    )
+
+}
+
+</Route>))
 
 function App() {
     // const dispatch = useAppDispatch()
@@ -14,16 +81,12 @@ function App() {
     // useEffect(() => {
     //     dispatch(fetchUsers())
     // }, [ ])
-
+    {/*{isLoading && <h1>Идет загрузка...</h1>}*/}
+    {/*{error && <h1>{error}</h1>}*/}
+    {/*{JSON.stringify(users, null, 2)}*/}
     return (
     <div className="App">
-        {/*{isLoading && <h1>Идет загрузка...</h1>}*/}
-        {/*{error && <h1>{error}</h1>}*/}
-        {/*{JSON.stringify(users, null, 2)}*/}
-        <div style={{display: 'flex'}}>
-            <PostContainer/>
-            <PostContainer2/>
-        </div>
+        <RouterProvider router={router}/>
     </div>
   );
 }
