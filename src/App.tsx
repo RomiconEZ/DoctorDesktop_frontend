@@ -6,75 +6,78 @@ import {useAppDispatch, useAppSelector} from "./hooks/redux";
 import {fetchUsers} from "./store/reducers/ActionCreators";
 import PostContainer from "./components/PostContainer";
 import {Route, Link, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom';
-import AppRouter from './components/AppRouter';
 import Navbar from "./components/UI/Navbar/Navbar";
-import {adminRoutes, codeveloperRoutes, developerRoutes, doctorRoutes, expertRoutes, regisRoutes} from "./router";
+import LoginForm from "./components/LoginForm";
 // нужно импортнуть стриницы
-const router = createBrowserRouter(createRoutesFromElements(<Route path="/" element={<Navbar />}>
-    if (Role==1) {
-    developerRoutes.map(route =>
-        <Route
-            element={route.element}
-            path={route.path}
-            key={route.path}
-        />
-    )
-
-}
-    if (Role==2) {
-    codeveloperRoutes.map(route =>
-        <Route
-            element={route.element}
-            path={route.path}
-            key={route.path}
-        />
-    )
-
-}
-    if (Role==3) {
-    adminRoutes.map(route =>
-        <Route
-            element={route.element}
-            path={route.path}
-            key={route.path}
-        />
-    )
-
-}
-    if (Role==4) {
-    doctorRoutes.map(route =>
-        <Route
-            element={route.element}
-            path={route.path}
-            key={route.path}
-        />
-    )
-
-}
-    if (Role==5) {
-    regisRoutes.map(route =>
-        <Route
-            element={route.element}
-            path={route.path}
-            key={route.path}
-        />
-    )
-
-}
-    if (Role==6) {
-    expertRoutes.map(route =>
-        <Route
-            element={route.element}
-            path={route.path}
-            key={route.path}
-        />
-    )
-
-}
-
-</Route>))
-
+let router:any;
 function App() {
+    const Role: number=1
+
+    switch (Role) {
+        case 1: {
+            router = createBrowserRouter(createRoutesFromElements(
+                <Route path="/" element={<Navbar/>}>
+                    <Route
+                        element={<LoginForm/>}
+                        path="/login"
+                    />
+                    <Route path="*" element={<Notfoundpage/>} />
+                </Route>))
+            break;
+        }
+        case 2:
+        {
+            router = createBrowserRouter(createRoutesFromElements(
+                <Route path="/" element={<Navbar/>}>
+                    <Route
+                        element={<LoginForm/>}
+                        path="/login"
+                    />
+                </Route>))
+            break;
+        }
+        case 3: {
+            router = createBrowserRouter(createRoutesFromElements(
+                <Route path="/" element={<Navbar/>}>
+                    <Route
+                        element={<LoginForm/>}
+                        path="/login"
+                    />
+                </Route>))
+            break;
+        }
+        case 4: {
+           router = createBrowserRouter(createRoutesFromElements(
+                <Route path="/" element={<Navbar/>}>
+                    <Route
+                        element={<LoginForm/>}
+                        path="/login"
+                    />
+                </Route>))
+            break;
+        }
+        case 5: {
+            router = createBrowserRouter(createRoutesFromElements(
+                <Route path="/" element={<Navbar/>}>
+                    <Route
+                        element={<LoginForm/>}
+                        path="/login"
+                    />
+                </Route>))
+            break;
+        }
+        default: {
+            router = createBrowserRouter(createRoutesFromElements(
+                <Route path="/" element={<Navbar/>}>
+                    <Route
+                        element={<NotFoundPage/>}
+                        path="/login"
+                    />
+                </Route>))
+            break;
+        }
+    }
+
     // const dispatch = useAppDispatch()
     // const {users, isLoading, error} = useAppSelector(state => state.userReducer) // достаем переменные из хранилища
     //
@@ -85,8 +88,9 @@ function App() {
     {/*{error && <h1>{error}</h1>}*/}
     {/*{JSON.stringify(users, null, 2)}*/}
     return (
+
     <div className="App">
-        <RouterProvider router={router}/>
+        <RouterProvider router={router} />
     </div>
   );
 }
