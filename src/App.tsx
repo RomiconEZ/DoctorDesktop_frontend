@@ -3,11 +3,14 @@ import './App.css';
 import {userSlice} from "./store/reducers/UserSlice";
 import {useDispatch} from "react-redux";
 import {useAppDispatch, useAppSelector} from "./hooks/redux";
-import {fetchUsers} from "./store/reducers/ActionCreators";
+import {fetchUser} from "./store/reducers/ActionCreators";
 import PostContainer from "./components/PostContainer";
 import {Route, Link, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom';
 import Navbar from "./components/UI/Navbar/Navbar";
 import LoginForm from "./components/LoginForm";
+import NotFoundPage from "./components/NotFoundPage";
+import Root from "./components/UI/Root";
+import {RequireAuth} from "./components/hoc/RequireAuth";
 // нужно импортнуть стриницы
 let router:any;
 function App() {
@@ -15,65 +18,144 @@ function App() {
 
     switch (Role) {
         case 1: {
-            router = createBrowserRouter(createRoutesFromElements(
-                <Route path="/" element={<Navbar/>}>
-                    <Route
-                        element={<LoginForm/>}
-                        path="/login"
-                    />
-                    <Route path="*" element={<Notfoundpage/>} />
-                </Route>))
+            router = createBrowserRouter(createRoutesFromElements
+                (
+                    <Route path="/" element={<Root/>}>
+
+                            <Route
+                                element={<LoginForm/>}
+                                path="/login"
+                            />
+                        <Route path="/menu" element={<Navbar/>}>
+                            <Route
+                                element={
+                                <RequireAuth>
+                                    <PostContainer/>
+                                </RequireAuth>}
+                                    path="/posts"
+                                    />
+                            <Route path="*" element={<NotFoundPage/>} />
+                        </Route>
+                    </Route>
+                )
+            )
             break;
         }
         case 2:
         {
-            router = createBrowserRouter(createRoutesFromElements(
-                <Route path="/" element={<Navbar/>}>
+            router = createBrowserRouter(createRoutesFromElements
+            (
+                <Route path="/" element={<Root/>}>
+
                     <Route
                         element={<LoginForm/>}
                         path="/login"
                     />
-                </Route>))
+                    <Route path="/menu" element={<Navbar/>}>
+                        <Route
+                            element={
+                                <RequireAuth>
+                                    <PostContainer/>
+                                </RequireAuth>}
+                            path="/posts"
+                        />
+                        <Route path="*" element={<NotFoundPage/>} />
+                    </Route>
+                </Route>
+            )
+            )
             break;
         }
         case 3: {
-            router = createBrowserRouter(createRoutesFromElements(
-                <Route path="/" element={<Navbar/>}>
+            router = createBrowserRouter(createRoutesFromElements
+            (
+                <Route path="/" element={<Root/>}>
+
                     <Route
                         element={<LoginForm/>}
                         path="/login"
                     />
-                </Route>))
+                    <Route path="/menu" element={<Navbar/>}>
+                        <Route
+                            element={
+                                <RequireAuth>
+                                    <PostContainer/>
+                                </RequireAuth>}
+                            path="/posts"
+                        />
+                        <Route path="*" element={<NotFoundPage/>} />
+                    </Route>
+                </Route>
+            ))
             break;
         }
         case 4: {
-           router = createBrowserRouter(createRoutesFromElements(
-                <Route path="/" element={<Navbar/>}>
-                    <Route
-                        element={<LoginForm/>}
-                        path="/login"
-                    />
-                </Route>))
+           router = createBrowserRouter(createRoutesFromElements
+           (
+               <Route path="/" element={<Root/>}>
+
+                   <Route
+                       element={<LoginForm/>}
+                       path="/login"
+                   />
+                   <Route path="/menu" element={<Navbar/>}>
+                       <Route
+                           element={
+                               <RequireAuth>
+                                   <PostContainer/>
+                               </RequireAuth>}
+                           path="/posts"
+                       />
+                       <Route path="*" element={<NotFoundPage/>} />
+                   </Route>
+               </Route>
+           ))
             break;
         }
         case 5: {
-            router = createBrowserRouter(createRoutesFromElements(
-                <Route path="/" element={<Navbar/>}>
+            router = createBrowserRouter(createRoutesFromElements
+            (
+                <Route path="/" element={<Root/>}>
+
                     <Route
                         element={<LoginForm/>}
                         path="/login"
                     />
-                </Route>))
+                    <Route path="/menu" element={<Navbar/>}>
+                        <Route
+                            element={
+                                <RequireAuth>
+                                    <PostContainer/>
+                                </RequireAuth>}
+                            path="/posts"
+                        />
+                        <Route path="*" element={<NotFoundPage/>} />
+                    </Route>
+                </Route>
+            ))
             break;
         }
         default: {
-            router = createBrowserRouter(createRoutesFromElements(
-                <Route path="/" element={<Navbar/>}>
+            router = createBrowserRouter(createRoutesFromElements
+            (
+                <Route path="/" element={<Root/>}>
+
                     <Route
-                        element={<NotFoundPage/>}
+                        element={<LoginForm/>}
                         path="/login"
                     />
-                </Route>))
+                    <Route path="/menu" element={<Navbar/>}>
+                        <Route
+                            element={
+                                <RequireAuth>
+                                    <PostContainer/>
+                                </RequireAuth>}
+                            path="/posts"
+                        />
+                        <Route path="*" element={<NotFoundPage/>} />
+                    </Route>
+                </Route>
+            ))
             break;
         }
     }

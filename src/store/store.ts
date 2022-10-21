@@ -2,9 +2,9 @@ import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import userReducer from './reducers/UserSlice'
 import {postAPI} from "../services/PostService";
 
+// не обязательно объединять все reducers
 const rootReducer = combineReducers({
     userReducer, // слайс
-
     // регистрация reducer
     [postAPI.reducerPath]: postAPI.reducer
 })

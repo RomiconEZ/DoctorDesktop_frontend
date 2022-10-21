@@ -1,12 +1,21 @@
 import React, {FC, useContext, useState} from 'react';
-import {Context} from "../index";
-import {observer} from "mobx-react-lite";
+import {useAppDispatch, useAppSelector} from "../hooks/redux";
+
 
 const LoginForm: FC = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
-    const {store} = useContext(Context); // получили определенный store, который был создан при запуске
 
+    const dispatch = useAppDispatch()
+    const {user, isLoading, error} = useAppSelector(state => state.userReducer) // достаем переменные из хранилища
+
+    //
+    // useEffect(() => {
+    //     dispatch(fetchUsers())
+    // }, [ ])
+    {/*{isLoading && <h1>Идет загрузка...</h1>}*/}
+    {/*{error && <h1>{error}</h1>}*/}
+    {/*{JSON.stringify(users, null, 2)}*/}
     return (
         <div>
             <input

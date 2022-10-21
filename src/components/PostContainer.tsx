@@ -9,7 +9,7 @@ const PostContainer = () => {
     // в опциях можно указывать selector и получать определенные данные
 
     const {data: posts, error, isLoading, refetch} =  postAPI.useFetchAllPostsQuery(limit) // автосгенерированные хуки на соновании endpoint
-    const [createPost, {}] = postAPI.useCreatePostMutation() // createPost-функция, которую мы можем вызвать, чтобы произошла мутация, {} - объект с полями
+    const [createPost, {}] = postAPI.useCreatePostMutation() // {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями
     const [updatePost, {}] = postAPI.useUpdatePostMutation()
     const [deletePost, {}] = postAPI.useDeletePostMutation()
     //выше в {} можно указать, что хотим также получать error, loading и тп

@@ -1,21 +1,25 @@
 import {IUser} from "../models/IUser";
-import {makeAutoObservable} from "mobx";
 import AuthService from "../services/AuthService";
 import axios from 'axios';
 import {AuthResponse} from "../models/response/AuthResponse";
 import {API_URL} from "../http";
+import {useAppDispatch, useAppSelector} from "../hooks/redux";
 
-export default class Store {
-    user = {} as IUser;
-    isAuth = false;
-    isLoading = false;
+const dispatch = useAppDispatch()
+const {user, isLoading, error, isAuth} = useAppSelector(state => state.userReducer)
 
-    constructor() {
-        makeAutoObservable(this);
-    }
+export default class LoginClass {
+
+    user = {} as IUser
+    isAuth = false
+    isLoading = false
+
+
 
     setAuth(bool: boolean) {
         this.isAuth = bool;
+        dispatch(ChangeIsAuth(bool));
+
     }
 
     setUser(user: IUser) {
