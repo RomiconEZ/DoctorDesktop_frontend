@@ -1,11 +1,12 @@
 import { useLocation, Navigate } from 'react-router-dom';
-import { useAuth } from '../hook/useAuth'
+import {useContext} from "react";
+import {Context} from "../../index";
 
 const RequireAuth = ({children}) => {
     const location = useLocation();
-    const {user} = useAuth(); // изменить на доставвание из хранилища
+    const {login} = useContext(Context);
 
-    if (!user) {
+    if (!login.checkAuth()) {
         return <Navigate to='/login' state={{from: location}} />
     }
 
