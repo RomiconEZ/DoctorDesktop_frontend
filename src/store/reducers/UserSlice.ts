@@ -31,7 +31,15 @@ export const userSlice = createSlice({
             {
                 state.isLoading = action.payload
             },
-        }, // аналогично switch/case как в обычном reducer
+            ChangeUser (state, action: PayloadAction<IUser>)
+            {
+                state.user = action.payload
+            },
+            ChangeError (state, action: PayloadAction<string>)
+            {
+                state.error = action.payload
+            },
+        },
     extraReducers: {
         [fetchUser.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
             state.isLoading = false;

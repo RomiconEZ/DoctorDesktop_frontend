@@ -11,6 +11,7 @@ import LoginForm from "./components/LoginForm";
 import NotFoundPage from "./components/NotFoundPage";
 import Root from "./components/UI/Root";
 import {RequireAuth} from "./components/hoc/RequireAuth";
+import LoginPage from "./components/LoginPage";
 // нужно импортнуть стриницы
 let router:any;
 function App() {
@@ -23,7 +24,7 @@ function App() {
                     <Route path="/" element={<Root/>}>
 
                             <Route
-                                element={<LoginForm/>}
+                                element={<LoginPage/>}
                                 path="/login"
                             />
                         <Route path="/menu" element={<Navbar/>}>
@@ -48,7 +49,7 @@ function App() {
                 <Route path="/" element={<Root/>}>
 
                     <Route
-                        element={<LoginForm/>}
+                        element={<LoginPage/>}
                         path="/login"
                     />
                     <Route path="/menu" element={<Navbar/>}>
@@ -72,7 +73,7 @@ function App() {
                 <Route path="/" element={<Root/>}>
 
                     <Route
-                        element={<LoginForm/>}
+                        element={<LoginPage/>}
                         path="/login"
                     />
                     <Route path="/menu" element={<Navbar/>}>
@@ -95,7 +96,7 @@ function App() {
                <Route path="/" element={<Root/>}>
 
                    <Route
-                       element={<LoginForm/>}
+                       element={<LoginPage/>}
                        path="/login"
                    />
                    <Route path="/menu" element={<Navbar/>}>
@@ -118,7 +119,7 @@ function App() {
                 <Route path="/" element={<Root/>}>
 
                     <Route
-                        element={<LoginForm/>}
+                        element={<LoginPage/>}
                         path="/login"
                     />
                     <Route path="/menu" element={<Navbar/>}>
@@ -141,7 +142,7 @@ function App() {
                 <Route path="/" element={<Root/>}>
 
                     <Route
-                        element={<LoginForm/>}
+                        element={<LoginPage/>}
                         path="/login"
                     />
                     <Route path="/menu" element={<Navbar/>}>

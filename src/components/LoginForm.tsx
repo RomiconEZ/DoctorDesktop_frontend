@@ -1,13 +1,16 @@
 import React, {FC, useContext, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
+import {Context} from "../index";
+import {observer} from "mobx-react-lite";
+
 
 
 const LoginForm: FC = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
-
-    const dispatch = useAppDispatch()
-    const {user, isLoading, error} = useAppSelector(state => state.userReducer) // достаем переменные из хранилища
+    const {login} = useContext(Context);
+   /* const dispatch = useAppDispatch()
+    const {user, isLoading, error} = useAppSelector(state => state.userReducer) // достаем переменные из хранилища*/
 
     //
     // useEffect(() => {
@@ -32,10 +35,10 @@ const LoginForm: FC = () => {
             />
 
             // при нажатии вызываем action из store
-            <button onClick={() => store.login(email, password)}>
+            <button onClick={() => login.login(email, password)}>
                 Логин
             </button>
-            <button onClick={() => store.registration(email, password)}>
+            <button onClick={() => login.registration(email, password)}>
                 Регистрация
             </button>
         </div>

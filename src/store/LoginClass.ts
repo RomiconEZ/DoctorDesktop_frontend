@@ -4,30 +4,37 @@ import axios from 'axios';
 import {AuthResponse} from "../models/response/AuthResponse";
 import {API_URL} from "../http";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
+import {userSlice} from "./reducers/UserSlice";
 
 const dispatch = useAppDispatch()
 const {user, isLoading, error, isAuth} = useAppSelector(state => state.userReducer)
 
 export default class LoginClass {
 
-    user = {} as IUser
-    isAuth = false
-    isLoading = false
-
+    user = user
+    isAuth = isAuth
+    isLoading = isLoading
+    error=error
 
 
     setAuth(bool: boolean) {
-        this.isAuth = bool;
-        dispatch(ChangeIsAuth(bool));
-
+        const dispatch = useAppDispatch()
+        dispatch(userSlice.actions.ChangeIsAuth(bool));
     }
 
     setUser(user: IUser) {
-        this.user = user;
+        const dispatch = useAppDispatch()
+        dispatch(userSlice.actions.ChangeUser(user));
     }
 
     setLoading(bool: boolean) {
-        this.isLoading = bool;
+        const dispatch = useAppDispatch()
+        dispatch(userSlice.actions.ChangeIsLoading(bool));
+    }
+
+    setError(str: string) {
+        const dispatch = useAppDispatch()
+        dispatch(userSlice.actions.ChangeError(str));
     }
 
     async login(email: string, password: string) {
@@ -39,6 +46,7 @@ export default class LoginClass {
             this.setUser(response.data.user);
         } catch (e) {
             console.log(e.response?.data?.message);
+            this.setError(e.response?.data?.message);
         }
     }
 
@@ -51,6 +59,7 @@ export default class LoginClass {
             this.setUser(response.data.user);
         } catch (e) {
             console.log(e.response?.data?.message);
+            this.setError(e.response?.data?.message);
         }
     }
 
@@ -62,6 +71,7 @@ export default class LoginClass {
             this.setUser({} as IUser);
         } catch (e) {
             console.log(e.response?.data?.message);
+            this.setError(e.response?.data?.message);
         }
     }
 
@@ -76,6 +86,7 @@ export default class LoginClass {
             this.setUser(response.data.user);
         } catch (e) {
             console.log(e.response?.data?.message);
+            this.setError(e.response?.data?.message);
         } finally {
             this.setLoading(false);
         }
