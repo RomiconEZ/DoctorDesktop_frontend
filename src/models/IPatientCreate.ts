@@ -1,5 +1,4 @@
-export interface IPatientShort{
-    id: string
+export interface IPatientCreate{
     encryption?: string
     name: string
     surname: string

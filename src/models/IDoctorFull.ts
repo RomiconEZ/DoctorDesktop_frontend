@@ -1,4 +1,4 @@
-export interface IDoctorShort{
+export interface IDoctorFull{
     name: string
     surname: string
     patronymic: string
