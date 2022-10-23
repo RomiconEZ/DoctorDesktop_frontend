@@ -7,6 +7,7 @@ interface UserState {
     isLoading: boolean;
     error: string;
     isAuth: boolean;
+
 }
 
 const initialState: UserState = {

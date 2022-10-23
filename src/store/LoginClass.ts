@@ -6,7 +6,6 @@ import {API_URL} from "../http";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {userSlice} from "./reducers/UserSlice";
 
-const dispatch = useAppDispatch()
 const {user, isLoading, error, isAuth} = useAppSelector(state => state.userReducer)
 
 export default class LoginClass {
