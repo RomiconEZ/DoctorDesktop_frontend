@@ -1,9 +1,54 @@
 import React from "react";
 import Slider from "react-slick";
 import Slide from "./Slide";
-import { sliderContent } from "./slider";
+import {
+    sliderContent_admin,
+    sliderContent_codeveloper, sliderContent_dataadmin,
+    sliderContent_developer,
+    sliderContent_doctor, sliderContent_expert, sliderContent_registry
+} from "./slider";
 import { NextArrow, PrevArrow } from "./Arrows";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
+import {useAppSelector} from "../../hooks/redux";
+
+
+const {user} = useAppSelector(state => state.userReducer) // достаем переменные из хранилища
+let sliderContent=sliderContent_doctor
+switch(user?.role) {
+    case 1: {
+        sliderContent=sliderContent_doctor;
+        break;
+    }
+    case 2: {
+        sliderContent=sliderContent_developer;
+        break;
+    }
+    case 3: {
+        sliderContent=sliderContent_codeveloper;
+        break;
+    }
+    case 4: {
+        sliderContent=sliderContent_admin;
+        break;
+    }
+    case 5: {
+        sliderContent=sliderContent_registry;
+        break;
+    }
+    case 6: {
+        sliderContent=sliderContent_expert;
+        break;
+    }
+    case 7: {
+        sliderContent=sliderContent_dataadmin;
+
+        break;
+    }
+    default: {
+        break;
+    }
+}
+
 
 const Carousel = () => {
     const settings = {
@@ -26,8 +71,8 @@ const Carousel = () => {
     return (
         <div className="relative">
             <Slider {...settings}>
-                {sliderContent.map((slideContent) => {
-                    return <Slide ID={slideContent.ID} />;
+                {sliderContent.map((slideContent) => { // итерация по страницам |  на одной странице 3 блока
+                    return <Slide _Page={slideContent.page} sliderContent={sliderContent} />;
                 })}
             </Slider>
             <>
