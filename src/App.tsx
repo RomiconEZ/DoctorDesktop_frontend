@@ -1,17 +1,13 @@
 import React from 'react';
 import './App.css';
-import {userSlice} from "./store/reducers/UserSlice";
-import {useDispatch} from "react-redux";
-import {useAppDispatch, useAppSelector} from "./hooks/redux";
-import {fetchUser} from "./store/reducers/ActionCreators";
 import PostContainer from "./components/PostContainer";
 import {Route, Link, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom';
 import Navbar from "./components/UI/Navbar/Navbar";
-import LoginForm from "./components/LoginForm";
-import NotFoundPage from "./components/NotFoundPage";
+import NotFoundPage from "./components/pages/NotFoundPage";
 import Root from "./components/UI/Root";
 import {RequireAuth} from "./components/hoc/RequireAuth";
-import LoginPage from "./components/LoginPage";
+import LoginPage from "./components/pages/LoginPage";
+import MenuPage from "./components/pages/MenuPage";
 // нужно импортнуть стриницы
 let router:any;
 function App() {
@@ -28,14 +24,16 @@ function App() {
                                 path="/login"
                             />
                         <Route path="/menu" element={<Navbar/>}>
+
                             <Route
                                 element={
                                 <RequireAuth>
-                                    <PostContainer/>
+                                    <MenuPage/>
                                 </RequireAuth>}
-                                    path="/posts"
+                                    path="/menu"
                                     />
                             <Route path="*" element={<NotFoundPage/>} />
+
                         </Route>
                     </Route>
                 )

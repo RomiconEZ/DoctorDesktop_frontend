@@ -1,11 +1,9 @@
 import React from 'react';
-import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {useAppSelector} from "../../hooks/redux";
 import Carousel from "../carousel";
 
 const PostContainer = () => {
-
-    const dispatch = useAppDispatch();
-   const {user, isLoading, error} = useAppSelector(state => state.userReducer);
+    const {isLoading, error} = useAppSelector(state => state.userReducer);
 
 
     return (
