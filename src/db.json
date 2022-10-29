@@ -1,0 +1,40 @@
+{
+    "patients": [
+      {
+        "id": 1,
+        "personal_data": {
+          "first_name": "Иван",
+          "second_name": "Иванов",
+          "patronymic": "Иванович",
+          "birthday": "21.05.1996",
+          "sex": true,
+          "region": "Магадан",
+          "clinic": "Клиника высоких медицинских технологий имени Н.И. Пирогова",
+          "race": "Европеоидная"
+        },
+        "anthropometric_data": {
+          "height": 180,
+          "weight": 80,
+          "body_mass_index": 24.6,
+          "body_surface_area": 1.9,
+          "body_type": "Мезоморф",
+          "connective_tissue_dysplasia": true,
+          "connective_tissue_dysplasia_type": "Синдром Марфана"
+        },
+        "clinical_data": {
+          "main_diag": "bla-bla-bla",
+          "aortic_dissection": 1,
+          "intramural_hematoma": 0,
+          "aortic_rupture": 0,
+          "patient_state": "Стабильное, бла, бла",
+          "pain_beh_stern": 0,
+          "interscap_reg_pain": 0,
+          "conscious_loss": 0,
+          "lo_extrem_ischemia": 0,
+          "empoyeeID": 321,
+          "version": 1,
+          "date": "12.09.2022"
+        }
+      }
+    ]
+}

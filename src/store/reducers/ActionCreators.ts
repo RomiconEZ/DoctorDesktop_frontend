@@ -1,28 +1,16 @@
 import {AppDispatch} from "../store";
+import {IPatient, IPersonal_data} from "../../models/IPatient";
 import axios from "axios";
-import {IUser} from "../../models/IUser";
-import {userSlice} from "./UserSlice";
+import {PatientSlice} from "./PatientSlice";
 import {createAsyncThunk} from "@reduxjs/toolkit";
 
-// export const fetchUsers = () => async (dispatch: AppDispatch) => {
-//     try {
-//         dispatch(userSlice.actions.usersFetching())
-//         const response = await axios.get<IUser[]>('https://jsonplaceholder.typicode.com/users')
-//         dispatch(userSlice.actions.usersFetchingSuccess(response.data))
-//     } catch (e) {
-//         dispatch(userSlice.actions.usersFetchingError(e.message))
-//     }
-// }
-
-// Упрощение для toolkit
-export const fetchUsers = createAsyncThunk(
-    'user/fetchAll',
-    async (_, thunkAPI) => {
-        try {
-            const response = await axios.get<IUser[]>('https://jsonplaceholder.typicode.com/user2s')
-            return response.data;
-        } catch (e) {
-            return thunkAPI.rejectWithValue("Не удалось загрузить пользователей")
-        }
+export const fetchPatient = () => async (dispatch:AppDispatch) => {
+    try {
+        dispatch(PatientSlice.actions.patientFetching())
+        const response = await axios.get<IPatient>('https://my-json-server.typicode.com/AlexanderMenkeev/json-server/patients/1')
+        dispatch(PatientSlice.actions.patientFetchingSuccess(response.data))
+    } catch (e) {
+        dispatch(PatientSlice.actions.patientFetchingError("Fetching of patient's data was unsuccessful"));
     }
-)
+}
+

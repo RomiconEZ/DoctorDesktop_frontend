@@ -1,31 +1,29 @@
-import React, {useEffect} from 'react';
-import './App.css';
-import {userSlice} from "./store/reducers/UserSlice";
-import {useDispatch} from "react-redux";
-import {useAppDispatch, useAppSelector} from "./hooks/redux";
-import {fetchUsers} from "./store/reducers/ActionCreators";
-import PostContainer from "./components/PostContainer";
-import PostContainer2 from "./components/PostContainer2";
+import React from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MainMenu from "./pages/MainMenu";
+import SideBar from "./pages/patientCardComponents/SideBar";
+import PersonalData from "./pages/patientCardComponents/PersonalData";
+import ComputerTomography from "./pages/patientCardComponents/ComputerTomography";
+import AnthropometricData from "./pages/patientCardComponents/AnthropometricData";
+import ClinicData from "./pages/patientCardComponents/ClinicData";
+import "./index.css"
 
 function App() {
-    // const dispatch = useAppDispatch()
-    // const {users, isLoading, error} = useAppSelector(state => state.userReducer) // достаем переменные из хранилища
-    //
-    // useEffect(() => {
-    //     dispatch(fetchUsers())
-    // }, [ ])
-
     return (
-    <div className="App">
-        {/*{isLoading && <h1>Идет загрузка...</h1>}*/}
-        {/*{error && <h1>{error}</h1>}*/}
-        {/*{JSON.stringify(users, null, 2)}*/}
-        <div style={{display: 'flex'}}>
-            <PostContainer/>
-            <PostContainer2/>
-        </div>
-    </div>
-  );
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<MainMenu />} />
+                <Route path="/patientCard" element={<SideBar />}>
+                    <Route path="personalData" element={<PersonalData/>} />
+                    <Route path="computer-aided-tomography" element={<ComputerTomography/>} />
+                    <Route path="anthropometric-data" element={<AnthropometricData />} />
+                    <Route path="clinic-data" element={<ClinicData />} />
+                </Route>
+
+            </Routes>
+
+        </BrowserRouter>
+    );
 }
 
 export default App;
