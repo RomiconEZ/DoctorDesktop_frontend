@@ -2,12 +2,18 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
 import {IPatientShort} from "../models/IPatientShort";
 import {IPatientCreate} from "../models/IPatientCreate";
 import {IPatientUpdate} from "../models/IPatientUpdate";
+import {IPatientFull} from "../models/IPatientFull";
 
 interface PaginationPatientsForCertainDoctor
 {
     doctorID: string
     limit: number
     numofpage: number
+}
+interface PatientForDoctor
+{
+    doctorID: string
+    patientID: string
 }
 
 
@@ -29,9 +35,20 @@ export const patientAPI = createApi({
             }),
             providesTags: result => ['Patient']
         }),
+        fetchSelectedPatient: build.query<IPatientFull, PatientForDoctor>({
+
+            query: (PatientForDoctor) => ({
+                url: `/patients/${PatientForDoctor.patientID}`,
+                params: {
+                    _doctorID: PatientForDoctor.doctorID,
+                    _patientID: PatientForDoctor.patientID,
+                }
+            }),
+            providesTags: result => ['Patient']
+        }),
         createPatient: build.mutation<void, IPatientCreate>({ // передаем только те данные, которые нужны для первичного создания пользователя регистратурой
             query: (post) => ({
-                url: `/patients`,
+                url: `/newpatient`,
                 method: 'POST',
                 body: post
             }),

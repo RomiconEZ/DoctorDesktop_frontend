@@ -2,6 +2,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
 import {IDoctorShort} from "../models/IDoctorShort";
 import {IDoctorUpdate} from "../models/IDoctorUpdate";
 import {IDoctorFull} from "../models/IDoctorFull";
+import {IPatientFull} from "../models/IPatientFull";
 
 interface PaginationDoctors
 {
@@ -9,7 +10,11 @@ interface PaginationDoctors
     limit: number
     numofpage: number
 }
-
+interface DoctorForDoctor
+{
+    doctorID: string
+    selecteddoctorID: string
+}
 
 export const doctorAPI = createApi({
     reducerPath: 'doctorAPI', // уникальное название
@@ -29,6 +34,19 @@ export const doctorAPI = createApi({
             }),
             providesTags: result => ['Doctor']
         }),
+
+        fetchSelectedDoctor: build.query<IDoctorFull, DoctorForDoctor>({
+
+            query: (DoctorForDoctor) => ({
+                url: `/patients/${DoctorForDoctor.selecteddoctorID}`,
+                params: {
+                    _doctorID: DoctorForDoctor.doctorID,
+                    _selecteddoctorID: DoctorForDoctor.selecteddoctorID,
+                }
+            }),
+            providesTags: result => ['Doctor']
+        }),
+
         createDoctor: build.mutation<void, IDoctorFull>({ // передаем только те данные, которые нужны для первичного создания пользователя регистратурой
             query: (post) => ({
                 url: `/doctors`,

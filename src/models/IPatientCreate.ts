@@ -3,8 +3,7 @@ export interface IPatientCreate{
     name: string
     surname: string
     patronymic: string
-    birthdate: string
-    age: string
+    birthdate: string | number
     sex: string
     region: string
     city: string

@@ -1,8 +1,9 @@
-import {combineReducers, configureStore} from "@reduxjs/toolkit";
+import {Action, combineReducers, configureStore, ThunkAction} from "@reduxjs/toolkit";
 import userReducer from './reducers/UserSlice'
 import {postAPI} from "../services/PostService";
 import {patientAPI} from "../services/PatientService";
 import {doctorAPI} from "../services/DoctorService";
+import {useDispatch} from "react-redux";
 
 // не обязательно объединять все reducers
 const rootReducer = combineReducers({
@@ -30,3 +31,7 @@ export const setupStore = () => {
 export type RootState = ReturnType<typeof rootReducer>
 export type AppStore = ReturnType<typeof setupStore>
 export type AppDispatch = AppStore['dispatch']
+
+
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+export type AppThunk = ThunkAction<Promise<any>, RootState, unknown, Action>;

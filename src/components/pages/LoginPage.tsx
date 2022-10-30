@@ -1,6 +1,6 @@
-import React, {FC, useContext, useEffect, useState} from 'react';
-import {IUser} from "../models/IUser";
-import {Context} from "../index";
+import React, {useContext, useEffect} from 'react';
+import {Context} from "../../index";
+
 
 
 const LoginPage = () => {

@@ -15,11 +15,11 @@ const PostContainer = () => {
     //выше в {} можно указать, что хотим также получать error, loading и тп
 
 
-    useEffect(() => {
-        // setTimeout(() => {
-        //     setLimit(3)
-        // }, 2000)
-    }, [])
+    // useEffect(() => {
+    //     // setTimeout(() => {
+    //     //     setLimit(3)
+    //     // }, 2000)
+    // }, [])
 
     const handleCreate = async () => {
         const title = prompt()
