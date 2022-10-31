@@ -9,27 +9,13 @@ import {IPatientCreate} from "../../../models/IPatientCreate";
 import {patientAPI} from "../../../services/PatientService";
 import Button from "../../common/Button";
 import {useAppSelector} from "../../../hooks/redux";
+import {ResidenseRegions} from "../../../DataLists/ResidenseRegions";
+import {Regions} from "../../../DataLists/Regions";
+import {genderItems} from "../../../DataLists/genderItems";
 
 const {user} = useAppSelector(state => state.userReducer)
 
-const genderItems = [
-  {id: 'male', title: 'Мужчина'},
-  {id: 'female', title: 'Женщина'},
-];
-const Regions = [
-    { name: 'Северо-западный регоин', value: 'Северо-западный регоин' },
-    { name: 'Ленинградская область', value: 'Ленинградская область' },
-    { name: 'Московская область', value: 'Московская область' },
-];
-const Cities = [
-    { name: 'Москва', value: 'Москв' },
-    { name: 'Санкт-Петербург', value: 'Санкт-Петербург' },
-];
-const ResidenseRegions = [
-    { name: 'Северо-западный регоин', value: 'Северо-западный регоин' },
-    { name: 'Ленинградская область', value: 'Ленинградская область' },
-    { name: 'Московская область', value: 'Московская область' },
-];
+
 const initialData: IPatientCreate = {
 
   name: '',

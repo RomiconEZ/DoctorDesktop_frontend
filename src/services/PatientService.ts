@@ -54,7 +54,7 @@ export const patientAPI = createApi({
             }),
             invalidatesTags: ['Patient']
         }),
-        updatePost: build.mutation<IPatientUpdate, IPatientUpdate>({ // отправляем только те данные, которые изменяем. И обратно принимаем также только изменившиеся данные
+        updatePatient: build.mutation<IPatientUpdate, IPatientUpdate>({ // отправляем только те данные, которые изменяем. И обратно принимаем также только изменившиеся данные
             query: (PatientUpdate) => ({
                 url: `/patients/${PatientUpdate.id}`,
                 method: 'PUT',
@@ -62,7 +62,7 @@ export const patientAPI = createApi({
             }),
             invalidatesTags: ['Patient']
         }),
-        deletePost: build.mutation<void, IPatientUpdate>({
+        deletePatient: build.mutation<void, IPatientUpdate>({
             query: (PatientUpdate) => ({
                 url: `/patients/${PatientUpdate.id}`,
                 method: 'DELETE',

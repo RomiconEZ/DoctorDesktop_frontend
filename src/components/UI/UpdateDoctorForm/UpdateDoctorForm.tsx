@@ -3,51 +3,56 @@ import React, {useMemo} from 'react';
 import {DatePickerField, InputField, RadioGroup, SelectField} from '../../common/Fields';
 import validatorConfig from './validatorConfig';
 import {Form, useForm} from "../../../hooks/useForm";
-import withPassword from '../../common/Fields/HOC/withPassword';
 import Button from "../../common/Button";
-import {useAppSelector} from "../../../hooks/redux";
-import {IDoctorCreate} from "../../../models/IDoctorCreate";
 import {doctorAPI} from "../../../services/DoctorService";
+import {IDoctorFull} from "../../../models/IDoctorFull";
+
+import {IDoctorUpdate} from "../../../models/IDoctorUpdate";
+import {genderItems} from "../../../DataLists/genderItems";
+import {Regions} from "../../../DataLists/Regions";
 import {PlacesOfWork} from "../../../DataLists/PlacesOfWork";
 import {Occupations} from "../../../DataLists/Occupations";
-import {Regions} from "../../../DataLists/Regions";
 import {Roles} from "../../../DataLists/Roles";
-import {genderItems} from "../../../DataLists/genderItems";
 
-const {user} = useAppSelector(state => state.userReducer)
+//const {user} = useAppSelector(state => state.userReducer)
 
+export type DoctorUpdateFormProps = {
+    doctor: IDoctorFull
+};
 
-const initialData: IDoctorCreate = {
+const UpdateDoctorForm : React.FC<DoctorUpdateFormProps> = ({doctor}) => {
 
-  name: '',
-  surname: '',
-  patronymic: '',
-  birthdate: Date.now(),
-    workExperience: 0,
-  sex: 'male',
-  region: user?.region || 'Северо-западный регоин',
-  city: user?.city || 'Санкт-Петербург',
-    placeOfWork: user?.placeofwork || 'нет',
-    occupation: user?.occupation || 'нет',
-    email: '',
-    password: '',
-    role: 'соразработчик'
+    // const params = useParams<string>()
+    // const body: DoctorForDoctor = {
+    //     doctorID: user?.id || '',
+    //     selecteddoctorID: params || ''
+    // }
+    // const {data: IDoctorUpdate} =  doctorAPI.useFetchSelectedDoctorQuery(body) // автосгенерированные хуки на соновании endpoint
 
-
-}
-
-
-const CreateDoctorForm = () => {
+    const initialData: IDoctorUpdate = {
+        id: doctor.id,
+        name: doctor.name,
+        surname: doctor.surname,
+        patronymic: doctor.patronymic,
+        birthdate: doctor.birthdate,
+        workExperience: doctor.workExperience,
+        sex: doctor.sex,
+        region: doctor.region,
+        city: doctor.city,
+        placeOfWork: doctor.placeOfWork,
+        occupation: doctor.occupation,
+        email: doctor.email,
+        role: doctor.role,
+    }
   const {data, errors, handleInputChange, handleKeyDown, validate} = useForm(initialData, true, validatorConfig);
 
-  const [createDoctor, {}] = doctorAPI.useCreateDoctorMutation();// {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями
+  const [updateDoctor, {}] = doctorAPI.useUpdateDoctorMutation();// {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями
 
-    const handleCreate = async (e: React.FormEvent<HTMLButtonElement>) => {
+    const handleUpdate = async (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        if (validate(data)) {await createDoctor(data)}
+        if (validate(data)) {await updateDoctor(data)}
     }
 
-    const InputFieldWithPassword = useMemo(() => withPassword(InputField), []);
 
     return (
       <>
@@ -80,10 +85,8 @@ const CreateDoctorForm = () => {
             <SelectField label='Роль' name='role' options={Roles}  />
 
             <InputField name='email' label='Почта' />
-            <InputFieldWithPassword name='password' label='Пароль' type='password' />
 
-
-            <Button type='submit' onClick={handleCreate} fullWidth disabled={Object.keys(errors).length !== 0}>
+            <Button type='submit' onClick={handleUpdate} fullWidth disabled={Object.keys(errors).length !== 0}>
           Создать
         </Button>
       </Form>
@@ -91,4 +94,4 @@ const CreateDoctorForm = () => {
   );
 };
 
-export default CreateDoctorForm;
+export default UpdateDoctorForm;

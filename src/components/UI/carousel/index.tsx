@@ -9,7 +9,7 @@ import {
 } from "./slider";
 import { NextArrow, PrevArrow } from "./Arrows";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
-import {useAppSelector} from "../../hooks/redux";
+import {useAppSelector} from "../../../hooks/redux";
 
 
 const {user} = useAppSelector(state => state.userReducer) // достаем переменные из хранилища

@@ -3,6 +3,7 @@ import {IDoctorShort} from "../models/IDoctorShort";
 import {IDoctorUpdate} from "../models/IDoctorUpdate";
 import {IDoctorFull} from "../models/IDoctorFull";
 import {IDoctorCreate} from "../models/IDoctorCreate";
+import {Params} from "react-router-dom";
 
 interface PaginationDoctors
 {
@@ -10,10 +11,10 @@ interface PaginationDoctors
     limit: number
     numofpage: number
 }
-interface DoctorForDoctor
+export interface DoctorForDoctor
 {
     doctorID: string
-    selecteddoctorID: string
+    selecteddoctorID: string | Params
 }
 
 export const doctorAPI = createApi({
@@ -47,6 +48,7 @@ export const doctorAPI = createApi({
             providesTags: result => ['Doctor']
         }),
 
+
         createDoctor: build.mutation<void, IDoctorCreate>({ // передаем только те данные, которые нужны для первичного создания пользователя регистратурой
             query: (DoctorCreate) => ({
                 url: `/newdoctor`,
@@ -55,7 +57,7 @@ export const doctorAPI = createApi({
             }),
             invalidatesTags: ['Doctor']
         }),
-        updatePost: build.mutation<IDoctorUpdate, IDoctorUpdate>({ // отправляем только те данные, которые изменяем. И обратно принимаем также только изменившиеся данные
+        updateDoctor: build.mutation<IDoctorUpdate, IDoctorUpdate>({ // отправляем только те данные, которые изменяем. И обратно принимаем также только изменившиеся данные
             query: (DoctorUpdate) => ({
                 url: `/doctors/${DoctorUpdate.id}`,
                 method: 'PUT',
@@ -63,7 +65,7 @@ export const doctorAPI = createApi({
             }),
             invalidatesTags: ['Doctor']
         }),
-        deletePost: build.mutation<void, IDoctorUpdate>({
+        deleteDoctor: build.mutation<void, IDoctorUpdate>({
             query: (DoctorUpdate) => ({
                 url: `/doctors/${DoctorUpdate.id}`,
                 method: 'DELETE',
