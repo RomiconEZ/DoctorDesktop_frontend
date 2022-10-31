@@ -1,22 +1,11 @@
 import {ValidatorConfigType} from "../../../utils/validator";
-import {IPatientCreate} from "../../../models/IPatientCreate";
+import {IDoctorCreate} from "../../../models/IDoctorCreate";
 
 
 type ConfigType = {
-  [Property in keyof IPatientCreate]?: ValidatorConfigType[Property];
+  [Property in keyof IDoctorCreate]?: ValidatorConfigType[Property];
 };
 
-// export interface IPatientCreate{
-//   encryption?: string
-//   name: string
-//   surname: string
-//   patronymic: string
-//   birthdate: string | number
-//   sex: string
-//   region: string
-//   city: string
-//   residenseregion: string
-// }
 
 const validatorConfig: ConfigType = {
   name: {
@@ -34,7 +23,33 @@ const validatorConfig: ConfigType = {
       message: 'Поле "Отчество" обязательно для заполнения',
     },
   },
-  
+
+  email: {
+    isRequired: {
+      message: 'Электронная почта обязательна для заполнения',
+    },
+    isEmail: {
+      message: 'Поле "Email" введено не корректно',
+    },
+  },
+  password: {
+    isRequired: {
+      message: 'Поле "Пароль" обязательно для заполнения',
+    },
+    isCapitalSymbol: {
+      message: 'Пароль должен содержать хотя бы 1 заглавную букву',
+    },
+    isContainDigit: {
+      message: 'Пароль должен содержать хотя бы 1 цифру',
+    },
+
+    min: {
+      value: 8,
+      message: 'Пароль должен содержать минимум 8 символов',
+    },
+  },
+
+
 };
 
 export default validatorConfig;
