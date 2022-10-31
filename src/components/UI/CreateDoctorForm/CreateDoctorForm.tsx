@@ -9,6 +9,7 @@ import {IPatientCreate} from "../../../models/IPatientCreate";
 import {patientAPI} from "../../../services/PatientService";
 import Button from "../../common/Button";
 import {useAppSelector} from "../../../hooks/redux";
+import {IDoctorCreate} from "../../../models/IDoctorCreate";
 
 const {user} = useAppSelector(state => state.userReducer)
 
@@ -30,17 +31,28 @@ const ResidenseRegions = [
     { name: 'Ленинградская область', value: 'Ленинградская область' },
     { name: 'Московская область', value: 'Московская область' },
 ];
-const initialData: IPatientCreate = {
+const initialData: IDoctorCreate = {
 
   name: '',
   surname: '',
   patronymic: '',
   birthdate: Date.now(),
+    workExperience: 0,
   sex: 'male',
   region: user?.region || 'Северо-западный регоин',
   city: user?.city || 'Санкт-Петербург',
-  residenseregion: user?.region || 'Северо-западный регоин',
 }
+
+name: string
+surname: string
+patronymic: string
+birthDate: string
+workExperience: number
+residenseRegion: string
+city: string
+placeOfWork: string
+email: string
+password: string
 
 const CreateDoctorForm = () => {
   const {data, errors, handleInputChange, handleKeyDown, validate} = useForm(initialData, true, validatorConfig);

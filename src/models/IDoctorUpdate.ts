@@ -3,10 +3,14 @@ export interface IDoctorUpdate{
     name?: string
     surname?: string
     patronymic?: string
-    birthDate?: string
-    age?: number
+    birthdate?: number
+    sex?: string
     workExperience?: number
-    residenseRegion?: string
-    city?: string
-    placeOfWork?: string
+    region?: string // значение из списка
+    city?: string // значение из списка
+    placeOfWork?: string // значение из списка
+    occupation?: string // значение из списка
+    email?: string
+    password?: string
+    role?: string // значение из списка
 }
