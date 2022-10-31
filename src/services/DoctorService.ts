@@ -2,7 +2,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
 import {IDoctorShort} from "../models/IDoctorShort";
 import {IDoctorUpdate} from "../models/IDoctorUpdate";
 import {IDoctorFull} from "../models/IDoctorFull";
-import {IPatientFull} from "../models/IPatientFull";
+import {IDoctorCreate} from "../models/IDoctorCreate";
 
 interface PaginationDoctors
 {
@@ -38,7 +38,7 @@ export const doctorAPI = createApi({
         fetchSelectedDoctor: build.query<IDoctorFull, DoctorForDoctor>({
 
             query: (DoctorForDoctor) => ({
-                url: `/patients/${DoctorForDoctor.selecteddoctorID}`,
+                url: `/doctors/${DoctorForDoctor.selecteddoctorID}`,
                 params: {
                     _doctorID: DoctorForDoctor.doctorID,
                     _selecteddoctorID: DoctorForDoctor.selecteddoctorID,
@@ -47,25 +47,25 @@ export const doctorAPI = createApi({
             providesTags: result => ['Doctor']
         }),
 
-        createDoctor: build.mutation<void, IDoctorFull>({ // передаем только те данные, которые нужны для первичного создания пользователя регистратурой
-            query: (post) => ({
-                url: `/doctors`,
+        createDoctor: build.mutation<void, IDoctorCreate>({ // передаем только те данные, которые нужны для первичного создания пользователя регистратурой
+            query: (DoctorCreate) => ({
+                url: `/newdoctor`,
                 method: 'POST',
-                body: post
+                body: DoctorCreate
             }),
             invalidatesTags: ['Doctor']
         }),
         updatePost: build.mutation<IDoctorUpdate, IDoctorUpdate>({ // отправляем только те данные, которые изменяем. И обратно принимаем также только изменившиеся данные
-            query: (IDoctorUpdate) => ({
-                url: `/doctors/${IDoctorUpdate.id}`,
+            query: (DoctorUpdate) => ({
+                url: `/doctors/${DoctorUpdate.id}`,
                 method: 'PUT',
-                body: IDoctorUpdate
+                body: DoctorUpdate
             }),
             invalidatesTags: ['Doctor']
         }),
         deletePost: build.mutation<void, IDoctorUpdate>({
-            query: (IDoctorUpdate) => ({
-                url: `/doctors/${IDoctorUpdate.id}`,
+            query: (DoctorUpdate) => ({
+                url: `/doctors/${DoctorUpdate.id}`,
                 method: 'DELETE',
             }),
             invalidatesTags: ['Doctor']

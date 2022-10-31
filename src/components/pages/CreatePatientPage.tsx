@@ -1,6 +1,6 @@
 import React from 'react';
 import {useAppSelector} from "../../hooks/redux";
-import RegisterForm from "../UI/RegisterForm";
+import CreatePatientForm from "../UI/CreatePatientForm";
 
 const PostContainer = () => {
     const {isLoading, error} = useAppSelector(state => state.userReducer);
@@ -11,7 +11,7 @@ const PostContainer = () => {
             <div className="post__list">
                 {isLoading && <h1>Идет загрузка...</h1>}
                 {error && <h1>Произошла ошибка при загрузке</h1>}
-                <RegisterForm />
+                <CreatePatientForm />
             </div>
         </div>
     );

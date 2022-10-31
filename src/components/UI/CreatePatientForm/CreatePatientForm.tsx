@@ -42,10 +42,8 @@ const initialData: IPatientCreate = {
   residenseregion: user?.region || 'Северо-западный регоин',
 }
 
-const RegisterForm = () => {
+const CreatePatientForm = () => {
   const {data, errors, handleInputChange, handleKeyDown, validate} = useForm(initialData, true, validatorConfig);
-
-  const dispatch = useDispatch();
 
   const [createPatient, {}] = patientAPI.useCreatePatientMutation();// {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями
 
@@ -87,4 +85,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default CreatePatientForm;

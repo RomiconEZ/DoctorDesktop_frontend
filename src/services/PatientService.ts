@@ -47,24 +47,24 @@ export const patientAPI = createApi({
             providesTags: result => ['Patient']
         }),
         createPatient: build.mutation<void, IPatientCreate>({ // передаем только те данные, которые нужны для первичного создания пользователя регистратурой
-            query: (post) => ({
+            query: (PatientCreate) => ({
                 url: `/newpatient`,
                 method: 'POST',
-                body: post
+                body: PatientCreate
             }),
             invalidatesTags: ['Patient']
         }),
         updatePost: build.mutation<IPatientUpdate, IPatientUpdate>({ // отправляем только те данные, которые изменяем. И обратно принимаем также только изменившиеся данные
-            query: (IPatientUpdate) => ({
-                url: `/patients/${IPatientUpdate.id}`,
+            query: (PatientUpdate) => ({
+                url: `/patients/${PatientUpdate.id}`,
                 method: 'PUT',
-                body: IPatientUpdate
+                body: PatientUpdate
             }),
             invalidatesTags: ['Patient']
         }),
         deletePost: build.mutation<void, IPatientUpdate>({
-            query: (IPatientUpdate) => ({
-                url: `/patients/${IPatientUpdate.id}`,
+            query: (PatientUpdate) => ({
+                url: `/patients/${PatientUpdate.id}`,
                 method: 'DELETE',
             }),
             invalidatesTags: ['Patient']
