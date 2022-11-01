@@ -8,6 +8,9 @@ import Root from "./components/UI/Root";
 import {RequireAuth} from "./components/hoc/RequireAuth";
 import LoginPage from "./components/pages/LoginPage";
 import MenuPage from "./components/pages/MenuPage";
+import CreatePatientPage from "./components/pages/CreatePatientPage";
+import CreateDoctorPage from "./components/pages/CreateDoctorPage";
+import UpdateDoctorPage from "./components/pages/UpdateDoctorPage";
 // нужно импортнуть стриницы
 
 // doctor - 1
@@ -18,212 +21,105 @@ import MenuPage from "./components/pages/MenuPage";
 // expert - 6
 // dataadmin - 7
 
-let router:any;
+const router = createBrowserRouter(createRoutesFromElements
+    (
+        <Route path="/" element={<Root/>}>
+
+            <Route
+                element={<LoginPage/>}
+                path="login"
+            />
+
+            <Route path="auth" element={<Navbar/>}>
+
+                <Route
+                    element=
+                        {
+                        <RequireAuth>
+                            <MenuPage/>
+                        </RequireAuth>
+                        }
+                    path="menu"
+                />
+
+                <Route
+                    element=
+                        {
+                            <RequireAuth>
+                                <CreatePatientPage/>
+                            </RequireAuth>
+                        }
+                    path="menu/newpatient"
+                />
+
+                <Route
+                    element=
+                        {
+                            <RequireAuth>
+                                <CreateDoctorPage/>
+                            </RequireAuth>
+                        }
+                    path="menu/newdoctor"
+                />
+
+                <Route
+                    element=
+                        {
+                            <RequireAuth>
+                                <UpdateDoctorPage/>
+                            </RequireAuth>
+                        }
+                    path="menu/doctors/:id/editdoctor"
+                />
+
+                <Route
+                    element=
+                        {
+                            <RequireAuth>
+                                <DoctorsListPage/>
+                            </RequireAuth>
+                        }
+                    path="menu/doctors"
+                />
+                <Route
+                    element=
+                        {
+                            <RequireAuth>
+                                <DoctorPage/>
+                            </RequireAuth>
+                        }
+                    path="menu/doctors/:id"
+                />
+                <Route
+                    element=
+                        {
+                            <RequireAuth>
+                                <PatientsListPage/>
+                            </RequireAuth>
+                        }
+                    path="menu/patients"
+                />
+
+                <Route
+                    element=
+                        {
+                            <RequireAuth>
+                                <PatientPage/>
+                            </RequireAuth>
+                        }
+                    path="menu/patients/:id"
+                />
+
+
+            <Route path="*" element={<NotFoundPage/>} />
+
+            </Route>
+        </Route>
+    )
+)
+
 function App() {
-    const Role: number=1
 
-    switch (Role) {
-        case 1: {
-            router = createBrowserRouter(createRoutesFromElements
-                (
-                    <Route path="/" element={<Root/>}>
-
-                            <Route
-                                element={<LoginPage/>}
-                                path="/login"
-                            />
-                        <Route path="/doctor" element={<Navbar/>}>
-
-                            <Route
-                                element={
-                                <RequireAuth>
-                                    <MenuPage/>
-                                </RequireAuth>}
-                                    path="/menu"
-                                    />
-                            <Route path="*" element={<NotFoundPage/>} />
-
-                        </Route>
-                    </Route>
-                )
-            )
-            break;
-        }
-        case 2:
-        {
-            router = createBrowserRouter(createRoutesFromElements
-                (
-                    <Route path="/" element={<Root/>}>
-
-                        <Route
-                            element={<LoginPage/>}
-                            path="/login"
-                        />
-                        <Route path="/developer" element={<Navbar/>}>
-
-                            <Route
-                                element={
-                                    <RequireAuth>
-                                        <MenuPage/>
-                                    </RequireAuth>}
-                                path="/menu"
-                            />
-                            <Route path="*" element={<NotFoundPage/>} />
-
-                        </Route>
-                    </Route>
-                )
-            )
-            break;
-        }
-        case 3: {
-            router = createBrowserRouter(createRoutesFromElements
-                (
-                    <Route path="/" element={<Root/>}>
-
-                        <Route
-                            element={<LoginPage/>}
-                            path="/login"
-                        />
-                        <Route path="/codeveloper" element={<Navbar/>}>
-
-                            <Route
-                                element={
-                                    <RequireAuth>
-                                        <MenuPage/>
-                                    </RequireAuth>}
-                                path="/menu"
-                            />
-                            <Route path="*" element={<NotFoundPage/>} />
-
-                        </Route>
-                    </Route>
-                )
-            )
-            break;
-        }
-        case 4: {
-            router = createBrowserRouter(createRoutesFromElements
-                (
-                    <Route path="/" element={<Root/>}>
-
-                        <Route
-                            element={<LoginPage/>}
-                            path="/login"
-                        />
-                        <Route path="/admin" element={<Navbar/>}>
-
-                            <Route
-                                element={
-                                    <RequireAuth>
-                                        <MenuPage/>
-                                    </RequireAuth>}
-                                path="/menu"
-                            />
-                            <Route path="*" element={<NotFoundPage/>} />
-
-                        </Route>
-                    </Route>
-                )
-            )
-            break;
-        }
-        case 5: {
-            router = createBrowserRouter(createRoutesFromElements
-                (
-                    <Route path="/" element={<Root/>}>
-
-                        <Route
-                            element={<LoginPage/>}
-                            path="/login"
-                        />
-                        <Route path="/registry" element={<Navbar/>}>
-
-                            <Route
-                                element={
-                                    <RequireAuth>
-                                        <MenuPage/>
-                                    </RequireAuth>}
-                                path="/menu"
-                            />
-                            <Route path="*" element={<NotFoundPage/>} />
-
-                        </Route>
-                    </Route>
-                )
-            )
-            break;
-        }
-        case 6: {
-            router = createBrowserRouter(createRoutesFromElements
-                (
-                    <Route path="/" element={<Root/>}>
-
-                        <Route
-                            element={<LoginPage/>}
-                            path="/login"
-                        />
-                        <Route path="/expert" element={<Navbar/>}>
-
-                            <Route
-                                element={
-                                    <RequireAuth>
-                                        <MenuPage/>
-                                    </RequireAuth>}
-                                path="/menu"
-                            />
-                            <Route path="*" element={<NotFoundPage/>} />
-
-                        </Route>
-                    </Route>
-                )
-            )
-            break;
-        }
-        case 7: {
-            router = createBrowserRouter(createRoutesFromElements
-                (
-                    <Route path="/" element={<Root/>}>
-
-                        <Route
-                            element={<LoginPage/>}
-                            path="/login"
-                        />
-                        <Route path="/dataadmin" element={<Navbar/>}>
-
-                            <Route
-                                element={
-                                    <RequireAuth>
-                                        <MenuPage/>
-                                    </RequireAuth>}
-                                path="/menu"
-                            />
-                            <Route path="*" element={<NotFoundPage/>} />
-
-                        </Route>
-                    </Route>
-                )
-            )
-            break;
-        }
-        default: {
-            router = createBrowserRouter(createRoutesFromElements
-                (
-                    <Route path="/" element={<Root/>}>
-
-                        <Route
-                            element={<LoginPage/>}
-                            path="/login"
-                        />
-
-                            <Route path="*" element={<NotFoundPage/>} />
-
-                    </Route>
-                )
-            )
-            break;
-        }
-    }
 
     // const dispatch = useAppDispatch()
     // const {users, isLoading, error} = useAppSelector(state => state.userReducer) // достаем переменные из хранилища

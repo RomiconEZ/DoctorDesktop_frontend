@@ -59,7 +59,7 @@ export const doctorAPI = createApi({
         }),
         updateDoctor: build.mutation<IDoctorUpdate, IDoctorUpdate>({ // отправляем только те данные, которые изменяем. И обратно принимаем также только изменившиеся данные
             query: (DoctorUpdate) => ({
-                url: `/doctors/${DoctorUpdate.id}`,
+                url: `/doctors/${DoctorUpdate.id}/editdoctor`,
                 method: 'PUT',
                 body: DoctorUpdate
             }),

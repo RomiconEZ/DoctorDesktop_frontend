@@ -34,13 +34,12 @@ const LoginForm: FC = () => {
                 placeholder='Пароль'
             />
 
-            // при нажатии вызываем action из store
             <button onClick={() => login.login(email, password)}>
                 Логин
             </button>
-            <button onClick={() => login.registration(email, password)}>
-                Регистрация
-            </button>
+            {/*<button onClick={() => login.registration(email, password)}>*/}
+            {/*    Регистрация*/}
+            {/*</button>*/}
         </div>
     );
 };

@@ -23,9 +23,9 @@ const initialData: IPatientCreate = {
   patronymic: '',
   birthdate: Date.now(),
   sex: 'male',
-  region: user?.region || 'Северо-западный регоин',
+  region: user?.region || 'Северо-западный регион',
   city: user?.city || 'Санкт-Петербург',
-  residenseregion: user?.region || 'Северо-западный регоин',
+  residenseregion: user?.region || 'Северо-западный регион',
 }
 
 const CreatePatientForm = () => {
