@@ -4,7 +4,7 @@ export interface IPatientUpdate{
     name?: string
     surname?: string
     patronymic?: string
-    birthdate?: string
+    birthdate?: number
     age?: string
     sex?: string
     region?: string

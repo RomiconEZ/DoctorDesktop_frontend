@@ -32,7 +32,7 @@ const UpdateDoctorForm = () => {
     }
     const {data: doctor, error, isLoading, refetch} =  doctorAPI.useFetchSelectedDoctorQuery(body) // автосгенерированные хуки на соновании endpoint
 
-    const initialData: IDoctorUpdate = {
+    const initialData: IDoctorFull = {
         id: doctor?.id || "",
         name: doctor?.name || "",
         surname: doctor?.surname || "",
