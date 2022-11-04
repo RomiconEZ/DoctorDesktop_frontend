@@ -5,12 +5,19 @@ import {Route, Link, RouterProvider, createBrowserRouter, createRoutesFromElemen
 import Navbar from "./components/UI/Navbar/Navbar";
 import NotFoundPage from "./components/pages/NotFoundPage";
 import Root from "./components/UI/Root";
-import {RequireAuth} from "./components/hoc/RequireAuth";
 import LoginPage from "./components/pages/LoginPage";
 import MenuPage from "./components/pages/MenuPage";
 import CreatePatientPage from "./components/pages/CreatePatientPage";
 import CreateDoctorPage from "./components/pages/CreateDoctorPage";
 import UpdateDoctorPage from "./components/pages/UpdateDoctorPage";
+import {RequireAuthMenuPage} from "./components/hoc/RequireAuthMenuPage";
+import {RequireAuthPatientPage} from "./components/hoc/RequireAuthPatientPage";
+import {RequireAuthPatientsListPage} from "./components/hoc/RequireAuthPatientsListPage";
+import {RequireAuthDoctorPage} from "./components/hoc/RequireAuthDoctorPage";
+import {RequireAuthDoctorsListPage} from "./components/hoc/RequireAuthDoctorsListPage";
+import {RequireAuthCreatePatientPage} from "./components/hoc/RequireAuthCreatePatientPage";
+import {RequireAuthCreateDoctorPage} from "./components/hoc/RequireAuthCreateDoctorPage";
+import {RequireAuthUpdateDoctorPage} from "./components/hoc/RequireAuthUpdateDoctorPage";
 // нужно импортнуть стриницы
 
 // doctor - 1
@@ -35,9 +42,9 @@ const router = createBrowserRouter(createRoutesFromElements
                 <Route
                     element=
                         {
-                        <RequireAuth>
+                        <RequireAuthMenuPage>
                             <MenuPage/>
-                        </RequireAuth>
+                        </RequireAuthMenuPage>
                         }
                     path="menu"
                 />
@@ -45,9 +52,9 @@ const router = createBrowserRouter(createRoutesFromElements
                 <Route
                     element=
                         {
-                            <RequireAuth>
+                            <RequireAuthCreatePatientPage>
                                 <CreatePatientPage/>
-                            </RequireAuth>
+                            </RequireAuthCreatePatientPage>
                         }
                     path="menu/newpatient"
                 />
@@ -55,9 +62,9 @@ const router = createBrowserRouter(createRoutesFromElements
                 <Route
                     element=
                         {
-                            <RequireAuth>
+                            <RequireAuthCreateDoctorPage>
                                 <CreateDoctorPage/>
-                            </RequireAuth>
+                            </RequireAuthCreateDoctorPage>
                         }
                     path="menu/newdoctor"
                 />
@@ -65,9 +72,9 @@ const router = createBrowserRouter(createRoutesFromElements
                 <Route
                     element=
                         {
-                            <RequireAuth>
+                            <RequireAuthUpdateDoctorPage>
                                 <UpdateDoctorPage/>
-                            </RequireAuth>
+                            </RequireAuthUpdateDoctorPage>
                         }
                     path="menu/doctors/:id/editdoctor"
                 />
@@ -75,27 +82,27 @@ const router = createBrowserRouter(createRoutesFromElements
                 <Route
                     element=
                         {
-                            <RequireAuth>
+                            <RequireAuthDoctorsListPage>
                                 <DoctorsListPage/>
-                            </RequireAuth>
+                            </RequireAuthDoctorsListPage>
                         }
                     path="menu/doctors"
                 />
                 <Route
                     element=
                         {
-                            <RequireAuth>
+                            <RequireAuthDoctorPage>
                                 <DoctorPage/>
-                            </RequireAuth>
+                            </RequireAuthDoctorPage>
                         }
                     path="menu/doctors/:id"
                 />
                 <Route
                     element=
                         {
-                            <RequireAuth>
+                            <RequireAuthPatientsListPage>
                                 <PatientsListPage/>
-                            </RequireAuth>
+                            </RequireAuthPatientsListPage>
                         }
                     path="menu/patients"
                 />
@@ -103,9 +110,9 @@ const router = createBrowserRouter(createRoutesFromElements
                 <Route
                     element=
                         {
-                            <RequireAuth>
+                            <RequireAuthPatientPage>
                                 <PatientPage/>
-                            </RequireAuth>
+                            </RequireAuthPatientPage>
                         }
                     path="menu/patients/:id"
                 />

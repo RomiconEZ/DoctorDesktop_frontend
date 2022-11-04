@@ -10,11 +10,10 @@ const {user, isLoading, error, isAuth} = useAppSelector(state => state.userReduc
 
 export default class LoginClass {
 
-    user = user
-    isAuth = isAuth
-    isLoading = isLoading
-    error=error
-
+    // user = user
+    // isAuth = isAuth
+    // isLoading = isLoading
+    // error=error
 
     setAuth(bool: boolean) {
         const dispatch = useAppDispatch()
