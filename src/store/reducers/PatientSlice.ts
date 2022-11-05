@@ -8,16 +8,20 @@ interface PatientState {
 }
 const initialState: PatientState = {
     patient: {
-        id: 1,
+        patient_id: 1,
+        employee_id: 2,
+
         personal_data: {
             first_name: '',
             second_name: '',
             patronymic: '',
-            birthday: '',
+            birthday: new Date,
             sex: true,
             region: '',
             clinic: '',
-            race: ''
+            race: '',
+            version: 1,
+            date: new Date
         },
         anthropometric_data: {
             height: 0,
@@ -25,23 +29,114 @@ const initialState: PatientState = {
             body_mass_index: 0,
             body_surface_area: 0,
             body_type: '',
-            connective_tissue_dysplasia: false
+            connective_tissue_dysplasia: false,
+            connective_tissue_dysplasia_EhlersDanlos: false,
+            connective_tissue_dysplasia_Marfan: false,
+            connective_tissue_dysplasia_LoeysDitz: false,
+            connective_tissue_dysplasia_Noonan: false,
+            connective_tissue_dysplasia_Terner: false,
+            version: 1,
+            date: new Date
         },
 
         clinical_data: {
             main_diag: "",
-            aortic_dissection: 0,
-            intramural_hematoma: 0,
-            aortic_rupture: 0,
+            aortic_dissection: false,
+            intramural_hematoma: false,
+            aortic_rupture: false,
             patient_state: "",
-            pain_beh_stern: 0,
-            interscap_reg_pain: 0,
-            conscious_loss: 0,
-            lo_extrem_ischemia: 0,
+            pain_beh_stern: false,
+            interscap_reg_pain: "",
+            conscious_loss: "",
+            low_extrem_ischemia: "",
             empoyeeID: 0,
-            version: 0,
-            date: ""
+            version: 1,
+            date: new Date,
+        },
+
+        concom_desease: {
+            acuteMyocardilInfarctionNum: 2,
+            currentMyocardilInfarction: false,
+            diabetes: false,
+            diabetesType: "Первый",
+            cerebrovascularDisease: false,
+            BCAStenosis: false,
+            translschAttack: false,
+            ACVA: false,
+            chronicLungDisease: false,
+            prevInfectiousDisease: false,
+            rhythmConcluctionDisturbances: false,
+            thyroidDisease: false,
+            acuteRenalFailure: false,
+            chronicRenalFailure: false,
+            oncology: false,
+            hematologicalDisease: false,
+            pulmonaryEmbolism: false,
+            chestWallInjury: false,
+            aorticValve: "something",
+            acquiredAVDisease: false,
+            AVDegenerativeLesions: false,
+            AVInfectiousLesions: false,
+            AVWTraumaticLesionsb: false,
+            version: 1,
+            date: new Date
+        },
+
+        echocardiogram: {
+            LVEF: "string",
+            LVEDV: "string",
+            LVESV: "string",
+            ascAorticD: "string",
+            valsalvaSinusesD: "string",
+            AVLeafletN: "string",
+            AVAnnuFibrD: "string",
+            peakSpeedAV: "string",
+            AVPressureGradientMax: "string",
+            AVPressureGradientMean: "string",
+            aorticRegurgitationDegree: false,
+            pulmArterySysBP: "string",
+            mitralInsuffStenPrD: "string",
+            tricuspi: "string",
+            trialSeptalDefectPr: "string",
+            version: 1,
+            date: new Date
+        },
+
+        anamnesis: {
+            disHeartBloodVesselsFirstLineRelatives: false,
+            relativesConnTissDysplasia: false,
+            heartSurgeriesPr: false,
+            heartSurgeriesType: "string",
+            geneticAnalysisPr: false,
+            geneticAnalysisRes: "string",
+            smokingExperience: 1,
+            alkoConsumptionExperince: 1,
+            drugConsumptionExperince: 1,
+            occupationalHazards: "string",
+            sports: "string",
+            diseaseKnowledge: new Date,
+            employed: false,
+            blodThinDrugs: false,
+            disaggregants: false,
+            version: 1,
+            date: new Date
+        },
+
+        MCT: {
+            AV_annulus_fibrosis: 1,
+            sinuses_valsalva: 1,
+            sinotubular_junction: 1,
+            asc_aorta_pulm_art_bif: 1,
+            asc_aorta_before_BCS: 1,
+            aortic_arch_before_CCA: 1,
+            aortic_arch_before_LSA: 1,
+            aorticlsthmus: 1,
+            desc_aorta_middle_part: 1,
+            abdominal_aorta: 1,
+            version: 1,
+            date: new Date
         }
+        
     },
     isLoading: false,
     error: '',

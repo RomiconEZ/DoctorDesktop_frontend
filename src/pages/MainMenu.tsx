@@ -7,7 +7,7 @@ const MainMenu = () => {
             <nav>
                 <ul>
                     <li>
-                        <Link to="/">Главная</Link>
+                        <Link to="/" className="">Главная</Link>
                     </li>
                     <li>
                         <Link to="/patientCard" >Карточка пациента</Link>

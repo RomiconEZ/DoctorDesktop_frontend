@@ -3,27 +3,33 @@ import {Link, Outlet} from "react-router-dom";
 
 const SideBar = () => {
     return (
-        <div className="top-0 left-0 w-[35vw] bg-blue-300  p-10 pl-20 fixed h-full ">
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/patientCard/personalData">Персональные данные</Link>
-                    </li>
-                    <li>
-                        <Link to="/patientCard/computer-aided-tomography">Компьютерная томография</Link>
-                    </li>
-                    <li>
-                        <Link to="/patientCard/anthropometric-data">Антропометрия</Link>
-                    </li>
-                    <li>
-                        <Link to="/patientCard/clinic-data">Клинические данные</Link>
-                    </li>
-                </ul>
-            </nav>
+        <div className="container mx-auto bg-slate-300">
+            <div className="flex flex-row flex-wrap py-4">
+                <nav className='bg-blue-100 w-full sm:w-1/3 md:w-1/4 px-2'>
+                    <div className="sticky top-0 p-4 w-full">
+                        <ul className='flex flex-col overflow-hidden'>
+                            <li className='hover:bg-gray-100'>
+                                <Link to="/patientCard/personalData">Персональные данные</Link>
+                            </li>
+                            <li className='hover:bg-gray-100'>
+                                <Link to="/patientCard/computer-aided-tomography">Компьютерная томография</Link>
+                            </li>
+                            <li className='hover:bg-gray-100'>
+                                <Link to="/patientCard/anthropometric-data">Антропометрия</Link>
+                            </li>
+                            <li className='hover:bg-gray-100'>
+                                <Link to="/patientCard/clinic-data">Клинические данные</Link>
+                            </li>
+                        </ul>
+                    </div>    
+                </nav>
 
-            <Outlet />
+                <main className='bg-green-100 relative w-full sm:w-2/3 md:w-3/4 pt-1 px-2'> <Outlet /> </main>
+            </div>
         </div>
     )
+
+
 };
 
 export default SideBar;
