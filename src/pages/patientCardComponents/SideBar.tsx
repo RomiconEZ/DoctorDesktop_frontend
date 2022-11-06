@@ -20,6 +20,12 @@ const SideBar = () => {
                             <li className='hover:bg-gray-100'>
                                 <Link to="/patientCard/clinic-data">Клинические данные</Link>
                             </li>
+                            <li className='hover:bg-gray-100'>
+                                <Link to="/patientCard/anamnesis">Анамнез</Link>
+                            </li>
+                            <li className='hover:bg-gray-100'>
+                                <Link to="/patientCard/concomDeseases">Сопутствующие заболевания</Link>
+                            </li>
                         </ul>
                     </div>    
                 </nav>

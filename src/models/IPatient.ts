@@ -14,13 +14,13 @@ export interface IPersonal_data {
     first_name: string,
     second_name: string,
     patronymic: string,
-    birthday: Date,
+    birthday: number,
     sex: boolean,
     region: string,
     clinic: string,
     race: string,
     version: number,
-    date: Date
+    date: number
 }
 
 export interface IAnthropometric_data {
@@ -36,7 +36,7 @@ export interface IAnthropometric_data {
     connective_tissue_dysplasia_Terner: boolean,
     connective_tissue_dysplasia_Noonan: boolean,
     version: number,
-    date: Date
+    date: number
 }
 
 export interface IClinical_data {
@@ -49,12 +49,12 @@ export interface IClinical_data {
     interscap_reg_pain: string,
     conscious_loss: string,
     low_extrem_ischemia: string,
-    empoyeeID: number,
     version: number,
-    date: Date
+    date: number
 }
 
 export interface IConcom_desease {
+    cor_heart_disease_clinic: string,
     acuteMyocardilInfarctionNum: number,
     currentMyocardilInfarction: boolean,
     diabetes: boolean,
@@ -79,7 +79,7 @@ export interface IConcom_desease {
     AVInfectiousLesions: boolean,
     AVWTraumaticLesionsb: boolean,
     version: number,
-    date: Date
+    date: number
 }
 
 export interface IPatient_history {
@@ -94,12 +94,14 @@ export interface IPatient_history {
     drugConsumptionExperince: number,
     occupationalHazards: string,
     sports: string,
-    diseaseKnowledge: Date,
+    diseaseKnowledge: number,
     employed: boolean,
     blodThinDrugs: boolean,
+    blodThinDrugsType: string,
     disaggregants: boolean,
+    disaggregantsType: string,
     version: number,
-    date: Date
+    date: number
 }
 
 export interface IEchocardiogram {
@@ -119,7 +121,7 @@ export interface IEchocardiogram {
     tricuspi: string,
     trialSeptalDefectPr: string,
     version: number,
-    date: Date
+    date: number
 }
 
 export interface IMultispiral_CT {
@@ -134,5 +136,5 @@ export interface IMultispiral_CT {
     desc_aorta_middle_part: number,
     abdominal_aorta: number,
     version: number,
-    date: Date
+    date: number
 }

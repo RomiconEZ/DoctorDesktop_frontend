@@ -11,9 +11,9 @@ const AnthropometricData = () => {
 
 
             <div className='p-8'>
-                <h1 className='font-medium text-lg text-slate-800'>Антропометрические данные</h1>
+                <h1 className='font-medium text-lg text-slate-800 pb-4'>Антропометрические данные</h1>
 
-                <div className='grid grid-cols-2 mb-4'>
+                <div className='grid grid-cols-2 gap-y-3 mb-4'>
 
                     <div className='flex'> 
                         <span className='text-slate-400 w-1/2'>Рост</span>
@@ -42,9 +42,13 @@ const AnthropometricData = () => {
 
                     <div className='flex'> 
                         <span className='text-slate-400 w-1/2'>Дисплазия соединительной ткани</span>
-                        
+                        {!patient.anthropometric_data.connective_tissue_dysplasia && <span className='text-slate-800 w-1/2'>Нет</span>}
+                        {patient.anthropometric_data.connective_tissue_dysplasia_EhlersDanlos && <span className='text-slate-800 w-1/2'>EhlersDanlos</span>}
+                        {patient.anthropometric_data.connective_tissue_dysplasia_LoeysDitz && <span className='text-slate-800 w-1/2'>LoeysDitz</span>}
+                        {patient.anthropometric_data.connective_tissue_dysplasia_Marfan && <span className='text-slate-800 w-1/2'>Marfan</span>}
+                        {patient.anthropometric_data.connective_tissue_dysplasia_Noonan && <span className='text-slate-800 w-1/2'>Noonan</span>}
+                        {patient.anthropometric_data.connective_tissue_dysplasia_Terner && <span className='text-slate-800 w-1/2'>Terner</span>}
                     </div>
-                    
 
                 </div>
 

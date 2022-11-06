@@ -15,13 +15,13 @@ const initialState: PatientState = {
             first_name: '',
             second_name: '',
             patronymic: '',
-            birthday: new Date,
+            birthday: 0,
             sex: true,
             region: '',
             clinic: '',
             race: '',
             version: 1,
-            date: new Date
+            date: 0
         },
         anthropometric_data: {
             height: 0,
@@ -36,7 +36,7 @@ const initialState: PatientState = {
             connective_tissue_dysplasia_Noonan: false,
             connective_tissue_dysplasia_Terner: false,
             version: 1,
-            date: new Date
+            date: 0
         },
 
         clinical_data: {
@@ -49,12 +49,12 @@ const initialState: PatientState = {
             interscap_reg_pain: "",
             conscious_loss: "",
             low_extrem_ischemia: "",
-            empoyeeID: 0,
             version: 1,
-            date: new Date,
+            date: 0,
         },
 
         concom_desease: {
+            cor_heart_disease_clinic: "bla",
             acuteMyocardilInfarctionNum: 2,
             currentMyocardilInfarction: false,
             diabetes: false,
@@ -79,7 +79,7 @@ const initialState: PatientState = {
             AVInfectiousLesions: false,
             AVWTraumaticLesionsb: false,
             version: 1,
-            date: new Date
+            date: 0
         },
 
         echocardiogram: {
@@ -99,7 +99,7 @@ const initialState: PatientState = {
             tricuspi: "string",
             trialSeptalDefectPr: "string",
             version: 1,
-            date: new Date
+            date: 0
         },
 
         anamnesis: {
@@ -114,12 +114,14 @@ const initialState: PatientState = {
             drugConsumptionExperince: 1,
             occupationalHazards: "string",
             sports: "string",
-            diseaseKnowledge: new Date,
+            diseaseKnowledge: 0,
             employed: false,
             blodThinDrugs: false,
+            blodThinDrugsType: "string",
             disaggregants: false,
+            disaggregantsType: "string",
             version: 1,
-            date: new Date
+            date: 0
         },
 
         MCT: {
@@ -134,7 +136,7 @@ const initialState: PatientState = {
             desc_aorta_middle_part: 1,
             abdominal_aorta: 1,
             version: 1,
-            date: new Date
+            date: 0
         }
         
     },

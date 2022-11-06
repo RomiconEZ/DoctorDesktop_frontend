@@ -7,6 +7,8 @@ import ComputerTomography from "./pages/patientCardComponents/ComputerTomography
 import AnthropometricData from "./pages/patientCardComponents/AnthropometricData";
 import ClinicData from "./pages/patientCardComponents/ClinicData";
 import "./index.css"
+import Anamnes from './pages/patientCardComponents/Anamnes';
+import ConcomDeseases from './pages/patientCardComponents/ConcomDeseases';
 
 function App() {
     return (
@@ -18,6 +20,8 @@ function App() {
                     <Route path="computer-aided-tomography" element={<ComputerTomography/>} />
                     <Route path="anthropometric-data" element={<AnthropometricData />} />
                     <Route path="clinic-data" element={<ClinicData />} />
+                    <Route path="anamnesis" element={<Anamnes />} />
+                    <Route path="concomDeseases" element={<ConcomDeseases />} />
                 </Route>
 
             </Routes>
