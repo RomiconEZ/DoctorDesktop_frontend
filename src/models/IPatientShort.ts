@@ -1,10 +1,9 @@
 export interface IPatientShort{
     id: string
-    encryption?: string
     name: string
     surname: string
     patronymic: string
-    birthdate: number
+    birthdate: number | Date
     age: string
     sex: string
     region: string

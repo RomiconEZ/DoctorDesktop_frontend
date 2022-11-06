@@ -1,9 +1,8 @@
 export interface IPatientCreate{
-    encryption?: string
     name: string
     surname: string
     patronymic: string
-    birthdate: number
+    birthdate: number | Date
     sex: string
     region: string
     city: string
