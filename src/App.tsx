@@ -8,7 +8,10 @@ import AnthropometricData from "./pages/patientCardComponents/AnthropometricData
 import ClinicData from "./pages/patientCardComponents/ClinicData";
 import "./index.css"
 import Anamnes from './pages/patientCardComponents/Anamnes';
-import ConcomDeseases from './pages/patientCardComponents/ConcomDeseases';
+import ConcomDiseases from './pages/patientCardComponents/ConcomDiseases';
+import Echocardiogram from "./pages/patientCardComponents/Echocardiogram";
+import MultispiralCT from "./pages/patientCardComponents/MultispiralCT";
+import NeuralNetwork from "./pages/patientCardComponents/NeuralNetwork";
 
 function App() {
     return (
@@ -21,7 +24,10 @@ function App() {
                     <Route path="anthropometric-data" element={<AnthropometricData />} />
                     <Route path="clinic-data" element={<ClinicData />} />
                     <Route path="anamnesis" element={<Anamnes />} />
-                    <Route path="concomDeseases" element={<ConcomDeseases />} />
+                    <Route path="concomDeseases" element={<ConcomDiseases />} />
+                    <Route path="echocardiogram" element={<Echocardiogram />} />
+                    <Route path="msct" element={<MultispiralCT />} />
+                    <Route path="neuralNet" element={<NeuralNetwork />} />
                 </Route>
 
             </Routes>

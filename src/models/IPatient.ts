@@ -1,3 +1,5 @@
+//Все интерфейсы, которые относятся к информации о пациенте
+
 export interface IPatient {
     patient_id: number,
     employee_id: number,

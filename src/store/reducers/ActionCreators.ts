@@ -14,3 +14,4 @@ export const fetchPatient = () => async (dispatch:AppDispatch) => {
     }
 }
 
+

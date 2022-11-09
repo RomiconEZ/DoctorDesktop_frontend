@@ -26,11 +26,20 @@ const SideBar = () => {
                             <li className='hover:bg-gray-100'>
                                 <Link to="/patientCard/concomDeseases">Сопутствующие заболевания</Link>
                             </li>
+                            <li className='hover:bg-gray-100'>
+                                <Link to="/patientCard/echocardiogram">ЭХОГК</Link>
+                            </li>
+                            <li className='hover:bg-gray-100'>
+                                <Link to="/patientCard/msct">МСКТ</Link>
+                            </li>
+                            <li className='hover:bg-gray-100'>
+                                <Link to="/patientCard/neuralNet">Нейронная сеть</Link>
+                            </li>
                         </ul>
                     </div>    
                 </nav>
 
-                <main className='bg-green-100 relative w-full sm:w-2/3 md:w-3/4 pt-1 px-2'> <Outlet /> </main>
+                <main className='bg-white relative w-full sm:w-2/3 md:w-3/4 pt-1 px-2'> <Outlet /> </main>
             </div>
         </div>
     )
