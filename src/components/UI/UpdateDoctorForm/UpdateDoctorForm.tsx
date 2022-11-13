@@ -92,7 +92,7 @@ const UpdateDoctorForm = () => {
             <InputField name='email' label='Почта' />
 
             <Button type='submit' onClick={handleUpdate} fullWidth disabled={Object.keys(errors).length !== 0}>
-          Создать
+          Обновить
         </Button>
       </Form>
     </>

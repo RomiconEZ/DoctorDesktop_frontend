@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {Provider} from "react-redux";
 import {setupStore} from "./store/store";
-import {BrowserRouter} from "react-router-dom";
 import LoginClass from "./store/LoginClass";
+import * as serviceWorkerRegistration from './components/UI/DWV/serviceWorkerRegistration'
 
 interface State { // нужно прописать все поля контекста
     login: LoginClass,
@@ -26,4 +26,7 @@ ReactDOM.render(
     </Provider>,
   document.getElementById('root')
 );
+
+serviceWorkerRegistration.register();
+
 
