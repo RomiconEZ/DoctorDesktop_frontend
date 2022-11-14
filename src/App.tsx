@@ -1,19 +1,20 @@
 import React from 'react';
-import SearchAndListOfDoctors from "./pages/SearchAndListOfDoctors";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import './App.css';
+import {BrowserRouter, Routes,Route} from "react-router-dom";
+import SearchTablePagination from "./pages/SearchTablePagination";
 import CardDoctor from "./pages/CardDoctor";
+import {EditCardDoctor} from "./pages/EditCardDoctor";
 
 function App() {
-  return (
-    <div>
+  return(
       <BrowserRouter>
           <Routes>
-              <Route path="/" element={<SearchAndListOfDoctors/>}/>
-              <Route path="CardDoctor" element={<CardDoctor/>}/>
+              <Route path={"/table"} element={<SearchTablePagination/>}/>
+              <Route path={"/doctor/:id"} element={<CardDoctor/>}/>
+              <Route path={"/editcard/:id"} element={<EditCardDoctor/>}/>
+
           </Routes>
+
       </BrowserRouter>
-    </div>
   );
 }
 
