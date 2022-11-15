@@ -23,7 +23,7 @@ const PersonalDataReadOnly = () => {
         dispatch(additionalSlice.actions.ChangeSelectedPatient(patient))
     }
 
-    const birthday = new Date(patient?.personal_data.birthday || 0)
+    const birthday = new Date(SelectedPatient.personal_data.birthday)
     return (
 
         <div className='p-8'>

@@ -5,13 +5,10 @@ import PersonalDataEdit from "./editForms/PersonalDataEdit";
 import {PatientForDoctor} from "../../services/PatientService";
 import {useParams} from "react-router-dom";
 
-const {user, error, isLoading} = useAppSelector(state => state.userReducer)
 
 const PersonalData = () => {
 
-
-
-    const isEditButtonPressed = false
+    const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
 
     return (
         <div>
