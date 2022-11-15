@@ -1,6 +1,6 @@
 export interface IPatientFull {
-    patient_id: number,
-    employee_id: number,
+    patient_id: string,
+    employee_id: string,
     personal_data: IPersonal_data,
     anthropometric_data: IAnthropometric_data,
     clinical_data: IClinical_data,
@@ -48,7 +48,6 @@ export interface IClinical_data {
     interscap_reg_pain: string,
     conscious_loss: string,
     low_extrem_ischemia: string,
-    empoyeeID: number,
     version: number,
     date: Date | number
 }

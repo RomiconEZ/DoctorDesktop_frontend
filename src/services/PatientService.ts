@@ -3,6 +3,7 @@ import {IPatientShort} from "../models/IPatientShort";
 import {IPatientCreate} from "../models/IPatientCreate";
 import {IPatientUpdate} from "../models/IPatientUpdate";
 import {IPatientFull} from "../models/IPatientFull";
+import {Params} from "react-router-dom";
 
 interface PaginationPatientsForCertainDoctor
 {
@@ -10,10 +11,14 @@ interface PaginationPatientsForCertainDoctor
     limit: number
     numofpage: number
 }
-interface PatientForDoctor
+export interface PatientForDoctor
 {
     doctorID: string
-    patientID: string
+    patientID: string | Params
+}
+export interface DoctorID
+{
+    doctorID: string
 }
 
 
@@ -45,6 +50,18 @@ export const patientAPI = createApi({
                 }
             }),
             providesTags: result => ['Patient']
+        }),
+
+        // Получение количества пациентов для доктора
+        fetchNumOfPatients: build.query<number, DoctorID>({
+
+            query: (DoctorID) => ({
+                url: `/patients/num`,
+                params:
+                    {
+                    _doctorID: DoctorID.doctorID,
+                }
+            }),
         }),
         createPatient: build.mutation<void, IPatientCreate>({ // передаем только те данные, которые нужны для первичного создания пользователя регистратурой
             query: (PatientCreate) => ({

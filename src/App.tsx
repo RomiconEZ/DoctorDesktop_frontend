@@ -111,7 +111,7 @@ const router = createBrowserRouter(createRoutesFromElements
                     element=
                         {
                             <RequireAuthPatientPage>
-                                <PatientPage/>
+                                <patientCard/>
                             </RequireAuthPatientPage>
                         }
                     path="menu/patients/:id"

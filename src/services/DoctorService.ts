@@ -4,6 +4,7 @@ import {IDoctorUpdate} from "../models/IDoctorUpdate";
 import {IDoctorFull} from "../models/IDoctorFull";
 import {IDoctorCreate} from "../models/IDoctorCreate";
 import {Params} from "react-router-dom";
+import {DoctorID} from "./PatientService";
 
 interface PaginationDoctors
 {
@@ -48,6 +49,16 @@ export const doctorAPI = createApi({
             providesTags: result => ['Doctor']
         }),
 
+        fetchNumOfDoctors: build.query<number, DoctorID>({
+
+            query: (DoctorID) => ({
+                url: `/doctors/num`,
+                params:
+                    {
+                        _doctorID: DoctorID.doctorID,
+                    }
+            }),
+        }),
 
         createDoctor: build.mutation<void, IDoctorCreate>({ // передаем только те данные, которые нужны для первичного создания пользователя регистратурой
             query: (DoctorCreate) => ({

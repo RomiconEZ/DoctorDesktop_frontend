@@ -12,6 +12,7 @@ import {useAppSelector} from "../../../hooks/redux";
 import {ResidenseRegions} from "../../../DataLists/ResidenseRegions";
 import {Regions} from "../../../DataLists/Regions";
 import {genderItems} from "../../../DataLists/genderItems";
+import {Race} from "../../../DataLists/Race";
 
 const {user} = useAppSelector(state => state.userReducer)
 
@@ -23,6 +24,7 @@ const initialData: IPatientCreate = {
   patronymic: '',
   birthdate: Date.now(),
   sex: 'male',
+    race: 'evr',
   region: user?.region || 'Северо-западный регион',
   city: user?.city || 'Санкт-Петербург',
   residenseregion: user?.region || 'Северо-западный регион',
@@ -60,6 +62,7 @@ const CreatePatientForm = () => {
           )}
         />
             <SelectField label='Регион' name='region' options={Regions}  />
+            <SelectField label='Раса' name='race' options={Race}  />
             <SelectField label='Город' name='city' options={Cities}  />
             <SelectField label='Регион обследования' name='residenseregion' options={ResidenseRegions}  />
 

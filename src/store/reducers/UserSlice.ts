@@ -42,6 +42,7 @@ export const userSlice = createSlice({
             },
         },
     extraReducers: {
+        // эти редусеры НЕ ИСПОЛЬЗУЕМ !!!
         [fetchUser.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
             state.isLoading = false;
             state.error = ''

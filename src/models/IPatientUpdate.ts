@@ -1,7 +1,7 @@
 
 export interface IPatientUpdate {
-    id: number,
-    employee_id: number,
+    id: string,
+    employee_id: string,
     personal_data?: IPersonal_data_update,
     anthropometric_data?: IAnthropometric_data_update,
     clinical_data?: IClinical_data_update,

@@ -7,7 +7,6 @@ import Button from "../../common/Button";
 import {doctorAPI, DoctorForDoctor} from "../../../services/DoctorService";
 import {IDoctorFull} from "../../../models/IDoctorFull";
 
-import {IDoctorUpdate} from "../../../models/IDoctorUpdate";
 import {genderItems} from "../../../DataLists/genderItems";
 import {Regions} from "../../../DataLists/Regions";
 import {PlacesOfWork} from "../../../DataLists/PlacesOfWork";
