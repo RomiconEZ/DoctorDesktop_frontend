@@ -5,6 +5,8 @@ import {patientAPI, PatientForDoctor} from "../../../services/PatientService";
 import {additionalSlice} from "../../../store/reducers/AdditionalSlice";
 
 const {user} = useAppSelector(state => state.userReducer)
+const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
+
 
 const PersonalDataReadOnly = () => {
     const dispatch = useAppDispatch()
@@ -16,7 +18,6 @@ const PersonalDataReadOnly = () => {
     }
     const {data: patient, error, isLoading, refetch} =  patientAPI.useFetchSelectedPatientQuery(body)
 
-    const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
 
     if (patient != undefined)
     {
@@ -33,8 +34,8 @@ const PersonalDataReadOnly = () => {
 
                 <div className='col-span-2 flex'>
                     <span className='text-slate-400 w-1/4'>ФИО</span>
-                    <span className='text-slate-800'>{patient?.personal_data.second_name + ' ' +
-                        patient?.personal_data.first_name + ' ' + patient?.personal_data.patronymic}</span>
+                    <span className='text-slate-800'>{SelectedPatient.personal_data.second_name + ' ' +
+                        SelectedPatient.personal_data.first_name + ' ' + SelectedPatient.personal_data.patronymic}</span>
                 </div>
 
                 <div className='flex'>
@@ -44,18 +45,18 @@ const PersonalDataReadOnly = () => {
 
                 <div className='flex'>
                     <span className='text-slate-400 w-1/2'>Место обследования</span>
-                    <span className='text-slate-800 w-1/2'>{patient?.personal_data.clinic}</span>
+                    <span className='text-slate-800 w-1/2'>{SelectedPatient.personal_data.clinic}</span>
                 </div>
 
                 <div className='flex'>
                     <span className='text-slate-400 w-1/2'>Регион</span>
-                    <span className='text-slate-800 w-1/2'>{patient?.personal_data.region}</span>
+                    <span className='text-slate-800 w-1/2'>{SelectedPatient.personal_data.region}</span>
                 </div>
 
                 <div className='flex'>
                     <span className='text-slate-400 w-1/2'>Пол</span>
-                    {patient?.personal_data.sex && <span className='text-slate-800 w-1/2'>мужской</span>}
-                    {!patient?.personal_data.sex && <span className='text-slate-800 w-1/2'>женский</span>}
+                    {SelectedPatient.personal_data.sex && <span className='text-slate-800 w-1/2'>мужской</span>}
+                    {!SelectedPatient.personal_data.sex && <span className='text-slate-800 w-1/2'>женский</span>}
                 </div>
 
             </div>

@@ -18,6 +18,7 @@ import {RequireAuthDoctorsListPage} from "./components/hoc/RequireAuthDoctorsLis
 import {RequireAuthCreatePatientPage} from "./components/hoc/RequireAuthCreatePatientPage";
 import {RequireAuthCreateDoctorPage} from "./components/hoc/RequireAuthCreateDoctorPage";
 import {RequireAuthUpdateDoctorPage} from "./components/hoc/RequireAuthUpdateDoctorPage";
+import SelectedPatientPage from "./components/patientCardComponents/SelectedPatientPage";
 // нужно импортнуть стриницы
 
 // doctor - 1
@@ -111,7 +112,7 @@ const router = createBrowserRouter(createRoutesFromElements
                     element=
                         {
                             <RequireAuthPatientPage>
-                                <patientCard/>
+                                <SelectedPatientPage/>
                             </RequireAuthPatientPage>
                         }
                     path="menu/patients/:id"

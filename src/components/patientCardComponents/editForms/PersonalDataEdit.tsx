@@ -2,12 +2,10 @@ import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
 import {additionalSlice} from "../../../store/reducers/AdditionalSlice";
-import {IDoctorFull} from "../../../models/IDoctorFull";
-import {IPatientUpdate, IPersonal_data_update} from "../../../models/IPatientUpdate";
+import {IPatientUpdate} from "../../../models/IPatientUpdate";
 
 import validatorConfig from './validatorConfig';
 import {Form, useForm} from "../../../hooks/useForm";
-import {doctorAPI} from "../../../services/DoctorService";
 import {patientAPI} from "../../../services/PatientService";
 import Button from "../../common/Button";
 import {DatePickerField, InputField, RadioGroup, SelectField} from "../../common/Fields";
@@ -20,10 +18,12 @@ import {Race} from "../../../DataLists/Race";
 
 const {user} = useAppSelector(state => state.userReducer)
 
+const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
+
+
 const PersonalDataEdit = () => {
     const dispatch = useAppDispatch()
 
-    const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
 
     const initialPersonalData: IPatientUpdate = {
         id: SelectedPatient.patient_id,
@@ -42,6 +42,7 @@ const PersonalDataEdit = () => {
     }
     const {data, errors, handleInputChange, handleKeyDown, validate} = useForm(initialPersonalData, true, validatorConfig);
     const [updatePatient, {}] = patientAPI.useUpdatePatientMutation();// {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями
+
     const handleUpdate = async (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
         if (validate(data))

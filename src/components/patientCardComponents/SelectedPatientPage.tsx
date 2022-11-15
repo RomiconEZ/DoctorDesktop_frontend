@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, Outlet} from "react-router-dom";
 
-const SideBar = () => {
+const SelectedPatientPage = () => {
     return (
         <div className="container mx-auto bg-slate-300">
             <div className="flex flex-row flex-wrap py-4">
@@ -47,4 +47,4 @@ const SideBar = () => {
 
 };
 
-export default SideBar;
+export default SelectedPatientPage;
