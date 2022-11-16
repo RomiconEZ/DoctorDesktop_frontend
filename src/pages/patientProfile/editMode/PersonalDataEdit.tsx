@@ -2,6 +2,7 @@ import React from 'react';
 import {IPersonal_data} from "../../../models/IPatient";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {changeMode} from "../../../store/reducers/PatientSlice";
+import Button from "../../../components/Button";
 
 const PersonalDataEdit = () => {
     const {patient} = useAppSelector(state => state.patientReducer);
@@ -11,7 +12,7 @@ const PersonalDataEdit = () => {
     return (
 
         <div className='p-8'>
-            <h1 className='font-medium text-lg text-slate-800 pb-4'>Персональные данные режим редактирования</h1>
+            <h1 className='font-medium text-lg text-slate-800 pb-4'>Персональные данные</h1>
 
             <div className='grid grid-cols-2 gap-y-3 mb-4'>
 
@@ -59,17 +60,22 @@ const PersonalDataEdit = () => {
                     <label className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 cursor-pointer rounded-r-md" htmlFor="female">Женский</label>
                 </div>
 
+
+
             </div>
 
+            <div className="flex gap-x-2 relative mt-8 bottom-2 left-1/2">
+                <Button
+                    onClick={()=>dispatch(changeMode())}
+                    className='text-green-600 border-green-600 hover:bg-green-600'
+                >
+                    Отменить
+                </Button>
 
-            <button
-                onClick={()=>dispatch(changeMode())}
-                className="relative mt-8 bottom-2 left-3/4 p-2 bg-transparent
-                text-blue-600 font-semibold border border-blue-600
-                rounded hover:bg-blue-600 hover:text-white hover:border-transparent
-                transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0">
-                Сохранить
-            </button>
+                <Button onClick={()=>dispatch(changeMode())}>
+                    Сохранить
+                </Button>
+            </div>
 
         </div>
     );

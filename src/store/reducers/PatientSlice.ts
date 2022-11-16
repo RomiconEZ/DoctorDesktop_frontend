@@ -19,6 +19,20 @@ export const PatientSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
         },
+
+        personalDataPatching(state) {
+            state.isLoading = true;
+        },
+        personalDataPatchingSuccess(state) {
+            state.isLoading = false;
+            state.error = '';
+        },
+        personalDataPatchingError(state, action: PayloadAction<string>) {
+            state.isLoading = false;
+            state.error = action.payload;
+        },
+
+
         changeMode(state) {
             state.isEditButtonPressed = !state.isEditButtonPressed;
         }

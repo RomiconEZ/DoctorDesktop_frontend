@@ -1,10 +1,8 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {PatientSlice} from "../../store/reducers/PatientSlice";
 import {fetchPatient} from "../../store/reducers/ActionCreators";
-import {IPersonal_data} from "../../models/IPatient";
-import PersonalDataReadOnly from "./readOnlyForms/PersonalDataReadOnly";
-import PersonalDataEdit from "./editForms/PersonalDataEdit";
+import PersonalDataReadOnly from "./readMode/PersonalDataReadOnly";
+import PersonalDataEdit from "./editMode/PersonalDataEdit";
 
 const PersonalData = () => {
     const dispatch = useAppDispatch();
@@ -22,8 +20,6 @@ const PersonalData = () => {
 
             {!isEditButtonPressed && <PersonalDataReadOnly />}
             {isEditButtonPressed && <PersonalDataEdit/>}
-
-
             
            
 

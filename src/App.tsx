@@ -1,17 +1,17 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MainMenu from "./pages/MainMenu";
-import SideBar from "./pages/patientCardComponents/SideBar";
-import PersonalData from "./pages/patientCardComponents/PersonalData";
-import ComputerTomography from "./pages/patientCardComponents/ComputerTomography";
-import AnthropometricData from "./pages/patientCardComponents/AnthropometricData";
-import ClinicData from "./pages/patientCardComponents/ClinicData";
+import MainMenu from "./pages/mainMenu/MainMenu";
+import SideBar from "./pages/patientProfile/SideBar";
+import PersonalData from "./pages/patientProfile/PersonalData";
+import ComputerTomography from "./pages/patientProfile/ComputerTomography";
+import AnthropometricData from "./pages/patientProfile/AnthropometricData";
+import ClinicData from "./pages/patientProfile/ClinicData";
 import "./index.css"
-import Anamnes from './pages/patientCardComponents/Anamnes';
-import ConcomDiseases from './pages/patientCardComponents/ConcomDiseases';
-import Echocardiogram from "./pages/patientCardComponents/Echocardiogram";
-import MultispiralCT from "./pages/patientCardComponents/MultispiralCT";
-import NeuralNetwork from "./pages/patientCardComponents/NeuralNetwork";
+import Anamnes from './pages/patientProfile/Anamnes';
+import ConcomDiseases from './pages/patientProfile/ConcomDiseases';
+import Echocardiogram from "./pages/patientProfile/Echocardiogram";
+import MultispiralCT from "./pages/patientProfile/MultispiralCT";
+import NeuralNetwork from "./pages/patientProfile/NeuralNetwork";
 
 function App() {
     return (

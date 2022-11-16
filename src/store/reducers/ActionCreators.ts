@@ -14,4 +14,12 @@ export const fetchPatient = () => async (dispatch:AppDispatch) => {
     }
 }
 
-
+export const patchPersonalData = () => async (dispatch:AppDispatch) => {
+    try {
+        dispatch(PatientSlice.actions.personalDataPatching)
+        const response = await axios.patch<IPatient>('https://my-json-server.typicode.com/AlexanderMenkeev/json-server/patients/1')
+        dispatch(PatientSlice.actions.personalDataPatchingSuccess())
+    } catch (e) {
+        dispatch(PatientSlice.actions.personalDataPatchingError("Personal data patching was unsuccessful"));
+    }
+}
