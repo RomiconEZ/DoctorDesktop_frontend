@@ -5,34 +5,26 @@ import {AuthResponse} from "../models/response/AuthResponse";
 import {API_URL} from "../http";
 import {useAppDispatch, useAppSelector} from "../hooks/redux";
 import {userSlice} from "./reducers/UserSlice";
+import React, {Component, ComponentClass, ComponentType, FunctionComponent, useState} from "react";
+import {AppDispatch} from "./store";
 
-const {user, isLoading, error, isAuth} = useAppSelector(state => state.userReducer)
 
-export default class LoginClass {
-
-    // user = user
-    // isAuth = isAuth
-    // isLoading = isLoading
-    // error=error
+class LoginClass  {
 
     setAuth(bool: boolean) {
-        const dispatch = useAppDispatch()
-        dispatch(userSlice.actions.ChangeIsAuth(bool));
+        this.dispatch(userSlice.actions.ChangeIsAuth(bool));
     }
 
     setUser(user: IUser) {
-        const dispatch = useAppDispatch()
-        dispatch(userSlice.actions.ChangeUser(user));
+        this.dispatch(userSlice.actions.ChangeUser(user));
     }
 
     setLoading(bool: boolean) {
-        const dispatch = useAppDispatch()
-        dispatch(userSlice.actions.ChangeIsLoading(bool));
+        this.dispatch(userSlice.actions.ChangeIsLoading(bool));
     }
 
     setError(str: string) {
-        const dispatch = useAppDispatch()
-        dispatch(userSlice.actions.ChangeError(str));
+        this.dispatch(userSlice.actions.ChangeError(str));
     }
 
     async login(email: string, password: string) {
@@ -90,3 +82,4 @@ export default class LoginClass {
         }
     }
 }
+export default LoginClass;

@@ -19,7 +19,6 @@ import {
 } from "../../store/reducers/PatientsSlice";
 import PatientsList from "./PatientsList/PatientsList";
 
-const {user} = useAppSelector(state => state.userReducer)
 
 const setPageSizeOptions = [
     { name: '6', value: 6 },
@@ -29,6 +28,8 @@ const setPageSizeOptions = [
 ];
 
 const TablePatients = () => {
+    const {user} = useAppSelector(state => state.userReducer)
+
     const patients = useSelector(getFilteredPatients());
     const dispatch = useAppDispatch();
     const patientsIsLoading = useSelector(getPatientsLoadingStatus());

@@ -2,7 +2,7 @@ import React, {createContext} from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import {Provider} from "react-redux";
-import {setupStore} from "./store/store";
+import {AppDispatch, setupStore, useAppDispatch} from "./store/store";
 import LoginClass from "./store/LoginClass";
 import * as serviceWorkerRegistration from './components/UI/DWV/serviceWorkerRegistration'
 

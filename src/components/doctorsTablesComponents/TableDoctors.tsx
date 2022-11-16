@@ -20,7 +20,6 @@ import Pagination from "../common/Pagination";
 import DoctorsListSkeleton from "./DoctorsList/DoctorsListSkeleton";
 import DoctorsList from "./DoctorsList/DoctorsList";
 
-const {user} = useAppSelector(state => state.userReducer)
 
 const setPageSizeOptions = [
     { name: '6', value: 6 },
@@ -30,6 +29,8 @@ const setPageSizeOptions = [
 ];
 
 const TableDoctors = () => {
+    const {user} = useAppSelector(state => state.userReducer)
+
     const doctors = useSelector(getFilteredDoctors());
     const dispatch = useAppDispatch();
     const doctorsIsLoading = useSelector(getDoctorsLoadingStatus());

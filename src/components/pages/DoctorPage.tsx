@@ -3,11 +3,12 @@ import {Link} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {additionalSlice} from "../../store/reducers/AdditionalSlice";
 import {doctorAPI, DoctorForDoctor} from "../../services/DoctorService";
-const {user} = useAppSelector(state => state.userReducer)
-const {SelectedDoctor} = useAppSelector(state => state.additionalReducer)
+
 
 
 const DoctorPage =() =>{
+    const {user} = useAppSelector(state => state.userReducer)
+    const {SelectedDoctor} = useAppSelector(state => state.additionalReducer)
 
     const dispatch = useAppDispatch()
 

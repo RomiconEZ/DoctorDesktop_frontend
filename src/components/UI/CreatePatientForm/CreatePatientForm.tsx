@@ -14,23 +14,24 @@ import {Regions} from "../../../DataLists/Regions";
 import {genderItems} from "../../../DataLists/genderItems";
 import {Race} from "../../../DataLists/Race";
 
-const {user} = useAppSelector(state => state.userReducer)
 
-
-const initialData: IPatientCreate = {
-
-  name: '',
-  surname: '',
-  patronymic: '',
-  birthdate: Date.now(),
-  sex: 'male',
-    race: 'evr',
-  region: user?.region || 'Северо-западный регион',
-  city: user?.city || 'Санкт-Петербург',
-  residenseregion: user?.region || 'Северо-западный регион',
-}
 
 const CreatePatientForm = () => {
+    const {user} = useAppSelector(state => state.userReducer)
+
+
+    const initialData: IPatientCreate = {
+
+        name: '',
+        surname: '',
+        patronymic: '',
+        birthdate: Date.now(),
+        sex: 'male',
+        race: 'evr',
+        region: user?.region || 'Северо-западный регион',
+        city: user?.city || 'Санкт-Петербург',
+        residenseregion: user?.region || 'Северо-западный регион',
+    }
   const {data, errors, handleInputChange, handleKeyDown, validate} = useForm(initialData, true, validatorConfig);
 
   const [createPatient, {}] = patientAPI.useCreatePatientMutation();// {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями

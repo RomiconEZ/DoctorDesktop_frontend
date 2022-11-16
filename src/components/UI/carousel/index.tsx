@@ -11,46 +11,44 @@ import { NextArrow, PrevArrow } from "./Arrows";
 import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 import {useAppSelector} from "../../../hooks/redux";
 
-
-const {user} = useAppSelector(state => state.userReducer) // достаем переменные из хранилища
-let sliderContent=sliderContent_doctor
-switch(user?.role) {
-    case 1: {
-        sliderContent=sliderContent_doctor;
-        break;
-    }
-    case 2: {
-        sliderContent=sliderContent_developer;
-        break;
-    }
-    case 3: {
-        sliderContent=sliderContent_codeveloper;
-        break;
-    }
-    case 4: {
-        sliderContent=sliderContent_admin;
-        break;
-    }
-    case 5: {
-        sliderContent=sliderContent_registry;
-        break;
-    }
-    case 6: {
-        sliderContent=sliderContent_expert;
-        break;
-    }
-    case 7: {
-        sliderContent=sliderContent_dataadmin;
-
-        break;
-    }
-    default: {
-        break;
-    }
-}
-
-
 const Carousel = () => {
+    const {user} = useAppSelector(state => state.userReducer) // достаем переменные из хранилища
+    let sliderContent=sliderContent_doctor
+    switch(user?.role) {
+        case 1: {
+            sliderContent=sliderContent_doctor;
+            break;
+        }
+        case 2: {
+            sliderContent=sliderContent_developer;
+            break;
+        }
+        case 3: {
+            sliderContent=sliderContent_codeveloper;
+            break;
+        }
+        case 4: {
+            sliderContent=sliderContent_admin;
+            break;
+        }
+        case 5: {
+            sliderContent=sliderContent_registry;
+            break;
+        }
+        case 6: {
+            sliderContent=sliderContent_expert;
+            break;
+        }
+        case 7: {
+            sliderContent=sliderContent_dataadmin;
+
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+
     const settings = {
         dots: true,
         infinite: true,

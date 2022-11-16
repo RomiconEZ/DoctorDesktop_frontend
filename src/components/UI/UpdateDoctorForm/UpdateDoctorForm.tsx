@@ -15,13 +15,14 @@ import {Roles} from "../../../DataLists/Roles";
 import {useParams} from "react-router-dom";
 import {useAppSelector} from "../../../hooks/redux";
 
-const {user} = useAppSelector(state => state.userReducer)
 
 export type DoctorUpdateFormProps = {
     doctor: IDoctorFull
 };
 
 const UpdateDoctorForm = () => {
+    const {user} = useAppSelector(state => state.userReducer)
+
 
     const params = useParams<string>()
 

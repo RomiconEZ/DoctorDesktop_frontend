@@ -2,7 +2,6 @@ import {Action, combineReducers, configureStore, ThunkAction} from "@reduxjs/too
 import userReducer from './reducers/UserSlice'
 import additionalReducer from './reducers/AdditionalSlice'
 
-import {postAPI} from "../services/PostService";
 import {patientAPI} from "../services/PatientService";
 import {doctorAPI} from "../services/DoctorService";
 import {useDispatch} from "react-redux";
@@ -16,7 +15,6 @@ const rootReducer = combineReducers({
     doctors: doctorsReducer,
     patients: patientsReducer,
     // регистрация reducer
-    [postAPI.reducerPath]: postAPI.reducer,
     [patientAPI.reducerPath]: patientAPI.reducer,
     [doctorAPI.reducerPath]: doctorAPI.reducer,
 })
@@ -28,7 +26,6 @@ export const setupStore = () => {
         reducer: rootReducer,
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware()
-                .concat(postAPI.middleware)
                 .concat(patientAPI.middleware) // этот момент сомнительный, нужно проверить, что можно соединять цепочкой
                 .concat(doctorAPI.middleware)
     })

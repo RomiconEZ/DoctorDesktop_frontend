@@ -14,31 +14,31 @@ import {Regions} from "../../../DataLists/Regions";
 import {Roles} from "../../../DataLists/Roles";
 import {genderItems} from "../../../DataLists/genderItems";
 
-const {user} = useAppSelector(state => state.userReducer)
-
-
-const initialData: IDoctorCreate = {
-
-  name: '',
-  surname: '',
-  patronymic: '',
-  birthdate: Date.now(),
-    workExperience: 0,
-  sex: 'male',
-  region: user?.region || 'Северо-западный регоин',
-  city: user?.city || 'Санкт-Петербург',
-    placeOfWork: user?.placeofwork || 'нет',
-    occupation: user?.occupation || 'нет',
-    email: '',
-    password: '',
-    role: 'соразработчик'
-
-
-}
-
 
 const CreateDoctorForm = () => {
-  const {data, errors, handleInputChange, handleKeyDown, validate} = useForm(initialData, true, validatorConfig);
+    const {user} = useAppSelector(state => state.userReducer)
+
+    const initialData: IDoctorCreate = {
+
+
+        name: '',
+        surname: '',
+        patronymic: '',
+        birthdate: Date.now(),
+        workExperience: 0,
+        sex: 'male',
+        region: user?.region || 'Северо-западный регоин',
+        city: user?.city || 'Санкт-Петербург',
+        placeOfWork: user?.placeofwork || 'нет',
+        occupation: user?.occupation || 'нет',
+        email: '',
+        password: '',
+        role: 'соразработчик'
+
+
+    }
+
+    const {data, errors, handleInputChange, handleKeyDown, validate} = useForm(initialData, true, validatorConfig);
 
   const [createDoctor, {}] = doctorAPI.useCreateDoctorMutation();// {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями
 
