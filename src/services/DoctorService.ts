@@ -6,11 +6,12 @@ import {IDoctorCreate} from "../models/IDoctorCreate";
 import {Params} from "react-router-dom";
 import {DoctorID} from "./PatientService";
 
-interface PaginationDoctors
+export interface PaginationDoctors
 {
     doctorID: string
     limit: number
     numofpage: number
+    queryParams?: number
 }
 export interface DoctorForDoctor
 {
