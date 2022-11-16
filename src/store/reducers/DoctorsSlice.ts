@@ -61,7 +61,7 @@ export const loadDoctosList = (userID: string ): AppThunk => async dispatch => {
   }
 };
 
-export const loadFilteredRoomsList =
+export const loadFilteredDoctorsList =
   (userID: string  , _queryParams?: any): AppThunk =>
   async dispatch => {
     dispatch(doctorsRequested());

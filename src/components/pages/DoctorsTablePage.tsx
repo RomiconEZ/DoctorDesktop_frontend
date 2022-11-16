@@ -1,12 +1,10 @@
-import TableDoctors from "../components/TableDoctors";
-import {Search} from "../components/Search";
+import TableDoctors from "../doctorsTablesComponents/TableDoctors";
 
-const SearchTablePagination = () =>{
+const DoctorsTablePage = () =>{
     return(
         <div>
-            <Search/>
             <TableDoctors/>
         </div>
     )
 }
-export default SearchTablePagination
+export default DoctorsTablePage

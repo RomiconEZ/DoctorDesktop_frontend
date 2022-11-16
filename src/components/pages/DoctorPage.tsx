@@ -1,6 +1,6 @@
 import {useLocation} from "react-router-dom";
 import {Link} from "react-router-dom";
-const CardDoctor =() =>{
+const DoctorPage =() =>{
    const location = useLocation()
     const {doctor} = location.state
     return(
@@ -47,4 +47,4 @@ const CardDoctor =() =>{
         </div>
     )
 }
-export default CardDoctor
+export default DoctorPage

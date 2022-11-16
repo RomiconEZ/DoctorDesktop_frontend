@@ -11,7 +11,22 @@ interface UserState {
 }
 
 const initialState: UserState = {
-    user: null,
+    user: {
+        id: "",
+        name: "",
+        surname: "",
+        patronymic: "",
+        region: "",
+        city: "",
+        placeofwork:"",
+        birthdate: 0,
+        sex: "",
+        workExperience: -1,
+        occupation: "",
+        email: "",
+        role: -1,
+        isActivated: false,
+    },
     isLoading: false,
     error: '',
     isAuth: false,
