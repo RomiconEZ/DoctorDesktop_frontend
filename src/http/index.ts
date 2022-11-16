@@ -1,9 +1,7 @@
 import axios from 'axios';
+import { API_URL } from '../env_data';
 import {AuthResponse} from "../models/response/AuthResponse";
 
-import {IUser} from "../models/IUser";
-
-export const API_URL = `http://localhost:5000/api`
 
 const $api = axios.create({ // создание инстанса
     withCredentials: true, // к каждому запросу прицеплять cookie

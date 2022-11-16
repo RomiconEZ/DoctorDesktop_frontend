@@ -1,6 +1,6 @@
 import {IUser} from "../../models/IUser";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {checkAuth, fetchUser, login, logout} from "./ActionCreators";
+import {checkAuth,login, logout} from "./ActionCreators";
 
 interface UserState {
     user: IUser | null;
@@ -57,21 +57,20 @@ export const userSlice = createSlice({
             },
         },
     extraReducers: {
-        // эти редусеры НЕ ИСПОЛЬЗУЕМ !!!
-        [fetchUser.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
-            state.error = ''
-            state.user = action.payload;
-            state.isLoading = false;
-
-        },
-        [fetchUser.pending.type]: (state) => {
-            state.isLoading = true;
-        },
-        [fetchUser.rejected.type]: (state,  action: PayloadAction<string>) => {
-            state.error = action.payload
-            state.isLoading = false;
-
-        },
+        // [fetchUser.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
+        //     state.error = ''
+        //     state.user = action.payload;
+        //     state.isLoading = false;
+        //
+        // },
+        // [fetchUser.pending.type]: (state) => {
+        //     state.isLoading = true;
+        // },
+        // [fetchUser.rejected.type]: (state,  action: PayloadAction<string>) => {
+        //     state.error = action.payload
+        //     state.isLoading = false;
+        //
+        // },
 
         [login.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
             state.error = '';

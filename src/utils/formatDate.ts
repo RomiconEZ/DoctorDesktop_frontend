@@ -69,6 +69,6 @@ export default function formatDate(value: number | Date | string) {
   } else if (diffTime > lessCurrentYear) {
     return `${day} ${months[month]} ${year} года в ${getValidTime(hours, min)}`;
   } else {
-    return `Этот комментарий оставило НЛО из будущего ¯\\_(ツ)_/¯`;
+    return `?`;
   }
 }

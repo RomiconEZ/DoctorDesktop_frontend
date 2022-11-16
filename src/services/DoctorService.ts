@@ -5,6 +5,7 @@ import {IDoctorFull} from "../models/IDoctorFull";
 import {IDoctorCreate} from "../models/IDoctorCreate";
 import {Params} from "react-router-dom";
 import {DoctorID} from "./PatientService";
+import {API_URL} from "../env_data";
 
 export interface PaginationDoctors
 {
@@ -21,7 +22,7 @@ export interface DoctorForDoctor
 
 export const doctorAPI = createApi({
     reducerPath: 'doctorAPI', // уникальное название
-    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5000'}),
+    baseQuery: fetchBaseQuery({baseUrl: API_URL}),
     tagTypes: ['Doctor'],
     endpoints: (build) => ({
 

@@ -1,34 +1,25 @@
-import {AppDispatch} from "../store";
 import axios from "axios";
 import {IUser} from "../../models/IUser";
-import {userSlice} from "./UserSlice";
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {
-    IAnthropometric_data,
-    IClinical_data,
-    IConcom_desease, IEchocardiogram, IMultispiral_CT,
-    IPatient_history,
-    IPersonal_data
-} from "../../models/IPatientFull";
 import AuthService from "../../services/AuthService";
 import {AuthResponse} from "../../models/response/AuthResponse";
-import {API_URL} from "../../http";
+import {API_URL} from "../../env_data";
 
 // Асинхронный редусер
 
 // Упрощение для toolkit
 
-export const fetchUser = createAsyncThunk(
-    'user',
-    async (_, thunkAPI) => {
-        try {
-            const response = await axios.get<IUser>('https://jsonplaceholder.typicode.com/user2s')
-            return response.data;
-        } catch (e) {
-            return thunkAPI.rejectWithValue("Не удалось загрузить пользователя")
-        }
-    }
-)
+// export const fetchUser = createAsyncThunk(
+//     'user',
+//     async (_, thunkAPI) => {
+//         try {
+//             const response = await axios.get<IUser>('https://jsonplaceholder.typicode.com/user2s')
+//             return response.data;
+//         } catch (e) {
+//             return thunkAPI.rejectWithValue("Не удалось загрузить пользователя")
+//         }
+//     }
+// )
 export interface email_and_password{
     email: string,
     password: string,

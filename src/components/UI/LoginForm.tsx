@@ -1,13 +1,13 @@
-import React, {FC, useContext, useState} from 'react';
-import {observer} from "mobx-react-lite";
-import {Context} from "../../index";
+import React, {FC, useState} from 'react';
+import {useAppDispatch} from "../../store/store";
+import {login} from "../../store/reducers/ActionCreators";
 
 
 
 const LoginForm: FC = () => {
+    const dispatch = useAppDispatch()
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
-    const {login} = useContext(Context);
    /* const dispatch = useAppDispatch()
     const {user, isLoading, error} = useAppSelector(state => state.userReducer) // достаем переменные из хранилища*/
 
@@ -18,6 +18,7 @@ const LoginForm: FC = () => {
     {/*{isLoading && <h1>Идет загрузка...</h1>}*/}
     {/*{error && <h1>{error}</h1>}*/}
     {/*{JSON.stringify(users, null, 2)}*/}
+
     return (
         <div>
             <input
@@ -33,7 +34,7 @@ const LoginForm: FC = () => {
                 placeholder='Пароль'
             />
 
-            <button onClick={() => login.login(email, password)}>
+            <button onClick={() => dispatch(login({email: email, password: password}))}>
                 Логин
             </button>
             {/*<button onClick={() => login.registration(email, password)}>*/}
@@ -43,4 +44,4 @@ const LoginForm: FC = () => {
     );
 };
 
-export default observer(LoginForm);
+export default LoginForm;

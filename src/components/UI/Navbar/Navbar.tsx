@@ -1,14 +1,14 @@
-import React, {useContext} from 'react';
-import {Link, Outlet, NavLink} from "react-router-dom";
-import {observer} from "mobx-react-lite";
-import {Context} from "../../../index";
+import React from 'react';
+import {Outlet, NavLink} from "react-router-dom";
 import {useAppSelector} from "../../../hooks/redux";
+import {useAppDispatch} from "../../../store/store";
+import {logout} from "../../../store/reducers/ActionCreators";
 
 
 const Navbar = () => {
-    // Кнопка выхода (нужна !!!)
     const {user} = useAppSelector(state => state.userReducer)
-    const {login} = useContext(Context);
+    const dispatch = useAppDispatch()
+
 
     return (
         <>
@@ -28,11 +28,11 @@ const Navbar = () => {
                 </NavLink>
 
             </div>
-            <button onClick={() => login.logout()}>Выйти</button>
+            <button onClick={() => dispatch(logout)}>Выйти</button>
         </div>
-            <Outlet/> // место, куда вставляется все остальное
+            <Outlet/>
         </>
     )
 };
 
-export default observer(Navbar)
+export default Navbar
