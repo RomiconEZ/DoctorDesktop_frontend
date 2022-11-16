@@ -11,7 +11,7 @@ export interface PaginationDoctors
     doctorID: string
     limit: number
     numofpage: number
-    queryParams?: number
+    queryParams?: string
 }
 export interface DoctorForDoctor
 {
@@ -33,6 +33,7 @@ export const doctorAPI = createApi({
                     _doctorID: PaginationDoctorsForCertainDoctor.doctorID,
                     _limit: PaginationDoctorsForCertainDoctor.limit,
                     _numofpage: PaginationDoctorsForCertainDoctor.numofpage,
+                    _queryParams: PaginationDoctorsForCertainDoctor.queryParams,
                 }
             }),
             providesTags: result => ['Doctor']

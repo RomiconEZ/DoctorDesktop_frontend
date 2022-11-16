@@ -3,13 +3,13 @@ import React from 'react';
 import {OptionsItemType} from "../../common/Fields/SelectField/SelectField";
 import {SelectField} from "../../common/Fields";
 
-type DoctorsDisplayCountProps = MuiSelectProps & {
+type PatientsDisplayCountProps = MuiSelectProps & {
   count: number;
   setCount: (e: any) => void;
   options: OptionsItemType[];
 };
 
-const DoctorsDisplayCount: React.FC<DoctorsDisplayCountProps> = ({ count, setCount, options }) => {
+const PatientsDisplayCount: React.FC<PatientsDisplayCountProps> = ({ count, setCount, options }) => {
   return (
     <SelectField
       style={{ minWidth: '140px' }}
@@ -23,4 +23,4 @@ const DoctorsDisplayCount: React.FC<DoctorsDisplayCountProps> = ({ count, setCou
   );
 };
 
-export default DoctorsDisplayCount;
+export default PatientsDisplayCount;

@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import PostContainer from "./components/PostContainer";
 import {Route, Link, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom';
 import Navbar from "./components/UI/Navbar/Navbar";
 import NotFoundPage from "./components/pages/NotFoundPage";
@@ -21,6 +20,7 @@ import {RequireAuthUpdateDoctorPage} from "./components/hoc/RequireAuthUpdateDoc
 import SelectedPatientPage from "./components/patientCardComponents/SelectedPatientPage";
 import DoctorsTablePage from "./components/pages/DoctorsTablePage";
 import DoctorPage from "./components/pages/DoctorPage";
+import PatientsTablePage from "./components/pages/PatientsTablePage";
 // нужно импортнуть стриницы
 
 // doctor - 1
@@ -104,7 +104,7 @@ const router = createBrowserRouter(createRoutesFromElements
                     element=
                         {
                             <RequireAuthPatientsListPage>
-                                <PatientsListPage/>
+                                <PatientsTablePage/>
                             </RequireAuthPatientsListPage>
                         }
                     path="menu/patients"

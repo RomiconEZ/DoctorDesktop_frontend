@@ -1,7 +1,6 @@
 import React, {FC, useContext, useState} from 'react';
-import {useAppDispatch, useAppSelector} from "../hooks/redux";
-import {Context} from "../index";
 import {observer} from "mobx-react-lite";
+import {Context} from "../../index";
 
 
 

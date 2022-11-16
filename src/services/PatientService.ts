@@ -5,11 +5,12 @@ import {IPatientUpdate} from "../models/IPatientUpdate";
 import {IPatientFull} from "../models/IPatientFull";
 import {Params} from "react-router-dom";
 
-interface PaginationPatientsForCertainDoctor
+export interface PaginationPatientsForCertainDoctor
 {
     doctorID: string
     limit: number
     numofpage: number
+    queryParams?: string
 }
 export interface PatientForDoctor
 {
@@ -36,6 +37,7 @@ export const patientAPI = createApi({
                     _doctorID: PaginationPatientsForCertainDoctor.doctorID,
                     _limit: PaginationPatientsForCertainDoctor.limit,
                     _numofpage: PaginationPatientsForCertainDoctor.numofpage,
+                    _queryParams: PaginationPatientsForCertainDoctor.queryParams,
                 }
             }),
             providesTags: result => ['Patient']

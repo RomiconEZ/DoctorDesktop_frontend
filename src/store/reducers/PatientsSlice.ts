@@ -1,29 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {AppThunk, RootState} from '../store';
-import {IDoctorShort} from "../../models/IDoctorShort";
-import {doctorAPI, PaginationDoctors} from "../../services/DoctorService";
+import {IPatientShort} from "../../models/IPatientShort";
+import {PaginationPatientsForCertainDoctor, patientAPI} from "../../services/PatientService";
 
-const doctorsSlice = createSlice({
-  name: 'doctorsTable',
+const patientsSlice = createSlice({
+  name: 'patientsTable',
   initialState: {
-    entities: [] as Array<IDoctorShort>,
-    filteredEntities: [] as Array<IDoctorShort>,
+    entities: [] as Array<IPatientShort>,
+    filteredEntities: [] as Array<IPatientShort>,
     isLoading: true as boolean,
     error: null as string | null,
   },
   reducers: {
-    doctorsRequested: state => {
+      patientsRequested: state => {
       state.isLoading = true;
     },
-      doctorsReceived: (state, action) => {
+      patientsReceived: (state, action) => {
       state.entities = action.payload;
       state.isLoading = false;
     },
-    filteredDoctorsReceived: (state, action) => {
+    filteredPatientsReceived: (state, action) => {
       state.filteredEntities = action.payload;
       state.isLoading = false;
     },
-      doctorsRequestFailed: (state, action) => {
+      patientsRequestFailed: (state, action) => {
       state.error = action.payload;
       state.isLoading = false;
     },
@@ -31,9 +31,9 @@ const doctorsSlice = createSlice({
   },
 });
 
-const { actions, reducer: doctorsReducer } = doctorsSlice;
+const { actions, reducer: patientsReducer } = patientsSlice;
 
-const { doctorsRequested, doctorsReceived, doctorsRequestFailed, filteredDoctorsReceived } = actions;
+const { patientsRequested, patientsReceived, patientsRequestFailed, filteredPatientsReceived } = actions;
 
 // const addBookingRoomRequested = createAction('rooms/addBookingRoomRequested');
 // const addBookingRoomRequestedSuccess = createAction('rooms/addBookingRoomRequestedSuccess');
@@ -46,37 +46,37 @@ const { doctorsRequested, doctorsReceived, doctorsRequestFailed, filteredDoctors
 // const roomUpdateRequested = createAction('rooms/roomUpdateRequested');
 // const roomUpdateRequestedFailed = createAction('rooms/roomUpdateRequestedFailed');
 
-export const loadDoctorsList = (userID: string ): AppThunk => async dispatch => {
-  dispatch(doctorsRequested());
+export const loadPatientsList = (userID: string ): AppThunk => async dispatch => {
+  dispatch(patientsRequested());
   try {
-      const body: PaginationDoctors = {
+      const body: PaginationPatientsForCertainDoctor = {
           doctorID: userID,
           limit: -1,
           numofpage: -1,
       }
-      const {data: doctors, error, isLoading, refetch} =  doctorAPI.useFetchDoctorsQuery(body)
-    dispatch(doctorsReceived(doctors || []));
+      const {data: patients, error, isLoading, refetch} =  patientAPI.useFetchPatientsQuery(body)
+    dispatch(patientsReceived(patients || []));
   } catch (error) {
-    dispatch(doctorsRequestFailed(error.message));
+    dispatch(patientsRequestFailed(error.message));
   }
 };
 
-export const loadFilteredDoctorsList =
+export const loadFilteredPatientsList =
   (userID: string  , _queryParams?: any): AppThunk =>
   async dispatch => {
-    dispatch(doctorsRequested());
+    dispatch(patientsRequested());
     try {
-        const body: PaginationDoctors = {
+        const body: PaginationPatientsForCertainDoctor = {
             doctorID: userID,
             limit: -1,
             numofpage: -1,
             queryParams: _queryParams,
         }
-        const {data: doctors, error, isLoading, refetch} =  doctorAPI.useFetchDoctorsQuery(body)
+        const {data: patients, error, isLoading, refetch} =  patientAPI.useFetchPatientsQuery(body)
 
-      dispatch(filteredDoctorsReceived(doctors || []));
+      dispatch(filteredPatientsReceived(patients || []));
     } catch (error) {
-      dispatch(doctorsRequestFailed(error.message));
+      dispatch(patientsRequestFailed(error.message));
     }
   };
 
@@ -117,13 +117,13 @@ export const loadFilteredDoctorsList =
 //     }
 //   };
 
-export const getDoctors = () => (state: RootState) => state.doctors.entities;
-export const getFilteredDoctors = () => (state: RootState) => state.doctors.filteredEntities;
-export const getDoctorsLoadingStatus = () => (state: RootState) => state.doctors.isLoading;
+export const getPatients = () => (state: RootState) => state.patients.entities;
+export const getFilteredPatients = () => (state: RootState) => state.patients.filteredEntities;
+export const getPatientsLoadingStatus = () => (state: RootState) => state.patients.isLoading;
 
-export const getDoctorById = (doctorId: string) => (state: RootState) => {
-  if (state.doctors.entities) {
-    return state.doctors.entities.find(doctor => doctor.id === doctorId);
+export const getPatientById = (patientId: string) => (state: RootState) => {
+  if (state.patients.entities) {
+    return state.patients.entities.find(patient => patient.id === patientId);
   }
 };
 
@@ -134,4 +134,4 @@ export const getDoctorById = (doctorId: string) => (state: RootState) => {
 //   return [];
 // };
 
-export default doctorsReducer;
+export default patientsReducer;
