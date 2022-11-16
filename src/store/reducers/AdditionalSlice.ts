@@ -1,15 +1,19 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {IPatientFull} from "../../models/IPatientFull";
 import {initialPatientState} from "../../components/patientCardComponents/initialStates/initialStatePatient";
+import {IDoctorFull} from "../../models/IDoctorFull";
+import {initialDoctorState} from "../../models/initialDoctorState";
 
 interface AddState {
     SelectedPatient: IPatientFull,
     IsEditButtonPressed: boolean,
+    SelectedDoctor: IDoctorFull
 }
 
 const initialState: AddState = {
     SelectedPatient: initialPatientState,
-    IsEditButtonPressed: false
+    IsEditButtonPressed: false,
+    SelectedDoctor: initialDoctorState,
 }
 
 // slice - reducer в контексте toolkit
@@ -26,6 +30,10 @@ export const additionalSlice = createSlice({
             ChangeSelectedPatient(state, action: PayloadAction<IPatientFull>)
             {
                 state.SelectedPatient = action.payload
+            },
+            ChangeSelectedDoctor(state, action: PayloadAction<IDoctorFull>)
+            {
+                state.SelectedDoctor = action.payload
             },
 
         }

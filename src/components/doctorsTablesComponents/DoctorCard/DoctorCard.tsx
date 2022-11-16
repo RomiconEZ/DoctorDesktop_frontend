@@ -8,8 +8,9 @@ const DoctorCard: React.FC <IDoctorShort> = ({ id, name, surname, patronymic, ag
 
   return (
     <div >
-      <Link to={`/doctors/${id}`}>
-
+      <Link to={`auth/menu/doctors/${id}`}>
+          <span>Фамилия Имя Отчество</span>
+          <span>{surname + ' ' + name + ' ' + patronymic} </span>
       </Link>
     </div>
   );

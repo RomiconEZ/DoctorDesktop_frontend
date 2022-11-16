@@ -79,7 +79,7 @@ const router = createBrowserRouter(createRoutesFromElements
                                 <UpdateDoctorPage/>
                             </RequireAuthUpdateDoctorPage>
                         }
-                    path="menu/doctors/:id/editdoctor"
+                    path="menu/doctors/editdoctor/:id"
                 />
 
                 <Route
