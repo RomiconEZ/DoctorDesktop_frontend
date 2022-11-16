@@ -28,7 +28,7 @@ const Navbar = () => {
                 </NavLink>
 
             </div>
-            <button onClick={() => dispatch(logout)}>Выйти</button>
+            <button onClick={() => dispatch(logout())}>Выйти</button>
         </div>
             <Outlet/>
         </>

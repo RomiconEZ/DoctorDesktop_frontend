@@ -7,7 +7,7 @@ const Root = () => {
     return (
         <>
         <div>
-            <Outlet/> // место, куда вставляется все остальное
+            <Outlet/>
         </div>
         </>
     )

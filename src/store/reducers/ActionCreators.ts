@@ -53,7 +53,7 @@ export const logout = createAsyncThunk(
 
 export const checkAuth = createAsyncThunk(
     'checkAuth',
-    async (logdata:email_and_password, thunkAPI) => {
+    async (_, thunkAPI) => {
         try {
             // пользуемся классический запромсом axios без интерсептора, чтобы не делать лишних проверок
             const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, {withCredentials: true})

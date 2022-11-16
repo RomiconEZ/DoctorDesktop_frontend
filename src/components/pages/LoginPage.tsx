@@ -1,17 +1,21 @@
 import React, {useContext, useEffect} from 'react';
-import {Context} from "../../index";
 import {useAppSelector} from "../../hooks/redux";
+import {useAppDispatch} from "../../store/store";
+import {checkAuth, login, logout} from "../../store/reducers/ActionCreators";
+import LoginForm from "../UI/LoginForm";
+import {useNavigate} from "react-router-dom";
 
 
 
 const LoginPage = () => {
-    const {login} = useContext(Context);
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch()
     const {user, isLoading, error, isAuth} = useAppSelector(state => state.userReducer)
 
     useEffect(() => {
         // проверка на токен
         if (localStorage.getItem('token')) {
-            login.checkAuth()
+            dispatch(checkAuth())
         }
     }, []) // отрабатывает только при первом запуске приложения
 
@@ -20,11 +24,13 @@ const LoginPage = () => {
         return <div>Загрузка...</div>
     }
 
+    if (isAuth == true) {
+        navigate('/auth/menu');
+    }
+
     return (
         <div>
-            <h1>{isAuth ? `Пользователь авторизован ${user?.email}` : 'АВТОРИЗУЙТЕСЬ'}</h1>
-            <h1>{user?.isActivated ? 'Аккаунт подтвержден по почте' : 'ПОДТВЕРДИТЕ АККАУНТ!!!!'}</h1>
-            <button onClick={() => login.logout()}>Выйти</button>
+            <LoginForm/>
         </div>
     );
 };
