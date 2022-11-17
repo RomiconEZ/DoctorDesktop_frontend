@@ -1,8 +1,11 @@
-import {useLocation, useParams} from "react-router-dom";
+import {NavLink, useLocation, useParams} from "react-router-dom";
 import {Link} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {additionalSlice} from "../../store/reducers/AdditionalSlice";
 import {doctorAPI, DoctorForDoctor} from "../../services/DoctorService";
+import useBreadcrumbs from "use-react-router-breadcrumbs";
+import {routes} from "../common/BreadCrumb";
+import React from "react";
 
 
 
@@ -11,6 +14,7 @@ const DoctorPage =() =>{
     const {SelectedDoctor} = useAppSelector(state => state.additionalReducer)
 
     const dispatch = useAppDispatch()
+    const breadcrumbs = useBreadcrumbs(routes);
 
     const params = useParams<string>()
     const body: DoctorForDoctor = {
@@ -26,6 +30,13 @@ const DoctorPage =() =>{
     }
     return(
         <div>
+            <>
+                {breadcrumbs.map(({ match, breadcrumb }) => (
+                    <NavLink key={match.pathname} to={match.pathname}>
+                        {breadcrumb}
+                    </NavLink>
+                ))}
+            </>
 
                 <div>
                     <div>
