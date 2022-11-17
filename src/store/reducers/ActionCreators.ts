@@ -1,25 +1,69 @@
-import {AppDispatch} from "../store";
-import {IPatient, IPersonal_data} from "../../models/IPatient";
 import axios from "axios";
-import {PatientSlice} from "./PatientSlice";
+import {IUser} from "../../models/IUser";
 import {createAsyncThunk} from "@reduxjs/toolkit";
+import AuthService from "../../services/AuthService";
+import {AuthResponse} from "../../models/response/AuthResponse";
+import {API_URL} from "../../env_data";
 
-export const fetchPatient = () => async (dispatch:AppDispatch) => {
-    try {
-        dispatch(PatientSlice.actions.patientFetching())
-        const response = await axios.get<IPatient>('https://my-json-server.typicode.com/AlexanderMenkeev/json-server/patients/1')
-        dispatch(PatientSlice.actions.patientFetchingSuccess(response.data))
-    } catch (e) {
-        dispatch(PatientSlice.actions.patientFetchingError("Fetching of patient's data was unsuccessful"));
-    }
+// Асинхронный редусер
+
+// Упрощение для toolkit
+
+// export const fetchUser = createAsyncThunk(
+//     'user',
+//     async (_, thunkAPI) => {
+//         try {
+//             const response = await axios.get<IUser>('https://jsonplaceholder.typicode.com/user2s')
+//             return response.data;
+//         } catch (e) {
+//             return thunkAPI.rejectWithValue("Не удалось загрузить пользователя")
+//         }
+//     }
+// )
+export interface email_and_password{
+    email: string,
+    password: string,
 }
 
-export const patchPersonalData = () => async (dispatch:AppDispatch) => {
-    try {
-        dispatch(PatientSlice.actions.personalDataPatching)
-        const response = await axios.patch<IPatient>('https://my-json-server.typicode.com/AlexanderMenkeev/json-server/patients/1')
-        dispatch(PatientSlice.actions.personalDataPatchingSuccess())
-    } catch (e) {
-        dispatch(PatientSlice.actions.personalDataPatchingError("Personal data patching was unsuccessful"));
+export const login = createAsyncThunk(
+    'login',
+    async (logdata:email_and_password, thunkAPI) => {
+        try {
+            const response = await AuthService.login(logdata.email, logdata.password);
+            localStorage.setItem('token', response.data.accessToken);//токен доступа сохрянем в localstorage
+            return response.data.user;
+        } catch (e) {
+            console.log(e.response?.data?.message);
+            return (e.response?.data?.message)
+        }
     }
-}
+)
+export const logout = createAsyncThunk(
+    'logout',
+    async (_, thunkAPI) => {
+        try {
+            const response = await AuthService.logout();
+            localStorage.removeItem('token');
+        } catch (e) {
+            console.log(e.response?.data?.message);
+            return (e.response?.data?.message)
+        }
+    }
+)
+
+export const checkAuth = createAsyncThunk(
+    'checkAuth',
+    async (_, thunkAPI) => {
+        try {
+            // пользуемся классический запромсом axios без интерсептора, чтобы не делать лишних проверок
+            const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, {withCredentials: true})
+            console.log(response);
+            localStorage.setItem('token', response.data.accessToken);
+            return(response.data.user);
+        }
+        catch (e) {
+            console.log(e.response?.data?.message);
+            return(e.response?.data?.message);
+        }
+    }
+)

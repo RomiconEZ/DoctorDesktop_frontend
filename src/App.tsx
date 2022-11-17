@@ -1,38 +1,139 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MainMenu from "./pages/mainMenu/MainMenu";
-import SideBar from "./pages/patientProfile/SideBar";
-import PersonalData from "./pages/patientProfile/PersonalData";
-import ComputerTomography from "./pages/patientProfile/ComputerTomography";
-import AnthropometricData from "./pages/patientProfile/AnthropometricData";
-import ClinicData from "./pages/patientProfile/ClinicData";
 import "./index.css"
-import Anamnes from './pages/patientProfile/Anamnes';
-import ConcomDiseases from './pages/patientProfile/ConcomDiseases';
-import Echocardiogram from "./pages/patientProfile/Echocardiogram";
-import MultispiralCT from "./pages/patientProfile/MultispiralCT";
-import NeuralNetwork from "./pages/patientProfile/NeuralNetwork";
+import {Route, Link, Navigate, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom';
+import Navbar from "./components/UI/Navbar/Navbar";
+import NotFoundPage from "./components/pages/NotFoundPage";
+import Root from "./components/UI/Root";
+import LoginPage from "./components/pages/LoginPage";
+import MenuPage from "./components/pages/MenuPage";
+import CreatePatientPage from "./components/pages/CreatePatientPage";
+import CreateDoctorPage from "./components/pages/CreateDoctorPage";
+import UpdateDoctorPage from "./components/pages/UpdateDoctorPage";
+import {RequireAuthMenuPage} from "./components/hoc/RequireAuthMenuPage";
+import {RequireAuthPatientPage} from "./components/hoc/RequireAuthPatientPage";
+import {RequireAuthPatientsListPage} from "./components/hoc/RequireAuthPatientsListPage";
+import {RequireAuthDoctorPage} from "./components/hoc/RequireAuthDoctorPage";
+import {RequireAuthDoctorsListPage} from "./components/hoc/RequireAuthDoctorsListPage";
+import {RequireAuthCreatePatientPage} from "./components/hoc/RequireAuthCreatePatientPage";
+import {RequireAuthCreateDoctorPage} from "./components/hoc/RequireAuthCreateDoctorPage";
+import {RequireAuthUpdateDoctorPage} from "./components/hoc/RequireAuthUpdateDoctorPage";
+import SelectedPatientPage from "./components/patientCardComponents/SelectedPatientPage";
+import DoctorsTablePage from "./components/pages/DoctorsTablePage";
+import DoctorPage from "./components/pages/DoctorPage";
+import PatientsTablePage from "./components/pages/PatientsTablePage";
+// нужно импортнуть страницы
 
-function App() {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<MainMenu />} />
-                <Route path="/patientCard" element={<SideBar />}>
-                    <Route path="personalData" element={<PersonalData/>} />
-                    <Route path="computer-aided-tomography" element={<ComputerTomography/>} />
-                    <Route path="anthropometric-data" element={<AnthropometricData />} />
-                    <Route path="clinic-data" element={<ClinicData />} />
-                    <Route path="anamnesis" element={<Anamnes />} />
-                    <Route path="concomDeseases" element={<ConcomDiseases />} />
-                    <Route path="echocardiogram" element={<Echocardiogram />} />
-                    <Route path="msct" element={<MultispiralCT />} />
-                    <Route path="neuralNet" element={<NeuralNetwork />} />
+// doctor - 1
+// developer - 2
+// codeveloper - 3
+// admin - 4
+// registry - 5
+// expert - 6
+// dataadmin - 7
+
+
+const router = createBrowserRouter(
+    createRoutesFromElements(
+        <Route path="/" element={<Root/>}>
+            <Route index element={<Navigate to="login" />} />
+            <Route  path="login" element={<LoginPage/>} />
+
+            <Route path="auth" element={<Navbar/>} />
+
+            <Route path="*" element={<NotFoundPage/>}/>
+
+            <Route
+                path="menu"
+                element= {
+                    <RequireAuthMenuPage>
+                        <MenuPage/>
+                    </RequireAuthMenuPage>
+                }
+            >
+
+                <Route
+                    path="newpatient"
+                    element={
+                            <RequireAuthCreatePatientPage>
+                                <CreatePatientPage/>
+                            </RequireAuthCreatePatientPage>
+                        }
+                />
+
+                <Route
+                    path="newdoctor"
+                    element={
+                            <RequireAuthCreateDoctorPage>
+                                <CreateDoctorPage/>
+                            </RequireAuthCreateDoctorPage>
+                        }
+                />
+
+                <Route
+                    path="doctors"
+                    element={
+                            <RequireAuthDoctorsListPage>
+                                <DoctorsTablePage/>
+                            </RequireAuthDoctorsListPage>
+                        }
+                >
+
+                    <Route
+                        path="editdoctor/:id"
+                        element={
+                                <RequireAuthUpdateDoctorPage>
+                                    <UpdateDoctorPage/>
+                                </RequireAuthUpdateDoctorPage>
+                            }
+                    />
+
+                    <Route
+                        path=":id"
+                        element={
+                                <RequireAuthDoctorPage>
+                                    <DoctorPage/>
+                                </RequireAuthDoctorPage>
+                            }
+                    />
+
                 </Route>
 
-            </Routes>
 
-        </BrowserRouter>
+                <Route
+                    path="patients"
+                    element={
+                            <RequireAuthPatientsListPage>
+                                <PatientsTablePage/>
+                            </RequireAuthPatientsListPage>
+                        }
+                >
+
+                    <Route
+                        path=":id"
+                        element={
+                                <RequireAuthPatientPage>
+                                    <SelectedPatientPage/>
+                                </RequireAuthPatientPage>
+                            }
+                    />
+                </Route>
+
+
+
+            </Route>
+
+
+        </Route>
+    )
+);
+
+function App() {
+
+    return (
+
+        <div>
+            <RouterProvider router={router}/>
+        </div>
     );
 }
 

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ulbi_tv.iml" filepath="$PROJECT_DIR$/.idea/ulbi_tv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Frontend_PirogProject.iml" filepath="$PROJECT_DIR$/.idea/Frontend_PirogProject.iml" />
     </modules>
   </component>
 </project>
