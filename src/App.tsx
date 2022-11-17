@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Route, Link, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom';
+import {Route, Link, RouterProvider, createBrowserRouter, createRoutesFromElements, Navigate} from 'react-router-dom';
 import Navbar from "./components/UI/Navbar/Navbar";
 import NotFoundPage from "./components/pages/NotFoundPage";
 import Root from "./components/UI/Root";
@@ -34,7 +34,7 @@ import PatientsTablePage from "./components/pages/PatientsTablePage";
 const router = createBrowserRouter(createRoutesFromElements
     (
         <Route path="/" element={<Root/>}>
-
+            <Route index element={<Navigate to="login" />} />
             <Route
                 element={<LoginPage/>}
                 path="login"
@@ -120,10 +120,8 @@ const router = createBrowserRouter(createRoutesFromElements
                     path="menu/patients/:id"
                 />
 
-
-            <Route path="*" element={<NotFoundPage/>} />
-
             </Route>
+            <Route path="*" element={<NotFoundPage/>} />
         </Route>
     )
 )

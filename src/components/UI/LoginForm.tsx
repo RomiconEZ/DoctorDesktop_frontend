@@ -6,8 +6,8 @@ import {login} from "../../store/reducers/ActionCreators";
 
 const LoginForm: FC = () => {
     const dispatch = useAppDispatch()
-    const [email, setEmail] = useState<string>('')
-    const [password, setPassword] = useState<string>('')
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
    /* const dispatch = useAppDispatch()
     const {user, isLoading, error} = useAppSelector(state => state.userReducer) // достаем переменные из хранилища*/
 
