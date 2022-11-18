@@ -11,48 +11,37 @@ const Navbar = () => {
 
     return (
         <>
-        <div className="navbar">
-            <div>
-                {user?.name} {user?.surname} {user?.patronymic}
+        <div>
+            <div className="sticky pt-5 border-b-2 pr-8 pl-8 mx-auto top-0 w-full flex items-center justify-between overflow-hidden">
+                <div className="flex flex-col items-center columns-1 hover:bg-gray-100 hover:border border-gray-300">
+                    {/*{user?.name} {user?.surname} {user?.patronymic}*/}
+                    <div className='p-1 hover:text-cyan-500 transition-colors'>
+
+                        {user!=null && <Link to={"/menu/doctors/" + user.id}>Иван Иванович Иванов</Link>}
+                    </div>
+
+                    {/*{user?.role}*/}
+                    <span>Врач</span>
+
+                </div>
+
+
+                <ul className='flex items-center gap-5 overflow-hidden'>
+                    <li className='p-1 pb-4 hover:bg-gray-100 hover:border border-gray-300 hover:text-cyan-500 transition-colors'>
+                        <Link to="/menu/patients">Список пациентов</Link>
+                    </li>
+                    <li className='p-1 pb-4 hover:bg-gray-100 hover:border border-gray-300 hover:text-cyan-500 transition-colors'>
+                        <Link to="/menu/doctors">Список врачей</Link>
+                    </li>
+
+                    <li className='p-1 pb-4 hover:bg-gray-100 hover:border border-gray-300 hover:text-red-500 transition-colors'>
+                        <button onClick={() => dispatch(logout())}>Выйти</button>
+                    </li>
+
+                </ul>
             </div>
-            <div>
-                {user?.role}
-            </div>
 
 
-            {/*<div className="sticky top-0 p-4 w-full">*/}
-            {/*    <ul className='flex flex-col overflow-hidden'>*/}
-            {/*        <li className='hover:bg-gray-100'>*/}
-            {/*            <Link to="/patientCard/personalData">Персональные данные</Link>*/}
-            {/*        </li>*/}
-            {/*        <li className='hover:bg-gray-100'>*/}
-            {/*            <Link to="/patientCard/computer-aided-tomography">Компьютерная томография</Link>*/}
-            {/*        </li>*/}
-            {/*        <li className='hover:bg-gray-100'>*/}
-            {/*            <Link to="/patientCard/anthropometric-data">Антропометрия</Link>*/}
-            {/*        </li>*/}
-            {/*        <li className='hover:bg-gray-100'>*/}
-            {/*            <Link to="/patientCard/clinic-data">Клинические данные</Link>*/}
-            {/*        </li>*/}
-            {/*        <li className='hover:bg-gray-100'>*/}
-            {/*            <Link to="/patientCard/anamnesis">Анамнез</Link>*/}
-            {/*        </li>*/}
-            {/*        <li className='hover:bg-gray-100'>*/}
-            {/*            <Link to="/patientCard/concomDeseases">Сопутствующие заболевания</Link>*/}
-            {/*        </li>*/}
-            {/*        <li className='hover:bg-gray-100'>*/}
-            {/*            <Link to="/patientCard/echocardiogram">ЭХОГК</Link>*/}
-            {/*        </li>*/}
-            {/*        <li className='hover:bg-gray-100'>*/}
-            {/*            <Link to="/patientCard/msct">МСКТ</Link>*/}
-            {/*        </li>*/}
-            {/*        <li className='hover:bg-gray-100'>*/}
-            {/*            <Link to="/patientCard/neuralNet">Нейронная сеть</Link>*/}
-            {/*        </li>*/}
-            {/*    </ul>*/}
-            {/*</div>*/}
-
-            <button onClick={() => dispatch(logout())}>Выйти</button>
         </div>
             <Outlet/>
         </>

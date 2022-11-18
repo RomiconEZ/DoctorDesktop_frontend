@@ -11,8 +11,9 @@ const LoginForm: FC = () => {
     const [password, setPassword] = useState<string>('')
 
     return (
-        <div className="flex justify-center items-center flex-wrap h-full g-6">
+        <div className="flex justify-center items-center h-screen flex-wrap">
             <div className="grid columns-1 gap-y-3">
+                <h1 className="flex justify-center">Вход</h1>
                 <input
                     onChange={e => setEmail(e.target.value)}
                     value={email}

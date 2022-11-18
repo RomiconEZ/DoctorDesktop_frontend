@@ -24,7 +24,7 @@ const initialState: UserState = {
         workExperience: -1,
         occupation: "",
         email: "",
-        role: -1,
+        role: 1,
         isActivated: false,
     },
     isLoading: false,
