@@ -5,21 +5,8 @@ import AuthService from "../../services/AuthService";
 import {AuthResponse} from "../../models/response/AuthResponse";
 import {API_URL} from "../../env_data";
 
-// Асинхронный редусер
+axios.defaults.timeout = 1000;
 
-// Упрощение для toolkit
-
-// export const fetchUser = createAsyncThunk(
-//     'user',
-//     async (_, thunkAPI) => {
-//         try {
-//             const response = await axios.get<IUser>('https://jsonplaceholder.typicode.com/user2s')
-//             return response.data;
-//         } catch (e) {
-//             return thunkAPI.rejectWithValue("Не удалось загрузить пользователя")
-//         }
-//     }
-// )
 export interface email_and_password{
     email: string,
     password: string,

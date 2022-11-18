@@ -1,6 +1,7 @@
 import {IUser} from "../../models/IUser";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {checkAuth,login, logout} from "./ActionCreators";
+import {setupStore} from "../store";
 
 interface UserState {
     user: IUser | null;
@@ -72,18 +73,42 @@ export const userSlice = createSlice({
         //
         // },
 
-        [login.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
-            state.error = '';
-            state.isAuth=true;
-            state.user = action.payload;
-            state.isLoading = false;
+        [login.fulfilled.type]: (state, action: PayloadAction<any>) => {
+            console.log("login fulfilled")
+            if (action.payload.id !== undefined &&
+                action.payload.name !== undefined &&
+                action.payload.surname !== undefined &&
+                action.payload.patronymic !== undefined &&
+                action.payload.region !== undefined &&
+                action.payload.city !== undefined &&
+                action.payload.placeofwork !== undefined &&
+                action.payload.birthdate !== undefined &&
+                action.payload.sex !== undefined &&
+                action.payload.workExperience !== undefined &&
+                action.payload.occupation !== undefined &&
+                action.payload.email !== undefined &&
+                action.payload.role !== undefined )
+            {
+                state.error = '';
+                state.isAuth = true;
+
+                state.user = action.payload;
+                state.isLoading = false;
+            }
+            else {
+                state.error = 'Пользователь не определен';
+                state.isLoading = false;
+            }
+
 
         },
         [login.pending.type]: (state) => {
+            console.log("login pending")
             state.isLoading = true;
         },
-        [login.rejected.type]: (state,  action: PayloadAction<string>) => {
-            state.isAuth=false; // !!! эксперементально
+        [login.rejected.type]: (state,  action: PayloadAction<any>) => {
+            console.log("login reject")
+            state.isAuth = false; // !!! эксперементально
             state.error = action.payload
             state.isLoading = false;
 
@@ -104,10 +129,30 @@ export const userSlice = createSlice({
             state.isLoading = false;
         },
 
-        [checkAuth.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
-            state.isAuth=true;
-            state.user = action.payload
-            state.isLoading = false;
+        [checkAuth.fulfilled.type]: (state, action: PayloadAction<any>) => {
+            if (action.payload.id !== undefined &&
+                action.payload.name !== undefined &&
+                action.payload.surname !== undefined &&
+                action.payload.patronymic !== undefined &&
+                action.payload.region !== undefined &&
+                action.payload.city !== undefined &&
+                action.payload.placeofwork !== undefined &&
+                action.payload.birthdate !== undefined &&
+                action.payload.sex !== undefined &&
+                action.payload.workExperience !== undefined &&
+                action.payload.occupation !== undefined &&
+                action.payload.email !== undefined &&
+                action.payload.role !== undefined )
+                    {
+                    state.isAuth = true;
+                    state.user = action.payload
+                    state.isLoading = false;
+                    }
+            else {
+                state.isAuth = false;
+                state.user = {} as IUser
+                state.isLoading = false;
+                }
 
         },
         [checkAuth.pending.type]: (state) => {
@@ -115,23 +160,7 @@ export const userSlice = createSlice({
         },
         [checkAuth.rejected.type]: (state,  action: PayloadAction<string>) => {
             state.error = action.payload
-            state.isLoading = false;
-
-        },
-
-        [login.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
-            state.error = '';
-            state.isAuth=true;
-            state.user = action.payload;
-            state.isLoading = false;
-
-        },
-        [login.pending.type]: (state) => {
-            state.isLoading = true;
-        },
-        [login.rejected.type]: (state,  action: PayloadAction<string>) => {
-            state.isAuth=false; // !!! эксперементально
-            state.error = action.payload
+            state.user = {} as IUser
             state.isLoading = false;
 
         },
