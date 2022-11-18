@@ -1,0 +1,93 @@
+import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
+import {IPatientShort} from "../models/IPatientShort";
+import {IPatientCreate} from "../models/IPatientCreate";
+import {IPatientUpdate} from "../models/IPatientUpdate";
+import {IPatientFull} from "../models/IPatientFull";
+import {Params} from "react-router-dom";
+import {API_URL} from "../env_data";
+
+export interface PaginationPatientsForCertainDoctor
+{
+    doctorID: string
+    limit: number
+    numofpage: number
+    queryParams?: string
+}
+export interface PatientForDoctor
+{
+    doctorID: string
+    patientID: string | Params
+}
+export interface DoctorID
+{
+    doctorID: string
+}
+
+
+export const patientAPI = createApi({
+    reducerPath: 'patientAPI', // уникальное название
+    baseQuery: fetchBaseQuery({baseUrl: API_URL}),
+    tagTypes: ['Patient'],
+    endpoints: (build) => ({
+
+        fetchPatients: build.query<IPatientShort[], PaginationPatientsForCertainDoctor>({
+
+            query: (PaginationPatientsForCertainDoctor) => ({
+                url: `/patients`,
+                params: {
+                    _doctorID: PaginationPatientsForCertainDoctor.doctorID,
+                    _limit: PaginationPatientsForCertainDoctor.limit,
+                    _numofpage: PaginationPatientsForCertainDoctor.numofpage,
+                    _queryParams: PaginationPatientsForCertainDoctor.queryParams,
+                }
+            }),
+            providesTags: result => ['Patient']
+        }),
+        fetchSelectedPatient: build.query<IPatientFull, PatientForDoctor>({
+
+            query: (PatientForDoctor) => ({
+                url: `/patients/${PatientForDoctor.patientID}`,
+                params: {
+                    _doctorID: PatientForDoctor.doctorID,
+                    _patientID: PatientForDoctor.patientID,
+                }
+            }),
+            providesTags: result => ['Patient']
+        }),
+
+        // Получение количества пациентов для доктора
+        fetchNumOfPatients: build.query<number, DoctorID>({
+
+            query: (DoctorID) => ({
+                url: `/patients/num`,
+                params:
+                    {
+                    _doctorID: DoctorID.doctorID,
+                }
+            }),
+        }),
+        createPatient: build.mutation<void, IPatientCreate>({ // передаем только те данные, которые нужны для первичного создания пользователя регистратурой
+            query: (PatientCreate) => ({
+                url: `/newpatient`,
+                method: 'POST',
+                body: PatientCreate
+            }),
+            invalidatesTags: ['Patient']
+        }),
+        updatePatient: build.mutation<IPatientUpdate, IPatientUpdate>({ // отправляем только те данные, которые изменяем. И обратно принимаем также только изменившиеся данные
+            query: (PatientUpdate) => ({
+                url: `/patients/${PatientUpdate.id}`,
+                method: 'PUT',
+                body: PatientUpdate
+            }),
+            invalidatesTags: ['Patient']
+        }),
+        deletePatient: build.mutation<void, IPatientUpdate>({
+            query: (PatientUpdate) => ({
+                url: `/patients/${PatientUpdate.id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: ['Patient']
+        }),
+    })
+})
