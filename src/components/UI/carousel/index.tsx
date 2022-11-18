@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import Slide from "./Slide";
+import Slide, {ISliderContent} from "./Slide";
 import {
     sliderContent_admin,
     sliderContent_codeveloper, sliderContent_dataadmin,
@@ -12,6 +12,7 @@ import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 import {useAppSelector} from "../../../hooks/redux";
 
 const Carousel = () => {
+
     const {user} = useAppSelector(state => state.userReducer) // достаем переменные из хранилища
     let sliderContent=sliderContent_doctor
     switch(user?.role) {
@@ -67,19 +68,19 @@ const Carousel = () => {
     };
 
     return (
-        <div className="relative">
+        <div>
             <Slider {...settings}>
-                {sliderContent.map((slideContent) => { // итерация по страницам |  на одной странице 3 блока
-                    return <Slide _Page={slideContent.page} sliderContent={sliderContent} />;
+                {sliderContent.map((slideContent:ISliderContent) => { // итерация по страницам |  на одной странице 3 блока
+                    return <Slide _Page={slideContent.page} key={slideContent.page} sliderContent={sliderContent} />;
                 })}
             </Slider>
             <>
-                <div className="absolute top-1/2 right-4 md:right-3 lg:right-8 shadow-lg rounded-full bg-palette-card/80 p-1 drop-shadow-lg text-[0.8rem] md:text-[1.8rem]">
-                    <HiOutlineChevronRight />
-                </div>
-                <div className="absolute top-1/2 left-4  md:left-3 lg:left-8 shadow-lg rounded-full bg-palette-card/80 p-1 drop-shadow-lg text-[0.8rem] md:text-[1.8rem]">
-                    <HiOutlineChevronLeft />
-                </div>
+                {/*<div className="absolute top-1/2 right-4 md:right-3 lg:right-8 shadow-lg rounded-full bg-palette-card/80 p-1 drop-shadow-lg text-[0.8rem] md:text-[1.8rem]">*/}
+                {/*    <HiOutlineChevronRight />*/}
+                {/*</div>*/}
+                {/*<div className="absolute top-1/2 left-4  md:left-3 lg:left-8 shadow-lg rounded-full bg-palette-card/80 p-1 drop-shadow-lg text-[0.8rem] md:text-[1.8rem]">*/}
+                {/*    <HiOutlineChevronLeft />*/}
+                {/*</div>*/}
             </>
         </div>
     );

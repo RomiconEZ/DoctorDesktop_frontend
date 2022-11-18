@@ -25,7 +25,7 @@ const initialState: UserState = {
         workExperience: -1,
         occupation: "",
         email: "",
-        role: -1,
+        role: 1, // -1
         isActivated: false,
     },
     isLoading: false,
@@ -58,47 +58,38 @@ export const userSlice = createSlice({
             },
         },
     extraReducers: {
-        // [fetchUser.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
-        //     state.error = ''
-        //     state.user = action.payload;
-        //     state.isLoading = false;
-        //
-        // },
-        // [fetchUser.pending.type]: (state) => {
-        //     state.isLoading = true;
-        // },
-        // [fetchUser.rejected.type]: (state,  action: PayloadAction<string>) => {
-        //     state.error = action.payload
-        //     state.isLoading = false;
-        //
-        // },
+
 
         [login.fulfilled.type]: (state, action: PayloadAction<any>) => {
             console.log("login fulfilled")
-            if (action.payload.id !== undefined &&
-                action.payload.name !== undefined &&
-                action.payload.surname !== undefined &&
-                action.payload.patronymic !== undefined &&
-                action.payload.region !== undefined &&
-                action.payload.city !== undefined &&
-                action.payload.placeofwork !== undefined &&
-                action.payload.birthdate !== undefined &&
-                action.payload.sex !== undefined &&
-                action.payload.workExperience !== undefined &&
-                action.payload.occupation !== undefined &&
-                action.payload.email !== undefined &&
-                action.payload.role !== undefined )
-            {
-                state.error = '';
-                state.isAuth = true;
+            // if (action.payload.id !== undefined &&
+            //     action.payload.name !== undefined &&
+            //     action.payload.surname !== undefined &&
+            //     action.payload.patronymic !== undefined &&
+            //     action.payload.region !== undefined &&
+            //     action.payload.city !== undefined &&
+            //     action.payload.placeofwork !== undefined &&
+            //     action.payload.birthdate !== undefined &&
+            //     action.payload.sex !== undefined &&
+            //     action.payload.workExperience !== undefined &&
+            //     action.payload.occupation !== undefined &&
+            //     action.payload.email !== undefined &&
+            //     action.payload.role !== undefined )
+            // {
+            //     state.error = '';
+            //     state.isAuth = true;
+            //
+            //     state.user = action.payload;
+            //     state.isLoading = false;
+            // }
+            // else {
+            //     state.error = 'Пользователь не определен';
+            //     state.isLoading = false;
+            // }
+            state.error = '';
+            state.isAuth = true;
 
-                state.user = action.payload;
-                state.isLoading = false;
-            }
-            else {
-                state.error = 'Пользователь не определен';
-                state.isLoading = false;
-            }
+            state.isLoading = false;
 
 
         },

@@ -3,37 +3,51 @@ import {NavLink} from 'react-router-dom';
 
 interface Props {
     _Page: number;
-    sliderContent: any;
+    sliderContent: ISliderContent[];
 }
 
+export interface ISliderContent {
+    page: number;
+    body: IBlokContent[];
+
+}
+export interface IBlokContent {
+    title: string;
+    sections: linkName[];
+    id: number;
+
+}
+export interface linkName {
+    name: string;
+    to: string;
+    id: number;
+}
 
 const Slide: React.FC<Props> = ({ _Page, sliderContent}) => {
 
     return (
-        <>
-            <div className={`relative w-[100%] h-[50vh] md:h-[70vh] bg-cover bg-center bg-no-repeat`}>
-                {sliderContent.map((slideContent: { body: { sections: any[]; }; }) =>
+        <div>
+                {sliderContent.map((slideContent: ISliderContent) =>
                 {
-                    // Итерируемся по всем блокам с такой страницей
-                    // Вывод будет осуществляться в соответствии с порядком расположения в slider.js
-                    return  <>
-                    if (slideContent.page == _Page)
-                    {
-                        // Возвращаем одну из секций | на одной странице их 3
-                            <div>
-                                {slideContent.body.sections.map((sectionContent) =>
-                                {  // Возвращаем линк на какой-нибудь раздел
-                                    return <NavLink to={sectionContent.to}>
-                                        ${sectionContent.name}
-                                    </NavLink>
+                    if (slideContent.page == _Page) {
+                        return <div>
+                                {slideContent.body.map((blokContent: IBlokContent) => {
+                                    return <div>
+                                        <h2>{blokContent.title}</h2>
+                                        {blokContent.sections.map((SectionContent: linkName) => {
+                                            return <NavLink to={SectionContent.to}>
+                                                {SectionContent.name}
+                                            </NavLink>
+
+                                        })}
+                                    </div>
+
                                 })}
-                            </div>
+                        </div>
                     }
-                    </>
 
                 })}
             </div>
-        </>
     );
 };
 
