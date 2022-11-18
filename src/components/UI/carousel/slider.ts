@@ -1,31 +1,28 @@
+import {ISlideContent} from "./index";
 
-const PatientList: string = "auth/menu/patients"
-const DoctorsList: string = "auth/menu/doctors"
-const AddPatient: string = "auth/menu/addpatient"
-const AddDoctor: string = "auth/menu/addpdoctor"
+const PatientList: string = "/auth/menu/patients"
+const DoctorsList: string = "/auth/menu/doctors"
+const AddPatient: string = "/auth/menu/newpatient"
+const AddDoctor: string = "/auth/menu/newdoctor"
+const Menu: string = ""
 
 
 
-export const sliderContent_doctor = [
-    {
-        page: 1,
-        body: [
+
+export const sliderContent_doctor: ISlideContent[] = [
             {
                 title: "Пациенты",
                 id: 1,
                 sections:
                     [
                         {
-                        // section_one:
-                        id: 1,
+
                         name: "Список пациентов",
                         to: PatientList,
 
-
                     },
                         {
-                        // section_two:
-                        id: 2,
+
                         name: "Добавить пациента",
                         to: AddPatient,
 
@@ -38,8 +35,7 @@ export const sliderContent_doctor = [
                 sections:
                     [
                         {
-                            // section_one:
-                            id: 1,
+
                             name: "Список сотрудников",
                             to: DoctorsList,
 
@@ -52,32 +48,62 @@ export const sliderContent_doctor = [
                 sections:
                     [
                         {
-                            id: 1,
                             name: "Остальное",
-                            to: "auth/menu",
+                            to: Menu,
 
                         },
                     ],
-            }
+            },
+    {
+        title: "Остальное",
+        id: 4,
+        sections:
+            [
+                {
+                    name: "Остальное",
+                    to: Menu,
 
-            ]
+                },
+            ],
     },
     {
-        page: 2,
-        body: [{
-            title: "Остальное",
-            id: 1,
-            sections:
-                [
-                    {
-                        id: 1,
-                        name: "Остальное",
-                        to: "auth/menu",
+        title: "Остальное",
+        id: 5,
+        sections:
+            [
+                {
+                    name: "Остальное",
+                    to: Menu,
 
-                    },
-                ],
-        }]
+                },
+            ],
     },
+    {
+        title: "Остальное",
+        id: 6,
+        sections:
+            [
+                {
+                    name: "Остальное",
+                    to: Menu,
+
+                },
+            ],
+    },
+    {
+        title: "Остальное",
+        id: 7,
+        sections:
+            [
+                {
+                    name: "Остальное",
+                    to: Menu,
+
+                },
+            ],
+    },
+
+
 ];
 
 
