@@ -11,5 +11,5 @@ export interface IDoctorFull{
     placeOfWork: string // значение из списка
     occupation: string // значение из списка
     email: string
-    role: string // значение из списка
+    role: number // значение из списка
 }

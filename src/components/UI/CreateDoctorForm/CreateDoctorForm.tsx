@@ -33,7 +33,7 @@ const CreateDoctorForm = () => {
         occupation: user?.occupation || 'нет',
         email: '',
         password: '',
-        role: 'соразработчик'
+        role: 3
 
 
     }

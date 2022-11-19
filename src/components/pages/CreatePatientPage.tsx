@@ -9,7 +9,6 @@ const CreatePatientPage = () => {
     const {isLoading, error} = useAppSelector(state => state.userReducer);
     const breadcrumbs = useBreadcrumbs(routes);
 
-// нужна кнопка создать
     return (
         <div>
             <>

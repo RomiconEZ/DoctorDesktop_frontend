@@ -11,5 +11,5 @@ export interface IDoctorCreate{
     occupation: string // значение из списка
     email: string
     password: string
-    role: string // значение из списка
+    role: number
 }

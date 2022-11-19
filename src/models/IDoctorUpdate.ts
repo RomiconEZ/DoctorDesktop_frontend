@@ -12,5 +12,5 @@ export interface IDoctorUpdate{
     occupation?: string // значение из списка
     email?: string
     password?: string
-    role?: string // значение из списка
+    role?: number // значение из списка
 }

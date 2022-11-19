@@ -6,7 +6,7 @@ export interface IUser {
     region: string
     city: string
     placeofwork:string
-    birthdate: number
+    birthdate: number | Date
     sex: string
     workExperience: number
     occupation: string
