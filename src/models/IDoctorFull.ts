@@ -4,7 +4,7 @@ export interface IDoctorFull{
     surname: string
     patronymic: string
     birthdate: number
-    sex: string
+    sex: boolean
     workExperience: number
     region: string // значение из списка
     city: string // значение из списка

@@ -21,11 +21,11 @@ const initialState: UserState = {
         city: "",
         placeofwork:"",
         birthdate: 0,
-        sex: "",
+        sex: true,
         workExperience: -1,
         occupation: "",
         email: "",
-        role: 1, // -1
+        role: -1,
         isActivated: false,
     },
     isLoading: false,

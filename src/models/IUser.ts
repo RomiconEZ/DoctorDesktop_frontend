@@ -7,7 +7,7 @@ export interface IUser {
     city: string
     placeofwork:string
     birthdate: number | Date
-    sex: string
+    sex: boolean
     workExperience: number
     occupation: string
     email: string;

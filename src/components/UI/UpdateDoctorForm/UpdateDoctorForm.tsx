@@ -39,13 +39,13 @@ const UpdateDoctorForm = () => {
         patronymic: doctor?.patronymic || "",
         birthdate: doctor?.birthdate || 0,
         workExperience: doctor?.workExperience || 0,
-        sex: doctor?.sex || "",
+        sex: doctor?.sex || true,
         region: doctor?.region || "",
         city: doctor?.city || "",
         placeOfWork: doctor?.placeOfWork || "",
         occupation: doctor?.occupation || "",
         email: doctor?.email || "" ,
-        role: doctor?.role || "",
+        role: doctor?.role || 3,
     }
 
   const {data, errors, handleInputChange, handleKeyDown, validate} = useForm(initialData, true, validatorConfig);

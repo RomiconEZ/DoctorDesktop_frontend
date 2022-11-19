@@ -26,7 +26,7 @@ const CreatePatientForm = () => {
         surname: '',
         patronymic: '',
         birthdate: Date.now(),
-        sex: 'male',
+        sex: true,
         race: 'evr',
         region: user?.region || 'Северо-западный регион',
         city: user?.city || 'Санкт-Петербург',

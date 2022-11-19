@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import {Route, Link, RouterProvider, createBrowserRouter, createRoutesFromElements, Navigate} from 'react-router-dom';
 import Navbar from "./components/UI/Navbar/Navbar";
 import NotFoundPage from "./components/pages/NotFoundPage";
@@ -21,6 +20,7 @@ import SelectedPatientPage from "./components/patientCardComponents/SelectedPati
 import DoctorsTablePage from "./components/pages/DoctorsTablePage";
 import DoctorPage from "./components/pages/DoctorPage";
 import PatientsTablePage from "./components/pages/PatientsTablePage";
+import "./index.css";
 // нужно импортнуть стриницы
 
 // doctor - 1
@@ -140,7 +140,7 @@ function App() {
     {/*{JSON.stringify(users, null, 2)}*/}
     return (
 
-    <div className="App">
+    <div>
         <RouterProvider router={router} />
     </div>
   );

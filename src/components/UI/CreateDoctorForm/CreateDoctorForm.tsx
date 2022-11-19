@@ -26,7 +26,7 @@ const CreateDoctorForm = () => {
         patronymic: '',
         birthdate: Date.now(),
         workExperience: 0,
-        sex: 'male',
+        sex: true,
         region: user?.region || 'Северо-западный регоин',
         city: user?.city || 'Санкт-Петербург',
         placeOfWork: user?.placeofwork || 'нет',

@@ -4,7 +4,7 @@ export interface IPatientCreate{
     patronymic: string
     birthdate: number | Date
     race: string
-    sex: string
+    sex: boolean
     region: string
     city: string
     residenseregion: string
