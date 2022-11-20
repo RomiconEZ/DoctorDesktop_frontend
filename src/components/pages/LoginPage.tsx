@@ -4,6 +4,7 @@ import {useAppDispatch} from "../../store/store";
 import {checkAuth, login, logout} from "../../store/reducers/ActionCreators";
 import LoginForm from "../UI/LoginForm";
 import {useNavigate} from "react-router-dom";
+import Loader from "../common/Loader";
 
 
 
@@ -21,7 +22,7 @@ const LoginPage = () => {
 
 
     if (isLoading) {
-        return <div>Загрузка...</div>
+        return <Loader/>
     }
 
     if (isAuth == true) {

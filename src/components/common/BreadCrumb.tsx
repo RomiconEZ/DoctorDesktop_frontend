@@ -22,6 +22,7 @@ export const routes = [
     { path: "/auth/menu/newdoctor", breadcrumb: " Создать сотрудника " },
     { path: "/auth/menu/patients", breadcrumb: " Список пациентов " },
     { path: "/auth/menu/doctors", breadcrumb: " Список сотрудников " },
+    { path: "/auth/menu/selfpage", breadcrumb: " Личная страница " },
 
     { path: "/auth/menu/doctors/editdoctor/:id", breadcrumb: DynamicEditDoctorBreadcrumb },
     { path: "/auth/menu/doctors/:id", breadcrumb: DynamicDoctorBreadcrumb },

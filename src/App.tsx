@@ -21,6 +21,7 @@ import DoctorsTablePage from "./components/pages/DoctorsTablePage";
 import DoctorPage from "./components/pages/DoctorPage";
 import PatientsTablePage from "./components/pages/PatientsTablePage";
 import "./index.css";
+import SelfPage from "./components/pages/SelfPage";
 // нужно импортнуть стриницы
 
 // doctor - 1
@@ -81,7 +82,15 @@ const router = createBrowserRouter(createRoutesFromElements
                             }
                         path="doctors/editdoctor/:id"
                     />
-
+                    <Route
+                        element=
+                            {
+                                <RequireAuthUpdateDoctorPage>
+                                    <SelfPage/>
+                                </RequireAuthUpdateDoctorPage>
+                            }
+                        path="selfpage"
+                    />
                     <Route
                         element=
                             {

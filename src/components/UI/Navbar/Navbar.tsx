@@ -9,39 +9,31 @@ const Navbar = () => {
     const dispatch = useAppDispatch()
 
 
-    return (
-        <>
+    return (  <>
             <div>
-                <div className="sticky pt-5 border-b-2 pr-8 pl-8 mx-auto top-0 w-full flex items-center justify-between overflow-hidden">
-                    <div className="flex flex-col items-center columns-1 hover:bg-gray-100 hover:border border-gray-300">
-                        {/*{user?.name} {user?.surname} {user?.patronymic}*/}
-                        <div className='p-1 hover:text-cyan-500 transition-colors'>
-
-                            {user!=null && <Link to={"/menu/doctors/" + user.id}>Иван Иванович Иванов</Link>}
-                        </div>
-
-                        {/*{user?.role}*/}
-                        <span>Врач</span>
-
-                    </div>
-
-
-                    <ul className='flex items-center gap-5 overflow-hidden'>
-                        <li className='p-1 pb-4 hover:bg-gray-100 hover:border border-gray-300 hover:text-cyan-500 transition-colors'>
-                            <Link to="/menu/patients">Список пациентов</Link>
+                <div className="flex justify-between align-center pr-8 pl-8 shadow-md">
+                    <ul className="flex justify-between align-center space-x-2">
+                        <li className="hover:border-b-4 pt-5 pr-3 pl-3 hover:border-b-azure-my hover:text-azure-my ">
+                            {user!=null && <Link to={"/menu/doctors/" + user.id}>
+                                {user?.name} {user?.surname} {user?.patronymic}
+                            </Link>}
                         </li>
-                        <li className='p-1 pb-4 hover:bg-gray-100 hover:border border-gray-300 hover:text-cyan-500 transition-colors'>
-                            <Link to="/menu/doctors">Список врачей</Link>
-                        </li>
+                        <li className="pt-5 pb-4 lowercase text-azure-my">{user?.role}</li>
+                    </ul>
 
-                        <li className='p-1 pb-4 hover:bg-gray-100 hover:border border-gray-300 hover:text-red-500 transition-colors'>
+                    <ul className="flex justify-between align-center space-x-5">
+                        {/*<li className="hover:border-b-4 pt-5 pr-3 pl-3 hover:border-b-azure-my hover:text-azure-my">*/}
+                        {/*    <Link to="/menu/patients">Список пациентов</Link>*/}
+                        {/*</li>*/}
+                        {/*<li className="hover:border-b-4 pt-5 pr-3 pl-3 hover:border-b-azure-my hover:text-azure-my">*/}
+                        {/*    <Link to="/menu/doctors">Список врачей</Link>*/}
+                        {/*</li>*/}
+
+                        <li className="pt-5 hover:text-red-my">
                             <button onClick={() => dispatch(logout())}>Выйти</button>
                         </li>
-
                     </ul>
                 </div>
-
-
             </div>
             <Outlet/>
         </>
@@ -49,3 +41,4 @@ const Navbar = () => {
 };
 
 export default Navbar
+

@@ -6,6 +6,7 @@ import {doctorAPI, DoctorForDoctor} from "../../services/DoctorService";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import {routes} from "../common/BreadCrumb";
 import React from "react";
+import Loader from "../common/Loader";
 
 
 
@@ -30,6 +31,8 @@ const DoctorPage =() =>{
     }
     return(
         <div>
+            {isLoading && <Loader/>}
+            {error && <h1>Произошла ошибка при загрузке</h1>}
             <>
                 {breadcrumbs.map(({ match, breadcrumb }) => (
                     <NavLink key={match.pathname} to={match.pathname}>

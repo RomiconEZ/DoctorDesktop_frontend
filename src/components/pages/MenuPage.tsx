@@ -1,6 +1,7 @@
 import React from 'react';
 import {useAppSelector} from "../../hooks/redux";
 import Carousel from "../UI/carousel";
+import Loader from "../common/Loader";
 
 const PostContainer = () => {
     const {isLoading, error} = useAppSelector(state => state.userReducer);
@@ -9,7 +10,7 @@ const PostContainer = () => {
     return (
         <div>
             <div>
-                {isLoading && <h1>Идет загрузка...</h1>}
+                {isLoading && <Loader/>}
                 {error && <h1>Произошла ошибка при загрузке</h1>}
                 <Carousel />
             </div>

@@ -4,6 +4,7 @@ import CreateDoctorForm from "../UI/CreateDoctorForm";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import {NavLink} from "react-router-dom";
 import {routes} from "../common/BreadCrumb";
+import Loader from "../common/Loader";
 
 
 
@@ -15,6 +16,8 @@ const CreateDoctorPage = () => {
 
     return (
         <div>
+            {isLoading && <Loader/>}
+            {error && <h1>Произошла ошибка при загрузке</h1>}
             <>
             {breadcrumbs.map(({ match, breadcrumb }) => (
                 <NavLink key={match.pathname} to={match.pathname}>
