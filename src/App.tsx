@@ -22,6 +22,8 @@ import DoctorPage from "./components/pages/DoctorPage";
 import PatientsTablePage from "./components/pages/PatientsTablePage";
 import "./index.css";
 import SelfPage from "./components/pages/SelfPage";
+import GraphInter from "./components/pages/GraphInterPage";
+import GraphInterPage from "./components/pages/GraphInterPage";
 // нужно импортнуть стриницы
 
 // doctor - 1
@@ -38,7 +40,7 @@ const router = createBrowserRouter(createRoutesFromElements
             <Route index element={<Navigate to="login" />} />
             <Route
                 // element={<LoginPage/>}
-                element={<CreateDoctorPage/>}
+                element={<GraphInterPage/>}
                 path="login"
             />
 
