@@ -11,7 +11,7 @@ import Loader from "../common/Loader";
 const LoginPage = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch()
-    const {user, isLoading, error, isAuth} = useAppSelector(state => state.userReducer)
+    const {isLoading, isAuth} = useAppSelector(state => state.userReducer)
 
     useEffect(() => {
         // проверка на токен
@@ -21,16 +21,19 @@ const LoginPage = () => {
     }, []) // отрабатывает только при первом запуске приложения
 
 
-    if (isLoading) {
-        return <Loader/>
-    }
+    // if (isLoading) {
+    //     return <Loader/>
+    // }
 
-    if (isAuth == true) {
-        navigate('/auth/menu');
-    }
+    useEffect(() => {
+        if (isAuth === true) {
+            navigate('/auth/menu');
+        }
+    }, [isAuth])// отрабатывает только при первом запуске приложения
 
     return (
         <div>
+            {isLoading && <Loader/>}
             <LoginForm/>
         </div>
     );

@@ -39,8 +39,7 @@ const router = createBrowserRouter(createRoutesFromElements
         <Route path="/" element={<Root/>}>
             <Route index element={<Navigate to="login" />} />
             <Route
-                // element={<LoginPage/>}
-                element={<GraphInterPage/>}
+                element={<LoginPage/>}
                 path="login"
             />
 
@@ -74,6 +73,13 @@ const router = createBrowserRouter(createRoutesFromElements
                                 </RequireAuthCreateDoctorPage>
                             }
                         path="newdoctor"
+                    />
+                    <Route
+                        element=
+                            {
+                                    <GraphInterPage/>
+                            }
+                        path="graphinter"
                     />
 
                     <Route

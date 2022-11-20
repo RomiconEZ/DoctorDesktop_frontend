@@ -16,13 +16,13 @@ export const sliderContent_doctor: ISlideContent[] = [
                 sections:
                     [
                         {
-
+                            id: 1,
                         name: "Список пациентов",
                         to: PatientList,
 
                     },
                         {
-
+                            id: 2,
                         name: "Добавить пациента",
                         to: AddPatient,
 
@@ -35,7 +35,7 @@ export const sliderContent_doctor: ISlideContent[] = [
                 sections:
                     [
                         {
-
+                            id: 1,
                             name: "Список сотрудников",
                             to: DoctorsList,
 
@@ -48,6 +48,7 @@ export const sliderContent_doctor: ISlideContent[] = [
                 sections:
                     [
                         {
+                            id: 1,
                             name: "Остальное",
                             to: Menu,
 
@@ -60,6 +61,7 @@ export const sliderContent_doctor: ISlideContent[] = [
         sections:
             [
                 {
+                    id: 1,
                     name: "Остальное",
                     to: Menu,
 
@@ -72,6 +74,7 @@ export const sliderContent_doctor: ISlideContent[] = [
         sections:
             [
                 {
+                    id: 1,
                     name: "Остальное",
                     to: Menu,
 
@@ -84,6 +87,7 @@ export const sliderContent_doctor: ISlideContent[] = [
         sections:
             [
                 {
+                    id: 1,
                     name: "Остальное",
                     to: Menu,
 
@@ -96,6 +100,7 @@ export const sliderContent_doctor: ISlideContent[] = [
         sections:
             [
                 {
+                    id: 1,
                     name: "Остальное",
                     to: Menu,
 

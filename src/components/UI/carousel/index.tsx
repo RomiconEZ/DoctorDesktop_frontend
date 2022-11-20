@@ -21,6 +21,7 @@ export interface ISlideContent {
 export interface linkName {
     name: string;
     to: string;
+    id: number;
 }
 
 const Carousel = () => {
@@ -85,12 +86,14 @@ const Carousel = () => {
             <Slider {...settings}>
 
                 {sliderContent.map((slideContent:ISlideContent) => {
-                    return <div>
+                    return <div key={slideContent.id}>
                             <h2>{slideContent.title}</h2>
                             {slideContent.sections.map((linkContent: linkName) => {
-                                return <NavLink to={linkContent.to}>
+                                return <div key={linkContent.id}>
+                                <NavLink to={linkContent.to}>
                                         {linkContent.name}
                                     </NavLink>
+                                </div>
 
 
                             })}

@@ -13,7 +13,7 @@ export interface IUser {
     email: string;
     role: number;
     isActivated?: boolean;
-    deleted_at?:  string;
+    deleted_at?:  string | null;
     created_at?:  string;
     updated_at?:  string;
 

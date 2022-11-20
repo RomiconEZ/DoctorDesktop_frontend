@@ -63,23 +63,42 @@ export const userSlice = createSlice({
         [login.fulfilled.type]: (state, action: PayloadAction<any>) => {
             console.log("login fulfilled")
             if (action.payload!==undefined) {
-                if (action.payload.id !== undefined &&
-                    action.payload.name !== undefined &&
-                    action.payload.surname !== undefined &&
-                    action.payload.patronymic !== undefined &&
-                    action.payload.region !== undefined &&
-                    action.payload.city !== undefined &&
-                    action.payload.placeofwork !== undefined &&
-                    action.payload.birthdate !== undefined &&
-                    action.payload.sex !== undefined &&
-                    action.payload.workExperience !== undefined &&
-                    action.payload.occupation !== undefined &&
+                if (action.payload.BirthDate !== undefined &&
+                    action.payload.ClinicID !== undefined &&
+                    action.payload.Name !== undefined &&
+                    action.payload.OccupationID !== undefined &&
+                    action.payload.Patronymic !== undefined &&
+                    action.payload.RoleID !== undefined &&
+                    action.payload.Sex !== undefined &&
+                    action.payload.Surname !== undefined &&
+                    action.payload.WorkExperience !== undefined &&
                     action.payload.email !== undefined &&
-                    action.payload.role !== undefined) {
+                    action.payload.created_at !== undefined &&
+                    action.payload.deleted_at !== undefined &&
+                    action.payload.updated_at !== undefined &&
+                    action.payload.id !== undefined) {
+                    const myuser: IUser = {
+                        id: action.payload.id,
+                        name: action.payload.Name,
+                        surname: action.payload.Surname,
+                        patronymic: action.payload.Patronymic,
+                        region: 'Ленинградская область',
+                        city: 'Санкт-Петербург',
+                        placeofwork: action.payload.ClinicID,
+                        birthdate: action.payload.BirthDate,
+                        sex: action.payload.Sex,
+                        workExperience: action.payload.WorkExperience,
+                        occupation: action.payload.OccupationID,
+                        email: action.payload.email,
+                        role: action.payload.RoleID,
+                        deleted_at:  action.payload.deleted_at,
+                        created_at:  action.payload.created_at,
+                        updated_at:  action.payload.updated_at,
+                    }
                     state.error = '';
                     state.isAuth = true;
 
-                    state.user = action.payload;
+                    state.user = myuser;
                     state.isLoading = false;
                 } else {
                     console.log("Пользователь не определен")
