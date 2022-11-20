@@ -8,11 +8,13 @@ import Button from "../../common/Button";
 import {useAppSelector} from "../../../hooks/redux";
 import {IDoctorCreate} from "../../../models/IDoctorCreate";
 import {doctorAPI} from "../../../services/DoctorService";
+import {Roles} from "../../../DataLists/Roles";
 import {PlacesOfWork} from "../../../DataLists/PlacesOfWork";
 import {Occupations} from "../../../DataLists/Occupations";
 import {Regions} from "../../../DataLists/Regions";
-import {Roles} from "../../../DataLists/Roles";
+import {Cities} from "../../../DataLists/Cities";
 import {genderItems} from "../../../DataLists/genderItems";
+
 
 
 const CreateDoctorForm = () => {
@@ -27,10 +29,10 @@ const CreateDoctorForm = () => {
         birthdate: Date.now(),
         workExperience: 0,
         sex: true,
-        region: user?.region || 'Северо-западный регоин',
-        city: user?.city || 'Санкт-Петербург',
-        placeOfWork: user?.placeofwork || 'нет',
-        occupation: user?.occupation || 'нет',
+        region: user?.region || '',
+        city: user?.city || '',
+        placeOfWork: user?.placeofwork || '',
+        occupation: user?.occupation || '',
         email: '',
         password: '',
         role: 3

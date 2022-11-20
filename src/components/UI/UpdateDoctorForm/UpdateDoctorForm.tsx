@@ -14,6 +14,7 @@ import {Occupations} from "../../../DataLists/Occupations";
 import {Roles} from "../../../DataLists/Roles";
 import {useParams} from "react-router-dom";
 import {useAppSelector} from "../../../hooks/redux";
+import {Cities} from "../../../DataLists/Cities";
 
 
 export type DoctorUpdateFormProps = {

@@ -1,6 +1,5 @@
 import {TextField, TextFieldProps} from '@mui/material';
 import React from 'react';
-import {useDispatch} from 'react-redux';
 import {DatePickerField, InputField, RadioGroup, SelectField} from '../../common/Fields';
 import validatorConfig from './validatorConfig';
 import {Form, useForm} from "../../../hooks/useForm";
@@ -13,6 +12,7 @@ import {ResidenseRegions} from "../../../DataLists/ResidenseRegions";
 import {Regions} from "../../../DataLists/Regions";
 import {genderItems} from "../../../DataLists/genderItems";
 import {Race} from "../../../DataLists/Race";
+import {Cities} from "../../../DataLists/Cities";
 
 
 

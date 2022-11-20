@@ -4,4 +4,5 @@ export const Roles = [
     { name: 'врач', value: 1 },
     { name: 'эксперт', value: 6 },
     { name: 'регистратура', value: 5 },
+    { name: 'нет', value: -1 },
 ];
