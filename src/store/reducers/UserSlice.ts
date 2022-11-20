@@ -13,7 +13,7 @@ interface UserState {
 
 const initialState: UserState = {
     user: {
-        id: "",
+        id: -1,
         name: "",
         surname: "",
         patronymic: "",
@@ -62,27 +62,33 @@ export const userSlice = createSlice({
 
         [login.fulfilled.type]: (state, action: PayloadAction<any>) => {
             console.log("login fulfilled")
-            if (action.payload.id !== undefined &&
-                action.payload.name !== undefined &&
-                action.payload.surname !== undefined &&
-                action.payload.patronymic !== undefined &&
-                action.payload.region !== undefined &&
-                action.payload.city !== undefined &&
-                action.payload.placeofwork !== undefined &&
-                action.payload.birthdate !== undefined &&
-                action.payload.sex !== undefined &&
-                action.payload.workExperience !== undefined &&
-                action.payload.occupation !== undefined &&
-                action.payload.email !== undefined &&
-                action.payload.role !== undefined )
-            {
-                state.error = '';
-                state.isAuth = true;
+            if (action.payload!==undefined) {
+                if (action.payload.id !== undefined &&
+                    action.payload.name !== undefined &&
+                    action.payload.surname !== undefined &&
+                    action.payload.patronymic !== undefined &&
+                    action.payload.region !== undefined &&
+                    action.payload.city !== undefined &&
+                    action.payload.placeofwork !== undefined &&
+                    action.payload.birthdate !== undefined &&
+                    action.payload.sex !== undefined &&
+                    action.payload.workExperience !== undefined &&
+                    action.payload.occupation !== undefined &&
+                    action.payload.email !== undefined &&
+                    action.payload.role !== undefined) {
+                    state.error = '';
+                    state.isAuth = true;
 
-                state.user = action.payload;
-                state.isLoading = false;
-            }
-            else {
+                    state.user = action.payload;
+                    state.isLoading = false;
+                } else {
+                    console.log("Пользователь не определен")
+                    console.log(action.payload)
+                    state.error = 'Пользователь не определен';
+                    state.isLoading = false;
+                }
+            } else {
+                console.log("Не определенный данные")
                 state.error = 'Пользователь не определен';
                 state.isLoading = false;
             }
@@ -98,10 +104,12 @@ export const userSlice = createSlice({
             state.isLoading = true;
         },
         [login.rejected.type]: (state,  action: PayloadAction<any>) => {
-            console.log("login reject")
-            state.isAuth = false; // !!! эксперементально
-            state.error = action.payload
-            state.isLoading = false;
+            if (action.payload!==undefined) {
+                console.log("login reject")
+                state.isAuth = false; // !!! эксперементально
+                state.error = action.payload
+                state.isLoading = false;
+            }
 
         },
 
@@ -121,39 +129,43 @@ export const userSlice = createSlice({
         },
 
         [checkAuth.fulfilled.type]: (state, action: PayloadAction<any>) => {
-            if (action.payload.id !== undefined &&
-                action.payload.name !== undefined &&
-                action.payload.surname !== undefined &&
-                action.payload.patronymic !== undefined &&
-                action.payload.region !== undefined &&
-                action.payload.city !== undefined &&
-                action.payload.placeofwork !== undefined &&
-                action.payload.birthdate !== undefined &&
-                action.payload.sex !== undefined &&
-                action.payload.workExperience !== undefined &&
-                action.payload.occupation !== undefined &&
-                action.payload.email !== undefined &&
-                action.payload.role !== undefined )
-                    {
+            if (action.payload!==undefined) {
+                if (action.payload.id !== undefined &&
+                    action.payload.name !== undefined &&
+                    action.payload.surname !== undefined &&
+                    action.payload.patronymic !== undefined &&
+                    action.payload.region !== undefined &&
+                    action.payload.city !== undefined &&
+                    action.payload.placeofwork !== undefined &&
+                    action.payload.birthdate !== undefined &&
+                    action.payload.sex !== undefined &&
+                    action.payload.workExperience !== undefined &&
+                    action.payload.occupation !== undefined &&
+                    action.payload.email !== undefined &&
+                    action.payload.role !== undefined) {
                     state.isAuth = true;
                     state.user = action.payload
                     state.isLoading = false;
-                    }
-            else {
+                } else {
+                    state.isAuth = false;
+                    state.user = {} as IUser
+                    state.isLoading = false;
+                }
+            } else {
                 state.isAuth = false;
                 state.user = {} as IUser
-                state.isLoading = false;
-                }
+                state.isLoading = false;}
 
         },
         [checkAuth.pending.type]: (state) => {
             state.isLoading = true;
         },
-        [checkAuth.rejected.type]: (state,  action: PayloadAction<string>) => {
-            state.error = action.payload
-            state.user = {} as IUser
-            state.isLoading = false;
-
+        [checkAuth.rejected.type]: (state,  action: PayloadAction<any>) => {
+            if (action.payload!==undefined) {
+                state.error = action.payload
+                state.user = {} as IUser
+                state.isLoading = false;
+            }
         },
 
     }

@@ -27,7 +27,7 @@ const PersonalDataEdit = () => {
 
     const initialPersonalData: IPatientUpdate = {
         id: SelectedPatient.patient_id,
-        employee_id: user?.id || "",
+        employee_id: user?.id || -1,
 
         personal_data: {
             first_name: SelectedPatient.personal_data.first_name,

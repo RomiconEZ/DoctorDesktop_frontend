@@ -1,5 +1,5 @@
 export interface IUser {
-    id: string;
+    id: number;
     name: string;
     surname: string
     patronymic: string
@@ -13,4 +13,8 @@ export interface IUser {
     email: string;
     role: number;
     isActivated?: boolean;
+    deleted_at?:  string;
+    created_at?:  string;
+    updated_at?:  string;
+
 }

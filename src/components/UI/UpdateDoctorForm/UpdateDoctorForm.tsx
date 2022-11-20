@@ -27,13 +27,13 @@ const UpdateDoctorForm = () => {
     const params = useParams<string>()
 
     const body: DoctorForDoctor = {
-        doctorID: user?.id || '',
-        selecteddoctorID: params || ''
+        doctorID: user?.id || -1,
+        selecteddoctorID: Number(params) || -1
     }
     const {data: doctor, error, isLoading, refetch} =  doctorAPI.useFetchSelectedDoctorQuery(body) // автосгенерированные хуки на соновании endpoint
 
     const initialData: IDoctorFull = {
-        id: doctor?.id || "",
+        id: doctor?.id || -1,
         name: doctor?.name || "",
         surname: doctor?.surname || "",
         patronymic: doctor?.patronymic || "",

@@ -1,6 +1,6 @@
 export interface IPatientFull {
-    patient_id: string,
-    employee_id: string,
+    patient_id: number,
+    employee_id: number,
     personal_data: IPersonal_data,
     anthropometric_data: IAnthropometric_data,
     clinical_data: IClinical_data,

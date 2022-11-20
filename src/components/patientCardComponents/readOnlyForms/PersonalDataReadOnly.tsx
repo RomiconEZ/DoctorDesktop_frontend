@@ -13,8 +13,8 @@ const PersonalDataReadOnly = () => {
 
     const params = useParams<string>()
     const body: PatientForDoctor = {
-        doctorID: user?.id || '',
-        patientID: params || ''
+        doctorID: user?.id || -1,
+        patientID: Number(params) || -1
     }
     const {data: patient, error, isLoading, refetch} =  patientAPI.useFetchSelectedPatientQuery(body)
 

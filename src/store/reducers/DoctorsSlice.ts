@@ -46,7 +46,7 @@ const { doctorsRequested, doctorsReceived, doctorsRequestFailed, filteredDoctors
 // const roomUpdateRequested = createAction('rooms/roomUpdateRequested');
 // const roomUpdateRequestedFailed = createAction('rooms/roomUpdateRequestedFailed');
 
-export const loadDoctorsList = (userID: string ): AppThunk => async dispatch => {
+export const loadDoctorsList = (userID: number ): AppThunk => async dispatch => {
   dispatch(doctorsRequested());
   try {
       const body: PaginationDoctors = {
@@ -62,7 +62,7 @@ export const loadDoctorsList = (userID: string ): AppThunk => async dispatch => 
 };
 
 export const loadFilteredDoctorsList =
-  (userID: string  , _queryParams?: any): AppThunk =>
+  (userID: number  , _queryParams?: any): AppThunk =>
   async dispatch => {
     dispatch(doctorsRequested());
     try {
@@ -121,7 +121,7 @@ export const getDoctors = () => (state: RootState) => state.doctors.entities;
 export const getFilteredDoctors = () => (state: RootState) => state.doctors.filteredEntities;
 export const getDoctorsLoadingStatus = () => (state: RootState) => state.doctors.isLoading;
 
-export const getDoctorById = (doctorId: string) => (state: RootState) => {
+export const getDoctorById = (doctorId: number) => (state: RootState) => {
   if (state.doctors.entities) {
     return state.doctors.entities.find(doctor => doctor.id === doctorId);
   }

@@ -46,7 +46,7 @@ const { patientsRequested, patientsReceived, patientsRequestFailed, filteredPati
 // const roomUpdateRequested = createAction('rooms/roomUpdateRequested');
 // const roomUpdateRequestedFailed = createAction('rooms/roomUpdateRequestedFailed');
 
-export const loadPatientsList = (userID: string ): AppThunk => async dispatch => {
+export const loadPatientsList = (userID: number ): AppThunk => async dispatch => {
   dispatch(patientsRequested());
   try {
       const body: PaginationPatientsForCertainDoctor = {
@@ -62,7 +62,7 @@ export const loadPatientsList = (userID: string ): AppThunk => async dispatch =>
 };
 
 export const loadFilteredPatientsList =
-  (userID: string  , _queryParams?: any): AppThunk =>
+  (userID: number  , _queryParams?: any): AppThunk =>
   async dispatch => {
     dispatch(patientsRequested());
     try {
@@ -121,7 +121,7 @@ export const getPatients = () => (state: RootState) => state.patients.entities;
 export const getFilteredPatients = () => (state: RootState) => state.patients.filteredEntities;
 export const getPatientsLoadingStatus = () => (state: RootState) => state.patients.isLoading;
 
-export const getPatientById = (patientId: string) => (state: RootState) => {
+export const getPatientById = (patientId: number) => (state: RootState) => {
   if (state.patients.entities) {
     return state.patients.entities.find(patient => patient.id === patientId);
   }

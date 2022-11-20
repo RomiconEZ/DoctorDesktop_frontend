@@ -1,10 +1,10 @@
 export interface IPatientShort{
-    id: string
+    id: number
     name: string
     surname: string
     patronymic: string
     birthdate: number | Date
-    age: string
+    age: number
     sex: boolean
     region: string
     city: string

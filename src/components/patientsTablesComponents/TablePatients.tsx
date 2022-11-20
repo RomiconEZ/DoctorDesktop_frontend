@@ -35,7 +35,7 @@ const TablePatients = () => {
     const patientsIsLoading = useSelector(getPatientsLoadingStatus());
     const { searchFilters, handleResetSearchFilters } = useFiltersQuery();
     const { filteredData, searchTerm, setSearchTerm, handleChangeSearch } = useSearch(patients, {
-        searchBy: 'id', // пока поиск только по фамилии
+        searchBy: 'id', // пока поиск только по id
     });
     const { sortedItems, sortBy, setSortBy } = useSort(filteredData || [], { path: 'id', order: 'desc' });
     const {

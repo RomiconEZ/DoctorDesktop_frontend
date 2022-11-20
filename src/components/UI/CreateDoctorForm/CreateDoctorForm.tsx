@@ -74,14 +74,12 @@ const CreateDoctorForm = () => {
             <SelectField label='Регион' name='region' options={Regions}  />
             <SelectField label='Город' name='city' options={Cities}  />
 
-
             <SelectField label='Место работы' name='placeOfWork' options={PlacesOfWork}  />
             <SelectField label='Профиль' name='occupation' options={Occupations}  />
             <SelectField label='Роль' name='role' options={Roles}  />
 
             <InputField name='email' label='Почта' />
             <InputFieldWithPassword name='password' label='Пароль' type='password' />
-
 
             <Button type='submit' onClick={handleCreate} fullWidth disabled={Object.keys(errors).length !== 0}>
           Создать

@@ -9,15 +9,15 @@ import {API_URL} from "../env_data";
 
 export interface PaginationDoctors
 {
-    doctorID: string
+    doctorID: number
     limit: number
     numofpage: number
     queryParams?: string
 }
 export interface DoctorForDoctor
 {
-    doctorID: string
-    selecteddoctorID: string | Params
+    doctorID: number
+    selecteddoctorID: number
 }
 
 export const doctorAPI = createApi({
@@ -46,7 +46,6 @@ export const doctorAPI = createApi({
                 url: `/doctors/${DoctorForDoctor.selecteddoctorID}`,
                 params: {
                     _doctorID: DoctorForDoctor.doctorID,
-                    _selecteddoctorID: DoctorForDoctor.selecteddoctorID,
                 }
             }),
             providesTags: result => ['Doctor']
@@ -73,7 +72,7 @@ export const doctorAPI = createApi({
         }),
         updateDoctor: build.mutation<IDoctorUpdate, IDoctorUpdate>({ // отправляем только те данные, которые изменяем. И обратно принимаем также только изменившиеся данные
             query: (DoctorUpdate) => ({
-                url: `/doctors/${DoctorUpdate.id}/editdoctor`,
+                url: `/doctors/editdoctor/${DoctorUpdate.id}`,
                 method: 'PUT',
                 body: DoctorUpdate
             }),

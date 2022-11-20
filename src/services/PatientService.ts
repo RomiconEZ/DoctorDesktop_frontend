@@ -8,19 +8,19 @@ import {API_URL} from "../env_data";
 
 export interface PaginationPatientsForCertainDoctor
 {
-    doctorID: string
+    doctorID: number
     limit: number
     numofpage: number
     queryParams?: string
 }
 export interface PatientForDoctor
 {
-    doctorID: string
-    patientID: string | Params
+    doctorID: number
+    patientID: number
 }
 export interface DoctorID
 {
-    doctorID: string
+    doctorID: number
 }
 
 
@@ -49,7 +49,6 @@ export const patientAPI = createApi({
                 url: `/patients/${PatientForDoctor.patientID}`,
                 params: {
                     _doctorID: PatientForDoctor.doctorID,
-                    _patientID: PatientForDoctor.patientID,
                 }
             }),
             providesTags: result => ['Patient']

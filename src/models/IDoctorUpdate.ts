@@ -1,9 +1,9 @@
 export interface IDoctorUpdate{
-    id: string
+    id: number
     name?: string
     surname?: string
     patronymic?: string
-    birthdate?: number
+    birthdate?: number | Date
     sex?: boolean
     workExperience?: number
     region?: string // значение из списка

@@ -1,7 +1,7 @@
 import {IDoctorFull} from "./IDoctorFull";
 
 export const initialDoctorState: IDoctorFull={
-    id: "",
+    id: -1,
     name: "",
     surname: "",
     patronymic: "",
@@ -13,5 +13,5 @@ export const initialDoctorState: IDoctorFull={
     placeOfWork: "", // значение из списка
     occupation: "" ,// значение из списка
     email: "",
-    role: 3, // значение из списка
+    role: -1, // значение из списка
 }

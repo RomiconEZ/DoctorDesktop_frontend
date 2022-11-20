@@ -1,5 +1,5 @@
 export interface IDoctorShort{
-    id: string
+    id: number
     name: string
     surname: string
     patronymic: string

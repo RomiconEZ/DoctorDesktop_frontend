@@ -14,7 +14,7 @@ type PatientsSortProps = {
 const PatientsSort: React.FC<PatientsSortProps> = ({ sortBy, onSort }) => {
   return (
     <SelectField
-      name='roomSort'
+      name='patientSort'
       style={{ minWidth: '200px' }}
       label='Сортировать'
       value={JSON.stringify(sortBy)}

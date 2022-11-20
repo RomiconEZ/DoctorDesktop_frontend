@@ -18,8 +18,8 @@ const DoctorPage =() =>{
 
     const params = useParams<string>()
     const body: DoctorForDoctor = {
-        doctorID: user?.id || '',
-        selecteddoctorID: params || ''
+        doctorID: user?.id || -1,
+        selecteddoctorID: Number(params) || -1
     }
     const {data: doctor, error, isLoading, refetch} =  doctorAPI.useFetchSelectedDoctorQuery(body)
 
