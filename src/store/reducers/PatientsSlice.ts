@@ -55,7 +55,7 @@ export const loadPatientsList = (userID: number ): AppThunk => async dispatch =>
           numofpage: -1,
       }
       const {data: patients, error, isLoading, refetch} =  patientAPI.useFetchPatientsQuery(body)
-    dispatch(patientsReceived(patients || []));
+    dispatch(patientsReceived(patients));
   } catch (error) {
     dispatch(patientsRequestFailed(error.message));
   }
@@ -73,8 +73,8 @@ export const loadFilteredPatientsList =
             queryParams: _queryParams,
         }
         const {data: patients, error, isLoading, refetch} =  patientAPI.useFetchPatientsQuery(body)
-
-      dispatch(filteredPatientsReceived(patients || []));
+        console.log(patients)
+      dispatch(filteredPatientsReceived(patients));
     } catch (error) {
       dispatch(patientsRequestFailed(error.message));
     }

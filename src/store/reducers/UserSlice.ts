@@ -62,59 +62,31 @@ export const userSlice = createSlice({
 
         [login.fulfilled.type]: (state, action: PayloadAction<any>) => {
             console.log("login fulfilled")
-            if (action.payload!==undefined) {
-                if (action.payload.BirthDate !== undefined &&
-                    action.payload.ClinicID !== undefined &&
-                    action.payload.Name !== undefined &&
-                    action.payload.OccupationID !== undefined &&
-                    action.payload.Patronymic !== undefined &&
-                    action.payload.RoleID !== undefined &&
-                    action.payload.Sex !== undefined &&
-                    action.payload.Surname !== undefined &&
-                    action.payload.WorkExperience !== undefined &&
-                    action.payload.email !== undefined &&
-                    action.payload.created_at !== undefined &&
-                    action.payload.deleted_at !== undefined &&
-                    action.payload.updated_at !== undefined &&
-                    action.payload.id !== undefined) {
-                    const myuser: IUser = {
-                        id: action.payload.id,
-                        name: action.payload.Name,
-                        surname: action.payload.Surname,
-                        patronymic: action.payload.Patronymic,
-                        region: 'Ленинградская область',
-                        city: 'Санкт-Петербург',
-                        placeofwork: action.payload.ClinicID,
-                        birthdate: action.payload.BirthDate,
-                        sex: action.payload.Sex,
-                        workExperience: action.payload.WorkExperience,
-                        occupation: action.payload.OccupationID,
-                        email: action.payload.email,
-                        role: action.payload.RoleID,
-                        deleted_at:  action.payload.deleted_at,
-                        created_at:  action.payload.created_at,
-                        updated_at:  action.payload.updated_at,
-                    }
-                    state.error = '';
-                    state.isAuth = true;
+            console.log(action.payload)
+            if (action.payload.id !== undefined &&
+                action.payload.name !== undefined &&
+                action.payload.surname !== undefined &&
+                action.payload.patronymic !== undefined &&
+                action.payload.region !== undefined &&
+                action.payload.city !== undefined &&
+                action.payload.placeofwork !== undefined &&
+                action.payload.birthdate !== undefined &&
+                action.payload.sex !== undefined &&
+                action.payload.workExperience !== undefined &&
+                action.payload.occupation !== undefined &&
+                action.payload.email !== undefined &&
+                action.payload.role !== undefined )
+            {
+                state.error = '';
+                state.isAuth = true;
 
-                    state.user = myuser;
-                    state.isLoading = false;
-                } else {
-                    console.log("Пользователь не определен")
-                    console.log(action.payload)
-                    state.error = 'Пользователь не определен';
-                    state.isLoading = false;
-                }
-            } else {
-                console.log("Не определенный данные")
+                state.user = action.payload;
+                state.isLoading = false;
+            }
+            else {
                 state.error = 'Пользователь не определен';
                 state.isLoading = false;
             }
-            // state.error = '';
-            // state.isAuth = true;
-            //
-            // state.isLoading = false;
 
 
         },
@@ -123,12 +95,11 @@ export const userSlice = createSlice({
             state.isLoading = true;
         },
         [login.rejected.type]: (state,  action: PayloadAction<any>) => {
-            if (action.payload!==undefined) {
                 console.log("login reject")
                 state.isAuth = false; // !!! эксперементально
                 state.error = action.payload
                 state.isLoading = false;
-            }
+
 
         },
 
@@ -148,57 +119,28 @@ export const userSlice = createSlice({
         },
 
         [checkAuth.fulfilled.type]: (state, action: PayloadAction<any>) => {
-
             console.log(action.payload)
-            if (action.payload!==undefined) {
-                if (action.payload.BirthDate !== undefined &&
-                    action.payload.ClinicID !== undefined &&
-                    action.payload.Name !== undefined &&
-                    action.payload.OccupationID !== undefined &&
-                    action.payload.Patronymic !== undefined &&
-                    action.payload.RoleID !== undefined &&
-                    action.payload.Sex !== undefined &&
-                    action.payload.Surname !== undefined &&
-                    action.payload.WorkExperience !== undefined &&
-                    action.payload.email !== undefined &&
-                    action.payload.created_at !== undefined &&
-                    action.payload.deleted_at !== undefined &&
-                    action.payload.updated_at !== undefined &&
-                    action.payload.id !== undefined) {
-                    const myuser: IUser = {
-                        id: action.payload.id,
-                        name: action.payload.Name,
-                        surname: action.payload.Surname,
-                        patronymic: action.payload.Patronymic,
-                        region: 'Ленинградская область',
-                        city: 'Санкт-Петербург',
-                        placeofwork: action.payload.ClinicID,
-                        birthdate: action.payload.BirthDate,
-                        sex: action.payload.Sex,
-                        workExperience: action.payload.WorkExperience,
-                        occupation: action.payload.OccupationID,
-                        email: action.payload.email,
-                        role: action.payload.RoleID,
-                        deleted_at:  action.payload.deleted_at,
-                        created_at:  action.payload.created_at,
-                        updated_at:  action.payload.updated_at,
-                    }
-                    console.log(action.payload)
-                    state.error = '';
-                    state.isAuth = true;
-                    state.user = myuser;
-                    state.isLoading = false;
-                } else {
-                    console.log("checkAuth Пользователь не определен")
-                    console.log(action.payload)
-                    state.isAuth = false;
-                    state.user = {} as IUser
-                    state.isLoading = false;
-
-                }
-            } else {
-                console.log(action.payload)
-                console.log("checkAuth Не определенный данные")
+            if (action.payload.id !== undefined &&
+                action.payload.name !== undefined &&
+                action.payload.surname !== undefined &&
+                action.payload.patronymic !== undefined &&
+                action.payload.region !== undefined &&
+                action.payload.city !== undefined &&
+                action.payload.placeofwork !== undefined &&
+                action.payload.birthdate !== undefined &&
+                action.payload.sex !== undefined &&
+                action.payload.workExperience !== undefined &&
+                action.payload.occupation !== undefined &&
+                action.payload.email !== undefined &&
+                action.payload.role !== undefined )
+            {
+                state.isAuth = true;
+                state.user = action.payload
+                state.isLoading = false;
+            }
+            else {
+                state.isAuth = false;
+                state.user = {} as IUser
                 state.isLoading = false;
             }
 
@@ -207,11 +149,10 @@ export const userSlice = createSlice({
             state.isLoading = true;
         },
         [checkAuth.rejected.type]: (state,  action: PayloadAction<any>) => {
-            if (action.payload!==undefined) {
                 state.error = action.payload
                 state.user = {} as IUser
                 state.isLoading = false;
-            }
+
         },
 
     }

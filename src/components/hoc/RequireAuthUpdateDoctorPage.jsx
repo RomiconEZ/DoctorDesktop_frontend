@@ -23,7 +23,7 @@ const RequireAuthUpdateDoctorPage = ({children}) => {
     if (user.role !==4)
     {
 
-        return <Navigate to='/menu' state={{from: location}} />
+        return <Navigate to='/auth/menu' state={{from: location}} />
     }
     return children;
 }

@@ -5,7 +5,6 @@ const DoctorsList: string = "doctors"
 const CreateDoctor: string = "newdoctor"
 
 const AddPatient: string = "newpatient"
-const AddDoctor: string = "newdoctor"
 const GraphInter: string = "graphinter"
 
 
