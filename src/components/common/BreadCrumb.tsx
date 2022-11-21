@@ -18,6 +18,8 @@ export const DynamicPatientBreadcrumb = ({ match }: {  match: any }) => (
 // breadcrumbs can be components or strings.
 export const routes = [
     { path: "/auth/menu", breadcrumb: " Меню " },
+    { path: "/auth", breadcrumb: null },
+    { path: "/", breadcrumb: null },
     { path: "/auth/menu/newpatient", breadcrumb: " Создать пациента " },
     { path: "/auth/menu/newdoctor", breadcrumb: " Создать сотрудника " },
     { path: "/auth/menu/patients", breadcrumb: " Список пациентов " },
