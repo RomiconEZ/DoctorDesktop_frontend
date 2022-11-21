@@ -8,13 +8,13 @@ type DoctorListProps = {
 
 const DoctorsList: React.FC<DoctorListProps> = ({ doctors }) => {
   return (
-    <ul>
+    <tr>
       {doctors.map(doctor => (
-        <li key={doctor.id}>
+        <td key={doctor.id}>
           <DoctorCard {...doctor} />
-        </li>
+        </td>
       ))}
-    </ul>
+    </tr>
   );
 };
 

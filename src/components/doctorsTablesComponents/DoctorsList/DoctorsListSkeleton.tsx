@@ -4,13 +4,13 @@ import DoctorCardSkeleton from "../DoctorCard/DoctorCardSkeleton";
 const DoctorsListSkeleton = ({ pageSize }: { pageSize: number }) => {
   const doctorsSkeletonArray = Array(pageSize).fill('');
   return (
-    <ul >
+    <tr >
       {doctorsSkeletonArray.map((_, idx) => (
-        <li key={idx} >
+        <td key={idx} >
           <DoctorCardSkeleton />
-        </li>
+        </td>
       ))}
-    </ul>
+    </tr>
   );
 };
 

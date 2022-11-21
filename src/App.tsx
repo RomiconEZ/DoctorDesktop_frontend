@@ -53,7 +53,7 @@ const router = createBrowserRouter(createRoutesFromElements
                         </RequireAuthMenuPage>
                         }
                     path="menu"
-                >
+                />
 
                     <Route
                         element=
@@ -62,7 +62,7 @@ const router = createBrowserRouter(createRoutesFromElements
                                     <CreatePatientPage/>
                                 </RequireAuthCreatePatientPage>
                             }
-                        path="newpatient"
+                        path="menu/newpatient"
                     />
 
                     <Route
@@ -72,14 +72,14 @@ const router = createBrowserRouter(createRoutesFromElements
                                     <CreateDoctorPage/>
                                 </RequireAuthCreateDoctorPage>
                             }
-                        path="newdoctor"
+                        path="menu/newdoctor"
                     />
                     <Route
                         element=
                             {
                                     <GraphInterPage/>
                             }
-                        path="graphinter"
+                        path="menu/graphinter"
                     />
 
                     <Route
@@ -89,16 +89,21 @@ const router = createBrowserRouter(createRoutesFromElements
                                     <UpdateDoctorPage/>
                                 </RequireAuthUpdateDoctorPage>
                             }
-                        path="doctors/editdoctor/:id"
+                        path="menu/doctors/editdoctor/:id"
                     />
                     <Route
                         element=
                             {
-                                <RequireAuthUpdateDoctorPage>
                                     <SelfPage/>
-                                </RequireAuthUpdateDoctorPage>
                             }
-                        path="selfpage"
+                        path="menu/selfpage"
+                    />
+                    <Route
+                        element=
+                            {
+                                <GraphInterPage/>
+                            }
+                        path="menu/graphinter"
                     />
                     <Route
                         element=
@@ -107,7 +112,7 @@ const router = createBrowserRouter(createRoutesFromElements
                                     <DoctorsTablePage/>
                                 </RequireAuthDoctorsListPage>
                             }
-                        path="doctors"
+                        path="menu/doctors"
                     />
                     <Route
                         element=
@@ -116,7 +121,7 @@ const router = createBrowserRouter(createRoutesFromElements
                                     <DoctorPage/>
                                 </RequireAuthDoctorPage>
                             }
-                        path="doctors/:id"
+                        path="menu/doctors/:id"
                     />
                     <Route
                         element=
@@ -125,7 +130,7 @@ const router = createBrowserRouter(createRoutesFromElements
                                     <PatientsTablePage/>
                                 </RequireAuthPatientsListPage>
                             }
-                        path="patients"
+                        path="menu/patients"
                     />
 
                     <Route
@@ -135,9 +140,8 @@ const router = createBrowserRouter(createRoutesFromElements
                                     <SelectedPatientPage/>
                                 </RequireAuthPatientPage>
                             }
-                        path="patients/:id"
+                        path="menu/patients/:id"
                     />
-                </Route>
             </Route>
             <Route path="*" element={<NotFoundPage/>} />
         </Route>

@@ -11,7 +11,9 @@ const PostContainer = () => {
         <div>
             <div>
                 {isLoading && <Loader/>}
-                {error && <h1>Произошла ошибка при загрузке</h1>}
+                {error && <div className="flex justify-center items-center h-screen flex-wrap">
+                    <h1 className="text-xl font-medium text-azure-my">
+                        Произошла ошибка при загрузке</h1> </div>}
                 <Carousel />
             </div>
         </div>

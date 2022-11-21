@@ -6,11 +6,11 @@ import {
     sliderContent_developer,
     sliderContent_doctor, sliderContent_expert, sliderContent_registry
 } from "./slider";
-import { NextArrow, PrevArrow } from "./Arrows";
 import {useAppSelector} from "../../../hooks/redux";
 import {NavLink} from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import {NextArrow, PrevArrow} from "./Arrows";
 
 export interface ISlideContent {
     title: string;
@@ -68,12 +68,12 @@ const Carousel = () => {
         dots: true,
         infinite: false,
         speed: 800,
-        slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToShow: 2,
+        slidesToScroll: 1,
         autoplay: false,
 
-        // nextArrow: <NextArrow to="next" />,
-        // prevArrow: <PrevArrow to="prev" />,
+        nextArrow: <NextArrow to="next" />,
+        prevArrow: <PrevArrow to="prev" />,
         // appendDots: (dots: string) => (
         //     <div className="bg-transparent !pb-[40px]">
         //         <ul> {dots} </ul>
@@ -82,26 +82,23 @@ const Carousel = () => {
     };
 
     return (
-        <div>
+        <div className="my-10 ml-40 mr-40">
             <Slider {...settings}>
 
                 {sliderContent.map((slideContent:ISlideContent) => {
-                    return <div key={slideContent.id}>
-                            <h2>{slideContent.title}</h2>
-                            {slideContent.sections.map((linkContent: linkName) => {
-                                return <div key={linkContent.id}>
+                    return <div className=" mx-10 w-100 h-80 mt-30  flex items-center justify-center" key={slideContent.id}>
+                        <h2 className="text-azure-my font-medium uppercase text-2xl mb-6">{slideContent.title}</h2>
+                        {slideContent.sections.map((linkContent: linkName) => {
+                            return <div key={linkContent.id} className="my-4 text-xl hover:text-black-dark-my hover:font-bold">
                                 <NavLink to={linkContent.to}>
-                                        {linkContent.name}
-                                    </NavLink>
-                                </div>
+                                    {linkContent.name}
+                                </NavLink>
+                            </div>
 
 
-                            })}
-
-                        </div>
+                        })}
+                    </div>
                 })}
-
-
             </Slider>
         </div>
     );

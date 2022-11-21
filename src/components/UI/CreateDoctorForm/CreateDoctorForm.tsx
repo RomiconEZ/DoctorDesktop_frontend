@@ -42,7 +42,7 @@ const CreateDoctorForm = () => {
 
     const {data, errors, handleInputChange, handleKeyDown, validate} = useForm(initialData, true, validatorConfig);
 
-  const [createDoctor, {}] = doctorAPI.useCreateDoctorMutation();// {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями
+    const [createDoctor, {}] = doctorAPI.useCreateDoctorMutation();// {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями
 
     const handleCreate = async (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -52,43 +52,49 @@ const CreateDoctorForm = () => {
     const InputFieldWithPassword = useMemo(() => withPassword(InputField), []);
 
     return (
-      <>
+        <>
 
-        <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
-          <InputField autoFocus name='name' label='Имя'/>
-          <InputField name='surname' label='Фамилия'/>
-            <InputField name='patronymic' label='Отчество'/>
-            <InputField name='workExperience' label='Опыт работы'/>
-          <RadioGroup name='sex' items={genderItems}/>
+            <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
+                <div className="flex justify-center items-center h-screen flex-wrap">
+                    <div className="grid columns-1 gap-y-3">
+                        <InputField autoFocus name='name' label='Имя'/>
+                        <InputField name='surname' label='Фамилия'/>
+                        <InputField name='patronymic' label='Отчество'/>
+                        <InputField name='workExperience' label='Опыт работы'/>
+                        <RadioGroup name='sex' items={genderItems}/>
 
-            <DatePickerField
-              value={data.birthdate}
-              onChange={handleInputChange}
-              openTo='year'
-              mask='__.__.____'
-              label='Дата Рождения'
-              name='birthdate'
-              minDate={new Date('1900-01-01')}
-              renderInput={(params: JSX.IntrinsicAttributes & TextFieldProps) => (
-            <TextField {...params} {...(errors?.birthYear && { error: true, helperText: errors?.birthYear })} />
-          )}
-        />
-            <SelectField label='Регион' name='region' options={Regions}  />
-            <SelectField label='Город' name='city' options={Cities}  />
+                        <DatePickerField
+                            value={data.birthdate}
+                            onChange={handleInputChange}
+                            openTo='year'
+                            mask='__.__.____'
+                            label='Дата Рождения'
+                            name='birthdate'
+                            minDate={new Date('1900-01-01')}
+                            renderInput={(params: JSX.IntrinsicAttributes & TextFieldProps) => (
+                                <TextField {...params} {...(errors?.birthYear && { error: true, helperText: errors?.birthYear })} />
+                            )}
+                        />
+                        <SelectField label='Регион' name='region' options={Regions}  />
+                        <SelectField label='Город' name='city' options={Cities}  />
 
-            <SelectField label='Место работы' name='placeOfWork' options={PlacesOfWork}  />
-            <SelectField label='Профиль' name='occupation' options={Occupations}  />
-            <SelectField label='Роль' name='role' options={Roles}  />
+                        <SelectField label='Место работы' name='placeOfWork' options={PlacesOfWork}  />
+                        <SelectField label='Профиль' name='occupation' options={Occupations}  />
+                        <SelectField label='Роль' name='role' options={Roles}  />
 
-            <InputField name='email' label='Почта' />
-            <InputFieldWithPassword name='password' label='Пароль' type='password' />
+                        <InputField name='email' label='Почта' />
+                        <InputFieldWithPassword name='password' label='Пароль' type='password' />
+                        <Button type='submit' onClick={handleCreate} fullWidth disabled={Object.keys(errors).length !== 0}>
+                            Создать
+                        </Button>
+                    </div>
 
-            <Button type='submit' onClick={handleCreate} fullWidth disabled={Object.keys(errors).length !== 0}>
-          Создать
-        </Button>
-      </Form>
-    </>
-  );
+                </div>
+
+
+            </Form>
+        </>
+    );
 };
 
 export default CreateDoctorForm;

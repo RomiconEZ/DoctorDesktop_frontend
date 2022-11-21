@@ -31,10 +31,11 @@ const LoginPage = () => {
         }
     }, [isAuth])// отрабатывает только при первом запуске приложения
 
+
     return (
         <div>
             {isLoading && <Loader/>}
-            <LoginForm/>
+            {!isLoading && <LoginForm/>}
         </div>
     );
 };

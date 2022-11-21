@@ -1,10 +1,12 @@
 import {ISlideContent} from "./index";
 
-const PatientList: string = "/auth/menu/patients"
-const DoctorsList: string = "/auth/menu/doctors"
-const AddPatient: string = "/auth/menu/newpatient"
-const AddDoctor: string = "/auth/menu/newdoctor"
-const Menu: string = ""
+const PatientList: string = "patients"
+const DoctorsList: string = "doctors"
+const CreateDoctor: string = "newdoctor"
+
+const AddPatient: string = "newpatient"
+const AddDoctor: string = "newdoctor"
+const GraphInter: string = "graphinter"
 
 
 
@@ -40,6 +42,13 @@ export const sliderContent_doctor: ISlideContent[] = [
                             to: DoctorsList,
 
                         },
+                        {
+                            id: 2,
+                            name: "Создание доктора",
+                            to: CreateDoctor,
+
+                        },
+
                     ],
             },
             {
@@ -49,65 +58,13 @@ export const sliderContent_doctor: ISlideContent[] = [
                     [
                         {
                             id: 1,
-                            name: "Остальное",
-                            to: Menu,
+                            name: "DICOM",
+                            to: GraphInter,
 
                         },
+
                     ],
             },
-    {
-        title: "Остальное",
-        id: 4,
-        sections:
-            [
-                {
-                    id: 1,
-                    name: "Остальное",
-                    to: Menu,
-
-                },
-            ],
-    },
-    {
-        title: "Остальное",
-        id: 5,
-        sections:
-            [
-                {
-                    id: 1,
-                    name: "Остальное",
-                    to: Menu,
-
-                },
-            ],
-    },
-    {
-        title: "Остальное",
-        id: 6,
-        sections:
-            [
-                {
-                    id: 1,
-                    name: "Остальное",
-                    to: Menu,
-
-                },
-            ],
-    },
-    {
-        title: "Остальное",
-        id: 7,
-        sections:
-            [
-                {
-                    id: 1,
-                    name: "Остальное",
-                    to: Menu,
-
-                },
-            ],
-    },
-
 
 ];
 

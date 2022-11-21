@@ -69,25 +69,26 @@ const TableDoctors = () => {
     }, [searchFilters]);
 
     return (
-        <div>
+        <div className="mt-3">
             <Searchbar value={searchTerm} onChange={handleChangeSearch} />
             <DoctorsSort sortBy={sortBy} onSort={handleSort} />
             <DoctorsDisplayCount count={pageSize} setCount={handleChangePageSize} options={setPageSizeOptions} />
-            <table>
-                <thead>
+            <table className="min-w-full mt-5">
+                <thead className="bg-white border-b">
                 <tr>
-                    <th>Фамилия Имя Отчество</th>
-                    <th>Дата рождения</th>
-                    <th>Роль</th>
-                    <th>Профиль</th>
-                    <th>Учреждение</th>
-                    <th>ID</th>
+                    <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Фамилия Имя Отчество</th>
+                    <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Дата рождения</th>
+                    <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Роль</th>
+                    <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Профиль</th>
+                    <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Учреждение</th>
+                    <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">ID</th>
                 </tr>
                 </thead>
                 <tbody>
                 {doctorsIsLoading ? <DoctorsListSkeleton pageSize={pageSize} /> : <DoctorsList doctors={doctorsListCrop} />}
-                {doctorsListCrop.length === 0 && <h2>Сотрудников не найдено &#128577;</h2>}
-
+                {doctorsListCrop.length === 0 && <tr className="text-azure-my font-medium">
+                    <td>Сотрудников не найдено &#128577;</td>
+                </tr>}
                 </tbody>
             </table>
 
