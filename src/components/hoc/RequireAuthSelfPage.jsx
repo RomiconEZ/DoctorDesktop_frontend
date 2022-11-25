@@ -1,6 +1,4 @@
 import { useLocation, Navigate } from 'react-router-dom';
-import {useContext} from "react";
-import {Context} from "../../index";
 import {useAppSelector} from "../../hooks/redux";
 
 // doctor - 1
@@ -11,7 +9,7 @@ import {useAppSelector} from "../../hooks/redux";
 // expert - 6
 // dataadmin - 7
 
-const RequireAuthUpdateDoctorPage = ({children}) => {
+const RequireAuthSelfPage = ({children}) => {
     const location = useLocation();
     const {user, isLoading, error, isAuth} = useAppSelector(state => state.userReducer)
 
@@ -20,12 +18,8 @@ const RequireAuthUpdateDoctorPage = ({children}) => {
 
         return <Navigate to='/login' state={{from: location}} />
     }
-    if (user.role !==2) // 4 должно быть
-    {
 
-        return <Navigate to='/auth/menu' state={{from: location}} />
-    }
     return children;
 }
 
-export {RequireAuthUpdateDoctorPage};
+export {RequireAuthSelfPage};

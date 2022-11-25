@@ -31,7 +31,7 @@ const CreateDoctorForm = () => {
         sex: true,
         region: user?.region || '',
         city: user?.city || '',
-        placeOfWork: user?.placeofwork || '',
+        placeOfWork: user?.placeOfWork || '',
         occupation: user?.occupation || '',
         email: '',
         password: '',

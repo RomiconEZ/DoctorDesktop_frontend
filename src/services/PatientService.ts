@@ -26,7 +26,7 @@ export interface DoctorID
 
 export const patientAPI = createApi({
     reducerPath: 'patientAPI', // уникальное название
-    baseQuery: fetchBaseQuery({baseUrl: API_URL}),
+    baseQuery: fetchBaseQuery({ baseUrl: API_URL}),
     tagTypes: ['Patient'],
     endpoints: (build) => ({
 
@@ -38,7 +38,7 @@ export const patientAPI = createApi({
                     _doctorID: PaginationPatientsForCertainDoctor.doctorID,
                     _limit: PaginationPatientsForCertainDoctor.limit,
                     _numofpage: PaginationPatientsForCertainDoctor.numofpage,
-                    _queryParams: PaginationPatientsForCertainDoctor.queryParams,
+                    // _queryParams: PaginationPatientsForCertainDoctor.queryParams,
                 }
             }),
             providesTags: result => ['Patient']

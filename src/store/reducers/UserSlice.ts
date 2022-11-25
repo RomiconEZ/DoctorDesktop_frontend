@@ -19,7 +19,7 @@ const initialState: UserState = {
         patronymic: "",
         region: "",
         city: "",
-        placeofwork:"",
+        placeOfWork:"",
         birthdate: 0,
         sex: true,
         workExperience: -1,
@@ -69,7 +69,7 @@ export const userSlice = createSlice({
                 action.payload.patronymic !== undefined &&
                 action.payload.region !== undefined &&
                 action.payload.city !== undefined &&
-                action.payload.placeofwork !== undefined &&
+                action.payload.placeOfWork !== undefined &&
                 action.payload.birthdate !== undefined &&
                 action.payload.sex !== undefined &&
                 action.payload.workExperience !== undefined &&
@@ -105,15 +105,17 @@ export const userSlice = createSlice({
 
 
         [logout.fulfilled.type]: (state) => {
+            console.log("logout fulfilled")
             state.isAuth=false;
             state.user = {} as IUser
             state.isLoading = false;
-
         },
         [logout.pending.type]: (state) => {
+            console.log("logout pending")
             state.isLoading = true;
         },
         [logout.rejected.type]: (state,  action: PayloadAction<string>) => {
+            console.log("logout rejected")
             state.error = action.payload
             state.isLoading = false;
         },
@@ -126,7 +128,7 @@ export const userSlice = createSlice({
                 action.payload.patronymic !== undefined &&
                 action.payload.region !== undefined &&
                 action.payload.city !== undefined &&
-                action.payload.placeofwork !== undefined &&
+                action.payload.placeOfWork !== undefined &&
                 action.payload.birthdate !== undefined &&
                 action.payload.sex !== undefined &&
                 action.payload.workExperience !== undefined &&

@@ -5,13 +5,16 @@ import {useAppDispatch} from "../../../store/store";
 import {logout} from "../../../store/reducers/ActionCreators";
 
 const Navbar = () => {
-    const {user} = useAppSelector(state => state.userReducer)
+    const {user, isAuth} = useAppSelector(state => state.userReducer)
     const dispatch = useAppDispatch()
-
+    const handleLogout = async (e: React.FormEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        dispatch(logout())
+    }
 
     return (  <>
             <div>
-                <div className="flex justify-between align-center pr-8 pl-8 shadow-md">
+                <div className="z-[200] flex w-full justify-between align-center pr-8 pl-8 shadow-md">
                     <ul className="flex justify-between align-center space-x-2">
                         <li className="hover:border-b-4 pt-5 pr-3 pl-3 hover:border-b-azure-my hover:text-azure-my ">
                             {user!=null && <Link to="menu/selfpage">
@@ -38,7 +41,7 @@ const Navbar = () => {
                         {/*</li>*/}
 
                         <li className="pt-5 hover:text-red-my hover:font-bold">
-                            <button onClick={() => dispatch(logout())}>Выйти</button>
+                            <button onClick={handleLogout}>Выйти</button>
                         </li>
                     </ul>
                 </div>

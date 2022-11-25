@@ -1,12 +1,12 @@
 import React from 'react';
-import {Link, Outlet, NavLink} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 
 
 const Root = () => {
 
     return (
         <>
-        <div className="h-full w-full">
+        <div className="z-[0] h-full w-full">
             <Outlet/>
         </div>
         </>

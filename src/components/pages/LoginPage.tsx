@@ -35,7 +35,7 @@ const LoginPage = () => {
     return (
         <div>
             {isLoading && <Loader/>}
-            {!isLoading && <LoginForm/>}
+            <LoginForm/>
         </div>
     );
 };

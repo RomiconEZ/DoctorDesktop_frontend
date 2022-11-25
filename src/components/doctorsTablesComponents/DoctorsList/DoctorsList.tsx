@@ -1,20 +1,27 @@
 import React from 'react';
-import DoctorCard from '../DoctorCard';
 import {IDoctorShort} from "../../../models/IDoctorShort";
+import {useNavigate} from "react-router-dom";
 
 type DoctorListProps = {
   doctors: IDoctorShort[];
 };
 
 const DoctorsList: React.FC<DoctorListProps> = ({ doctors }) => {
-  return (
-    <tr>
+    const navigate = useNavigate();
+
+    return (
+
+      <>
       {doctors.map(doctor => (
-        <td key={doctor.id}>
-          <DoctorCard {...doctor} />
-        </td>
-      ))}
-    </tr>
+            <tr key={doctor.id} onClick={() => navigate(`/auth/menu/doctors/${doctor.id}`)}>
+                <td >{doctor.surname + ' ' + doctor.name + ' ' + doctor.patronymic}</td>
+                <td>{doctor.age}</td>
+                <td>{doctor.workExperience}</td>
+                <td>{doctor.placeOfWork}</td>
+                <td>{doctor.id}</td>
+            </tr>
+        ))}
+      </>
   );
 };
 

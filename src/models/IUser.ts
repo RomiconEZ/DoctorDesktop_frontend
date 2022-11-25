@@ -5,7 +5,7 @@ export interface IUser {
     patronymic: string
     region: string
     city: string
-    placeofwork:string
+    placeOfWork:string
     birthdate: number | Date
     sex: boolean
     workExperience: number

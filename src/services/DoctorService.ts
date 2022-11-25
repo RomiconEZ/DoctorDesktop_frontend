@@ -1,11 +1,11 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
-import {IDoctorShort} from "../models/IDoctorShort";
 import {IDoctorUpdate} from "../models/IDoctorUpdate";
 import {IDoctorFull} from "../models/IDoctorFull";
 import {IDoctorCreate} from "../models/IDoctorCreate";
-import {Params} from "react-router-dom";
 import {DoctorID} from "./PatientService";
 import {API_URL} from "../env_data";
+import {IDoctorShort} from "../models/IDoctorShort";
+import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
+import {Params} from "react-router-dom";
 
 export interface PaginationDoctors
 {
@@ -17,19 +17,19 @@ export interface PaginationDoctors
 export interface DoctorForDoctor
 {
     doctorID: number
-    selecteddoctorID: number
+    selecteddoctorID: any
 }
 
 export const doctorAPI = createApi({
     reducerPath: 'doctorAPI', // уникальное название
-    baseQuery: fetchBaseQuery({baseUrl: API_URL}),
+    baseQuery: fetchBaseQuery({ baseUrl: API_URL}),
     tagTypes: ['Doctor'],
     endpoints: (build) => ({
 
-        fetchDoctors: build.query<IDoctorShort[], PaginationDoctors>({
+        fetchDoctors: build.query<any, PaginationDoctors>({
 
             query: (PaginationDoctorsForCertainDoctor) => ({
-                url: `/doctors`,
+                url: '/doctors',
                 params: {
                     _doctorID: PaginationDoctorsForCertainDoctor.doctorID,
                     _limit: PaginationDoctorsForCertainDoctor.limit,
@@ -40,7 +40,7 @@ export const doctorAPI = createApi({
             providesTags: result => ['Doctor']
         }),
 
-        fetchSelectedDoctor: build.query<IDoctorFull, DoctorForDoctor>({
+        fetchSelectedDoctor: build.query<any, DoctorForDoctor>({
 
             query: (DoctorForDoctor) => ({
                 url: `/doctors/${DoctorForDoctor.selecteddoctorID}`,
@@ -48,10 +48,9 @@ export const doctorAPI = createApi({
                     _doctorID: DoctorForDoctor.doctorID,
                 }
             }),
-            providesTags: result => ['Doctor']
         }),
 
-        fetchNumOfDoctors: build.query<number, DoctorID>({
+        fetchNumOfDoctors: build.query<any, DoctorID>({
 
             query: (DoctorID) => ({
                 url: `/doctors/num`,
@@ -70,7 +69,7 @@ export const doctorAPI = createApi({
             }),
             invalidatesTags: ['Doctor']
         }),
-        updateDoctor: build.mutation<IDoctorUpdate, IDoctorUpdate>({ // отправляем только те данные, которые изменяем. И обратно принимаем также только изменившиеся данные
+        updateDoctor: build.mutation<any, IDoctorUpdate>({ // отправляем только те данные, которые изменяем. И обратно принимаем также только изменившиеся данные
             query: (DoctorUpdate) => ({
                 url: `/doctors/editdoctor/${DoctorUpdate.id}`,
                 method: 'PUT',

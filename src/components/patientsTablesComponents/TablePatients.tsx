@@ -10,12 +10,10 @@ import PatientsSort from "./PatientsSort";
 import PatientsDisplayCount from "./PatientsDisplayCount";
 import Pagination from "../common/Pagination";
 import PatientsListSkeleton from "./PatientsList/PatientsListSkeleton";
-import {
-    getFilteredPatients,
-    getPatientsLoadingStatus,
-    loadFilteredPatientsList, loadPatientsList
-} from "../../store/reducers/PatientsSlice";
 import PatientsList from "./PatientsList/PatientsList";
+
+import {patientsSlice} from "../../store/reducers/PatientsSlice";
+import {PaginationPatientsForCertainDoctor, patientAPI} from "../../services/PatientService";
 
 
 const setPageSizeOptions = [
@@ -27,16 +25,30 @@ const setPageSizeOptions = [
 
 const TablePatients = () => {
     const dispatch = useAppDispatch();
+    const {entities, isLoading} = useAppSelector(state => state.patientsReducer)
+
 
     const {user} = useAppSelector(state => state.userReducer)
-    if (user?.id != null) {
-        dispatch(loadPatientsList(user.id));
-    }
-    const patients = useAppSelector(getFilteredPatients());
-    console.log(patients);
-    const patientsIsLoading = useAppSelector(getPatientsLoadingStatus());
-    const { searchFilters, handleResetSearchFilters } = useFiltersQuery();
-    const { filteredData, searchTerm, setSearchTerm, handleChangeSearch } = useSearch(patients, {
+
+    useEffect(() => {
+        console.log(user)
+        if (user !== null) {
+            console.log("отправили запрос по пациентам")
+            dispatch(patientsSlice.actions.patientsRequested())
+            const body: PaginationPatientsForCertainDoctor = {
+                  doctorID: user.id,
+                  limit: -1,
+                  numofpage: -1,}
+            const {data: patients, error, isLoading, refetch} =  patientAPI.useFetchPatientsQuery(body)
+            console.log(error)
+            console.log(patients)
+            dispatch(patientsSlice.actions.patientsReceived(patients || []))
+        }
+    }, []);
+
+
+    // const { searchFilters, handleResetSearchFilters } = useFiltersQuery();
+    const { filteredData, searchTerm, setSearchTerm, handleChangeSearch } = useSearch(entities, {
         searchBy: 'id', // пока поиск только по id
     });
     const { sortedItems, sortBy, setSortBy } = useSort(filteredData || [], { path: 'id', order: 'desc' });
@@ -55,19 +67,19 @@ const TablePatients = () => {
         },
         [handleChangePage, setSortBy]
     );
-    const handleResetFilters = useCallback(() => {
-        handleResetSearchFilters();
-        setSearchTerm('');
-        setSortBy({ path: 'id', order: 'desc' });
-        handleChangePageSize({ target: setPageSizeOptions[1] });
-    }, [handleChangePageSize, handleResetSearchFilters]);
+    // const handleResetFilters = useCallback(() => {
+    //     handleResetSearchFilters();
+    //     setSearchTerm('');
+    //     setSortBy({ path: 'id', order: 'desc' });
+    //     handleChangePageSize({ target: setPageSizeOptions[1] });
+    // }, [handleChangePageSize, handleResetSearchFilters]);
 
-    useEffect(() => {
-
-        if (user?.id != null) {
-            dispatch(loadFilteredPatientsList(user.id, {...searchFilters}));
-        }
-    }, [searchFilters]);
+    // useEffect(() => {
+    //
+    //     if (user?.id != null) {
+    //         dispatch(loadFilteredPatientsList(user.id, {...searchFilters}));
+    //     }
+    // }, [searchFilters]);
 
     return (
         <div className="mt-3">
@@ -87,7 +99,7 @@ const TablePatients = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {patientsIsLoading ? <PatientsListSkeleton pageSize={pageSize} /> : <PatientsList patients={patientsListCrop} />}
+                {isLoading ? <PatientsListSkeleton pageSize={pageSize} /> : <PatientsList patients={patientsListCrop} />}
                 {patientsListCrop.length === 0 && <tr className="text-azure-my font-medium">
                     <td>Пациентов не найдено &#128577;</td>
                 </tr>}
@@ -100,8 +112,8 @@ const TablePatients = () => {
                     <Pagination items={sortedItems} pageSize={pageSize} currentPage={currentPage} onChange={handleChangePage} />
                     <p>
                         {`${(currentPage - 1) * pageSize || 1} - 
-              ${pageSize * currentPage > patients.length ? patients.length : pageSize * currentPage}
-              из ${patients.length} пациентов`}
+              ${pageSize * currentPage > entities.length ? entities.length : pageSize * currentPage}
+              из ${entities.length} пациентов`}
                     </p>
                 </div>
             )}

@@ -60,7 +60,7 @@ const SelfPage =() => {
                     </div>
                     <div className="flex justify-between">
                         <span className="font-medium">Учереждение</span>
-                        <span>{user?.placeofwork} </span>
+                        <span>{user?.placeOfWork} </span>
                     </div>
                     <div className="flex justify-between">
                         <span className="font-medium">Профиль</span>

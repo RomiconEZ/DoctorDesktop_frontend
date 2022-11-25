@@ -2,15 +2,14 @@ import React from 'react';
 
 const Loader = () => {
     return (
-        <div className="flex justify-center items-center h-screen flex-wrap">
-            <div className="grid columns-1">
-                <div className="flex justify-center items-center mb-10">
-                    <div className="animate-ping absolute inline-flex h-10 w-10 rounded-full bg-azure-my opacity-75"></div>
-                    <div className=" inline-flex rounded-full h-4 w-4 bg-azure-my"></div>
-                </div>
-                <h1 className="text-2xl font-medium text-azure-my">Загрузка...</h1>
+        <div className="z-[100] absolute justify-center items-center h-screen w-screen">
+            <div
+                className="relative w-24 h-24 animate-spin rounded-full bg-gradient-to-r from-purple-400 via-blue-500 to-red-400 ">
+                <div
+                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white rounded-full border-2 border-white"></div>
             </div>
         </div>
+
     );
 };
 

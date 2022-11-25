@@ -24,6 +24,8 @@ import "./index.css";
 import SelfPage from "./components/pages/SelfPage";
 import GraphInter from "./components/pages/GraphInterPage";
 import GraphInterPage from "./components/pages/GraphInterPage";
+import {RequireAuthSelfPage} from "./components/hoc/RequireAuthSelfPage";
+import {RequireAuthGraphInterPage} from "./components/hoc/RequireAuthGraphInterPage";
 // нужно импортнуть стриницы
 
 // doctor - 1
@@ -94,14 +96,18 @@ const router = createBrowserRouter(createRoutesFromElements
                     <Route
                         element=
                             {
+                                <RequireAuthSelfPage>
                                     <SelfPage/>
+                                </RequireAuthSelfPage>
                             }
                         path="menu/selfpage"
                     />
                     <Route
                         element=
                             {
+                                <RequireAuthGraphInterPage>
                                 <GraphInterPage/>
+                                </RequireAuthGraphInterPage>
                             }
                         path="menu/graphinter"
                     />
