@@ -22,7 +22,6 @@ import DoctorPage from "./components/pages/DoctorPage";
 import PatientsTablePage from "./components/pages/PatientsTablePage";
 import "./index.css";
 import SelfPage from "./components/pages/SelfPage";
-import GraphInter from "./components/pages/GraphInterPage";
 import GraphInterPage from "./components/pages/GraphInterPage";
 import {RequireAuthSelfPage} from "./components/hoc/RequireAuthSelfPage";
 import {RequireAuthGraphInterPage} from "./components/hoc/RequireAuthGraphInterPage";
@@ -156,16 +155,6 @@ const router = createBrowserRouter(createRoutesFromElements
 
 function App() {
 
-
-    // const dispatch = useAppDispatch()
-    // const {users, isLoading, error} = useAppSelector(state => state.userReducer) // достаем переменные из хранилища
-    //
-    // useEffect(() => {
-    //     dispatch(fetchUsers())
-    // }, [ ])
-    {/*{isLoading && <h1>Идет загрузка...</h1>}*/}
-    {/*{error && <h1>{error}</h1>}*/}
-    {/*{JSON.stringify(users, null, 2)}*/}
     return (
 
     <div>

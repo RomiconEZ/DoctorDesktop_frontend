@@ -5,11 +5,11 @@ import {Outlet} from "react-router-dom";
 const Root = () => {
 
     return (
-        <>
-        <div className="z-[0] h-full w-full">
+
+        <div className="z-[0] h-screen w-screen">
             <Outlet/>
         </div>
-        </>
+
     )
 };
 

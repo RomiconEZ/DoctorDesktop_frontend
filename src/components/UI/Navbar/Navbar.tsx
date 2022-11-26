@@ -1,8 +1,10 @@
 import React from 'react';
-import {Outlet, Link} from "react-router-dom";
+import {Outlet, Link, NavLink} from "react-router-dom";
 import {useAppSelector} from "../../../hooks/redux";
 import {useAppDispatch} from "../../../store/store";
 import {logout} from "../../../store/reducers/ActionCreators";
+import ButtonWithIcon from "../../common/ButtonWithIcon";
+import {logOutIcon, tableIcon, userIcon, menuIcon} from "../../common/icons";
 
 const Navbar = () => {
     const {user, isAuth} = useAppSelector(state => state.userReducer)
@@ -12,42 +14,78 @@ const Navbar = () => {
         dispatch(logout())
     }
 
-    return (  <>
-            <div>
-                <div className="z-[200] flex w-full justify-between align-center pr-8 pl-8 shadow-md">
-                    <ul className="flex justify-between align-center space-x-2">
-                        <li className="hover:border-b-4 pt-5 pr-3 pl-3 hover:border-b-azure-my hover:text-azure-my ">
-                            {user!=null && <Link to="menu/selfpage">
+    return (
+        <div className='h-screen w-screen'>
+
+            <nav className="z-[200] flex w-full justify-between pt-5 pb-4 pr-10 pl-10 bg-black-dark-navbar">
+                <ul className="flex justify-between items-center gap-x-4">
+
+
+                    <li>
+                        <ButtonWithIcon icon={userIcon}>
+                            {user!=null && <NavLink to="/auth/menu/selfpage">
                                 {user?.name} {user?.surname} {user?.patronymic}
-                            </Link>}
-                        </li>
-                        <li className="pt-5 pb-4 lowercase text-azure-my">
-                            {user?.role===1 && <div> Врач</div>}
-                            {user?.role===2 && <div> Разработчик</div>}
-                            {user?.role===3 && <div> Соразработчик</div>}
-                            {user?.role===4 && <div> Администратор</div>}
-                            {user?.role===5 && <div> Регистратура</div>}
-                            {user?.role===6 && <div> Врач-эксперт</div>}
-                            {user?.role===6 && <div> Data-администратор</div>}
-                        </li>
-                    </ul>
+                            </NavLink>}
+                        </ButtonWithIcon>
+                    </li>
 
-                    <ul className="flex justify-between align-center space-x-5">
-                        {/*<li className="hover:border-b-4 pt-5 pr-3 pl-3 hover:border-b-azure-my hover:text-azure-my">*/}
-                        {/*    <Link to="/menu/patients">Список пациентов</Link>*/}
-                        {/*</li>*/}
-                        {/*<li className="hover:border-b-4 pt-5 pr-3 pl-3 hover:border-b-azure-my hover:text-azure-my">*/}
-                        {/*    <Link to="/menu/doctors">Список врачей</Link>*/}
-                        {/*</li>*/}
 
-                        <li className="pt-5 hover:text-red-my hover:font-bold">
-                            <button onClick={handleLogout}>Выйти</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <Outlet/>
-        </>
+                    <li className="mb-1 lowercase text-green-active-icon">
+                        {user?.role===1 && <div> Врач</div>}
+                        {user?.role===2 && <div> Разработчик</div>}
+                        {user?.role===3 && <div> Соразработчик</div>}
+                        {user?.role===4 && <div> Администратор</div>}
+                        {user?.role===5 && <div> Регистратура</div>}
+                        {user?.role===6 && <div> Врач-эксперт</div>}
+                        {user?.role===6 && <div> Data-администратор</div>}
+                    </li>
+                </ul>
+
+
+
+
+
+
+                <ul className="flex justify-between items-center gap-x-8">
+
+                    <li>
+                        <ButtonWithIcon icon={menuIcon}>
+                            <NavLink to="/auth/menu">Меню</NavLink>
+                        </ButtonWithIcon>
+                    </li>
+
+                    <li>
+                        <ButtonWithIcon icon={tableIcon}>
+                            <NavLink to="/auth/menu/patients">Пациенты</NavLink>
+                        </ButtonWithIcon>
+                    </li>
+
+
+                    <li>
+                        <ButtonWithIcon icon={tableIcon}>
+                            <NavLink to="/auth/menu/doctors">Врачи</NavLink>
+                        </ButtonWithIcon>
+                    </li>
+
+
+                    <li>
+                        <ButtonWithIcon
+                            icon={logOutIcon}
+                            onClick={()=>handleLogout}
+                        >
+                            Выйти
+                        </ButtonWithIcon>
+                    </li>
+
+                </ul>
+            </nav>
+
+
+            <main className='bg-gray-main-theme relative w-full h-full'>
+                <Outlet/>
+            </main>
+
+        </div>
     )
 };
 
