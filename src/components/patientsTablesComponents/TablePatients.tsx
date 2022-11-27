@@ -1,6 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {useAppDispatch} from "../../store/store";
-import useFiltersQuery from "../../hooks/useFiltersQuery";
+import React, {useCallback} from 'react';
 import useSearch from "../../hooks/useSearch";
 import useSort from "../../hooks/useSort";
 import usePagination from "../../hooks/usePagination";
@@ -12,10 +10,6 @@ import Pagination from "../common/Pagination";
 import PatientsListSkeleton from "./PatientsList/PatientsListSkeleton";
 import PatientsList from "./PatientsList/PatientsList";
 
-import {patientsSlice} from "../../store/reducers/PatientsSlice";
-import {PaginationPatientsForCertainDoctor, patientAPI} from "../../services/PatientService";
-
-
 const setPageSizeOptions = [
     { name: '6', value: 6 },
     { name: '12', value: 12 },
@@ -24,32 +18,11 @@ const setPageSizeOptions = [
 ];
 
 const TablePatients = () => {
-    const dispatch = useAppDispatch();
     const {entities, isLoading} = useAppSelector(state => state.patientsReducer)
-
-
-    const {user} = useAppSelector(state => state.userReducer)
-
-    useEffect(() => {
-        console.log(user)
-        if (user !== null) {
-            console.log("отправили запрос по пациентам")
-            dispatch(patientsSlice.actions.patientsRequested())
-            const body: PaginationPatientsForCertainDoctor = {
-                  doctorID: user.id,
-                  limit: -1,
-                  numofpage: -1,}
-            const {data: patients, error, isLoading, refetch} =  patientAPI.useFetchPatientsQuery(body)
-            console.log(error)
-            console.log(patients)
-            dispatch(patientsSlice.actions.patientsReceived(patients || []))
-        }
-    }, []);
-
 
     // const { searchFilters, handleResetSearchFilters } = useFiltersQuery();
     const { filteredData, searchTerm, setSearchTerm, handleChangeSearch } = useSearch(entities, {
-        searchBy: 'id', // пока поиск только по id
+        searchBy: 'surname', // пока поиск только по id
     });
     const { sortedItems, sortBy, setSortBy } = useSort(filteredData || [], { path: 'id', order: 'desc' });
     const {
@@ -101,7 +74,7 @@ const TablePatients = () => {
                 <tbody>
                 {isLoading ? <PatientsListSkeleton pageSize={pageSize} /> : <PatientsList patients={patientsListCrop} />}
                 {patientsListCrop.length === 0 && <tr className="text-azure-my font-medium">
-                    <td>Пациентов не найдено &#128577;</td>
+                    <td>Пациентов не найдено</td>
                 </tr>}
                 </tbody>
             </table>

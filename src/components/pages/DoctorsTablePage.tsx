@@ -12,7 +12,7 @@ const DoctorsTablePage = () => {
 
 
     const breadcrumbs = useBreadcrumbs(routes);
-
+    let refetch_data
     const {user} = useAppSelector(state => state.userReducer);
     const body: PaginationDoctors = {
         doctorID: user!.id | 0,
@@ -35,11 +35,16 @@ const DoctorsTablePage = () => {
 
         if ((preloading === false) && (data.data != undefined))
         {
-            console.log(Array.from(data.data))
+
             dispatch(doctorsSlice.actions.doctorsReceived(Array.from(data.data)))
+            console.log("Обновили данные")
         }
     }, [preloading])
 
+    const RefetchRequest = (e: React.FormEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        refetch()
+    }
     return(
 
         <div className="ml-5 mb-10 mt-2">
@@ -52,6 +57,11 @@ const DoctorsTablePage = () => {
                     </NavLink>
                 ))}
             </>
+
+            <button onClick={RefetchRequest}>
+                обновить
+            </button>
+
             <TableDoctors/>
         </div>
     )

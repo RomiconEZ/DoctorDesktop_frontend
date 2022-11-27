@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {IPatientShort} from "../../models/IPatientShort";
+import {RootState} from "../store";
 
 export const patientsSlice = createSlice({
   name: 'patientAPI',
@@ -30,6 +31,9 @@ export const patientsSlice = createSlice({
 });
 
 export default patientsSlice.reducer; // вытаскиваем reducer
+
+export const getPatientsLoadingStatus = () => (state: RootState) => state.patientsReducer.isLoading;
+
 
 // const { actions, reducer: patientsReducer } = patientsSlice;
 //

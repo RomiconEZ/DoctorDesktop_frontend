@@ -1,18 +1,15 @@
-import React, {FC, useCallback, useEffect} from 'react';
+import React, {useCallback} from 'react';
 
 import useSearch from "../../hooks/useSearch";
 import useSort from "../../hooks/useSort";
 import usePagination from "../../hooks/usePagination";
-import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {useAppSelector} from "../../hooks/redux";
 import Searchbar from "../common/Searchbar";
 import DoctorsSort from "./DoctorsSort";
 import DoctorsDisplayCount from "./DoctorsDisplayCount";
 import Pagination from "../common/Pagination";
 import DoctorsListSkeleton from "./DoctorsList/DoctorsListSkeleton";
 import DoctorsList from "./DoctorsList/DoctorsList";
-import {doctorAPI, PaginationDoctors} from "../../services/DoctorService";
-import {doctorsSlice} from "../../store/reducers/DoctorsSlice";
-import Loader from "../common/Loader";
 
 
 const setPageSizeOptions = [

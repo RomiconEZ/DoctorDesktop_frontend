@@ -20,8 +20,8 @@ const RequireAuthPatientsListPage = ({children}) => {
 
         return <Navigate to='/login' state={{from: location}} />
     }
-    // if ((user.role !==1)&&(user.role !==2)&&(user.role !==6)&&(user.role !==3))
-    if ((user.role !==1)&&(user.role !==6)&&(user.role !==3))
+    if ((user.role !==1)&&(user.role !==2)&&(user.role !==6)&&(user.role !==3))
+    // if ((user.role !==1)&&(user.role !==6)&&(user.role !==3))
     {
 
         return <Navigate to='/auth/menu' state={{from: location}} />

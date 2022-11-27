@@ -4,8 +4,7 @@ import Skeleton from '@mui/material/Skeleton';
 const DoctorCardSkeleton = () => {
   return (
     <div >
-
-      <Skeleton variant='text' animation='wave' height={50} />
+      <Skeleton variant='text' animation='wave' height={20} />
     </div>
   );
 };

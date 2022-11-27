@@ -3,7 +3,6 @@ import {IPatientShort} from "../models/IPatientShort";
 import {IPatientCreate} from "../models/IPatientCreate";
 import {IPatientUpdate} from "../models/IPatientUpdate";
 import {IPatientFull} from "../models/IPatientFull";
-import {Params} from "react-router-dom";
 import {API_URL} from "../env_data";
 
 export interface PaginationPatientsForCertainDoctor
@@ -30,7 +29,7 @@ export const patientAPI = createApi({
     tagTypes: ['Patient'],
     endpoints: (build) => ({
 
-        fetchPatients: build.query<IPatientShort[], PaginationPatientsForCertainDoctor>({
+        fetchPatients: build.query<any, PaginationPatientsForCertainDoctor>({
 
             query: (PaginationPatientsForCertainDoctor) => ({
                 url: `/patients`,
@@ -38,12 +37,14 @@ export const patientAPI = createApi({
                     _doctorID: PaginationPatientsForCertainDoctor.doctorID,
                     _limit: PaginationPatientsForCertainDoctor.limit,
                     _numofpage: PaginationPatientsForCertainDoctor.numofpage,
-                    // _queryParams: PaginationPatientsForCertainDoctor.queryParams,
+                     _queryParams: PaginationPatientsForCertainDoctor.queryParams,
                 }
             }),
-            providesTags: result => ['Patient']
+            providesTags: result => ['Patient'],
+            keepUnusedDataFor: 300,
+
         }),
-        fetchSelectedPatient: build.query<IPatientFull, PatientForDoctor>({
+        fetchSelectedPatient: build.query<any, PatientForDoctor>({
 
             query: (PatientForDoctor) => ({
                 url: `/patients/${PatientForDoctor.patientID}`,
@@ -51,11 +52,11 @@ export const patientAPI = createApi({
                     _doctorID: PatientForDoctor.doctorID,
                 }
             }),
-            providesTags: result => ['Patient']
+            keepUnusedDataFor: 300,
         }),
 
         // Получение количества пациентов для доктора
-        fetchNumOfPatients: build.query<number, DoctorID>({
+        fetchNumOfPatients: build.query<any, DoctorID>({
 
             query: (DoctorID) => ({
                 url: `/patients/num`,
@@ -73,7 +74,7 @@ export const patientAPI = createApi({
             }),
             invalidatesTags: ['Patient']
         }),
-        updatePatient: build.mutation<IPatientUpdate, IPatientUpdate>({ // отправляем только те данные, которые изменяем. И обратно принимаем также только изменившиеся данные
+        updatePatient: build.mutation<any, IPatientUpdate>({ // отправляем только те данные, которые изменяем. И обратно принимаем также только изменившиеся данные
             query: (PatientUpdate) => ({
                 url: `/patients/${PatientUpdate.id}`,
                 method: 'PUT',

@@ -4,6 +4,9 @@ import {SelectField} from "../../common/Fields";
 const patientsSortArray = [
   { name: 'По убыванию возраста', value: { path: 'age', order: 'desc' } },
   { name: 'По возрастанию возраста', value: { path: 'age', order: 'asc' } },
+
+  { name: 'По убыванию id', value: { path: 'id', order: 'desc' } },
+  { name: 'По возрастанию id', value: { path: 'id', order: 'asc' } },
 ];
 
 type PatientsSortProps = {

@@ -1,11 +1,8 @@
 import {IDoctorUpdate} from "../models/IDoctorUpdate";
-import {IDoctorFull} from "../models/IDoctorFull";
 import {IDoctorCreate} from "../models/IDoctorCreate";
 import {DoctorID} from "./PatientService";
 import {API_URL} from "../env_data";
-import {IDoctorShort} from "../models/IDoctorShort";
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
-import {Params} from "react-router-dom";
 
 export interface PaginationDoctors
 {
@@ -37,7 +34,8 @@ export const doctorAPI = createApi({
                     _queryParams: PaginationDoctorsForCertainDoctor.queryParams,
                 }
             }),
-            providesTags: result => ['Doctor']
+            providesTags: result => ['Doctor'],
+            keepUnusedDataFor: 300,
         }),
 
         fetchSelectedDoctor: build.query<any, DoctorForDoctor>({
@@ -48,6 +46,7 @@ export const doctorAPI = createApi({
                     _doctorID: DoctorForDoctor.doctorID,
                 }
             }),
+            keepUnusedDataFor: 300,
         }),
 
         fetchNumOfDoctors: build.query<any, DoctorID>({

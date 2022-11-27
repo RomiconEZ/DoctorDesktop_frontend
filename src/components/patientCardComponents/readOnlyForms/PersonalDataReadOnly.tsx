@@ -1,28 +1,14 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import {useParams} from "react-router-dom";
-import {patientAPI, PatientForDoctor} from "../../../services/PatientService";
+
 import {additionalSlice} from "../../../store/reducers/AdditionalSlice";
 
-const {user} = useAppSelector(state => state.userReducer)
 const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
 
 
 const PersonalDataReadOnly = () => {
+
     const dispatch = useAppDispatch()
-
-    const params = useParams<string>()
-    const body: PatientForDoctor = {
-        doctorID: user?.id || -1,
-        patientID: Number(params) || -1
-    }
-    const {data: patient, error, isLoading, refetch} =  patientAPI.useFetchSelectedPatientQuery(body)
-
-
-    if (patient != undefined)
-    {
-        dispatch(additionalSlice.actions.ChangeSelectedPatient(patient))
-    }
 
     const birthday = new Date(SelectedPatient.personal_data.birthday)
     return (

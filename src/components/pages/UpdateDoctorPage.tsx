@@ -37,7 +37,7 @@ const UpdateDoctorPage = () => {
                 dispatch(additionalSlice.actions.ChangeSelectedDoctor(data.data))
             }
         }
-    }, [refetch])
+    }, [refetch, preloading])
 
     return (
         <div>

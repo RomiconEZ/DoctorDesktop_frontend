@@ -21,7 +21,7 @@ const DoctorPage =() =>{
     }
     const {data, error, isLoading:preloading , refetch} =  doctorAPI.useFetchSelectedDoctorQuery(body)
 
-    const {SelectedDoctor} = useAppSelector(state => state.additionalReducer)
+    const {SelectedDoctor: doctor} = useAppSelector(state => state.additionalReducer)
 
     const dispatch = useAppDispatch()
     const breadcrumbs = useBreadcrumbs(routes);
@@ -29,18 +29,18 @@ const DoctorPage =() =>{
 
     const handleNavigate = (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        navigate(`/auth/menu/doctors/editdoctor/${SelectedDoctor.id}`)
+        navigate(`/auth/menu/doctors/editdoctor/${doctor.id}`)
     }
 
 
     useEffect(() => {
-        console.log(data)
         if ((preloading === false) && (data.data != undefined))
         {
 
             dispatch(additionalSlice.actions.ChangeSelectedDoctor(data.data))
         }
     }, [preloading])
+
 
     return(
         <div>
@@ -54,54 +54,57 @@ const DoctorPage =() =>{
                     </NavLink>
                 ))}
             </>
-
+            {!preloading && <>
                 <div>
                     <div>
                         <span>Фамилия Имя Отчество</span>
-                        <span>{SelectedDoctor.surname + ' ' + SelectedDoctor.name + ' ' + SelectedDoctor.patronymic} </span>
+                        <span>{doctor.surname + ' ' + doctor.name + ' ' + doctor.patronymic} </span>
                     </div>
                     <div>
                         <span>Дата рождения</span>
-                        <span >{SelectedDoctor.birthdate} </span>
+                        <span >{doctor.birthdate} </span>
                     </div>
                     <div>
                         <span>Пол</span>
-                        <span>{SelectedDoctor.sex} </span>
+                        <span>{doctor.sex} </span>
                     </div>
 
                     <div>
                         <span >Должность</span>
-                        <span>{SelectedDoctor.occupation} </span>
+                        <span>{doctor.occupation} </span>
                     </div>
                     <div>
                         <span>Пользовательский режим</span>
-                        <span>{SelectedDoctor.role} </span>
+                        <span>{doctor.role} </span>
                     </div>
                     <div>
                         <span>Стаж работы</span>
-                        <span>{SelectedDoctor.workExperience}{SelectedDoctor.workExperience<=4 ? 'года' : 'лет'}  </span>
+                        <span>{doctor.workExperience}{doctor.workExperience<=4 ? 'года' : 'лет'}  </span>
                     </div>
                     <div>
                         <span>Регион</span>
-                        <span>{SelectedDoctor.region} </span>
+                        <span>{doctor.region} </span>
                     </div>
                     <div>
                         <span>Город</span>
-                        <span>{SelectedDoctor.city} </span>
+                        <span>{doctor.city} </span>
                     </div>
                     <div>
                         <span>Учереждение</span>
-                        <span>{SelectedDoctor.placeOfWork} </span>
+                        <span>{doctor.placeOfWork} </span>
                     </div>
                     <div>
                         <span>Профиль</span>
-                        <span>{SelectedDoctor.role} </span>
+                        <span>{doctor.role} </span>
                     </div>
                 </div>
             <button onClick={handleNavigate}>
                 Редактировать
             </button>
+            </>
+            }
         </div>
+
     )
 }
 export default DoctorPage

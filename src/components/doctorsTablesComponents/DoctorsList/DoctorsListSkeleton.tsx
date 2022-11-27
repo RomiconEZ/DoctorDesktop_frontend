@@ -1,5 +1,4 @@
 import React from 'react';
-import DoctorCardSkeleton from "../DoctorCard/DoctorCardSkeleton";
 import Skeleton from "@mui/material/Skeleton";
 
 const DoctorsListSkeleton = ({ pageSize }: { pageSize: number }) => {
