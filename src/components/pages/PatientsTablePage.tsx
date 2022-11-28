@@ -35,9 +35,7 @@ const PatientsTablePage = () =>{
         if ((preloading === false) && (data.data != undefined))
         {
             console.log("Получили с сервера пациентов")
-            console.log(data)
-            console.log(Array.from(data))
-            dispatch(patientsSlice.actions.patientsReceived(Array.from(data)))
+            dispatch(patientsSlice.actions.patientsReceived(Array.from(data.data)))
         }
     }, [preloading])
 

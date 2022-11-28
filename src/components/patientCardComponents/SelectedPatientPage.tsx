@@ -12,8 +12,8 @@ const SelectedPatientPage = () => {
 
     const params = useParams<string>()
     const body: PatientForDoctor = {
-        doctorID: user?.id || -1,
-        patientID: Number(params) || -1
+        doctorID: user!.id,
+        patientID: Number(params)
     }
     // let refetch: boolean = false
     // let data: any
@@ -24,7 +24,7 @@ const SelectedPatientPage = () => {
     //     refetch = true
     //     const {data, error, isLoading: preloading} =  patientAPI.useFetchSelectedPatientQuery(body)
     // }
-    const {data, error, isLoading: preloading} =  patientAPI.useFetchSelectedPatientQuery(body)
+    const {data, error, isLoading: preloading, refetch} =  patientAPI.useFetchSelectedPatientQuery(body)
 
 
     // useEffect(() => {
@@ -36,8 +36,9 @@ const SelectedPatientPage = () => {
     // }, [refetch, preloading])
 
     useEffect(() => {
-
-            if ((preloading === false) && (data.data != undefined)) {
+        console.log("Получили пациента")
+        console.log(data)
+        if ((preloading === false) && (data.data != undefined)) {
                 dispatch(additionalSlice.actions.ChangeSelectedPatient(data.data as IPatientFull))
             }
 
@@ -51,31 +52,31 @@ const SelectedPatientPage = () => {
                     <div className="sticky top-0 p-4 w-full">
                         <ul className='flex flex-col overflow-hidden'>
                             <li className='hover:bg-gray-100'>
-                                <Link to="/patientCard/personalData">Персональные данные</Link>
+                                <Link to="personal-data">Персональные данные</Link>
                             </li>
                             <li className='hover:bg-gray-100'>
-                                <Link to="/patientCard/computer-aided-tomography">Компьютерная томография</Link>
+                                <Link to="computer-aided-tomography">Компьютерная томография</Link>
                             </li>
                             <li className='hover:bg-gray-100'>
-                                <Link to="/patientCard/anthropometric-data">Антропометрия</Link>
+                                <Link to="anthropometric-data">Антропометрия</Link>
                             </li>
                             <li className='hover:bg-gray-100'>
-                                <Link to="/patientCard/clinic-data">Клинические данные</Link>
+                                <Link to="clinic-data">Клинические данные</Link>
                             </li>
                             <li className='hover:bg-gray-100'>
-                                <Link to="/patientCard/anamnesis">Анамнез</Link>
+                                <Link to="anamnesis">Анамнез</Link>
                             </li>
                             <li className='hover:bg-gray-100'>
-                                <Link to="/patientCard/concomDeseases">Сопутствующие заболевания</Link>
+                                <Link to="concom-deseases">Сопутствующие заболевания</Link>
                             </li>
                             <li className='hover:bg-gray-100'>
-                                <Link to="/patientCard/echocardiogram">ЭХОГК</Link>
+                                <Link to="echocardiogram">ЭХОГК</Link>
                             </li>
                             <li className='hover:bg-gray-100'>
-                                <Link to="/patientCard/msct">МСКТ</Link>
+                                <Link to="msct">МСКТ</Link>
                             </li>
                             <li className='hover:bg-gray-100'>
-                                <Link to="/patientCard/neuralNet">Нейронная сеть</Link>
+                                <Link to="neural-net">Нейронная сеть</Link>
                             </li>
                         </ul>
                     </div>    

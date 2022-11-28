@@ -1,27 +1,28 @@
 import React from 'react';
-import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-
-import {additionalSlice} from "../../../store/reducers/AdditionalSlice";
-import {IPatientUpdate} from "../../../models/IPatientUpdate";
 
 import validatorConfig from './validatorConfig';
-import {Form, useForm} from "../../../hooks/useForm";
-import {patientAPI} from "../../../services/PatientService";
-import Button from "../../common/Button";
-import {DatePickerField, InputField, RadioGroup, SelectField} from "../../common/Fields";
-import {genderItems} from "../../../DataLists/genderItems";
 import {TextField, TextFieldProps} from "@mui/material";
-import {Regions} from "../../../DataLists/Regions";
+import {useAppSelector} from "../../../../hooks/redux";
+import {additionalSlice} from "../../../../store/reducers/AdditionalSlice";
+import {ResidenseRegions} from "../../../../DataLists/ResidenseRegions";
+import {Regions} from "../../../../DataLists/Regions";
+import {Form, useForm} from "../../../../hooks/useForm";
+import {genderItems} from "../../../../DataLists/genderItems";
+import {patientAPI} from "../../../../services/PatientService";
+import {Race} from "../../../../DataLists/Race";
+import {IPatientUpdate} from "../../../../models/IPatientUpdate";
+import {useAppDispatch} from "../../../../store/store";
+import {DatePickerField, InputField, RadioGroup, SelectField} from "../../../common/Fields";
+import Button from "../../../common/Button";
+import {useNavigate} from "react-router-dom";
 
-import {ResidenseRegions} from "../../../DataLists/ResidenseRegions";
-import {Race} from "../../../DataLists/Race";
-
-const {user} = useAppSelector(state => state.userReducer)
-
-const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
 
 
 const PersonalDataEdit = () => {
+    const {user} = useAppSelector(state => state.userReducer)
+    const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
+    const navigate = useNavigate();
+
     const dispatch = useAppDispatch()
 
 
@@ -47,17 +48,16 @@ const PersonalDataEdit = () => {
         e.preventDefault();
         if (validate(data))
         {
-            dispatch(additionalSlice.actions.ChangeIsEditButtonPressed(false))
+            navigate(`/auth/menu/patients/${SelectedPatient.patient_id}/personal-data`)
             await updatePatient(data)
         }
     }
     return (
-        <>
             <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
                 <InputField autoFocus name='first_name' label='Имя'/>
                 <InputField name='second_name' label='Фамилия'/>
                 <InputField name='patronymic' label='Отчество'/>
-\               <RadioGroup name='sex' items={genderItems}/>
+               <RadioGroup name='sex' items={genderItems}/>
 
                 <DatePickerField
                     value={data.personal_data?.birthday || 0}
@@ -79,7 +79,6 @@ const PersonalDataEdit = () => {
                     Сохранить
                 </Button>
         </Form>
-        </>
     );
 };
 

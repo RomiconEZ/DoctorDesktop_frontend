@@ -25,7 +25,24 @@ import SelfPage from "./components/pages/SelfPage";
 import GraphInterPage from "./components/pages/GraphInterPage";
 import {RequireAuthSelfPage} from "./components/hoc/RequireAuthSelfPage";
 import {RequireAuthGraphInterPage} from "./components/hoc/RequireAuthGraphInterPage";
-// нужно импортнуть стриницы
+import PersonalDataReadOnly from "./components/patientCardComponents/readOnlyForms/PersonalDataReadOnly";
+import AnamnesisReadOnly from "./components/patientCardComponents/readOnlyForms/AnamnesisReadOnly";
+import ClinicDataReadOnly from "./components/patientCardComponents/readOnlyForms/ClinicDataReadOnly";
+import AnthropometricDataReadOnly from "./components/patientCardComponents/readOnlyForms/AnthropometricDataReadOnly";
+import ComputerTomographyReadOnly from "./components/patientCardComponents/readOnlyForms/ComputerTomographyReadOnly";
+import ConcomDeseasesReadOnly from "./components/patientCardComponents/readOnlyForms/ConcomDeseasesReadOnly";
+import EchoCardiogramReadOnly from "./components/patientCardComponents/readOnlyForms/EchoCardiogramReadOnly";
+import PersonalDataEdit from "./components/patientCardComponents/editForms/PersonalDataEdit";
+import AnthropometricDataEdit from "./components/patientCardComponents/editForms/AnthropometricDataEdit";
+import ComputerTomographyEdit from "./components/patientCardComponents/editForms/ComputerTomographyEdit";
+import ClinicDataEdit from "./components/patientCardComponents/editForms/ClinicDataEdit";
+import AnamnesisEdit from "./components/patientCardComponents/editForms/AnamnesisEdit";
+import ConcomDeseasesEdit from "./components/patientCardComponents/editForms/ConcomDeseasesEdit";
+import EchoCardiogramEdit from "./components/patientCardComponents/editForms/EchoCardiogramEdit";
+import MSCTReadOnly from "./components/patientCardComponents/readOnlyForms/MSCTReadOnly";
+import MSCTEdit from "./components/patientCardComponents/editForms/MSCTEdit";
+import NeuralNetEdit from "./components/patientCardComponents/editForms/NeuralNetEdit";
+import NeuralNetReadOnly from "./components/patientCardComponents/readOnlyForms/NeuralNetReadOnly";
 
 // doctor - 1
 // developer - 2
@@ -138,15 +155,135 @@ const router = createBrowserRouter(createRoutesFromElements
                         path="menu/patients"
                     />
 
+                <Route path="menu/patients/:id" element={<RequireAuthPatientPage><SelectedPatientPage/></RequireAuthPatientPage>}>
                     <Route
                         element=
                             {
-                                <RequireAuthPatientPage>
-                                    <SelectedPatientPage/>
-                                </RequireAuthPatientPage>
+                                <PersonalDataReadOnly/>
                             }
-                        path="menu/patients/:id"
+                        path="personal-data"
                     />
+                    <Route
+                        element=
+                            {
+                                <PersonalDataEdit/>
+                            }
+                        path="personal-data/edit"
+                    />
+                    <Route
+                        element=
+                            {
+                                <AnthropometricDataReadOnly/>
+                            }
+                        path="anthropometric-data"
+                    />
+                    <Route
+                        element=
+                            {
+                                <AnthropometricDataEdit/>
+                            }
+                        path="anthropometric-data/edit"
+                    />
+                    <Route
+                        element=
+                            {
+                                <ComputerTomographyReadOnly/>
+                            }
+                        path="computer-aided-tomography"
+                    />
+                    <Route
+                        element=
+                            {
+                                <ComputerTomographyEdit/>
+                            }
+                        path="computer-aided-tomography/edit"
+                    />
+                    <Route
+                        element=
+                            {
+                                <ClinicDataReadOnly/>
+                            }
+                        path="clinic-data"
+                    />
+                    <Route
+                        element=
+                            {
+                                <ClinicDataEdit/>
+                            }
+                        path="clinic-data/edit"
+                    />
+                    <Route
+                        element=
+                            {
+                                <AnamnesisReadOnly/>
+                            }
+                        path="anamnesis"
+                    />
+                    <Route
+                        element=
+                            {
+                                <AnamnesisEdit/>
+                            }
+                        path="anamnesis/edit"
+                    />
+                    <Route
+                        element=
+                            {
+                                <ConcomDeseasesReadOnly/>
+                            }
+                        path="concom-deseases"
+                    />
+                    <Route
+                        element=
+                            {
+                                <ConcomDeseasesEdit/>
+                            }
+                        path="concom-deseases/edit"
+                    />
+                    <Route
+                        element=
+                            {
+                                <EchoCardiogramReadOnly/>
+                            }
+                        path="echocardiogram"
+                    />
+                    <Route
+                        element=
+                            {
+                                <EchoCardiogramEdit/>
+                            }
+                        path="echocardiogram/edit"
+                    />
+
+                    <Route
+                        element=
+                            {
+                                <MSCTReadOnly/>
+                            }
+                        path="msct"
+                    />
+                    <Route
+                        element=
+                            {
+                                <MSCTEdit/>
+                            }
+                        path="msct/edit"
+                    />
+                    <Route
+                        element=
+                            {
+                                <NeuralNetReadOnly/>
+                            }
+                        path="neural-net"
+                    />
+                    <Route
+                        element=
+                            {
+                                <NeuralNetEdit/>
+                            }
+                        path="neural-net/edit"
+                    />
+                </Route>
             </Route>
             <Route path="*" element={<NotFoundPage/>} />
         </Route>

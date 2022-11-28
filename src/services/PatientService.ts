@@ -1,8 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
-import {IPatientShort} from "../models/IPatientShort";
 import {IPatientCreate} from "../models/IPatientCreate";
 import {IPatientUpdate} from "../models/IPatientUpdate";
-import {IPatientFull} from "../models/IPatientFull";
 import {API_URL} from "../env_data";
 
 export interface PaginationPatientsForCertainDoctor

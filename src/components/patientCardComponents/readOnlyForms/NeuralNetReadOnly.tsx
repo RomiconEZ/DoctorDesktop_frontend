@@ -1,13 +1,18 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
+
+import {additionalSlice} from "../../../store/reducers/AdditionalSlice";
 import {useNavigate} from "react-router-dom";
 
 
-const PersonalDataReadOnly = () => {
+
+const NeuralNetReadOnly = () => {
     const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
+
     const dispatch = useAppDispatch()
     const navigate = useNavigate();
 
+    const birthday = new Date(SelectedPatient.personal_data.birthday)
     return (
 
         <div className='p-8'>
@@ -23,7 +28,7 @@ const PersonalDataReadOnly = () => {
 
                 <div className='flex'>
                     <span className='text-slate-400 w-1/2'>Дата рождения</span>
-                    <span className='text-slate-800 w-1/2'>{SelectedPatient.personal_data.birthday}</span>
+                    <span className='text-slate-800 w-1/2'>{birthday.toLocaleDateString()}</span>
                 </div>
 
                 <div className='flex'>
@@ -58,4 +63,4 @@ const PersonalDataReadOnly = () => {
     );
 };
 
-export default PersonalDataReadOnly;
+export default NeuralNetReadOnly;
