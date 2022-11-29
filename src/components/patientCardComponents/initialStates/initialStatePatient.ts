@@ -2,7 +2,7 @@ import {IPatientFull} from "../../../models/IPatientFull";
 
 export const initialPatientState: IPatientFull = {
 
-        patient_id: -1,
+        patientID: "",
         employee_id: -1,
 
         personal_data: {

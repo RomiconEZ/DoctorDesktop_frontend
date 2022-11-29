@@ -19,27 +19,22 @@ import {genderItems} from "../../../DataLists/genderItems";
 
 const CreateDoctorForm = () => {
     const {user} = useAppSelector(state => state.userReducer)
-
     const initialData: IDoctorCreate = {
-
-
-        name: '',
-        surname: '',
-        patronymic: '',
-        birthdate: Date.now(),
+        name: "",
+        surname: "",
+        patronymic: "",
+        birthdate: user!.birthdate,
         workExperience: 0,
-        sex: true,
-        region: user?.region || '',
-        city: user?.city || '',
-        placeOfWork: user?.placeOfWork || '',
-        occupation: user?.occupation || '',
-        email: '',
-        password: '',
-        role: 3
-
-
+        sex: 1,
+        region: user!.region,
+        city: user!.city,
+        placeOfWork: user!.placeOfWork,
+        occupation: user!.occupation,
+        email: "",
+        password: "",
+        role: -1
     }
-
+    console.log(initialData)
     const {data, errors, handleInputChange, handleKeyDown, validate} = useForm(initialData, true, validatorConfig);
 
     const [createDoctor, {}] = doctorAPI.useCreateDoctorMutation();// {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями
@@ -53,7 +48,6 @@ const CreateDoctorForm = () => {
 
     return (
         <>
-
             <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
                 <div className="flex justify-center items-center h-screen flex-wrap">
                     <div className="grid columns-1 gap-y-3">

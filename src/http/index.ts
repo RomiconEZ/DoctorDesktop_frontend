@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { API_URL } from '../env_data';
 import {AuthResponse} from "../models/response/AuthResponse";
+import AuthService from "../services/AuthService";
 
 
 const $api = axios.create({ // создание инстанса
@@ -17,6 +18,7 @@ const $api = axios.create({ // создание инстанса
 
 // На запрос:
 $api.interceptors.request.use((config) => { // параметр - callback
+    console.log(`Bearer ${localStorage.getItem('token')}`)
     config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
     return config;
 })
@@ -29,7 +31,8 @@ $api.interceptors.response.use((config) => {
     if (error.response.status == 401 && error.config && !error.config._isRetry) {
         originalRequest._isRetry = true; // указатель на то, что запрос мы уже делали
         try {
-            const response = await axios.post<AuthResponse>(`${API_URL}/auth/refresh`, {withCredentials: true})
+            const response = await AuthService.refresh();
+            console.log(response.data)
             localStorage.setItem('token', response.data.accessToken);
             return $api.request(originalRequest);
         } catch (e) {

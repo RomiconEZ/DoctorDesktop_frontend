@@ -4,6 +4,18 @@ import {DoctorID} from "./PatientService";
 import {API_URL} from "../env_data";
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
 
+export const baseQuery = fetchBaseQuery({
+    baseUrl: API_URL,
+    prepareHeaders: (headers, { getState }) => {
+        const token = localStorage.getItem('token')
+         if (token) {
+            headers.set('Authorization', `Bearer ${token}`)
+        }
+
+        return headers
+    },
+})
+
 export interface PaginationDoctors
 {
     doctorID: number
@@ -19,7 +31,7 @@ export interface DoctorForDoctor
 
 export const doctorAPI = createApi({
     reducerPath: 'doctorAPI', // уникальное название
-    baseQuery: fetchBaseQuery({ baseUrl: API_URL}),
+    baseQuery: baseQuery,
     tagTypes: ['Doctor'],
     endpoints: (build) => ({
 

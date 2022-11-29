@@ -28,7 +28,7 @@ const AnthropometricDataEdit = () => {
     const dispatch = useAppDispatch()
 
     const initialPersonalData: IPatientUpdate = {
-        id: SelectedPatient.patient_id,
+        patientID: SelectedPatient.patientID,
         employee_id: user?.id || -1,
 
         personal_data: {
@@ -50,7 +50,7 @@ const AnthropometricDataEdit = () => {
         if (validate(data))
         {
             await updatePatient(data)
-            navigate(`/auth/menu/patients/${SelectedPatient.patient_id}/anthropometric-data`)
+            navigate(`/auth/menu/patients/${SelectedPatient.patientID}/anthropometric-data`)
         }
     }
     return (

@@ -21,7 +21,7 @@ const initialState: UserState = {
         city: "",
         placeOfWork:"",
         birthdate: 0,
-        sex: true,
+        sex: 1,
         workExperience: -1,
         occupation: "",
         email: "",

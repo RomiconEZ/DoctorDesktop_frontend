@@ -27,8 +27,6 @@ const CreateDoctorPage = () => {
             </>
 
             <div>
-                {isLoading && <h1>Идет загрузка...</h1>}
-                {error && <h1>Произошла ошибка при загрузке</h1>}
                 <CreateDoctorForm />
             </div>
         </div>

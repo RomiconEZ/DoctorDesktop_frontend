@@ -6,7 +6,7 @@ export const initialDoctorState: IDoctorFull={
     surname: "",
     patronymic: "",
     birthdate: 0,
-    sex: true,
+    sex: 1,
     workExperience: -1,
     region: "", // значение из списка
     city: "", // значение из списка

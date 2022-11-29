@@ -3,7 +3,7 @@ export interface IDoctorCreate{
     surname: string
     patronymic: string
     birthdate: number | Date
-    sex: boolean
+    sex: boolean | number
     workExperience: number
     region: string // значение из списка
     city: string // значение из списка

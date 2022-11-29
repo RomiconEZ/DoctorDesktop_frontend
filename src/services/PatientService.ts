@@ -2,6 +2,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
 import {IPatientCreate} from "../models/IPatientCreate";
 import {IPatientUpdate} from "../models/IPatientUpdate";
 import {API_URL} from "../env_data";
+import {baseQuery} from "./DoctorService";
 
 export interface PaginationPatientsForCertainDoctor
 {
@@ -23,7 +24,7 @@ export interface DoctorID
 
 export const patientAPI = createApi({
     reducerPath: 'patientAPI', // уникальное название
-    baseQuery: fetchBaseQuery({ baseUrl: API_URL}),
+    baseQuery: baseQuery,
     tagTypes: ['Patient'],
     endpoints: (build) => ({
 
@@ -74,7 +75,7 @@ export const patientAPI = createApi({
         }),
         updatePatient: build.mutation<any, IPatientUpdate>({ // отправляем только те данные, которые изменяем. И обратно принимаем также только изменившиеся данные
             query: (PatientUpdate) => ({
-                url: `/patients/${PatientUpdate.id}`,
+                url: `/patients/${PatientUpdate.patientID}`,
                 method: 'PUT',
                 body: PatientUpdate
             }),
@@ -82,7 +83,7 @@ export const patientAPI = createApi({
         }),
         deletePatient: build.mutation<void, IPatientUpdate>({
             query: (PatientUpdate) => ({
-                url: `/patients/${PatientUpdate.id}`,
+                url: `/patients/${PatientUpdate.patientID}`,
                 method: 'DELETE',
             }),
             invalidatesTags: ['Patient']

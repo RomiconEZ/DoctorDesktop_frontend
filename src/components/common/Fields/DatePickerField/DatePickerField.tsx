@@ -28,8 +28,6 @@ const DatePickerField: React.FC<DatePickerFieldProps> = ({label, name, value, mi
             label={label}
             value={value}
             minDate={minDate || Date.now()}
-            //TODO: inputProps not found DatePickerTypes.... ??
-            //@ts-ignore
             inputProps={{placeholder: 'ДД.ММ.ГГГГ'}}
             onChange={(date: number | Date | null) => {
               onChange(convertToDefEventParam(name, date));

@@ -26,7 +26,7 @@ const ClinicDataEdit = () => {
     const dispatch = useAppDispatch()
 
     const initialPersonalData: IPatientUpdate = {
-        id: SelectedPatient.patient_id,
+        patientID: SelectedPatient.patientID,
         employee_id: user!.id,
 
         personal_data: {
@@ -47,7 +47,7 @@ const ClinicDataEdit = () => {
         e.preventDefault();
         if (validate(data))
         {
-            navigate(`/auth/menu/patients/${SelectedPatient.patient_id}/clinic-data`)
+            navigate(`/auth/menu/patients/${SelectedPatient.patientID}/clinic-data`)
             await updatePatient(data)
         }
     }

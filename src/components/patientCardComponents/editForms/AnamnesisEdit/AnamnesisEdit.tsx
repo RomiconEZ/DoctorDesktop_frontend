@@ -27,7 +27,7 @@ const AnamnesisEdit = () => {
     const dispatch = useAppDispatch()
 
     const initialPersonalData: IPatientUpdate = {
-        id: SelectedPatient.patient_id,
+        patientID: SelectedPatient.patientID,
         employee_id: user!.id,
 
         personal_data: {

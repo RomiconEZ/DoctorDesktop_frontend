@@ -29,7 +29,7 @@ const ConcomDeseasesEdit = () => {
 
 
     const initialPersonalData: IPatientUpdate = {
-        id: SelectedPatient.patient_id,
+        patientID: SelectedPatient.patientID,
         employee_id: user?.id || -1,
 
         personal_data: {
@@ -50,7 +50,7 @@ const ConcomDeseasesEdit = () => {
         e.preventDefault();
         if (validate(data))
         {
-            navigate(`/auth/menu/patients/${SelectedPatient.patient_id}/concom-deseases`)
+            navigate(`/auth/menu/patients/${SelectedPatient.patientID}/concom-deseases`)
             await updatePatient(data)
         }
     }

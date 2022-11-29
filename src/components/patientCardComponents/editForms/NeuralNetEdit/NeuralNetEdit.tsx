@@ -25,7 +25,7 @@ const NeuralNetEdit = () => {
     const dispatch = useAppDispatch()
 
     const initialPersonalData: IPatientUpdate = {
-        id: SelectedPatient.patient_id,
+        patientID: SelectedPatient.patientID,
         employee_id: user?.id || -1,
 
         personal_data: {
@@ -46,7 +46,7 @@ const NeuralNetEdit = () => {
         e.preventDefault();
         if (validate(data))
         {
-            navigate(`/auth/menu/patients/${SelectedPatient.patient_id}/neural-net`)
+            navigate(`/auth/menu/patients/${SelectedPatient.patientID}/neural-net`)
             await updatePatient(data)
         }
     }

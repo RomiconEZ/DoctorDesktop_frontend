@@ -10,7 +10,7 @@ import React from 'react';
 
 type RadioGroupType = MuiRadioGroupProps & {
   label?: string;
-  items: Array<{ id: string | boolean; title: string }>; // уродское решение, должно быть id: string
+  items: Array<{ id: string | number; title: string }>; // уродское решение, должно быть id: string
 };
 
 const RadioGroupField: React.FC<RadioGroupType> = ({ name, label, value, onChange, items }) => {

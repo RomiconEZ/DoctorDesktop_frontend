@@ -1,6 +1,6 @@
 
 export interface IPatientUpdate {
-    id: number,
+    patientID: string,
     employee_id: number,
     personal_data?: IPersonal_data_update,
     anthropometric_data?: IAnthropometric_data_update,
@@ -15,7 +15,7 @@ export interface IPersonal_data_update {
     second_name?: string,
     patronymic?: string,
     birthday?: number | Date,
-    sex?: boolean,
+    sex?: boolean | number,
     region?: string,
     clinic?: string,
     race?: string,

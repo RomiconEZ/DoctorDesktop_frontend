@@ -1,5 +1,5 @@
 export interface IPatientFull {
-    patient_id: number,
+    patientID: string,
     employee_id: number,
     personal_data: IPersonal_data,
     anthropometric_data: IAnthropometric_data,
@@ -15,7 +15,7 @@ export interface IPersonal_data {
     second_name: string,
     patronymic: string,
     birthday: number | Date,
-    sex: boolean,
+    sex: boolean | number,
     region: string,
     clinic: string,
     race: string,

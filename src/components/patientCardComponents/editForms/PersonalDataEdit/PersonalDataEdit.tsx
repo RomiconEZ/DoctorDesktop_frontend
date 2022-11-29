@@ -14,7 +14,8 @@ import {IPatientUpdate} from "../../../../models/IPatientUpdate";
 import {useAppDispatch} from "../../../../store/store";
 import {DatePickerField, InputField, RadioGroup, SelectField} from "../../../common/Fields";
 import Button from "../../../common/Button";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import {Clinics} from "../../../../DataLists/Clinics";
 
 
 
@@ -22,24 +23,19 @@ const PersonalDataEdit = () => {
     const {user} = useAppSelector(state => state.userReducer)
     const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
     const navigate = useNavigate();
-
+    const params = useParams<string>()
     const dispatch = useAppDispatch()
 
 
-    const initialPersonalData: IPatientUpdate = {
-        id: SelectedPatient.patient_id,
-        employee_id: user?.id || -1,
-
-        personal_data: {
-            first_name: SelectedPatient.personal_data.first_name,
-            second_name: SelectedPatient.personal_data.second_name,
-            patronymic: SelectedPatient.personal_data.patronymic,
-            birthday: SelectedPatient.personal_data.birthday,
-            sex: SelectedPatient.personal_data.sex,
-            region: SelectedPatient.personal_data.region,
-            clinic: SelectedPatient.personal_data.clinic,
-            race: SelectedPatient.personal_data.race,
-        }
+    const initialPersonalData: any = {
+        first_name: SelectedPatient.personal_data.first_name,
+        second_name: SelectedPatient.personal_data.second_name,
+        patronymic: SelectedPatient.personal_data.patronymic,
+        birthday: SelectedPatient.personal_data.birthday,
+        sex: SelectedPatient.personal_data.sex,
+        region: SelectedPatient.personal_data.region,
+        clinic: SelectedPatient.personal_data.clinic,
+        race: SelectedPatient.personal_data.race,
     }
     const {data, errors, handleInputChange, handleKeyDown, validate} = useForm(initialPersonalData, true, validatorConfig);
     const [updatePatient, {}] = patientAPI.useUpdatePatientMutation();// {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями
@@ -48,8 +44,22 @@ const PersonalDataEdit = () => {
         e.preventDefault();
         if (validate(data))
         {
-            navigate(`/auth/menu/patients/${SelectedPatient.patient_id}/personal-data`)
-            await updatePatient(data)
+            const UpdatePatientData: IPatientUpdate = {
+                patientID: SelectedPatient.patientID,
+                employee_id: user!.id,
+                personal_data: {
+                    first_name: data.first_name,
+                    second_name: data.second_name,
+                    patronymic: data.patronymic,
+                    birthday: data.birthday,
+                    sex: data.sex,
+                    region: data.region,
+                    clinic: data.clinic,
+                    race: data.race,
+                }
+            }
+            navigate(`/auth/menu/patients/${SelectedPatient.patientID}/personal-data`)
+            await updatePatient(UpdatePatientData)
         }
     }
     return (
@@ -73,7 +83,7 @@ const PersonalDataEdit = () => {
                 />
                 <SelectField label='Регион' name='region' options={Regions}  />
                 <SelectField label='Раса' name='race' options={Race}  />
-                <SelectField label='Город' name='clinic' options={ResidenseRegions}  />
+                <SelectField label='Город' name='clinic' options={Clinics}  />
 
                 <Button type='submit' onClick={handleUpdate} fullWidth disabled={Object.keys(errors).length !== 0}>
                     Сохранить

@@ -4,13 +4,14 @@ import App from './App';
 import {Provider} from "react-redux";
 import {setupStore} from "./store/store";
 import * as serviceWorkerRegistration from './components/UI/DWV/serviceWorkerRegistration'
+import {LocalizationProvider} from "@mui/x-date-pickers";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 
 
 const store = setupStore();
 
 
 ReactDOM.render(
-
     <Provider store={store}>
         <App />
     </Provider>,
