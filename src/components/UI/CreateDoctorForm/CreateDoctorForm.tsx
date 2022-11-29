@@ -8,7 +8,7 @@ import Button from "../../common/Button";
 import {useAppSelector} from "../../../hooks/redux";
 import {IDoctorCreate} from "../../../models/IDoctorCreate";
 import {doctorAPI} from "../../../services/DoctorService";
-import {Roles} from "../../../DataLists/Roles";
+import { Roles } from '../../../DataLists/Roles';
 import {PlacesOfWork} from "../../../DataLists/PlacesOfWork";
 import {Occupations} from "../../../DataLists/Occupations";
 import {Regions} from "../../../DataLists/Regions";
@@ -19,6 +19,7 @@ import {genderItems} from "../../../DataLists/genderItems";
 
 const CreateDoctorForm = () => {
     const {user} = useAppSelector(state => state.userReducer)
+
     const initialData: IDoctorCreate = {
         name: "",
         surname: "",
@@ -51,11 +52,11 @@ const CreateDoctorForm = () => {
             <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
                 <div className="flex justify-center items-center h-screen flex-wrap">
                     <div className="grid columns-1 gap-y-3">
-                        <InputField autoFocus name='name' label='Имя'/>
-                        <InputField name='surname' label='Фамилия'/>
-                        <InputField name='patronymic' label='Отчество'/>
-                        <InputField name='workExperience' label='Опыт работы'/>
-                        <RadioGroup name='sex' items={genderItems}/>
+                        <InputField autoFocus name="name" label='Имя'/>
+                        <InputField name="surname" label='Фамилия'/>
+                        <InputField name="patronymic" label='Отчество'/>
+                        <InputField name="workExperience" label='Опыт работы'/>
+                        <RadioGroup name="sex" items={genderItems}/>
 
                         <DatePickerField
                             value={data.birthdate}
@@ -69,15 +70,15 @@ const CreateDoctorForm = () => {
                                 <TextField {...params} {...(errors?.birthYear && { error: true, helperText: errors?.birthYear })} />
                             )}
                         />
-                        <SelectField label='Регион' name='region' options={Regions}  />
-                        <SelectField label='Город' name='city' options={Cities}  />
+                        <SelectField label='Регион' name="region" options={Regions}  />
+                        <SelectField label='Город' name="city" options={Cities}  />
 
-                        <SelectField label='Место работы' name='placeOfWork' options={PlacesOfWork}  />
-                        <SelectField label='Профиль' name='occupation' options={Occupations}  />
-                        <SelectField label='Роль' name='role' options={Roles}  />
+                        <SelectField label='Место работы' name="placeOfWork" options={PlacesOfWork}  />
+                        <SelectField label='Профиль' name="occupation" options={Occupations}  />
+                        <SelectField label='Роль' name="role" options={Roles}  />
 
-                        <InputField name='email' label='Почта' />
-                        <InputFieldWithPassword name='password' label='Пароль' type='password' />
+                        <InputField name="email" label='Почта' />
+                        <InputFieldWithPassword name="password" label='Пароль' type='password' />
                         <Button type='submit' onClick={handleCreate} fullWidth disabled={Object.keys(errors).length !== 0}>
                             Создать
                         </Button>
