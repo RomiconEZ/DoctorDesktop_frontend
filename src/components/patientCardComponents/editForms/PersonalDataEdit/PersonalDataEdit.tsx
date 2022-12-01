@@ -58,8 +58,9 @@ const PersonalDataEdit = () => {
                     race: data.race,
                 }
             }
-            navigate(`/auth/menu/patients/${SelectedPatient.patientID}/personal-data`)
             await updatePatient(UpdatePatientData)
+            navigate(`/auth/menu/patients/${SelectedPatient.patientID}/personal-data`)
+
         }
     }
     return (

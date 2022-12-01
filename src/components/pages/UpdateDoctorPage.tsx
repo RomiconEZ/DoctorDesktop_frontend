@@ -51,7 +51,6 @@ const UpdateDoctorPage = () => {
                 ))}
             </>
             <div>
-
                 <UpdateDoctorForm />
             </div>
         </div>

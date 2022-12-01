@@ -1,7 +1,5 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-
-import {additionalSlice} from "../../../store/reducers/AdditionalSlice";
 import {useNavigate} from "react-router-dom";
 
 
@@ -10,44 +8,65 @@ const ClinicDataReadOnly = () => {
     const navigate = useNavigate();
 
     const dispatch = useAppDispatch()
-
-    const birthday = new Date(SelectedPatient.personal_data.birthday)
     return (
 
         <div className='p-8'>
-            <h1 className='font-medium text-lg text-slate-800 pb-4'>Персональные данные режим чтения</h1>
+            <h1 className='font-medium text-lg text-slate-800 pb-4'>Анамнез пациента режим чтения</h1>
 
             <div className='grid grid-cols-2 gap-y-3 mb-4'>
 
                 <div className='col-span-2 flex'>
-                    <span className='text-slate-400 w-1/4'>ФИО</span>
-                    <span className='text-slate-800'>{SelectedPatient.personal_data.second_name + ' ' +
-                        SelectedPatient.personal_data.first_name + ' ' + SelectedPatient.personal_data.patronymic}</span>
+                    <span className='text-slate-400 w-1/4'>Основной диагноз</span>
+                    <span className='text-slate-800'>{SelectedPatient.clinical_data.main_diag}</span>
                 </div>
 
                 <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Дата рождения</span>
-                    <span className='text-slate-800 w-1/2'>{birthday.toLocaleDateString()}</span>
+                    <span className='text-slate-400 w-1/2'></span>
+                    <span className='text-slate-400 w-1/2'>Наличие расслоения аорты</span>
+                    {SelectedPatient.clinical_data.aortic_dissection!==0 && <span className='text-slate-800 w-1/2'>да</span> }
+                    {SelectedPatient.clinical_data.aortic_dissection!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
                 </div>
-
                 <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Место обследования</span>
-                    <span className='text-slate-800 w-1/2'>{SelectedPatient.personal_data.clinic}</span>
+                    <span className='text-slate-400 w-1/2'></span>
+                    <span className='text-slate-400 w-1/2'>Наличие интрамуральной гематомы</span>
+                    {SelectedPatient.clinical_data.intramural_hematoma!==0 && <span className='text-slate-800 w-1/2'>да</span> }
+                    {SelectedPatient.clinical_data.intramural_hematoma!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
                 </div>
-
                 <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Регион</span>
-                    <span className='text-slate-800 w-1/2'>{SelectedPatient.personal_data.region}</span>
+                    <span className='text-slate-400 w-1/2'></span>
+                    <span className='text-slate-400 w-1/2'>Наличие разрыва аорты</span>
+                    {SelectedPatient.clinical_data.aortic_rupture!==0 && <span className='text-slate-800 w-1/2'>да</span> }
+                    {SelectedPatient.clinical_data.aortic_rupture!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
                 </div>
-
+                <div className='col-span-2 flex'>
+                    <span className='text-slate-400 w-1/4'>Состояние</span>
+                    <span className='text-slate-800'>{SelectedPatient.clinical_data.patient_state}</span>
+                </div>
                 <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Пол</span>
-                    {SelectedPatient.personal_data.sex && <span className='text-slate-800 w-1/2'>мужской</span>}
-                    {!SelectedPatient.personal_data.sex && <span className='text-slate-800 w-1/2'>женский</span>}
+                    <span className='text-slate-400 w-1/2'></span>
+                    <span className='text-slate-400 w-1/2'>Боли за грудиной</span>
+                    {SelectedPatient.clinical_data.pain_beh_stern!==0 && <span className='text-slate-800 w-1/2'>да</span> }
+                    {SelectedPatient.clinical_data.pain_beh_stern!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
                 </div>
-
+                <div className='flex'>
+                    <span className='text-slate-400 w-1/2'></span>
+                    <span className='text-slate-400 w-1/2'>Боли в межлопаточной области</span>
+                    {SelectedPatient.clinical_data.interscap_reg_pain!==0 && <span className='text-slate-800 w-1/2'>да</span> }
+                    {SelectedPatient.clinical_data.interscap_reg_pain!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
+                </div>
+                <div className='flex'>
+                    <span className='text-slate-400 w-1/2'></span>
+                    <span className='text-slate-400 w-1/2'>Потеря сознания</span>
+                    {SelectedPatient.clinical_data.conscious_loss!==0 && <span className='text-slate-800 w-1/2'>да</span> }
+                    {SelectedPatient.clinical_data.conscious_loss!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
+                </div>
+                <div className='flex'>
+                    <span className='text-slate-400 w-1/2'></span>
+                    <span className='text-slate-400 w-1/2'>Ишемия нижних конечностей</span>
+                    {SelectedPatient.clinical_data.low_extrem_ischemia!==0 && <span className='text-slate-800 w-1/2'>да</span> }
+                    {SelectedPatient.clinical_data.low_extrem_ischemia!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
+                </div>
             </div>
-
 
             <button
                 onClick={()=>navigate(`edit`)}
@@ -62,4 +81,4 @@ const ClinicDataReadOnly = () => {
     );
 };
 
-export default ClinicDataReadOnly;
+export default  ClinicDataReadOnly;

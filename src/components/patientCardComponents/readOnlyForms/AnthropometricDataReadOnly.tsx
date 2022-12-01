@@ -5,51 +5,69 @@ import {additionalSlice} from "../../../store/reducers/AdditionalSlice";
 import {useNavigate} from "react-router-dom";
 
 
-
 const AnthropometricDataReadOnly = () => {
     const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
     const navigate = useNavigate();
 
     const dispatch = useAppDispatch()
-
-    const birthday = new Date(SelectedPatient.personal_data.birthday)
     return (
 
         <div className='p-8'>
-            <h1 className='font-medium text-lg text-slate-800 pb-4'>Персональные данные режим чтения</h1>
+            <h1 className='font-medium text-lg text-slate-800 pb-4'>Антропометрические данные режим чтения</h1>
 
             <div className='grid grid-cols-2 gap-y-3 mb-4'>
 
                 <div className='col-span-2 flex'>
-                    <span className='text-slate-400 w-1/4'>ФИО</span>
-                    <span className='text-slate-800'>{SelectedPatient.personal_data.second_name + ' ' +
-                        SelectedPatient.personal_data.first_name + ' ' + SelectedPatient.personal_data.patronymic}</span>
+                    <span className='text-slate-400 w-1/4'>Рост</span>
+                    <span className='text-slate-800'>{SelectedPatient.anthropometric_data.height}</span>
                 </div>
-
+                <div className='col-span-2 flex'>
+                    <span className='text-slate-400 w-1/4'>Вес</span>
+                    <span className='text-slate-800'>{SelectedPatient.anthropometric_data.weight}</span>
+                </div>
+                <div className='col-span-2 flex'>
+                    <span className='text-slate-400 w-1/4'>Индекс массы тела</span>
+                    <span className='text-slate-800'>{SelectedPatient.anthropometric_data.body_mass_index}</span>
+                </div>
+                <div className='col-span-2 flex'>
+                    <span className='text-slate-400 w-1/4'>Площадь поверхности тела</span>
+                    <span className='text-slate-800'>{SelectedPatient.anthropometric_data.body_surface_area}</span>
+                </div>
+                <div className='col-span-2 flex'>
+                    <span className='text-slate-400 w-1/4'>Тип тела</span>
+                    <span className='text-slate-800'>{SelectedPatient.anthropometric_data.body_type}</span>
+                </div>
                 <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Дата рождения</span>
-                    <span className='text-slate-800 w-1/2'>{birthday.toLocaleDateString()}</span>
+                    <span className='text-slate-400 w-1/2'>Дисплазия соединительных тканей</span>
+                    {SelectedPatient.anthropometric_data.connective_tissue_dysplasia!==0 && <span className='text-slate-800 w-1/2'>да</span> }
+                    {SelectedPatient.anthropometric_data.connective_tissue_dysplasia!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
                 </div>
-
                 <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Место обследования</span>
-                    <span className='text-slate-800 w-1/2'>{SelectedPatient.personal_data.clinic}</span>
+                    <span className='text-slate-400 w-1/2'>Синдром Марфана</span>
+                    {SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Marfan!==0 && <span className='text-slate-800 w-1/2'>да</span> }
+                    {SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Marfan!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
                 </div>
-
                 <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Регион</span>
-                    <span className='text-slate-800 w-1/2'>{SelectedPatient.personal_data.region}</span>
+                    <span className='text-slate-400 w-1/2'>Синдром Элерса-Данло</span>
+                    {SelectedPatient.anthropometric_data.connective_tissue_dysplasia_EhlersDanlos!==0 && <span className='text-slate-800 w-1/2'>да</span> }
+                    {SelectedPatient.anthropometric_data.connective_tissue_dysplasia_EhlersDanlos!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
                 </div>
-
                 <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Пол</span>
-                    {SelectedPatient.personal_data.sex && <span className='text-slate-800 w-1/2'>мужской</span>}
-                    {!SelectedPatient.personal_data.sex && <span className='text-slate-800 w-1/2'>женский</span>}
+                    <span className='text-slate-400 w-1/2'>Синдром Лойеса-Дитц</span>
+                    {SelectedPatient.anthropometric_data.connective_tissue_dysplasia_LoeysDitz!==0 && <span className='text-slate-800 w-1/2'>да</span> }
+                    {SelectedPatient.anthropometric_data.connective_tissue_dysplasia_LoeysDitz!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
                 </div>
-
+                <div className='flex'>
+                    <span className='text-slate-400 w-1/2'>Синдром Тернера</span>
+                    {SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Terner!==0 && <span className='text-slate-800 w-1/2'>да</span> }
+                    {SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Terner!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
+                </div>
+                <div className='flex'>
+                    <span className='text-slate-400 w-1/2'>Синдром Нуана</span>
+                    {SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Noonan!==0 && <span className='text-slate-800 w-1/2'>да</span> }
+                    {SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Noonan!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
+                </div>
             </div>
-
-
             <button
                 onClick={()=>navigate(`edit`)}
                 className="relative mt-8 bottom-2 left-3/4 p-2 bg-transparent

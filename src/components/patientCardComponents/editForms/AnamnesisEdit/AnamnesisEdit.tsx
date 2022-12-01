@@ -1,20 +1,17 @@
 import React from 'react';
+
 import validatorConfig from './validatorConfig';
 import {TextField, TextFieldProps} from "@mui/material";
 import {useAppSelector} from "../../../../hooks/redux";
-import {additionalSlice} from "../../../../store/reducers/AdditionalSlice";
-import {ResidenseRegions} from "../../../../DataLists/ResidenseRegions";
-import {Regions} from "../../../../DataLists/Regions";
+
 import {Form, useForm} from "../../../../hooks/useForm";
-import {genderItems} from "../../../../DataLists/genderItems";
 import {patientAPI} from "../../../../services/PatientService";
-import {Race} from "../../../../DataLists/Race";
 import {IPatientUpdate} from "../../../../models/IPatientUpdate";
 import {useAppDispatch} from "../../../../store/store";
-import {DatePickerField, InputField, RadioGroup, SelectField} from "../../../common/Fields";
+import {DatePickerField, InputField, RadioGroup} from "../../../common/Fields";
 import Button from "../../../common/Button";
-import {useNavigate} from "react-router-dom";
-
+import {useNavigate, useParams} from "react-router-dom";
+import {yesNo} from "../../../../DataLists/yesNo";
 
 
 
@@ -23,60 +20,111 @@ const AnamnesisEdit = () => {
     const {user} = useAppSelector(state => state.userReducer)
     const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
     const navigate = useNavigate();
-
+    const params = useParams<string>()
     const dispatch = useAppDispatch()
 
-    const initialPersonalData: IPatientUpdate = {
-        patientID: SelectedPatient.patientID,
-        employee_id: user!.id,
 
-        personal_data: {
-            first_name: SelectedPatient.personal_data.first_name,
-            second_name: SelectedPatient.personal_data.second_name,
-            patronymic: SelectedPatient.personal_data.patronymic,
-            birthday: SelectedPatient.personal_data.birthday,
-            sex: SelectedPatient.personal_data.sex,
-            region: SelectedPatient.personal_data.region,
-            clinic: SelectedPatient.personal_data.clinic,
-            race: SelectedPatient.personal_data.race,
-        }
+    const initialAnamnesis: any = {
+        disHeartBloodVesselsFirstLineRelatives: SelectedPatient.anamnesis.disHeartBloodVesselsFirstLineRelatives,
+        relativesConnTissDysplasia: SelectedPatient.anamnesis.relativesConnTissDysplasia,
+        heartSurgeriesPr: SelectedPatient.anamnesis.heartSurgeriesPr,
+        heartSurgeriesType: SelectedPatient.anamnesis.heartSurgeriesType,
+        geneticAnalysisPr: SelectedPatient.anamnesis.geneticAnalysisPr,
+        geneticAnalysisRes: SelectedPatient.anamnesis.geneticAnalysisRes,
+        smokingBool: SelectedPatient.anamnesis.smokingBool,
+        smokingExperience: SelectedPatient.anamnesis.smokingExperience,
+        alkoConsumptionBool:SelectedPatient.anamnesis.alkoConsumptionBool,
+        alkoConsumptionExperince:SelectedPatient.anamnesis.alkoConsumptionExperince,
+        drugConsumptionBool:SelectedPatient.anamnesis.drugConsumptionBool,
+        drugConsumptionExperince:SelectedPatient.anamnesis.drugConsumptionExperince,
+        occupationalHazards: SelectedPatient.anamnesis.occupationalHazards,
+        sports: SelectedPatient.anamnesis.sports,
+        diseaseKnowledge:SelectedPatient.anamnesis.diseaseKnowledge,
+        employed:SelectedPatient.anamnesis.employed,
+        blodThinDrugs:SelectedPatient.anamnesis.blodThinDrugs,
+        disaggregants:SelectedPatient.anamnesis.disaggregants,
     }
-    const {data, errors, handleInputChange, handleKeyDown, validate} = useForm(initialPersonalData, true, validatorConfig);
+    const {data, errors, handleInputChange, handleKeyDown, validate} = useForm(initialAnamnesis, true, validatorConfig);
     const [updatePatient, {}] = patientAPI.useUpdatePatientMutation();// {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями
 
     const handleUpdate = async (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
         if (validate(data))
         {
-            await updatePatient(data)
+            const UpdatePatientData: IPatientUpdate = {
+                patientID: SelectedPatient.patientID,
+                employee_id: user!.id,
+                anamnesis: {
+                    disHeartBloodVesselsFirstLineRelatives: data.disHeartBloodVesselsFirstLineRelatives,
+                    relativesConnTissDysplasia: data.relativesConnTissDysplasia,
+                    heartSurgeriesPr: data.heartSurgeriesPr,
+                    heartSurgeriesType: data.heartSurgeriesType,
+                    geneticAnalysisPr: data.geneticAnalysisPr,
+                    geneticAnalysisRes: data.geneticAnalysisRes,
+                    smokingBool: data.smokingBool,
+                    smokingExperience: data.smokingExperience,
+                    alkoConsumptionBool:data.alkoConsumptionBool,
+                    alkoConsumptionExperince:data.alkoConsumptionExperince,
+                    drugConsumptionBool:data.drugConsumptionBool,
+                    drugConsumptionExperince:data.drugConsumptionExperince,
+                    occupationalHazards: data.occupationalHazards,
+                    sports: data.sports,
+                    diseaseKnowledge:data.diseaseKnowledge,
+                    employed:data.employed,
+                    blodThinDrugs:data.blodThinDrugs,
+                    disaggregants:data.disaggregants,
+
+                }
+            }
+            await updatePatient(UpdatePatientData)
+            navigate(`/auth/menu/patients/${SelectedPatient.patientID}/anamnesis`)
+
         }
     }
     return (
-            <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
-                <InputField autoFocus name='first_name' label='Имя'/>
-                <InputField name='second_name' label='Фамилия'/>
-                <InputField name='patronymic' label='Отчество'/>
-                <RadioGroup name='sex' items={genderItems}/>
+        <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
+            <InputField autoFocus name='disHeartBloodVesselsFirstLineRelatives' label='Заболевания сердца и сосудов у родственников первой линии'/>
+            <RadioGroup name='relativesConnTissDysplasia' label='Наличие соединительно-тканевой дисплазии у родстенников' items={yesNo}/>
+            <RadioGroup name='heartSurgeriesPr' label='Наличие операций на сердце в прошлом' items={yesNo}/>
+            <InputField autoFocus name='heartSurgeriesType' label='Тип операций на сердце в прошлом'/>
 
-                <DatePickerField
-                    value={data.personal_data?.birthday || 0}
-                    onChange={handleInputChange}
-                    openTo='year'
-                    mask='__.__.____'
-                    label='Дата Рождения'
-                    name='birthdate'
-                    minDate={new Date('1900-01-01')}
-                    renderInput={(params: JSX.IntrinsicAttributes & TextFieldProps) => (
-                        <TextField {...params} {...(errors?.birthYear && { error: true, helperText: errors?.birthYear })} />
-                    )}
-                />
-                <SelectField label='Регион' name='region' options={Regions}  />
-                <SelectField label='Раса' name='race' options={Race}  />
-                <SelectField label='Город' name='clinic' options={ResidenseRegions}  />
+            <RadioGroup name='geneticAnalysisPr' label='Проходил ли генетический анализ' items={yesNo}/>
+            <InputField name='geneticAnalysisRes' label='Результаты генетического анализа'/>
 
-                <Button type='submit' onClick={handleUpdate} fullWidth disabled={Object.keys(errors).length !== 0}>
-                    Сохранить
-                </Button>
+            <RadioGroup name='smokingBool' label='Есть опыт курения' items={yesNo}/>
+            <InputField name='smokingExperience' label='Опыт курения'/>
+
+            <RadioGroup name='alkoConsumptionBool' label='Есть опыт употребления алкоголя' items={yesNo}/>
+            <InputField name='alkoConsumptionExperince' label='Опыт употребления алкоголя'/>
+
+            <RadioGroup name='drugConsumptionBool' label='Есть опыт употребления наркотиков' items={yesNo}/>
+            <InputField name='drugConsumptionExperince' label='Опыт употребления наркотиков'/>
+
+            <InputField name='occupationalHazards' label='Профессиональные вредности'/>
+            <InputField name='sports' label='Занятие спортом'/>
+
+
+            <DatePickerField
+                value={data.personal_data?.birthday || 0}
+                onChange={handleInputChange}
+                openTo='year'
+                mask='__.__.____'
+                label='Когда узнал о заболевании'
+                name='diseaseKnowledge'
+                minDate={new Date('1900-01-01')}
+                renderInput={(params: JSX.IntrinsicAttributes & TextFieldProps) => (
+                    <TextField {...params} {...(errors?.birthYear && { error: true, helperText: errors?.birthYear })} />
+                )}
+            />
+            <RadioGroup name='employed' label='Работает' items={yesNo}/>
+            <RadioGroup name='blodThinDrugs' label='Принимает ли кроворазжижающие препараты' items={yesNo}/>
+            <RadioGroup name='disaggregants' label='Принимает ли дезагреганты' items={yesNo}/>
+
+
+
+            <Button type='submit' onClick={handleUpdate} fullWidth disabled={Object.keys(errors).length !== 0}>
+                Сохранить
+            </Button>
         </Form>
     );
 };

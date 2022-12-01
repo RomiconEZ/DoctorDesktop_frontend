@@ -16,11 +16,6 @@ import { useAppSelector} from "../../../hooks/redux";
 import {Cities} from "../../../DataLists/Cities";
 
 
-
-export type DoctorUpdateFormProps = {
-    doctor: IDoctorFull
-};
-
 const UpdateDoctorForm = () => {
     const {SelectedDoctor: doctor} = useAppSelector(state => state.additionalReducer)
 
