@@ -8,21 +8,6 @@ type ConfigType = {
 
 
 const validatorConfig: ConfigType = {
-  first_name : {
-    isRequired: {
-      message: 'Поле "Имя" обязательно для заполнения',
-    },
-  },
-  second_name: {
-    isRequired: {
-      message: 'Поле "Фамилия" обязательно для заполнения',
-    },
-  },
-  patronymic: {
-    isRequired: {
-      message: 'Поле "Отчество" обязательно для заполнения',
-    },
-  },
 
 
 };

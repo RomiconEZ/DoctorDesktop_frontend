@@ -16,6 +16,7 @@ import {DatePickerField, InputField, RadioGroup, SelectField} from "../../../com
 import Button from "../../../common/Button";
 import {useNavigate, useParams} from "react-router-dom";
 import {yesNo} from "../../../../DataLists/yesNo";
+import {PatientStateData} from "../../../../DataLists/PatientStateData";
 
 
 const ClinicDataEdit = () => {

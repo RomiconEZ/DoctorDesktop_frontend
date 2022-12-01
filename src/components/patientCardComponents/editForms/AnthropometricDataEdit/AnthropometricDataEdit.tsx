@@ -13,6 +13,7 @@ import Button from "../../../common/Button";
 import {useNavigate, useParams} from "react-router-dom";
 import {yesNo} from "../../../../DataLists/yesNo";
 import {Regions} from "../../../../DataLists/Regions";
+import {BodyTypeData} from "../../../../DataLists/BodyTypeData";
 
 
 

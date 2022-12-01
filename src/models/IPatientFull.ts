@@ -121,11 +121,11 @@ export interface IEchocardiogram {
 
     mitralInsuffBool: boolean| number, // наличие митральной недостаточности
     mitralInsuffDegree: string, // степень митральной недостаточности
-    mitralStenBool: boolean| number, // наличие митральной недостаточности
-    mitralStenDegree: string, // степень митральной недостаточности
+    mitralStenBool: boolean| number, // наличие митрального стеноза
+    mitralStenDegree: string, // степень митрального стеноза
     tricuspiBool: boolean| number, // наличие трикуспидальной недостаточности
     tricuspiDegree: string, // степень митральной недостаточности
-    trialSeptalDefectPr: string, // наличие дефекта межпредсердной перегородки
+    trialSeptalDefectPr: boolean| number, // наличие дефекта межпредсердной перегородки
     version: number,
     date: Date | number
 }
