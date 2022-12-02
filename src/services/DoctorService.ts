@@ -1,35 +1,44 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
-import {IDoctorShort} from "../models/IDoctorShort";
 import {IDoctorUpdate} from "../models/IDoctorUpdate";
-import {IDoctorFull} from "../models/IDoctorFull";
 import {IDoctorCreate} from "../models/IDoctorCreate";
-import {Params} from "react-router-dom";
 import {DoctorID} from "./PatientService";
 import {API_URL} from "../env_data";
+import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
+
+export const baseQuery = fetchBaseQuery({
+    baseUrl: API_URL,
+    prepareHeaders: (headers, { getState }) => {
+        const token = localStorage.getItem('token')
+         if (token) {
+            headers.set('Authorization', `Bearer ${token}`)
+        }
+
+        return headers
+    },
+})
 
 export interface PaginationDoctors
 {
-    doctorID: string
+    doctorID: number
     limit: number
     numofpage: number
     queryParams?: string
 }
 export interface DoctorForDoctor
 {
-    doctorID: string
-    selecteddoctorID: string | Params
+    doctorID: number
+    selecteddoctorID: any
 }
 
 export const doctorAPI = createApi({
     reducerPath: 'doctorAPI', // уникальное название
-    baseQuery: fetchBaseQuery({baseUrl: API_URL}),
+    baseQuery: baseQuery,
     tagTypes: ['Doctor'],
     endpoints: (build) => ({
 
-        fetchDoctors: build.query<IDoctorShort[], PaginationDoctors>({
+        fetchDoctors: build.query<any, PaginationDoctors>({
 
             query: (PaginationDoctorsForCertainDoctor) => ({
-                url: `/doctors`,
+                url: '/doctors',
                 params: {
                     _doctorID: PaginationDoctorsForCertainDoctor.doctorID,
                     _limit: PaginationDoctorsForCertainDoctor.limit,
@@ -37,22 +46,22 @@ export const doctorAPI = createApi({
                     _queryParams: PaginationDoctorsForCertainDoctor.queryParams,
                 }
             }),
-            providesTags: result => ['Doctor']
+            providesTags: result => ['Doctor'],
+            keepUnusedDataFor: 300,
         }),
 
-        fetchSelectedDoctor: build.query<IDoctorFull, DoctorForDoctor>({
+        fetchSelectedDoctor: build.query<any, DoctorForDoctor>({
 
             query: (DoctorForDoctor) => ({
                 url: `/doctors/${DoctorForDoctor.selecteddoctorID}`,
                 params: {
                     _doctorID: DoctorForDoctor.doctorID,
-                    _selecteddoctorID: DoctorForDoctor.selecteddoctorID,
                 }
             }),
-            providesTags: result => ['Doctor']
+            keepUnusedDataFor: 300,
         }),
 
-        fetchNumOfDoctors: build.query<number, DoctorID>({
+        fetchNumOfDoctors: build.query<any, DoctorID>({
 
             query: (DoctorID) => ({
                 url: `/doctors/num`,
@@ -71,9 +80,9 @@ export const doctorAPI = createApi({
             }),
             invalidatesTags: ['Doctor']
         }),
-        updateDoctor: build.mutation<IDoctorUpdate, IDoctorUpdate>({ // отправляем только те данные, которые изменяем. И обратно принимаем также только изменившиеся данные
+        updateDoctor: build.mutation<any, IDoctorUpdate>({ // отправляем только те данные, которые изменяем. И обратно принимаем также только изменившиеся данные
             query: (DoctorUpdate) => ({
-                url: `/doctors/${DoctorUpdate.id}/editdoctor`,
+                url: `/doctors/editdoctor/${DoctorUpdate.id}`,
                 method: 'PUT',
                 body: DoctorUpdate
             }),

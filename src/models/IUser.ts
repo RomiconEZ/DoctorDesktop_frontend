@@ -1,16 +1,17 @@
 export interface IUser {
-    id: string;
+    id: number;
     name: string;
     surname: string
     patronymic: string
     region: string
     city: string
-    placeofwork:string
-    birthdate: number
-    sex: string
+    placeOfWork:string
+    birthdate: number | Date
+    sex: boolean | number
     workExperience: number
     occupation: string
     email: string;
     role: number;
     isActivated?: boolean;
+
 }

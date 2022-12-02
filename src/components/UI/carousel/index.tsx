@@ -1,19 +1,34 @@
 import React from "react";
 import Slider from "react-slick";
-import Slide from "./Slide";
 import {
     sliderContent_admin,
     sliderContent_codeveloper, sliderContent_dataadmin,
     sliderContent_developer,
     sliderContent_doctor, sliderContent_expert, sliderContent_registry
 } from "./slider";
-import { NextArrow, PrevArrow } from "./Arrows";
-import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 import {useAppSelector} from "../../../hooks/redux";
+import {NavLink} from "react-router-dom";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import {NextArrow, PrevArrow} from "./Arrows";
+
+export interface ISlideContent {
+    title: string;
+    sections: linkName[];
+    id: number;
+
+}
+export interface linkName {
+    name: string;
+    to: string;
+    id: number;
+}
 
 const Carousel = () => {
+
     const {user} = useAppSelector(state => state.userReducer) // достаем переменные из хранилища
-    let sliderContent=sliderContent_doctor
+
+    let sliderContent: ISlideContent[]=sliderContent_doctor
     switch(user?.role) {
         case 1: {
             sliderContent=sliderContent_doctor;
@@ -51,36 +66,40 @@ const Carousel = () => {
 
     const settings = {
         dots: true,
-        infinite: true,
-        speed: 200,
-        slidesToShow: 1,
+        infinite: false,
+        speed: 800,
+        slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: false,
-        cssEase: "linear",
+
         nextArrow: <NextArrow to="next" />,
         prevArrow: <PrevArrow to="prev" />,
-        appendDots: (dots: string) => (
-            <div className="bg-transparent !pb-[40px]">
-                <ul> {dots} </ul>
-            </div>
-        ),
+        // appendDots: (dots: string) => (
+        //     <div className="bg-transparent !pb-[40px]">
+        //         <ul> {dots} </ul>
+        //     </div>
+        // ),
     };
 
     return (
-        <div className="relative">
+        <div className="my-10 ml-40 mr-40">
             <Slider {...settings}>
-                {sliderContent.map((slideContent) => { // итерация по страницам |  на одной странице 3 блока
-                    return <Slide _Page={slideContent.page} sliderContent={sliderContent} />;
+
+                {sliderContent.map((slideContent:ISlideContent) => {
+                    return <div className=" mx-10 w-100 h-80 mt-30  flex items-center justify-center" key={slideContent.id}>
+                        <h2 className="text-azure-my font-medium uppercase text-2xl mb-6">{slideContent.title}</h2>
+                        {slideContent.sections.map((linkContent: linkName) => {
+                            return <div key={linkContent.id} className="my-4 text-xl hover:text-black-dark-my hover:font-bold">
+                                <NavLink to={linkContent.to}>
+                                    {linkContent.name}
+                                </NavLink>
+                            </div>
+
+
+                        })}
+                    </div>
                 })}
             </Slider>
-            <>
-                <div className="absolute top-1/2 right-4 md:right-3 lg:right-8 shadow-lg rounded-full bg-palette-card/80 p-1 drop-shadow-lg text-[0.8rem] md:text-[1.8rem]">
-                    <HiOutlineChevronRight />
-                </div>
-                <div className="absolute top-1/2 left-4  md:left-3 lg:left-8 shadow-lg rounded-full bg-palette-card/80 p-1 drop-shadow-lg text-[0.8rem] md:text-[1.8rem]">
-                    <HiOutlineChevronLeft />
-                </div>
-            </>
         </div>
     );
 };

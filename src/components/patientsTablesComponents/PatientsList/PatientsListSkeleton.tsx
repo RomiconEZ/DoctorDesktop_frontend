@@ -1,16 +1,22 @@
 import React from 'react';
-import PatientCardSkeleton from "../PatientCard/PatientCardSkeleton";
+import Skeleton from "@mui/material/Skeleton";
 
 const PatientsListSkeleton = ({ pageSize }: { pageSize: number }) => {
   const patientsSkeletonArray = Array(pageSize).fill('');
   return (
-    <ul >
+    <>
       {patientsSkeletonArray.map((_, idx) => (
-        <li key={idx} >
-          <PatientCardSkeleton />
-        </li>
+          <tr key={idx} >
+            <td ><Skeleton variant='text' animation='wave' height={50} /></td>
+            <td><Skeleton variant='text' animation='wave' height={50} /></td>
+            <td><Skeleton variant='text' animation='wave' height={50} /></td>
+            <td><Skeleton variant='text' animation='wave' height={50} /></td>
+            <td><Skeleton variant='text' animation='wave' height={50} /></td>
+            <td><Skeleton variant='text' animation='wave' height={50} /></td>
+            <td><Skeleton variant='text' animation='wave' height={50} /></td>
+          </tr>
       ))}
-    </ul>
+    </>
   );
 };
 

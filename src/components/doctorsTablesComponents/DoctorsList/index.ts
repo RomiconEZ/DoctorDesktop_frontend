@@ -1,3 +1,3 @@
-import RoomsList from './DoctorsList';
+import DoctorsList from './DoctorsList';
 
-export default RoomsList;
+export default DoctorsList;

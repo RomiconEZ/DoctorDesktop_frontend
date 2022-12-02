@@ -1,6 +1,5 @@
 import {TextField, TextFieldProps} from '@mui/material';
 import React from 'react';
-import {useDispatch} from 'react-redux';
 import {DatePickerField, InputField, RadioGroup, SelectField} from '../../common/Fields';
 import validatorConfig from './validatorConfig';
 import {Form, useForm} from "../../../hooks/useForm";
@@ -13,6 +12,7 @@ import {ResidenseRegions} from "../../../DataLists/ResidenseRegions";
 import {Regions} from "../../../DataLists/Regions";
 import {genderItems} from "../../../DataLists/genderItems";
 import {Race} from "../../../DataLists/Race";
+import {Cities} from "../../../DataLists/Cities";
 
 
 
@@ -26,7 +26,7 @@ const CreatePatientForm = () => {
         surname: '',
         patronymic: '',
         birthdate: Date.now(),
-        sex: 'male',
+        sex: true,
         race: 'evr',
         region: user?.region || 'Северо-западный регион',
         city: user?.city || 'Санкт-Петербург',
@@ -67,7 +67,7 @@ const CreatePatientForm = () => {
             <SelectField label='Город' name='city' options={Cities}  />
             <SelectField label='Регион обследования' name='residenseregion' options={ResidenseRegions}  />
 
-            <Button onClick={()=>handleCreate} >
+            <Button type='submit' onClick={handleCreate} fullWidth disabled={Object.keys(errors).length !== 0}>
           Создать
         </Button>
       </Form>

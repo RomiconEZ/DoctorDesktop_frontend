@@ -4,8 +4,8 @@ export interface IPatientShort{
     surname: string
     patronymic: string
     birthdate: number | Date
-    age: string
-    sex: string
+    age: number
+    sex: boolean | number
     region: string
     city: string
     residenseregion: string

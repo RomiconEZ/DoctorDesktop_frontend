@@ -5,21 +5,8 @@ import AuthService from "../../services/AuthService";
 import {AuthResponse} from "../../models/response/AuthResponse";
 import {API_URL} from "../../env_data";
 
-// Асинхронный редусер
+// axios.defaults.timeout = 1000;
 
-// Упрощение для toolkit
-
-// export const fetchUser = createAsyncThunk(
-//     'user',
-//     async (_, thunkAPI) => {
-//         try {
-//             const response = await axios.get<IUser>('https://jsonplaceholder.typicode.com/user2s')
-//             return response.data;
-//         } catch (e) {
-//             return thunkAPI.rejectWithValue("Не удалось загрузить пользователя")
-//         }
-//     }
-// )
 export interface email_and_password{
     email: string,
     password: string,
@@ -30,7 +17,11 @@ export const login = createAsyncThunk(
     async (logdata:email_and_password, thunkAPI) => {
         try {
             const response = await AuthService.login(logdata.email, logdata.password);
+            console.log('Получили ответ с сервера на логин')
+            console.log(response.data.accessToken)
             localStorage.setItem('token', response.data.accessToken);//токен доступа сохрянем в localstorage
+            console.log('Достали из локального хранилища')
+            console.log(localStorage.getItem('token'))
             return response.data.user;
         } catch (e) {
             console.log(e.response?.data?.message);
@@ -56,12 +47,15 @@ export const checkAuth = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             // пользуемся классический запромсом axios без интерсептора, чтобы не делать лишних проверок
-            const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, {withCredentials: true})
-            console.log(response);
+            console.log('Перед проверкой на аунтификацию')
+            console.log(localStorage.getItem('token'))
+            const response = await AuthService.refresh();
+            console.log(response.data);
             localStorage.setItem('token', response.data.accessToken);
             return(response.data.user);
         }
         catch (e) {
+            localStorage.removeItem('token');
             console.log(e.response?.data?.message);
             return(e.response?.data?.message);
         }

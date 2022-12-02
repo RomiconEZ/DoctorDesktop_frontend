@@ -1,6 +1,5 @@
 import React from 'react';
-import "./index.css"
-import {Route, Link, Navigate, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom';
+import {Route, Link, RouterProvider, createBrowserRouter, createRoutesFromElements, Navigate} from 'react-router-dom';
 import Navbar from "./components/UI/Navbar/Navbar";
 import NotFoundPage from "./components/pages/NotFoundPage";
 import Root from "./components/UI/Root";
@@ -21,7 +20,29 @@ import SelectedPatientPage from "./components/patientCardComponents/SelectedPati
 import DoctorsTablePage from "./components/pages/DoctorsTablePage";
 import DoctorPage from "./components/pages/DoctorPage";
 import PatientsTablePage from "./components/pages/PatientsTablePage";
-// нужно импортнуть страницы
+import "./index.css";
+import SelfPage from "./components/pages/SelfPage";
+import GraphInterPage from "./components/pages/GraphInterPage";
+import {RequireAuthSelfPage} from "./components/hoc/RequireAuthSelfPage";
+import {RequireAuthGraphInterPage} from "./components/hoc/RequireAuthGraphInterPage";
+import PersonalDataReadOnly from "./components/patientCardComponents/readOnlyForms/PersonalDataReadOnly";
+import AnamnesisReadOnly from "./components/patientCardComponents/readOnlyForms/AnamnesisReadOnly";
+import ClinicDataReadOnly from "./components/patientCardComponents/readOnlyForms/ClinicDataReadOnly";
+import AnthropometricDataReadOnly from "./components/patientCardComponents/readOnlyForms/AnthropometricDataReadOnly";
+import ComputerTomographyReadOnly from "./components/patientCardComponents/readOnlyForms/ComputerTomographyReadOnly";
+import ConcomDeseasesReadOnly from "./components/patientCardComponents/readOnlyForms/ConcomDeseasesReadOnly";
+import EchoCardiogramReadOnly from "./components/patientCardComponents/readOnlyForms/EchoCardiogramReadOnly";
+import PersonalDataEdit from "./components/patientCardComponents/editForms/PersonalDataEdit";
+import AnthropometricDataEdit from "./components/patientCardComponents/editForms/AnthropometricDataEdit";
+import ComputerTomographyEdit from "./components/patientCardComponents/editForms/ComputerTomographyEdit";
+import ClinicDataEdit from "./components/patientCardComponents/editForms/ClinicDataEdit";
+import AnamnesisEdit from "./components/patientCardComponents/editForms/AnamnesisEdit";
+import ConcomDeseasesEdit from "./components/patientCardComponents/editForms/ConcomDeseasesEdit";
+import EchoCardiogramEdit from "./components/patientCardComponents/editForms/EchoCardiogramEdit";
+import MSCTReadOnly from "./components/patientCardComponents/readOnlyForms/MSCTReadOnly";
+import MSCTEdit from "./components/patientCardComponents/editForms/MSCTEdit";
+import NeuralNetEdit from "./components/patientCardComponents/editForms/NeuralNetEdit";
+import NeuralNetReadOnly from "./components/patientCardComponents/readOnlyForms/NeuralNetReadOnly";
 
 // doctor - 1
 // developer - 2
@@ -31,110 +52,252 @@ import PatientsTablePage from "./components/pages/PatientsTablePage";
 // expert - 6
 // dataadmin - 7
 
-
-const router = createBrowserRouter(
-    createRoutesFromElements(
+const router = createBrowserRouter(createRoutesFromElements
+    (
         <Route path="/" element={<Root/>}>
             <Route index element={<Navigate to="login" />} />
-            <Route  path="login" element={<LoginPage/>} />
-
-            <Route path="auth" element={<Navbar/>} />
-
-            <Route path="*" element={<NotFoundPage/>}/>
-
             <Route
-                path="menu"
-                element= {
-                    <RequireAuthMenuPage>
-                        <MenuPage/>
-                    </RequireAuthMenuPage>
-                }
-            >
+                element={<LoginPage/>}
+                path="login"
+            />
+
+            <Route path="auth" element={<Navbar/>}>
 
                 <Route
-                    path="newpatient"
-                    element={
-                            <RequireAuthCreatePatientPage>
-                                <CreatePatientPage/>
-                            </RequireAuthCreatePatientPage>
+                    element=
+                        {
+                        <RequireAuthMenuPage>
+                            <MenuPage/>
+                        </RequireAuthMenuPage>
                         }
+                    path="menu"
                 />
-
-                <Route
-                    path="newdoctor"
-                    element={
-                            <RequireAuthCreateDoctorPage>
-                                <CreateDoctorPage/>
-                            </RequireAuthCreateDoctorPage>
-                        }
-                />
-
-                <Route
-                    path="doctors"
-                    element={
-                            <RequireAuthDoctorsListPage>
-                                <DoctorsTablePage/>
-                            </RequireAuthDoctorsListPage>
-                        }
-                >
 
                     <Route
-                        path="editdoctor/:id"
-                        element={
+                        element=
+                            {
+                                <RequireAuthCreatePatientPage>
+                                    <CreatePatientPage/>
+                                </RequireAuthCreatePatientPage>
+                            }
+                        path="menu/newpatient"
+                    />
+
+                    <Route
+                        element=
+                            {
+                                <RequireAuthCreateDoctorPage>
+                                    <CreateDoctorPage/>
+                                </RequireAuthCreateDoctorPage>
+                            }
+                        path="menu/newdoctor"
+                    />
+                    <Route
+                        element=
+                            {
+                                    <GraphInterPage/>
+                            }
+                        path="menu/graphinter"
+                    />
+
+                    <Route
+                        element=
+                            {
                                 <RequireAuthUpdateDoctorPage>
                                     <UpdateDoctorPage/>
                                 </RequireAuthUpdateDoctorPage>
                             }
+                        path="menu/doctors/editdoctor/:id"
                     />
-
                     <Route
-                        path=":id"
-                        element={
+                        element=
+                            {
+                                <RequireAuthSelfPage>
+                                    <SelfPage/>
+                                </RequireAuthSelfPage>
+                            }
+                        path="menu/selfpage"
+                    />
+                    <Route
+                        element=
+                            {
+                                <RequireAuthGraphInterPage>
+                                <GraphInterPage/>
+                                </RequireAuthGraphInterPage>
+                            }
+                        path="menu/graphinter"
+                    />
+                    <Route
+                        element=
+                            {
+                                <RequireAuthDoctorsListPage>
+                                    <DoctorsTablePage/>
+                                </RequireAuthDoctorsListPage>
+                            }
+                        path="menu/doctors"
+                    />
+                    <Route
+                        element=
+                            {
                                 <RequireAuthDoctorPage>
                                     <DoctorPage/>
                                 </RequireAuthDoctorPage>
                             }
+                        path="menu/doctors/:id"
+                    />
+                    <Route
+                        element=
+                            {
+                                <RequireAuthPatientsListPage>
+                                    <PatientsTablePage/>
+                                </RequireAuthPatientsListPage>
+                            }
+                        path="menu/patients"
                     />
 
-                </Route>
-
-
-                <Route
-                    path="patients"
-                    element={
-                            <RequireAuthPatientsListPage>
-                                <PatientsTablePage/>
-                            </RequireAuthPatientsListPage>
-                        }
-                >
+                <Route path="menu/patients/:id" element={<RequireAuthPatientPage><SelectedPatientPage/></RequireAuthPatientPage>}>
+                    <Route
+                        element=
+                            {
+                                <PersonalDataReadOnly/>
+                            }
+                        path="personal-data"
+                    />
+                    <Route
+                        element=
+                            {
+                                <PersonalDataEdit/>
+                            }
+                        path="personal-data/edit"
+                    />
+                    <Route
+                        element=
+                            {
+                                <AnthropometricDataReadOnly/>
+                            }
+                        path="anthropometric-data"
+                    />
+                    <Route
+                        element=
+                            {
+                                <AnthropometricDataEdit/>
+                            }
+                        path="anthropometric-data/edit"
+                    />
+                    <Route
+                        element=
+                            {
+                                <ComputerTomographyReadOnly/>
+                            }
+                        path="computer-aided-tomography"
+                    />
+                    <Route
+                        element=
+                            {
+                                <ComputerTomographyEdit/>
+                            }
+                        path="computer-aided-tomography/edit"
+                    />
+                    <Route
+                        element=
+                            {
+                                <ClinicDataReadOnly/>
+                            }
+                        path="clinic-data"
+                    />
+                    <Route
+                        element=
+                            {
+                                <ClinicDataEdit/>
+                            }
+                        path="clinic-data/edit"
+                    />
+                    <Route
+                        element=
+                            {
+                                <AnamnesisReadOnly/>
+                            }
+                        path="anamnesis"
+                    />
+                    <Route
+                        element=
+                            {
+                                <AnamnesisEdit/>
+                            }
+                        path="anamnesis/edit"
+                    />
+                    <Route
+                        element=
+                            {
+                                <ConcomDeseasesReadOnly/>
+                            }
+                        path="concom-deseases"
+                    />
+                    <Route
+                        element=
+                            {
+                                <ConcomDeseasesEdit/>
+                            }
+                        path="concom-deseases/edit"
+                    />
+                    <Route
+                        element=
+                            {
+                                <EchoCardiogramReadOnly/>
+                            }
+                        path="echocardiogram"
+                    />
+                    <Route
+                        element=
+                            {
+                                <EchoCardiogramEdit/>
+                            }
+                        path="echocardiogram/edit"
+                    />
 
                     <Route
-                        path=":id"
-                        element={
-                                <RequireAuthPatientPage>
-                                    <SelectedPatientPage/>
-                                </RequireAuthPatientPage>
+                        element=
+                            {
+                                <MSCTReadOnly/>
                             }
+                        path="msct"
+                    />
+                    <Route
+                        element=
+                            {
+                                <MSCTEdit/>
+                            }
+                        path="msct/edit"
+                    />
+                    <Route
+                        element=
+                            {
+                                <NeuralNetReadOnly/>
+                            }
+                        path="neural-net"
+                    />
+                    <Route
+                        element=
+                            {
+                                <NeuralNetEdit/>
+                            }
+                        path="neural-net/edit"
                     />
                 </Route>
-
-
-
             </Route>
-
-
+            <Route path="*" element={<NotFoundPage/>} />
         </Route>
     )
-);
+)
 
 function App() {
 
     return (
 
-        <div>
-            <RouterProvider router={router}/>
-        </div>
-    );
+    <div className="h-screen w-screen">
+        <RouterProvider router={router} />
+    </div>
+  );
 }
 
 export default App;

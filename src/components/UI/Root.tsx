@@ -1,17 +1,15 @@
 import React from 'react';
-import {Link, Outlet, NavLink} from "react-router-dom";
-import Navbar from "./Navbar/Navbar";
-import {useAppSelector} from "../../hooks/redux";
+import {Outlet} from "react-router-dom";
 
 
 const Root = () => {
-    const {user, isLoading, error, isAuth} = useAppSelector(state => state.userReducer)
+
     return (
-        <div>
 
+        <div className="z-[0] h-screen w-screen">
             <Outlet/>
-
         </div>
+
     )
 };
 

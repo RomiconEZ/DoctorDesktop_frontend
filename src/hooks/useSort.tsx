@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {isArray} from "util";
 
 type Order = 'asc' | 'desc';
 
@@ -21,7 +22,11 @@ export default function useSort<T>(items: T[], initialSortBy: { path: keyof T; o
       : (a: T, b: T) => -descendingComparator(a, b, orderBy);
   }
 
-  function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
+  function stableSort<T>(array: Array<T>, comparator: (a: T, b: T) => number) {
+    console.log("StableSort")
+    console.log(array)
+    console.log(Array.isArray(array))
+
     const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
     stabilizedThis.sort((a, b) => {
       const order = comparator(a[0], b[0]);

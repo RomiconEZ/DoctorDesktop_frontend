@@ -1,30 +1,13 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import {useParams} from "react-router-dom";
-import {patientAPI, PatientForDoctor} from "../../../services/PatientService";
-import {additionalSlice} from "../../../store/reducers/AdditionalSlice";
-
-const {user} = useAppSelector(state => state.userReducer)
-const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
+import {useNavigate} from "react-router-dom";
 
 
 const PersonalDataReadOnly = () => {
+    const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
     const dispatch = useAppDispatch()
+    const navigate = useNavigate();
 
-    const params = useParams<string>()
-    const body: PatientForDoctor = {
-        doctorID: user?.id || '',
-        patientID: params || ''
-    }
-    const {data: patient, error, isLoading, refetch} =  patientAPI.useFetchSelectedPatientQuery(body)
-
-
-    if (patient != undefined)
-    {
-        dispatch(additionalSlice.actions.ChangeSelectedPatient(patient))
-    }
-
-    const birthday = new Date(SelectedPatient.personal_data.birthday)
     return (
 
         <div className='p-8'>
@@ -40,7 +23,7 @@ const PersonalDataReadOnly = () => {
 
                 <div className='flex'>
                     <span className='text-slate-400 w-1/2'>Дата рождения</span>
-                    <span className='text-slate-800 w-1/2'>{birthday.toLocaleDateString()}</span>
+                    <span className='text-slate-800 w-1/2'>{SelectedPatient.personal_data.birthday}</span>
                 </div>
 
                 <div className='flex'>
@@ -63,7 +46,7 @@ const PersonalDataReadOnly = () => {
 
 
             <button
-                onClick={()=>dispatch(additionalSlice.actions.ChangeIsEditButtonPressed(true))}
+                onClick={()=>navigate(`edit`)}
                 className="relative mt-8 bottom-2 left-3/4 p-2 bg-transparent
                 text-blue-600 font-semibold border border-blue-600
                 rounded hover:bg-blue-600 hover:text-white hover:border-transparent

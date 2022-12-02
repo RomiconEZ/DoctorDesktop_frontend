@@ -17,6 +17,7 @@ const RequireAuthMenuPage = ({children}) => {
 
     if (!isAuth)
     {
+
         return <Navigate to='/login' state={{from: location}} />
     }
 

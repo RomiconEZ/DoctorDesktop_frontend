@@ -1,4 +1,4 @@
 export const genderItems = [
-    {id: 'male', title: 'Мужчина'},
-    {id: 'female', title: 'Женщина'},
+    {id: 1, title: "Мужчина"},
+    {id: 0, title: "Женщина"},
 ];

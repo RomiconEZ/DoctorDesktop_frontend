@@ -2,7 +2,6 @@ import React, {FC, useState} from 'react';
 import {useAppDispatch} from "../../store/store";
 import {login} from "../../store/reducers/ActionCreators";
 import Button from "../common/Button"
-import {TestLogin} from "../../store/reducers/UserSlice"
 
 
 const LoginForm: FC = () => {
@@ -11,32 +10,31 @@ const LoginForm: FC = () => {
     const [password, setPassword] = useState<string>('')
 
     return (
-        <div className="flex justify-center items-center h-screen flex-wrap">
-            <div className="grid columns-1 gap-y-3">
-                <h1 className="flex justify-center">Вход</h1>
+        <div className="z-[10] fixed justify-center items-center h-screen flex-wrap">
+            <div className="grid columns-1 gap-y-3 w-500" >
+                <h1 className="flex justify-center font-lg text-black-dark-my font-semibold">ВХОД</h1>
                 <input
                     onChange={e => setEmail(e.target.value)}
                     value={email}
                     type="text"
                     placeholder='Email'
-                    className = 'text-slate-400 bg-gray-50 p-1 pl-4 border rounded-md border-gray-300'
+                    className = 'h-8 w-100 text-slate-400 bg-gray-50 p-1 pl-4 border rounded-md border-gray-300'
                 />
                 <input
                     onChange={e => setPassword(e.target.value)}
                     value={password}
                     type="password"
                     placeholder='Пароль'
-                    className = 'text-slate-400 bg-gray-50 p-1 pl-4 border rounded-md border-gray-300'
+                    className = 'h-8 w-100 text-slate-400 bg-gray-50 p-1 pl-4 border rounded-md border-gray-300'
                 />
 
                 <Button
-                    // onClick={()=>dispatch(login({email: email, password: password}))}
-                    onClick={()=>dispatch(TestLogin(true))}
-
+                    onClick={()=>dispatch(login({email: email, password: password}))}
                 >
                     Войти
                 </Button>
             </div>
+
         </div>
     );
 };

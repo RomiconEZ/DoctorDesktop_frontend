@@ -1,29 +1,44 @@
-import { createSlice } from '@reduxjs/toolkit';
-import {AppThunk, RootState} from '../store';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IDoctorShort} from "../../models/IDoctorShort";
-import {doctorAPI, PaginationDoctors} from "../../services/DoctorService";
+import {useAppSelector} from "../../hooks/redux";
+import {RootState} from "../store";
 
-const doctorsSlice = createSlice({
-  name: 'doctorsTable',
-  initialState: {
-    entities: [] as Array<IDoctorShort>,
-    filteredEntities: [] as Array<IDoctorShort>,
-    isLoading: true as boolean,
-    error: null as string | null,
-  },
-  reducers: {
-    doctorsRequested: state => {
+interface DoctorTableState {
+  entities: Array<IDoctorShort>;
+  filteredEntities: Array<IDoctorShort>;
+  isLoading: boolean;
+  error: string | null;
+}
+
+const initialState: DoctorTableState = {
+  entities: [],
+  filteredEntities: [] ,
+  isLoading: true,
+  error: null,
+}
+
+
+export const doctorsSlice = createSlice({
+  name: 'doctorAPI',
+  initialState,
+  reducers:
+      {
+    doctorsRequested (state) {
       state.isLoading = true;
     },
-      doctorsReceived: (state, action) => {
+
+      doctorsReceived (state, action: PayloadAction<Array<IDoctorShort>>)
+      {
       state.entities = action.payload;
-      state.isLoading = false;
+      state.isLoading = !state.isLoading;
     },
-    filteredDoctorsReceived: (state, action) => {
+    filteredDoctorsReceived (state, action: PayloadAction<Array<IDoctorShort>>)
+{
       state.filteredEntities = action.payload;
       state.isLoading = false;
     },
-      doctorsRequestFailed: (state, action) => {
+      doctorsRequestFailed (state, action)
+      {
       state.error = action.payload;
       state.isLoading = false;
     },
@@ -31,9 +46,15 @@ const doctorsSlice = createSlice({
   },
 });
 
-const { actions, reducer: doctorsReducer } = doctorsSlice;
+export default doctorsSlice.reducer; // вытаскиваем reducer
 
-const { doctorsRequested, doctorsReceived, doctorsRequestFailed, filteredDoctorsReceived } = actions;
+export const getDoctorsLoadingStatus = () => (state: RootState) => state.doctorsReducer.isLoading;
+
+
+
+// const { actions, reducer: doctorsReducer } = doctorsSlice;
+//
+// export const { doctorsRequested, doctorsReceived, doctorsRequestFailed, filteredDoctorsReceived } = actions;
 
 // const addBookingRoomRequested = createAction('rooms/addBookingRoomRequested');
 // const addBookingRoomRequestedSuccess = createAction('rooms/addBookingRoomRequestedSuccess');
@@ -46,39 +67,42 @@ const { doctorsRequested, doctorsReceived, doctorsRequestFailed, filteredDoctors
 // const roomUpdateRequested = createAction('rooms/roomUpdateRequested');
 // const roomUpdateRequestedFailed = createAction('rooms/roomUpdateRequestedFailed');
 
-export const loadDoctorsList = (userID: string ): AppThunk => async dispatch => {
-  dispatch(doctorsRequested());
-  try {
-      const body: PaginationDoctors = {
-          doctorID: userID,
-          limit: -1,
-          numofpage: -1,
-      }
-      const {data: doctors, error, isLoading, refetch} =  doctorAPI.useFetchDoctorsQuery(body)
-    dispatch(doctorsReceived(doctors || []));
-  } catch (error) {
-    dispatch(doctorsRequestFailed(error.message));
-  }
-};
-
-export const loadFilteredDoctorsList =
-  (userID: string  , _queryParams?: any): AppThunk =>
-  async dispatch => {
-    dispatch(doctorsRequested());
-    try {
-        const body: PaginationDoctors = {
-            doctorID: userID,
-            limit: -1,
-            numofpage: -1,
-            queryParams: _queryParams,
-        }
-        const {data: doctors, error, isLoading, refetch} =  doctorAPI.useFetchDoctorsQuery(body)
-
-      dispatch(filteredDoctorsReceived(doctors || []));
-    } catch (error) {
-      dispatch(doctorsRequestFailed(error.message));
-    }
-  };
+// export const LoadDoctorsList = (userID: number ) => {
+//
+//     try {
+//       dispatch(doctorsRequested());
+//       const body: PaginationDoctors = {
+//           doctorID: userID,
+//           limit: 100,
+//           numofpage: -1,
+//       }
+//       const {data: doctors, error, isLoading, refetch} =  doctorAPI.useFetchDoctorsQuery(body)
+//       console.log(error)
+//       console.log(doctors)
+//       dispatch(doctorsReceived(doctors || []));
+//   } catch (error) {
+//       console.log(error)
+//         dispatch(doctorsRequestFailed(error.message));
+//   }
+// };
+// export const LoadFilteredDoctorsList=(userID: number  , _queryParams?: any)=>{
+//     const dispatch = useAppDispatch()
+//     dispatch(doctorsRequested());
+//
+//     try {
+//         const body: PaginationDoctors = {
+//             doctorID: userID,
+//             limit: -1,
+//             numofpage: -1,
+//             queryParams: _queryParams,
+//         }
+//         const {data: doctors, error, isLoading, refetch} =  doctorAPI.useFetchDoctorsQuery(body)
+//
+//       dispatch(filteredDoctorsReceived(doctors || []));
+//     } catch (error) {
+//         dispatch(doctorsRequestFailed(error.message));
+//     }
+//   };
 
 // export const addBookingRoom =
 //   (payload: BookingType): AppThunk =>
@@ -117,15 +141,15 @@ export const loadFilteredDoctorsList =
 //     }
 //   };
 
-export const getDoctors = () => (state: RootState) => state.doctors.entities;
-export const getFilteredDoctors = () => (state: RootState) => state.doctors.filteredEntities;
-export const getDoctorsLoadingStatus = () => (state: RootState) => state.doctors.isLoading;
-
-export const getDoctorById = (doctorId: string) => (state: RootState) => {
-  if (state.doctors.entities) {
-    return state.doctors.entities.find(doctor => doctor.id === doctorId);
-  }
-};
+// export const getDoctors = () => (state: RootState) => state.doctors.entities;
+// export const getFilteredDoctors = () => (state: RootState) => state.doctors.filteredEntities;
+// export const getDoctorsLoadingStatus = () => (state: RootState) => state.doctors.isLoading;
+//
+// export const getDoctorById = (doctorId: number) => (state: RootState) => {
+//   if (state.doctors.entities) {
+//     return state.doctors.entities.find(doctor => doctor.id === doctorId);
+//   }
+// };
 
 // export const getRoomsByIds = (roomsIds: string[]) => (state: RootState) => {
 //   if (state.rooms.entities) {
@@ -134,4 +158,4 @@ export const getDoctorById = (doctorId: string) => (state: RootState) => {
 //   return [];
 // };
 
-export default doctorsReducer;
+// export default doctorsReducer;

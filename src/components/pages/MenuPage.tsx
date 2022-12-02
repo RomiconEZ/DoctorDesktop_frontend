@@ -1,7 +1,7 @@
 import React from 'react';
 import {useAppSelector} from "../../hooks/redux";
 import Carousel from "../UI/carousel";
-import Navbar from "../UI/Navbar/Navbar";
+import Loader from "../common/Loader";
 
 const PostContainer = () => {
     const {isLoading, error} = useAppSelector(state => state.userReducer);
@@ -10,10 +10,11 @@ const PostContainer = () => {
     return (
         <div>
             <div>
-                <Navbar />
-                {isLoading && <h1>Идет загрузка...</h1>}
-                {error && <h1>Произошла ошибка при загрузке</h1>}
-                {/*<Carousel />*/}
+                {isLoading && <Loader/>}
+                {error && <div className="flex justify-center items-center h-screen flex-wrap">
+                    <h1 className="text-xl font-medium text-azure-my">
+                        Произошла ошибка при загрузке</h1> </div>}
+                <Carousel />
             </div>
         </div>
     );

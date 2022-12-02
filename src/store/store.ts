@@ -5,15 +5,16 @@ import additionalReducer from './reducers/AdditionalSlice'
 import {patientAPI} from "../services/PatientService";
 import {doctorAPI} from "../services/DoctorService";
 import {useDispatch} from "react-redux";
-import doctorsReducer from "./reducers/DoctorsSlice";
 import patientsReducer from "./reducers/PatientsSlice";
+import doctorsReducer from './reducers/DoctorsSlice'
+
 
 // не обязательно объединять все reducers
 const rootReducer = combineReducers({
     userReducer, // слайс
     additionalReducer,
-    doctors: doctorsReducer,
-    patients: patientsReducer,
+    patientsReducer,
+    doctorsReducer,
     // регистрация reducer
     [patientAPI.reducerPath]: patientAPI.reducer,
     [doctorAPI.reducerPath]: doctorAPI.reducer,

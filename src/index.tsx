@@ -6,13 +6,16 @@ import {setupStore} from "./store/store";
 import * as serviceWorkerRegistration from './components/UI/DWV/serviceWorkerRegistration'
 
 
+
 const store = setupStore();
+
 
 ReactDOM.render(
     <Provider store={store}>
         <App />
     </Provider>,
-  document.getElementById('root')
+
+document.getElementById('root')
 );
 
 serviceWorkerRegistration.register();
