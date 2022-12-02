@@ -96,7 +96,7 @@ export const initialPatientState: IPatientFull = {
             mitralStenDegree: "", // степень митральной недостаточности
             tricuspiBool: 0, // наличие трикуспидальной недостаточности
             tricuspiDegree: "", // степень митральной недостаточности
-            trialSeptalDefectPr: "", // наличие дефекта межпредсердной перегородки
+            trialSeptalDefectPr: 0, // наличие дефекта межпредсердной перегородки
             version: 0,
             date: 0
         },

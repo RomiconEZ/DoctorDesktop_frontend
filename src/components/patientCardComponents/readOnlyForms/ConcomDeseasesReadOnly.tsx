@@ -16,7 +16,7 @@ const ConcomDeseasesReadOnly = () => {
     return (
 
         <div className='p-8'>
-            <h1 className='font-medium text-lg text-slate-800 pb-4'>Сопутствующие заболевания режим чтения</h1>
+            <h1 className='font-medium text-lg text-slate-800 pb-4'>Сопутствующие заболевания пациента режим чтения</h1>
             <div className='grid grid-cols-2 gap-y-3 mb-4'>
 
                 <div className='flex'>

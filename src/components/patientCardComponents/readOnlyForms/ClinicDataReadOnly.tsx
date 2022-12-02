@@ -11,7 +11,7 @@ const ClinicDataReadOnly = () => {
     return (
 
         <div className='p-8'>
-            <h1 className='font-medium text-lg text-slate-800 pb-4'>Анамнез пациента режим чтения</h1>
+            <h1 className='font-medium text-lg text-slate-800 pb-4'>Клинические данные режим чтения</h1>
 
             <div className='grid grid-cols-2 gap-y-3 mb-4'>
 
