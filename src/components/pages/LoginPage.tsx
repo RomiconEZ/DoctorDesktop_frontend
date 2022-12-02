@@ -33,7 +33,7 @@ const LoginPage = () => {
 
 
     return (
-        <div>
+        <div className='z-[0]'>
             {isLoading && <Loader/>}
             <LoginForm/>
         </div>

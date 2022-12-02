@@ -10,7 +10,7 @@ const LoginForm: FC = () => {
     const [password, setPassword] = useState<string>('')
 
     return (
-        <div className="z-[10] fixed justify-center items-center h-screen flex-wrap">
+        <div className="z-[10] flex flex-row justify-self-center place-content-center content-center items-center h-screen">
             <div className="grid columns-1 gap-y-3 w-500" >
                 <h1 className="flex justify-center font-lg text-black-dark-my font-semibold">ВХОД</h1>
                 <input

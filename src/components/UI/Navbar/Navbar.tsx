@@ -9,15 +9,11 @@ import {logOutIcon, tableIcon, userIcon, menuIcon} from "../../common/icons";
 const Navbar = () => {
     const {user, isAuth} = useAppSelector(state => state.userReducer)
     const dispatch = useAppDispatch()
-    const handleLogout = async (e: React.FormEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-        dispatch(logout())
-    }
 
     return (
         <div className='h-screen w-screen'>
 
-            <nav className="z-[200] flex w-full justify-between pt-5 pb-4 pr-10 pl-10 bg-black-dark-navbar">
+            <nav className="z-[90] flex w-full justify-between pt-5 pb-4 pr-10 pl-10 bg-black-dark-navbar">
                 <ul className="flex justify-between items-center gap-x-4">
 
 
@@ -40,10 +36,6 @@ const Navbar = () => {
                         {user?.role===6 && <div> Data-администратор</div>}
                     </li>
                 </ul>
-
-
-
-
 
 
                 <ul className="flex justify-between items-center gap-x-8">
@@ -71,8 +63,7 @@ const Navbar = () => {
                     <li>
                         <ButtonWithIcon
                             icon={logOutIcon}
-                            onClick={()=>handleLogout}
-                        >
+                            onClick={()=>dispatch(logout())}>
                             Выйти
                         </ButtonWithIcon>
                     </li>
