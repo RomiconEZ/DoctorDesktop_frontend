@@ -11,6 +11,8 @@ import {NavLink} from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {NextArrow, PrevArrow} from "./Arrows";
+import ButtonWithIcon from "../../common/ButtonWithIcon";
+import {addUserIcon, arrowRightIcon} from "../../common/icons";
 
 export interface ISlideContent {
     title: string;
@@ -80,19 +82,27 @@ const Carousel = () => {
     };
 
     return (
-        <div className="my-10 ml-40 mr-40">
+        <div className="mt-40 ml-40 mr-40 p-5">
             <Slider {...settings}>
 
                 {sliderContent.map((slideContent:ISlideContent) => {
-                    return <div className=" mx-10 w-100 h-80 mt-30  flex items-center justify-center" key={slideContent.id}>
-                        <h2 className="text-azure-my font-medium uppercase text-2xl mb-6">{slideContent.title}</h2>
-                        {slideContent.sections.map((linkContent: linkName) => {
-                            return <div key={linkContent.id} className="my-4 text-xl hover:text-black-dark-my hover:font-bold">
-                                <NavLink to={linkContent.to}>
-                                    {linkContent.name}
-                                </NavLink>
-                            </div>
-                        })}
+                    return <div className="mt-100 mr-5 pr-5 pt-30" key={slideContent.id}>
+                        <div className="bg-white rounded-md m-15 pt-10 pr-5 pl-5 pb-5 h-64 w-72 -pr-7 -mr-6">
+                            <h2 className="text-our-greenish-300 font-medium uppercase text-2xl mb-6">{slideContent.title}</h2>
+                            {slideContent.sections.map((linkContent: linkName) => {
+                                return <div key={linkContent.id} className="">
+                                    <ButtonWithIcon
+                                        icon = {arrowRightIcon}
+                                        className="hover:text-our-greenish-400"
+                                    >
+                                        <NavLink to={linkContent.to}>
+                                            {linkContent.name}
+                                        </NavLink>
+                                    </ButtonWithIcon>
+                                </div>
+                            })}
+                        </div>
+
                     </div>
                 })}
             </Slider>

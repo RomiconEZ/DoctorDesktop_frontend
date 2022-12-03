@@ -65,30 +65,32 @@ const PersonalDataEdit = () => {
     }
     return (
             <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
-                <InputField autoFocus name='first_name' label='Имя'/>
-                <InputField name='second_name' label='Фамилия'/>
-                <InputField name='patronymic' label='Отчество'/>
-               <RadioGroup name='sex' items={genderItems}/>
+                <div className="flex flex-col">
+                    <InputField autoFocus name='first_name' label='Имя'/>
+                    <InputField name='second_name' label='Фамилия'/>
+                    <InputField name='patronymic' label='Отчество'/>
+                   <RadioGroup name='sex' items={genderItems}/>
 
-                <DatePickerField
-                    value={data.personal_data?.birthday || 0}
-                    onChange={handleInputChange}
-                    openTo='year'
-                    mask='__.__.____'
-                    label='Дата Рождения'
-                    name='birthdate'
-                    minDate={new Date('1900-01-01')}
-                    renderInput={(params: JSX.IntrinsicAttributes & TextFieldProps) => (
-                        <TextField {...params} {...(errors?.birthYear && { error: true, helperText: errors?.birthYear })} />
-                    )}
-                />
-                <SelectField label='Регион' name='region' options={Regions}  />
-                <SelectField label='Раса' name='race' options={Race}  />
-                <SelectField label='Город' name='clinic' options={Clinics}  />
+                    <DatePickerField
+                        value={data.personal_data?.birthday || 0}
+                        onChange={handleInputChange}
+                        openTo='year'
+                        mask='__.__.____'
+                        label='Дата Рождения'
+                        name='birthdate'
+                        minDate={new Date('1900-01-01')}
+                        renderInput={(params: JSX.IntrinsicAttributes & TextFieldProps) => (
+                            <TextField {...params} {...(errors?.birthYear && { error: true, helperText: errors?.birthYear })} />
+                        )}
+                    />
+                    <SelectField label='Регион' name='region' options={Regions}  />
+                    <SelectField label='Раса' name='race' options={Race}  />
+                    <SelectField label='Город' name='clinic' options={Clinics}  />
 
-                <Button type='submit' onClick={handleUpdate} fullWidth disabled={Object.keys(errors).length !== 0}>
-                    Сохранить
-                </Button>
+                    <Button type='submit' onClick={handleUpdate} fullWidth disabled={Object.keys(errors).length !== 0}>
+                        Сохранить
+                    </Button>
+                </div>
         </Form>
     );
 };

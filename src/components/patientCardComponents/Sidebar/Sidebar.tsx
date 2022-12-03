@@ -1,51 +1,67 @@
-
-import { MenuItem, MenuList } from '@mui/material';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import SidebarButton from "./SidebarButton";
 
 const Sidebar = () => {
 
-  return (
-    <MenuList className='sidebar'>
-      <MenuItem component={NavLink} className='sidebar-menu__item' to={`personal-data`}>
-        {/*<AccountCircleIcon />*/}
-        Персональные данные
-      </MenuItem>
-        <MenuItem component={NavLink} className='sidebar-menu__item' to={`computer-aided-tomography`}>
-        {/*<StarBorderIcon />*/}
-        Компьютерная томография
-      </MenuItem>
-      <MenuItem component={NavLink} className='sidebar-menu__item' to={`anthropometric-data`} >
-        {/*<FavoriteBorderIcon />*/}
-        Антропометрия
-      </MenuItem>
-      <MenuItem component={NavLink} className='sidebar-menu__item' to={`clinic-data`}>
-        {/*<BookmarkBorderIcon />*/}
-        Клинические данные
-      </MenuItem>
-      <MenuItem component={NavLink} className='sidebar-menu__item' to={`anamnesis`}>
-        {/*<SettingsIcon />*/}
-        Анамнез
-      </MenuItem>
+    return (
+        <ul className='w-4/5 h-full flex border-t border-t-gray-400 flex-col mt-5 pt-5 gap-y-4 overflow-hidden'>
+            <li>
+                <SidebarButton>
+                    <NavLink to="personal-data">Персональные данные</NavLink>
+                </SidebarButton>
+            </li>
 
-        <MenuItem component={NavLink} className='sidebar-menu__item' to={`concom-deseases`}>
-            {/*<SettingsIcon />*/}
-            Сопутствующие заболевания
-        </MenuItem>
-        <MenuItem component={NavLink} className='sidebar-menu__item' to={`echocardiogram`}>
-            {/*<SettingsIcon />*/}
-            ЭХОГК
-        </MenuItem>
-        <MenuItem component={NavLink} className='sidebar-menu__item' to={`msct`}>
-            {/*<SettingsIcon />*/}
-            МСКТ
-        </MenuItem>
-        <MenuItem component={NavLink} className='sidebar-menu__item' to={`neural-net`}>
-            {/*<SettingsIcon />*/}
-            Нейронная сеть
-        </MenuItem>
-    </MenuList>
-  );
+            <li>
+                <SidebarButton>
+                    <NavLink to="computer-aided-tomography">Компьютерная томография</NavLink>
+                </SidebarButton>
+            </li>
+
+            <li>
+                <SidebarButton>
+                    <NavLink to="anthropometric-data">Антропометрия</NavLink>
+                </SidebarButton>
+            </li>
+
+            <li>
+                <SidebarButton>
+                    <NavLink to="clinic-data">Клинические данные</NavLink>
+                </SidebarButton>
+            </li>
+
+            <li>
+                <SidebarButton>
+                    <NavLink to="anamnesis">Анамнез</NavLink>
+                </SidebarButton>
+            </li>
+
+            <li>
+                <SidebarButton>
+                    <NavLink to="concom-deseases">Сопутствующие заболевания</NavLink>
+                </SidebarButton>
+            </li>
+
+            <li>
+                <SidebarButton>
+                    <NavLink to="echocardiogram">ЭХОГК</NavLink>
+                </SidebarButton>
+            </li>
+
+            <li>
+                <SidebarButton>
+                    <NavLink to="msct">МСКТ</NavLink>
+                </SidebarButton>
+            </li>
+
+            <li>
+                <SidebarButton>
+                    <NavLink to="neural-net">Нейронная сеть</NavLink>
+                </SidebarButton>
+            </li>
+
+        </ul>
+    );
 };
 
 export default Sidebar;

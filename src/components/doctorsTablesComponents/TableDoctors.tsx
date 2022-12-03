@@ -65,44 +65,52 @@ const TableDoctors = () => {
     // }, [searchFilters]);
 
     return (
-        <>
         <div className="mt-3">
 
-            <Searchbar value={searchTerm} onChange={handleChangeSearch} />
-            <DoctorsSort sortBy={sortBy} onSort={handleSort} />
-            <DoctorsDisplayCount count={pageSize} setCount={handleChangePageSize} options={setPageSizeOptions} />
-            <table className="min-w-full mt-5">
-                <thead className="bg-white border-b">
-                <tr>
-                    <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Фамилия Имя Отчество</th>
-                    <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Возраст</th>
-                    <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Опыт работы</th>
-                    <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Место работы</th>
-                    <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">ID</th>
-                </tr>
-                </thead>
-                <tbody>
-                {isLoading ? <DoctorsListSkeleton pageSize={pageSize} /> : <DoctorsList doctors={doctorsListCrop} />}
-                {doctorsListCrop.length === 0 && <tr className="text-azure-my font-medium">
-                    <td>Сотрудники не найдены</td>
-                </tr>}
-                </tbody>
-            </table>
+            <div className="flex flex-row w-2/3">
+                <Searchbar value={searchTerm} onChange={handleChangeSearch} />
+                <DoctorsSort sortBy={sortBy} onSort={handleSort} />
+                <DoctorsDisplayCount count={pageSize} setCount={handleChangePageSize} options={setPageSizeOptions} />
+            </div>
+
+            <div className="border-0 pb-3 rounded-md mt-5 overflow-hidden">
+                <table className="table-fixed w-full">
+
+                    <thead className="border-b">
+                    <tr>
+                        <th scope="col" className="px-6 py-4 text-left text-sm font-medium text-gray-800">Фамилия Имя Отчество</th>
+                        <th scope="col" className="px-6 py-4 text-left text-sm font-medium text-gray-800">Возраст</th>
+                        <th scope="col" className="px-6 py-4 text-left text-sm font-medium text-gray-800">Опыт работы</th>
+                        <th scope="col" className="px-6 py-4 text-left text-sm font-medium text-gray-800">Место работы</th>
+                        <th scope="col" className="px-6 py-4 text-left text-sm font-medium text-gray-800">ID</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {isLoading ? <DoctorsListSkeleton pageSize={pageSize} /> : <DoctorsList doctors={doctorsListCrop} />}
+                    {doctorsListCrop.length === 0 && <tr className="text-our-greenish-300 font-medium">
+                        <td>Сотрудники не найдены</td>
+                    </tr>}
+                    </tbody>
+                </table>
+            </div>
+
 
 
             {sortedItems.length > pageSize && (
-                <div >
+                <div className="relative mt-8 bottom-2">
                     <Pagination items={sortedItems} pageSize={pageSize} currentPage={currentPage} onChange={handleChangePage} />
                     <p>
                         {`${(currentPage - 1) * pageSize || 1} - 
-              ${pageSize * currentPage > entities.length ? entities.length : pageSize * currentPage}
-              из ${entities.length} сотрудников`}
+          ${pageSize * currentPage > entities.length ? entities.length : pageSize * currentPage}
+          из ${entities.length} сотрудников`}
                     </p>
                 </div>
             )}
 
+
+
         </div>
-        </>
     );
 };
 export default TableDoctors;

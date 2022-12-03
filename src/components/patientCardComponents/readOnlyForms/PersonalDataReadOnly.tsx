@@ -13,9 +13,9 @@ const PersonalDataReadOnly = () => {
         <div className='p-8'>
             <h1 className='font-medium text-lg text-slate-800 pb-4'>Персональные данные режим чтения</h1>
 
-            <div className='grid grid-cols-2 gap-y-3 mb-4'>
+            <div className='grid grid-cols-1 gap-y-3 mb-4'>
 
-                <div className='col-span-2 flex'>
+                <div className='flex'>
                     <span className='text-slate-400 w-1/4'>ФИО</span>
                     <span className='text-slate-800'>{SelectedPatient.personal_data.second_name + ' ' +
                         SelectedPatient.personal_data.first_name + ' ' + SelectedPatient.personal_data.patronymic}</span>

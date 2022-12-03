@@ -293,10 +293,9 @@ const router = createBrowserRouter(createRoutesFromElements
 function App() {
 
     return (
-
-    <div>
-        <RouterProvider router={router} />
-    </div>
+        <div className="h-screen w-screen">
+            <RouterProvider router={router} />
+        </div>
   );
 }
 

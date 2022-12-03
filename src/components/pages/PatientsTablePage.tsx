@@ -44,17 +44,19 @@ const PatientsTablePage = () =>{
 
 
     return(
-        <div className="ml-5 mb-10 mt-2">
-            {preloading && <Loader/>}
-            {error && <h1>Произошла ошибка при загрузке</h1>}
-            <>
-                {breadcrumbs.map(({ match, breadcrumb }) => (
-                    <NavLink key={match.pathname} to={match.pathname} className="text-azure-my text-xs mr-1">
-                        /{breadcrumb}
-                    </NavLink>
-                ))}
-            </>
-            <TablePatients/>
+        <div className="flex justify-center">
+            <div className="w-4/5 bg-white px-12 mt-5 py-5 rounded-md">
+                {preloading && <Loader/>}
+                {error && <h1>Произошла ошибка при загрузке</h1>}
+                <>
+                    {breadcrumbs.map(({ match, breadcrumb }) => (
+                        <NavLink key={match.pathname} to={match.pathname} className="text-our-greenish-300 text-xs mr-1">
+                            /{breadcrumb}
+                        </NavLink>
+                    ))}
+                </>
+                <TablePatients/>
+            </div>
         </div>
     )
 }

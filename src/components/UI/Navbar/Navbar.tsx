@@ -13,7 +13,7 @@ const Navbar = () => {
     return (
         <div className='h-screen w-screen'>
 
-            <nav className="z-[90] flex w-full justify-between pt-5 pb-4 pr-10 pl-10 bg-black-dark-navbar">
+            <nav className="z-[90] flex w-full justify-between pt-5 pb-4 pr-10 pl-10 bg-our-dark-navbar">
                 <ul className="flex justify-between items-center gap-x-4">
 
 
@@ -26,7 +26,7 @@ const Navbar = () => {
                     </li>
 
 
-                    <li className="mb-1 lowercase text-green-active-icon">
+                    <li className="mb-1 lowercase text-our-greenish-300">
                         {user?.role===1 && <div> Врач</div>}
                         {user?.role===2 && <div> Разработчик</div>}
                         {user?.role===3 && <div> Соразработчик</div>}
@@ -73,7 +73,7 @@ const Navbar = () => {
             </nav>
 
 
-            <main className='bg-gray-main-theme relative w-full h-full'>
+            <main className='relative w-full h-full'>
                 <Outlet/>
             </main>
 
