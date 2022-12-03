@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import {
     sliderContent_admin,
-    sliderContent_codeveloper, sliderContent_dataadmin,
+    sliderContent_codeveloper, sliderContent_dataadmin, sliderContent_demo,
     sliderContent_developer,
     sliderContent_doctor, sliderContent_expert, sliderContent_registry
 } from "./slider";
@@ -56,7 +56,10 @@ const Carousel = () => {
         }
         case 7: {
             sliderContent=sliderContent_dataadmin;
-
+            break;
+        }
+        case 0: {
+            sliderContent=sliderContent_demo;
             break;
         }
         default: {
@@ -74,11 +77,6 @@ const Carousel = () => {
 
         nextArrow: <NextArrow to="next" />,
         prevArrow: <PrevArrow to="prev" />,
-        // appendDots: (dots: string) => (
-        //     <div className="bg-transparent !pb-[40px]">
-        //         <ul> {dots} </ul>
-        //     </div>
-        // ),
     };
 
     return (
@@ -94,8 +92,6 @@ const Carousel = () => {
                                     {linkContent.name}
                                 </NavLink>
                             </div>
-
-
                         })}
                     </div>
                 })}

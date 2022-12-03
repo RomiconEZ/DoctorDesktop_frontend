@@ -28,9 +28,7 @@ const LoginForm: FC = () => {
                     className = 'h-8 w-100 text-slate-400 bg-gray-50 p-1 pl-4 border rounded-md border-gray-300'
                 />
 
-                <Button
-                    onClick={()=>dispatch(login({email: email, password: password}))}
-                >
+                <Button onClick={()=>dispatch(login({email: email, password: password}))}>
                     Войти
                 </Button>
             </div>

@@ -33,7 +33,8 @@ const Navbar = () => {
                         {user?.role===4 && <div> Администратор</div>}
                         {user?.role===5 && <div> Регистратура</div>}
                         {user?.role===6 && <div> Врач-эксперт</div>}
-                        {user?.role===6 && <div> Data-администратор</div>}
+                        {user?.role===7 && <div> Data-администратор</div>}
+                        {user?.role===0 && <div> Demo</div>}
                     </li>
                 </ul>
 

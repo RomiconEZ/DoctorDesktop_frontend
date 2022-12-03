@@ -20,11 +20,11 @@ const RequireAuthCreateDoctorPage = ({children}) => {
 
         return <Navigate to='/login' state={{from: location}} />
     }
-    // if (user.role !==4)
-    // {
-    //
-    //     return <Navigate to='/menu' state={{from: location}} />
-    // }
+    if ((user.role !==4)&&(user.role !==0))
+    {
+
+        return <Navigate to='/menu' state={{from: location}} />
+    }
 
     return children;
 }

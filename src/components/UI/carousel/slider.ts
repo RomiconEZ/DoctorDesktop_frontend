@@ -41,12 +41,6 @@ export const sliderContent_doctor: ISlideContent[] = [
                             to: DoctorsList,
 
                         },
-                        {
-                            id: 2,
-                            name: "Создание доктора",
-                            to: CreateDoctor,
-
-                        },
 
                     ],
             },
@@ -67,12 +61,297 @@ export const sliderContent_doctor: ISlideContent[] = [
 
 ];
 
+export const sliderContent_admin: ISlideContent[] = [
+    {
+        title: "Врачи/сотрудники",
+        id: 2,
+        sections:
+            [
+                {
+                    id: 1,
+                    name: "Список сотрудников",
+                    to: DoctorsList,
 
+                },
+                {
+                    id: 2,
+                    name: "Создание доктора",
+                    to: CreateDoctor,
 
+                },
 
-export const sliderContent_admin = sliderContent_doctor
-export const sliderContent_registry =  sliderContent_doctor
-export const sliderContent_developer = sliderContent_doctor
-export const sliderContent_codeveloper = sliderContent_doctor
-export const sliderContent_expert = sliderContent_doctor
-export const sliderContent_dataadmin = sliderContent_doctor
+            ],
+    },
+    {
+        title: "Остальное",
+        id: 3,
+        sections:
+            [
+                {
+                    id: 1,
+                    name: "DICOM",
+                    to: GraphInter,
+
+                },
+
+            ],
+    },
+
+];
+
+export const sliderContent_registry: ISlideContent[] = [
+    {
+        title: "Пациенты",
+        id: 1,
+        sections:
+            [
+                {
+                    id: 1,
+                    name: "Список пациентов",
+                    to: PatientList,
+
+                },
+                {
+                    id: 2,
+                    name: "Добавить пациента",
+                    to: AddPatient,
+
+                }
+            ],
+    },
+    {
+        title: "Врачи/сотрудники",
+        id: 2,
+        sections:
+            [
+                {
+                    id: 1,
+                    name: "Список сотрудников",
+                    to: DoctorsList,
+
+                },
+
+            ],
+    },
+    {
+        title: "Остальное",
+        id: 3,
+        sections:
+            [
+                {
+                    id: 1,
+                    name: "DICOM",
+                    to: GraphInter,
+
+                },
+
+            ],
+    },
+
+];
+
+export const sliderContent_developer: ISlideContent[] = [
+    {
+        title: "Пациенты",
+        id: 1,
+        sections:
+            [
+                {
+                    id: 1,
+                    name: "Список пациентов",
+                    to: PatientList,
+
+                },
+                {
+                    id: 2,
+                    name: "Добавить пациента",
+                    to: AddPatient,
+
+                }
+            ],
+    },
+    {
+        title: "Врачи/сотрудники",
+        id: 2,
+        sections:
+            [
+                {
+                    id: 1,
+                    name: "Список сотрудников",
+                    to: DoctorsList,
+
+                },
+
+            ],
+    },
+    {
+        title: "Остальное",
+        id: 3,
+        sections:
+            [
+                {
+                    id: 1,
+                    name: "DICOM",
+                    to: GraphInter,
+
+                },
+
+            ],
+    },
+
+];
+
+export const sliderContent_codeveloper: ISlideContent[] = [
+    {
+        title: "Пациенты",
+        id: 1,
+        sections:
+            [
+                {
+                    id: 1,
+                    name: "Список пациентов",
+                    to: PatientList,
+
+                },
+            ],
+    },
+    {
+        title: "Врачи/сотрудники",
+        id: 2,
+        sections:
+            [
+                {
+                    id: 1,
+                    name: "Список сотрудников",
+                    to: DoctorsList,
+
+                },
+
+            ],
+    },
+    {
+        title: "Остальное",
+        id: 3,
+        sections:
+            [
+                {
+                    id: 1,
+                    name: "DICOM",
+                    to: GraphInter,
+
+                },
+
+            ],
+    },
+
+];
+
+export const sliderContent_expert: ISlideContent[] = [
+    {
+        title: "Пациенты",
+        id: 1,
+        sections:
+            [
+                {
+                    id: 1,
+                    name: "Список пациентов",
+                    to: PatientList,
+
+                },
+                {
+                    id: 2,
+                    name: "Добавить пациента",
+                    to: AddPatient,
+
+                }
+            ],
+    },
+    {
+        title: "Врачи/сотрудники",
+        id: 2,
+        sections:
+            [
+                {
+                    id: 1,
+                    name: "Список сотрудников",
+                    to: DoctorsList,
+
+                },
+
+            ],
+    },
+    {
+        title: "Остальное",
+        id: 3,
+        sections:
+            [
+                {
+                    id: 1,
+                    name: "DICOM",
+                    to: GraphInter,
+
+                },
+
+            ],
+    },
+
+];
+
+export const sliderContent_dataadmin = sliderContent_admin
+
+export const sliderContent_demo: ISlideContent[] = [
+    {
+        title: "Пациенты",
+        id: 1,
+        sections:
+            [
+                {
+                    id: 1,
+                    name: "Список пациентов",
+                    to: PatientList,
+
+                },
+                {
+                    id: 2,
+                    name: "Добавить пациента",
+                    to: AddPatient,
+
+                }
+            ],
+    },
+    {
+        title: "Врачи/сотрудники",
+        id: 2,
+        sections:
+            [
+                {
+                    id: 1,
+                    name: "Список сотрудников",
+                    to: DoctorsList,
+
+                },
+                {
+                    id: 2,
+                    name: "Создание доктора",
+                    to: CreateDoctor,
+
+                },
+
+            ],
+    },
+    {
+        title: "Остальное",
+        id: 3,
+        sections:
+            [
+                {
+                    id: 1,
+                    name: "DICOM",
+                    to: GraphInter,
+
+                },
+
+            ],
+    },
+
+];

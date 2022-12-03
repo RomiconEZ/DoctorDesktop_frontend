@@ -1,7 +1,6 @@
 import {IUser} from "../../models/IUser";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {checkAuth,login, logout} from "./ActionCreators";
-import {setupStore} from "../store";
 
 interface UserState {
     user: IUser | null;

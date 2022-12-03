@@ -21,10 +21,6 @@ const LoginPage = () => {
     }, []) // отрабатывает только при первом запуске приложения
 
 
-    // if (isLoading) {
-    //     return <Loader/>
-    // }
-
     useEffect(() => {
         if (isAuth === true) {
             navigate('/auth/menu');
