@@ -33,7 +33,7 @@ const LoginPage = () => {
 
 
     return (
-        <div>
+        <div className="flex justify-center items-center">
             {isLoading && <Loader/>}
             <LoginForm/>
         </div>

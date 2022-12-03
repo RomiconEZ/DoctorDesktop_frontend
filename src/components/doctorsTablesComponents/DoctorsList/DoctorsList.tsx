@@ -16,14 +16,14 @@ const DoctorsList: React.FC<DoctorListProps> = ({ doctors }) => {
             <tr
                 onClick={() => navigate(`/auth/menu/doctors/${doctor.id}`)}
                 key={doctor.id}
-                className="transition duration-300 ease-in-out hover:bg-gray-main-theme"
+                className="transition duration-300 ease-in-out hover:bg-our-gray-main-theme"
             >
 
-                <td className="px-6 py-1 font-semibold text-green-active-icon">{doctor.surname + ' ' + doctor.name + ' ' + doctor.patronymic}</td>
-                <td className="px-6 py-1 text-gray-non-active">{doctor.age}</td>
-                <td className="px-6 py-1 text-gray-non-active">{doctor.workExperience}</td>
-                <td className="px-6 py-1 text-gray-non-active">{doctor.placeOfWork}</td>
-                <td className="px-6 py-1 text-gray-non-active">{doctor.id}</td>
+                <td className="px-6 py-1 font-semibold text-our-greenish-300">{doctor.surname + ' ' + doctor.name + ' ' + doctor.patronymic}</td>
+                <td className="px-6 py-1 text-slate-700">{doctor.age}</td>
+                <td className="px-6 py-1 text-slate-700">{doctor.workExperience}</td>
+                <td className="px-6 py-1 text-slate-700">{doctor.placeOfWork}</td>
+                <td className="px-6 py-1 text-slate-700">{doctor.id}</td>
 
             </tr>
         ))}

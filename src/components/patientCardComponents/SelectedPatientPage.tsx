@@ -50,7 +50,7 @@ const SelectedPatientPage = () => {
         <div className="flex justify-center">
             <div className="flex flex-row w-5/6 px-12 mt-5 py-5 ">
 
-                <div className="h-full">
+                <div className="h-full bg-gray-600">
                     <Sidebar />
                 </div>
 

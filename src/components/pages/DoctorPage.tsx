@@ -61,7 +61,7 @@ const DoctorPage =() =>{
 
             {!preloading &&
                 <div className="flex justify-center items-center flex-wrap mt-30 ">
-                    <div className="w-2/3 bg-gray-active shadow-sm p-7 rounded-lg mt-10">
+                    <div className="w-2/3 bg-white shadow-sm p-7 rounded-lg mt-10">
 
                         <div className="grid grid-cols-1 gap-y-4 pt-4 ml-6">
 
@@ -88,19 +88,24 @@ const DoctorPage =() =>{
                             />
 
                             <div className=' flex'>
-                                <span className=' w-1/4 mr-6'>Пользовательский режим</span>
-                                {user?.role===1 && <span className="w-1/2 py-2 pl-6 rounded-md bg-gray-main-theme text-gray-non-active">Врач</span>}
-                                {user?.role===2 && <span className="w-1/2 py-2 pl-6 rounded-md bg-gray-main-theme text-gray-non-active">Разработчик</span>}
-                                {user?.role===3 && <span className="w-1/2 py-2 pl-6 rounded-md bg-gray-main-theme text-gray-non-active">Соразработчик</span>}
-                                {user?.role===4 && <span className="w-1/2 py-2 pl-6 rounded-md bg-gray-main-theme text-gray-non-active">Администратор</span>}
-                                {user?.role===5 && <span className="w-1/2 py-2 pl-6 rounded-md bg-gray-main-theme text-gray-non-active">Регистратура</span>}
-                                {user?.role===6 && <span className="w-1/2 py-2 pl-6 rounded-md bg-gray-main-theme text-gray-non-active">Врач-эксперт</span>}
-                                {user?.role===6 && <span className="w-1/2 py-2 pl-6 rounded-md bg-gray-main-theme text-gray-non-active">Data-администратор</span>}
+                                <span className=' w-1/4 mr-6 font-semibold text-slate-800'>Пользовательский режим</span>
+                                {user?.role===1 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Врач</span>}
+                                {user?.role===2 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Разработчик</span>}
+                                {user?.role===3 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Соразработчик</span>}
+                                {user?.role===4 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Администратор</span>}
+                                {user?.role===5 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Регистратура</span>}
+                                {user?.role===6 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Врач-эксперт</span>}
+                                {user?.role===6 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Data-администратор</span>}
                             </div>
 
                             <ReadFieldStr
                                 label="Стаж работы"
-                                value={doctor.workExperience + doctor.workExperience <= 4 ? ' года' : ' лет'}
+                                value={`
+                                ${doctor.workExperience} 
+                                ${doctor.workExperience % 10 == 1 ? ' год' : ''}
+                                ${doctor.workExperience % 10 > 1 && doctor.workExperience % 10 <= 4 ? ' года' : ''}
+                                ${doctor.workExperience % 10 > 4 ? ' лет' : ''}
+                            `}
                             />
 
                             <ReadFieldStr

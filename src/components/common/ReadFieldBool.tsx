@@ -23,9 +23,9 @@ const ReadFieldBool: React.FC<Props> = ({ children, divClassName, spanClassName,
                                             falseOption = "Нет" } ) => {
     return (
         <div className={divClassName + ' flex'}>
-            <span className={spanClassName + ' w-1/4 mr-6'}>{label}</span>
-            {boolValue && <span className={spanClassName + ' w-1/2 py-2 pl-6 rounded-md bg-gray-main-theme text-gray-non-active'}>{trueOption}</span>}
-            {!boolValue && <span className={spanClassName + ' w-1/2 py-2 pl-6 rounded-md bg-gray-main-theme text-gray-non-active'}>{falseOption}</span>}
+            <span className={spanClassName + ' w-1/4 mr-6 font-semibold text-slate-800'}>{label}</span>
+            {Boolean(boolValue) && <span className={spanClassName + ' w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600'}>{trueOption}</span>}
+            {!Boolean(boolValue) && <span className={spanClassName + ' w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600'}>{falseOption}</span>}
         </div>
     );
 }

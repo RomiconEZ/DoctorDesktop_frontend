@@ -78,7 +78,7 @@ const TablePatients = () => {
                     </thead>
                     <tbody>
                     {isLoading ? <PatientsListSkeleton pageSize={pageSize} /> : <PatientsList patients={patientsListCrop} />}
-                    {patientsListCrop.length === 0 && <tr className="text-azure-my font-medium">
+                    {patientsListCrop.length === 0 && <tr className="text-our-greenish-300 font-medium">
                         <td>Пациентов не найдено</td>
                     </tr>}
                     </tbody>

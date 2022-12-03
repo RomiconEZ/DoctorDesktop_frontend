@@ -15,16 +15,16 @@ const PatientsList: React.FC<PatientsListProps> = ({ patients }) => {
             <tr
                 key={patient.id}
                 onClick={() => navigate(`/auth/menu/patients/${patient.id}`)}
-                className="transition duration-300 ease-in-out hover:bg-gray-main-theme"
+                className="transition duration-300 ease-in-out hover:bg-our-gray-main-theme"
             >
-              <td className="px-6 py-1 font-semibold text-green-active-icon">{patient.surname + ' ' + patient.name + ' ' + patient.patronymic}</td>
-              <td className="px-6 py-1 text-gray-non-active">{patient.birthdate}</td>
-              <td className="px-6 py-1 text-gray-non-active">{patient.age + " лет"}</td>
-                {patient.sex == 1 && <td className="px-6 py-1 text-gray-non-active">мужской</td>}
-                {patient.sex == 0 && <td className="px-6 py-1 text-gray-non-active">женский</td>}
-              <td className="px-6 py-1 text-gray-non-active">{patient.region}</td>
-              <td className="px-6 py-1 text-gray-non-active">{patient.city}</td>
-              <td className="px-6 py-1 text-gray-non-active">{patient.residenseregion}</td>
+              <td className="px-6 py-1 font-semibold text-our-greenish-300">{patient.surname + ' ' + patient.name + ' ' + patient.patronymic}</td>
+              <td className="px-6 py-1 text-slate-700">{patient.birthdate}</td>
+              <td className="px-6 py-1 text-slate-700">{patient.age + " лет"}</td>
+                {patient.sex == 1 && <td className="px-6 py-1 text-slate-700">мужской</td>}
+                {patient.sex == 0 && <td className="px-6 py-1 text-slate-700">женский</td>}
+              <td className="px-6 py-1 text-slate-700">{patient.region}</td>
+              <td className="px-6 py-1 text-slate-700">{patient.city}</td>
+              <td className="px-6 py-1 text-slate-700">{patient.residenseregion}</td>
             </tr>
         ))}
       </>
