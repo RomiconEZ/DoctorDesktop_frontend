@@ -47,15 +47,16 @@ const SelectedPatientPage = () => {
 
 
     return (
-        <div className="flex justify-center">
-            <div className="flex flex-row w-5/6 px-12 mt-5 py-5 ">
+        <div className="flex h-screen w-screen flex-row gap-x-10 justify-start">
 
-                <div className="h-full bg-gray-600">
-                    <Sidebar />
-                </div>
-
-                <main className="relative h-full w-4/5 rounded-r-md bg-gray-active w-full"> <Outlet /> </main>
+            <div className="w-1/5 sticky flex justify-center bg-our-dark-navbar overflow-hidden h-auto">
+                <Sidebar />
             </div>
+
+            <main className='w-3/5 mt-5 rounded-md bg-white h-auto overflow-scroll'>
+                <Outlet />
+            </main>
+
         </div>
     )
 

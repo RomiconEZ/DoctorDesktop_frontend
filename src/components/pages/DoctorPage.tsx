@@ -8,10 +8,9 @@ import {routes} from "../common/BreadCrumb";
 import React, {useEffect} from "react";
 import Loader from "../common/Loader";
 import {doctorsSlice} from "../../store/reducers/DoctorsSlice";
-import ReadFieldStr from "../common/ReadFieldStr";
-import ReadFieldBool from "../common/ReadFieldBool";
+import ReadFieldStr from "../common/ReadFieldStr"
+import ReadFieldBool from "../common/ReadFieldBool"
 import MyButton from "../common/MyButton";
-
 
 
 const DoctorPage =() =>{
@@ -52,13 +51,11 @@ const DoctorPage =() =>{
 
             <>
                 {breadcrumbs.map(({ match, breadcrumb }) => (
-                    <NavLink key={match.pathname} to={match.pathname} className="text-azure-my text-xs mr-1">
+                    <NavLink key={match.pathname} to={match.pathname} className="text-our-greenish-300 text-xs mr-1">
                         /{breadcrumb}
                     </NavLink>
                 ))}
             </>
-
-
             {!preloading &&
                 <div className="flex justify-center items-center flex-wrap mt-30 ">
                     <div className="w-2/3 bg-white shadow-sm p-7 rounded-lg mt-10">
@@ -136,11 +133,8 @@ const DoctorPage =() =>{
                     </div>
 
 
-
                 </div>
-
             }
-
 
         </div>
 

@@ -21,10 +21,6 @@ const LoginPage = () => {
     }, []) // отрабатывает только при первом запуске приложения
 
 
-    // if (isLoading) {
-    //     return <Loader/>
-    // }
-
     useEffect(() => {
         if (isAuth === true) {
             navigate('/auth/menu');
@@ -33,7 +29,7 @@ const LoginPage = () => {
 
 
     return (
-        <div className="flex justify-center items-center">
+        <div className='z-[0]'>
             {isLoading && <Loader/>}
             <LoginForm/>
         </div>

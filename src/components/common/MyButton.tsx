@@ -16,8 +16,8 @@ const MyButton: React.FC<Props> = ( { children, onClick, className } ) => {
             onClick={onClick}
             className={
                 className + " " +
-                "p-2 bg-transparent font-semibold border " +
-                "rounded hover:bg-blue-600 hover:text-white hover:border-transparent " +
+                "p-2 bg-transparent text-our-greenish-500 font-semibold border border-our-greenish-500 " +
+                "rounded hover:bg-our-greenish-500 hover:text-white hover:border-transparent " +
                 "transition ease-in duration-200"
             }
         >

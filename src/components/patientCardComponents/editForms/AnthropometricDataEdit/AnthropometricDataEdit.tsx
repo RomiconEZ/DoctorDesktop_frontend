@@ -63,6 +63,7 @@ const AnthropometricDataEdit = () => {
                     connective_tissue_dysplasia_Noonan: data.connective_tissue_dysplasia_Noonan, // синдром Нуана
                 }
             }
+            alert(JSON.stringify(data))
             await updatePatient(UpdatePatientData)
             navigate(`/auth/menu/patients/${SelectedPatient.patientID}/anthropometric-data`)
 

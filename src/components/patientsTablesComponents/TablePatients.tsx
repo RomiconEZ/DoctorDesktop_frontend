@@ -10,7 +10,6 @@ import Pagination from "../common/Pagination";
 import PatientsListSkeleton from "./PatientsList/PatientsListSkeleton";
 import PatientsList from "./PatientsList/PatientsList";
 
-
 const setPageSizeOptions = [
     { name: '6', value: 6 },
     { name: '12', value: 12 },
@@ -58,9 +57,9 @@ const TablePatients = () => {
     return (
         <div className="mt-3">
             <div className="flex flex-row w-2/3">
-                    <Searchbar value={searchTerm} onChange={handleChangeSearch} />
-                    <PatientsSort sortBy={sortBy} onSort={handleSort} />
-                    <PatientsDisplayCount count={pageSize} setCount={handleChangePageSize} options={setPageSizeOptions} />
+                <Searchbar value={searchTerm} onChange={handleChangeSearch} />
+                <PatientsSort sortBy={sortBy} onSort={handleSort} />
+                <PatientsDisplayCount count={pageSize} setCount={handleChangePageSize} options={setPageSizeOptions} />
             </div>
 
             <div className="border-0 pb-3 rounded-md mt-5 overflow-hidden">

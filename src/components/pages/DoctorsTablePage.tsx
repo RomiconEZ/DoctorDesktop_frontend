@@ -7,8 +7,6 @@ import Loader from "../common/Loader";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {doctorsSlice} from "../../store/reducers/DoctorsSlice";
 import {doctorAPI, PaginationDoctors} from "../../services/DoctorService";
-import {updateIcon, menuIcon} from "../common/icons";
-import ButtonWithIcon from "../common/ButtonWithIcon";
 
 const DoctorsTablePage = () => {
 

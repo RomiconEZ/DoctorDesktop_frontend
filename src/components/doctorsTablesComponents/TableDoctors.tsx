@@ -12,7 +12,6 @@ import DoctorsListSkeleton from "./DoctorsList/DoctorsListSkeleton";
 import DoctorsList from "./DoctorsList/DoctorsList";
 
 
-
 const setPageSizeOptions = [
     { name: '6', value: 6 },
     { name: '12', value: 12 },
@@ -69,22 +68,22 @@ const TableDoctors = () => {
         <div className="mt-3">
 
             <div className="flex flex-row w-2/3">
-                    <Searchbar value={searchTerm} onChange={handleChangeSearch} />
-                    <DoctorsSort sortBy={sortBy} onSort={handleSort} />
-                    <DoctorsDisplayCount count={pageSize} setCount={handleChangePageSize} options={setPageSizeOptions} />
+                <Searchbar value={searchTerm} onChange={handleChangeSearch} />
+                <DoctorsSort sortBy={sortBy} onSort={handleSort} />
+                <DoctorsDisplayCount count={pageSize} setCount={handleChangePageSize} options={setPageSizeOptions} />
             </div>
 
             <div className="border-0 pb-3 rounded-md mt-5 overflow-hidden">
                 <table className="table-fixed w-full">
 
                     <thead className="border-b">
-                        <tr>
-                            <th scope="col" className="px-6 py-4 text-left text-sm font-medium text-gray-800">Фамилия Имя Отчество</th>
-                            <th scope="col" className="px-6 py-4 text-left text-sm font-medium text-gray-800">Возраст</th>
-                            <th scope="col" className="px-6 py-4 text-left text-sm font-medium text-gray-800">Опыт работы</th>
-                            <th scope="col" className="px-6 py-4 text-left text-sm font-medium text-gray-800">Место работы</th>
-                            <th scope="col" className="px-6 py-4 text-left text-sm font-medium text-gray-800">ID</th>
-                        </tr>
+                    <tr>
+                        <th scope="col" className="px-6 py-4 text-left text-sm font-medium text-gray-800">Фамилия Имя Отчество</th>
+                        <th scope="col" className="px-6 py-4 text-left text-sm font-medium text-gray-800">Возраст</th>
+                        <th scope="col" className="px-6 py-4 text-left text-sm font-medium text-gray-800">Опыт работы</th>
+                        <th scope="col" className="px-6 py-4 text-left text-sm font-medium text-gray-800">Место работы</th>
+                        <th scope="col" className="px-6 py-4 text-left text-sm font-medium text-gray-800">ID</th>
+                    </tr>
                     </thead>
 
                     <tbody>
@@ -103,18 +102,15 @@ const TableDoctors = () => {
                     <Pagination items={sortedItems} pageSize={pageSize} currentPage={currentPage} onChange={handleChangePage} />
                     <p>
                         {`${(currentPage - 1) * pageSize || 1} - 
-              ${pageSize * currentPage > entities.length ? entities.length : pageSize * currentPage}
-              из ${entities.length} сотрудников`}
+          ${pageSize * currentPage > entities.length ? entities.length : pageSize * currentPage}
+          из ${entities.length} сотрудников`}
                     </p>
                 </div>
             )}
 
 
 
-
-
         </div>
-
     );
 };
 export default TableDoctors;

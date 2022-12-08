@@ -9,22 +9,18 @@ import {logOutIcon, tableIcon, userIcon, menuIcon} from "../../common/icons";
 const Navbar = () => {
     const {user, isAuth} = useAppSelector(state => state.userReducer)
     const dispatch = useAppDispatch()
-    const handleLogout = async (e: React.FormEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-        dispatch(logout())
-    }
 
     return (
         <div className='h-screen w-screen'>
 
-            <div className="z-[200] flex w-full justify-between pt-5 pb-4 pr-10 pl-10 bg-our-dark-navbar">
+            <nav className="z-[90] flex w-full justify-between pt-5 pb-4 pr-10 pl-10 bg-our-dark-navbar">
                 <ul className="flex justify-between items-center gap-x-4">
 
 
                     <li>
                         <ButtonWithIcon icon={userIcon}>
                             {user!=null && <NavLink to="/auth/menu/selfpage">
-                                {user?.surname} {user?.name} {user?.patronymic}
+                                {user?.name} {user?.surname} {user?.patronymic}
                             </NavLink>}
                         </ButtonWithIcon>
                     </li>
@@ -37,13 +33,10 @@ const Navbar = () => {
                         {user?.role===4 && <div> Администратор</div>}
                         {user?.role===5 && <div> Регистратура</div>}
                         {user?.role===6 && <div> Врач-эксперт</div>}
-                        {user?.role===6 && <div> Data-администратор</div>}
+                        {user?.role===7 && <div> Data-администратор</div>}
+                        {user?.role===0 && <div> Demo</div>}
                     </li>
                 </ul>
-
-
-
-
 
 
                 <ul className="flex justify-between items-center gap-x-8">
@@ -71,17 +64,16 @@ const Navbar = () => {
                     <li>
                         <ButtonWithIcon
                             icon={logOutIcon}
-                            onClick={()=>handleLogout}
-                        >
+                            onClick={()=>dispatch(logout())}>
                             Выйти
                         </ButtonWithIcon>
                     </li>
 
                 </ul>
-            </div>
+            </nav>
 
 
-            <main className='relative w-full h-screen'>
+            <main className='relative w-full h-full'>
                 <Outlet/>
             </main>
 
