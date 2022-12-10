@@ -17,10 +17,10 @@ const RequireAuthCreatePatientPage = ({children}) => {
 
     if (!isAuth)
     {
-
         return <Navigate to='/login' state={{from: location}} />
     }
-    if ((user.role !==1)&&(user.role !==5)&&(user.role !==0))
+    //было if ((user.role !==1)&&(user.role !==5)&&(user.role !==2))
+    if ((user.role !==1)&&(user.role !==5)&&(user.role !==2))
     {
 
         return <Navigate to='/auth/menu' state={{from: location}} />

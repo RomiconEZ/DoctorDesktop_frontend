@@ -39,7 +39,7 @@ const SelectedPatientPage = () => {
     useEffect(() => {
         console.log("Получили пациента")
         console.log(data)
-        if ((preloading === false) && (data.data != undefined)) {
+        if ((preloading === false) && (data.data !== undefined)) {
                 dispatch(additionalSlice.actions.ChangeSelectedPatient(data.data as IPatientFull))
             }
 
@@ -47,13 +47,13 @@ const SelectedPatientPage = () => {
 
 
     return (
-        <div className="flex h-screen w-screen flex-row gap-x-10 justify-start">
+        <div className="flex flex-row h-full mt-5 w-screen gap-x-10 justify-start items-start">
 
-            <div className="w-1/5 sticky flex justify-center bg-our-dark-navbar overflow-hidden h-auto">
+            <div className="w-1/5 ml-10 mt-5 pb-5 h-fit rounded-md flex justify-center bg-our-dark-navbar">
                 <Sidebar />
             </div>
 
-            <main className='w-3/5 mt-5 rounded-md bg-white h-auto overflow-scroll'>
+            <main className='w-3/5 mt-5 rounded-md bg-white h-auto'>
                 <Outlet />
             </main>
 

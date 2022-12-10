@@ -13,8 +13,8 @@ const CreatePatientPage = () => {
         <div>
             <>
                 {breadcrumbs.map(({ match, breadcrumb }) => (
-                    <NavLink key={match.pathname} to={match.pathname}>
-                        {breadcrumb}
+                    <NavLink key={match.pathname} to={match.pathname} className="text-our-greenish-300 text-xs mr-1">
+                        /{breadcrumb}
                     </NavLink>
                 ))}
             </>

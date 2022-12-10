@@ -77,33 +77,33 @@ const AnamnesisReadOnly = () => {
                 <ReadFieldStr
                     label="Опыт курения"
                     value={`
-                    ${SelectedPatient.anamnesis.smokingExperience == 0 ? ' Нет' : SelectedPatient.anamnesis.smokingExperience} 
-                    ${SelectedPatient.anamnesis.smokingExperience % 10 == 1 ? ' год' : ''}
+                    ${SelectedPatient.anamnesis.smokingExperience === 0 ? ' Нет' : SelectedPatient.anamnesis.smokingExperience} 
+                    ${SelectedPatient.anamnesis.smokingExperience % 10 === 1 ? ' год' : ''}
                     ${SelectedPatient.anamnesis.smokingExperience % 10 > 1 && SelectedPatient.anamnesis.smokingExperience % 10 <= 4 ? ' года' : ''}
                     ${SelectedPatient.anamnesis.smokingExperience % 10 > 4 ? ' лет' : ''}
-                    ${SelectedPatient.anamnesis.smokingExperience % 10 == 0 && SelectedPatient.anamnesis.smokingExperience >= 10 ? ' лет' : ''}
+                    ${SelectedPatient.anamnesis.smokingExperience % 10 === 0 && SelectedPatient.anamnesis.smokingExperience >= 10 ? ' лет' : ''}
                            `}
                 />
 
                 <ReadFieldStr
                     label="Опыт употребления алкоголя"
                     value={`
-                    ${SelectedPatient.anamnesis.alkoConsumptionExperince == 0 ? ' Нет' : SelectedPatient.anamnesis.alkoConsumptionExperince} 
-                    ${SelectedPatient.anamnesis.alkoConsumptionExperince % 10 == 1 ? ' год' : ''}
+                    ${SelectedPatient.anamnesis.alkoConsumptionExperince === 0 ? ' Нет' : SelectedPatient.anamnesis.alkoConsumptionExperince} 
+                    ${SelectedPatient.anamnesis.alkoConsumptionExperince % 10 === 1 ? ' год' : ''}
                     ${SelectedPatient.anamnesis.alkoConsumptionExperince % 10 > 1 && SelectedPatient.anamnesis.alkoConsumptionExperince % 10 <= 4 ? ' года' : ''}
                     ${SelectedPatient.anamnesis.alkoConsumptionExperince % 10 > 4 ? ' лет' : ''}
-                    ${SelectedPatient.anamnesis.alkoConsumptionExperince % 10 == 0 && SelectedPatient.anamnesis.alkoConsumptionExperince >= 10 ? ' лет' : ''}
+                    ${SelectedPatient.anamnesis.alkoConsumptionExperince % 10 === 0 && SelectedPatient.anamnesis.alkoConsumptionExperince >= 10 ? ' лет' : ''}
                             `}
                 />
 
                 <ReadFieldStr
                     label="Опыт употребления наркотиков"
                     value={`
-                    ${SelectedPatient.anamnesis.drugConsumptionExperince == 0 ? ' Нет' : SelectedPatient.anamnesis.drugConsumptionExperince} 
-                    ${SelectedPatient.anamnesis.drugConsumptionExperince % 10 == 1 ? ' год' : ''}
+                    ${SelectedPatient.anamnesis.drugConsumptionExperince === 0 ? ' Нет' : SelectedPatient.anamnesis.drugConsumptionExperince} 
+                    ${SelectedPatient.anamnesis.drugConsumptionExperince % 10 === 1 ? ' год' : ''}
                     ${SelectedPatient.anamnesis.drugConsumptionExperince % 10 > 1 && SelectedPatient.anamnesis.drugConsumptionExperince % 10 <= 4 ? ' года' : ''}
                     ${SelectedPatient.anamnesis.drugConsumptionExperince % 10 > 4 ? ' лет' : ''}
-                    ${SelectedPatient.anamnesis.drugConsumptionExperince % 10 == 0 && SelectedPatient.anamnesis.drugConsumptionExperince >= 10 ? ' лет' : ''}
+                    ${SelectedPatient.anamnesis.drugConsumptionExperince % 10 === 0 && SelectedPatient.anamnesis.drugConsumptionExperince >= 10 ? ' лет' : ''}
                             `}
                 />
 

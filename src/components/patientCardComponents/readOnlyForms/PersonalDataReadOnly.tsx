@@ -13,8 +13,8 @@ const PersonalDataReadOnly = () => {
     console.log(JSON.stringify(SelectedPatient.personal_data))
     return (
 
-        <div className='p-8'>
-            <h1 className='font-medium font-sans  text-our-greenish-400 text-2xl pb-4'>Персональные данные режим чтения</h1>
+        <div className='p-8 mb-16'>
+            <h1 className='font-medium font-sans text-our-greenish-400 text-2xl pb-4'>Персональные данные режим чтения</h1>
 
             <div className='grid relative grid-cols-1 gap-y-3 my-4'>
 

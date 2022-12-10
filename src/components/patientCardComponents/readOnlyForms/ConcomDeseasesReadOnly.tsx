@@ -3,6 +3,9 @@ import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
 import {additionalSlice} from "../../../store/reducers/AdditionalSlice";
 import {useNavigate} from "react-router-dom";
+import ReadFieldBool from "../../common/ReadFieldBool";
+import ReadFieldStr from "../../common/ReadFieldStr";
+import MyButton from "../../common/MyButton";
 
 
 
@@ -15,144 +18,191 @@ const ConcomDeseasesReadOnly = () => {
     const birthday = new Date(SelectedPatient.personal_data.birthday)
     return (
 
-        <div className='p-8'>
-            <h1 className='font-medium text-lg text-slate-800 pb-4'>Сопутствующие заболевания пациента режим чтения</h1>
-            <div className='grid grid-cols-2 gap-y-3 mb-4'>
+        <div className='p-8 mb-16'>
+            <h1 className='font-medium font-sans  text-our-greenish-400 text-2xl pb-4'>Сопутствующие заболевания режим чтения</h1>
+            <div className='grid relative grid-cols-1 gap-y-4 my-4'>
 
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Наличие клиники ишемической болезни сердца</span>
-                    {SelectedPatient.concom_desease.clinicIschHeartDis!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.clinicIschHeartDis!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Наличие клиники ишемической болезни сердца"
+                    boolValue={SelectedPatient.concom_desease.clinicIschHeartDis}
+                />
 
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Острые инфаркты миокарда в анамнезе</span>
-                    {SelectedPatient.concom_desease.acuteMyocardilInfarctionBool!==0 && <>
-                        <span className='text-slate-800 w-1/2'>да</span>
-                        <span className='text-slate-800 w-1/2'>{SelectedPatient.concom_desease.acuteMyocardilInfarctionNum}</span>
-                    </>
-                    }
-                    {SelectedPatient.concom_desease.acuteMyocardilInfarctionBool!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Острые инфаркты миокарда в анамнезе"
+                    boolValue={SelectedPatient.concom_desease.acuteMyocardilInfarctionBool}
+                />
 
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Текущий инфаркт миокарда</span>
-                    {SelectedPatient.concom_desease.currentMyocardilInfarction!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.currentMyocardilInfarction!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Наличие сахарного диабета</span>
-                    {SelectedPatient.concom_desease.diabetes!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.diabetes!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='col-span-2 flex'>
-                    <span className='text-slate-400 w-1/4'>Тип сахарного диабета</span>
-                    <span className='text-slate-800'>{SelectedPatient.concom_desease.diabetesType}</span>
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Наличие цереброваскулярной болезни</span>
-                    {SelectedPatient.concom_desease.cerebrovascularDisease!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.cerebrovascularDisease!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Гемодинамические значимые стенозы БЦА</span>
-                    {SelectedPatient.concom_desease.BCAStenosis!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.BCAStenosis!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Транзисторная ишемическая атака</span>
-                    {SelectedPatient.concom_desease.translschAttack!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.translschAttack!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>ОНМК в анамнезе</span>
-                    {SelectedPatient.concom_desease.ACVA!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.ACVA!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Наличие хронических заболеваний легких</span>
-                    {SelectedPatient.concom_desease.chronicLungDisease!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.chronicLungDisease!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Наличие инфекционных заболеваний перенесенных ранее</span>
-                    {SelectedPatient.concom_desease.prevInfectiousDisease!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.prevInfectiousDisease!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Наличие нарушений ритма и проводимости</span>
-                    {SelectedPatient.concom_desease.rhythmConcluctionDisturbances!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.rhythmConcluctionDisturbances!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Наличие заболеваний щитовидной железы</span>
-                    {SelectedPatient.concom_desease.thyroidDisease!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.thyroidDisease!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Наличие острой почечной недостаточности</span>
-                    {SelectedPatient.concom_desease.acuteRenalFailure!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.acuteRenalFailure!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Наличие хранической почечной недостаточности</span>
-                    {SelectedPatient.concom_desease.chronicRenalFailure!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.chronicRenalFailure!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Наличие онкологических заболеваний</span>
-                    {SelectedPatient.concom_desease.oncology!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.oncology!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Наличие гематологических заболеваний</span>
-                    {SelectedPatient.concom_desease.hematologicalDisease!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.hematologicalDisease!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>ТЭЛА</span>
-                    {SelectedPatient.concom_desease.pulmonaryEmbolism!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.pulmonaryEmbolism!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Травма грудной клетки</span>
-                    {SelectedPatient.concom_desease.chestWallInjury!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.chestWallInjury!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='col-span-2 flex'>
-                    <span className='text-slate-400 w-1/4'>Врожденный двустворчатый или нормальный аортальный клапан</span>
-                    <span className='text-slate-800'>{SelectedPatient.concom_desease.aorticValve}</span>
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Приобретенные пороки аортального клапана</span>
-                    {SelectedPatient.concom_desease.acquiredAVDisease!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.acquiredAVDisease!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Дегенеративные поражения аортального клапана</span>
-                    {SelectedPatient.concom_desease.AVDegenerativeLesions!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.AVDegenerativeLesions!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Инфекционные поражения аортального клапана</span>
-                    {SelectedPatient.concom_desease.AVInfectiousLesions!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.AVInfectiousLesions!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'>Травматические поражения сосудистой стенки аорты</span>
-                    {SelectedPatient.concom_desease.AVWTraumaticLesionsb!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.concom_desease.AVWTraumaticLesionsb!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
+                {Boolean(SelectedPatient.concom_desease.acuteMyocardilInfarctionBool) &&
+                    <ReadFieldStr
+                        label="Количество инфарктов миокарда"
+                        value={SelectedPatient.concom_desease.acuteMyocardilInfarctionNum}
+                    />}
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Текущий инфаркт миокарда"
+                    boolValue={SelectedPatient.concom_desease.currentMyocardilInfarction}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Наличие сахарного диабета"
+                    boolValue={SelectedPatient.concom_desease.diabetes}
+                />
+
+                {Boolean(SelectedPatient.concom_desease.diabetes) &&
+                    <ReadFieldStr
+                        label="Тип сахарного диабета"
+                        value={SelectedPatient.concom_desease.diabetesType}
+                        spanClassName="w-1/2"
+                    />}
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Наличие цереброваскулярной болезни"
+                    boolValue={SelectedPatient.concom_desease.cerebrovascularDisease}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Гемодинамические значимые стенозы БЦА"
+                    boolValue={SelectedPatient.concom_desease.BCAStenosis}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Транзисторная ишемическая атака"
+                    boolValue={SelectedPatient.concom_desease.translschAttack}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="ОНМК в анамнезе"
+                    boolValue={SelectedPatient.concom_desease.ACVA}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Наличие хронических заболеваний легких"
+                    boolValue={SelectedPatient.concom_desease.chronicLungDisease}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Наличие инфекционных заболеваний перенесенных ранее"
+                    boolValue={SelectedPatient.concom_desease.prevInfectiousDisease}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Наличие нарушений ритма и проводимости"
+                    boolValue={SelectedPatient.concom_desease.rhythmConcluctionDisturbances}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Наличие заболеваний щитовидной железы"
+                    boolValue={SelectedPatient.concom_desease.thyroidDisease}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Наличие острой почечной недостаточности"
+                    boolValue={SelectedPatient.concom_desease.acuteRenalFailure}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Наличие хранической почечной недостаточности"
+                    boolValue={SelectedPatient.concom_desease.chronicRenalFailure}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Наличие онкологических заболеваний"
+                    boolValue={SelectedPatient.concom_desease.oncology}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Наличие гематологических заболеваний"
+                    boolValue={SelectedPatient.concom_desease.hematologicalDisease}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="ТЭЛА"
+                    boolValue={SelectedPatient.concom_desease.pulmonaryEmbolism}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Травма грудной клетки"
+                    boolValue={SelectedPatient.concom_desease.chestWallInjury}
+                />
+
+                <ReadFieldStr
+                    label="Врожденный двустворчатый или нормальный аортальный клапан"
+                    value={SelectedPatient.concom_desease.aorticValve}
+                    spanClassName="w-1/2"
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Приобретенные пороки аортального клапана"
+                    boolValue={SelectedPatient.concom_desease.acquiredAVDisease}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Дегенеративные поражения аортального клапана"
+                    boolValue={SelectedPatient.concom_desease.AVDegenerativeLesions}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Инфекционные поражения аортального клапана"
+                    boolValue={SelectedPatient.concom_desease.AVInfectiousLesions}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/2"
+                    valueClassName="w-1/2"
+                    label="Травматические поражения сосудистой стенки аорты"
+                    boolValue={SelectedPatient.concom_desease.AVWTraumaticLesionsb}
+                />
+
+                <MyButton
+                    onClick={()=>navigate(`edit`)}
+                    className="w-1/5 absolute right-0 -bottom-16"
+                >
+                    Редактировать
+                </MyButton>
 
             </div>
-            <button
-                onClick={()=>navigate(`edit`)}
-                className="relative mt-8 bottom-2 left-3/4 p-2 bg-transparent
-                text-blue-600 font-semibold border border-blue-600
-                rounded hover:bg-blue-600 hover:text-white hover:border-transparent
-                transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0">
-                Редактировать
-            </button>
 
         </div>
     );
