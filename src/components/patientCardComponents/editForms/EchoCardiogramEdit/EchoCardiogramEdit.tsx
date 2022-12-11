@@ -12,7 +12,10 @@ import EditFieldRadio from "../../../common/EditFieldRadio";
 import MyButton from "../../../common/MyButton";
 import {useForm} from "react-hook-form";
 import EditFieldBool from "../../../common/EditFieldBool";
-
+import {AorticRegurgitationDegreeData} from "../../../../DataLists/AorticRegurgitationDegreeData";
+import {MitralStenDegreeData} from "../../../../DataLists/MitralStenDegreeData";
+import {MitralInsuffDegreeData} from "../../../../DataLists/MitralInsuffDegreeData";
+import {TricuspiDegreeData} from "../../../../DataLists/TricuspiDegreeData";
 
 
 const EchoCardiogramEdit = () => {
@@ -31,29 +34,6 @@ const EchoCardiogramEdit = () => {
 
     } = useForm()
 
-
-    // const initialEchocardiogram: any = {
-    //     LVEF: SelectedPatient.echocardiogram.LVEF, // ФВ ЛЖ(Simpson),%
-    //     LVEDV: SelectedPatient.echocardiogram.LVEDV, // КДО ЛЖ, мл
-    //     LVESV: SelectedPatient.echocardiogram.LVESV, // КСО ЛЖ, мл
-    //     ascAorticD: SelectedPatient.echocardiogram.ascAorticD, // диаметр восходящего отдела аорты, мм
-    //     valsalvaSinusesD: SelectedPatient.echocardiogram.valsalvaSinusesD, // диаметр синусов Вальсальвы, мм
-    //     AVLeafletN: SelectedPatient.echocardiogram.AVLeafletN, // Количество створок аортального клапана
-    //     AVAnnuFibrD: SelectedPatient.echocardiogram.AVAnnuFibrD, // Диаметр фиброизного кольца аортального клапана, мм
-    //     peakSpeedAV: SelectedPatient.echocardiogram.peakSpeedAV, // Пиковая скорость на аортальном клапане, м/с
-    //     AVPressureGradientMax: SelectedPatient.echocardiogram.AVPressureGradientMax, // Градиент давления на аортальном клапане(максимальный), мм рт ст
-    //     AVPressureGradientMean: SelectedPatient.echocardiogram.AVPressureGradientMean, // Градиент давления на аортальном клапане(средний), мм рт ст
-    //     aorticRegurgitationDegree: SelectedPatient.echocardiogram.aorticRegurgitationDegree, // Степень аортальной регургитации (1,2,3)
-    //     pulmArterySysBP: SelectedPatient.echocardiogram.pulmArterySysBP, // Систолическое давление в легочной артерии, мм рт ст
-    //
-    //     mitralInsuffBool: SelectedPatient.echocardiogram.mitralInsuffBool, // наличие митральной недостаточности
-    //     mitralInsuffDegree: SelectedPatient.echocardiogram.mitralInsuffDegree, // степень митральной недостаточности
-    //     mitralStenBool: SelectedPatient.echocardiogram.mitralStenBool, // наличие митрального стеноза
-    //     mitralStenDegree: SelectedPatient.echocardiogram.mitralStenDegree, // степень митрального стеноза
-    //     tricuspiBool: SelectedPatient.echocardiogram.tricuspiBool, // наличие трикуспидальной недостаточности
-    //     tricuspiDegree: SelectedPatient.echocardiogram.tricuspiDegree, // степень митральной недостаточности
-    //     trialSeptalDefectPr: SelectedPatient.echocardiogram.trialSeptalDefectPr, // наличие дефекта межпредсердной перегородки
-    // }
 
     const [updatePatient, {}] = patientAPI.useUpdatePatientMutation();// {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями
 
@@ -170,7 +150,7 @@ const EchoCardiogramEdit = () => {
                     label="Степень аортальной регургитации"
                     defaultValue={String(SelectedPatient.echocardiogram.aorticRegurgitationDegree)}
                     id="aorticRegurgitationDegree"
-                    listOfValues={Race}
+                    listOfValues={AorticRegurgitationDegreeData}
                     register={register("aorticRegurgitationDegree")}
                 />
 
@@ -192,7 +172,7 @@ const EchoCardiogramEdit = () => {
                     label="Степень митральной недостаточности"
                     defaultValue={String(SelectedPatient.echocardiogram.mitralInsuffDegree)}
                     id="mitralInsuffDegree"
-                    listOfValues={Race}
+                    listOfValues={MitralInsuffDegreeData}
                     register={register("mitralInsuffDegree")}
                 />
 
@@ -207,7 +187,7 @@ const EchoCardiogramEdit = () => {
                     label="Степень митрального стеноза"
                     defaultValue={String(SelectedPatient.echocardiogram.mitralStenDegree)}
                     id="mitralStenDegree"
-                    listOfValues={Race}
+                    listOfValues={MitralStenDegreeData}
                     register={register("mitralStenDegree")}
                 />
 
@@ -222,7 +202,7 @@ const EchoCardiogramEdit = () => {
                     label="Степень митральной недостаточности"
                     defaultValue={String(SelectedPatient.echocardiogram.tricuspiDegree)}
                     id="tricuspiDegree"
-                    listOfValues={Race}
+                    listOfValues={TricuspiDegreeData}
                     register={register("tricuspiDegree")}
                 />
 

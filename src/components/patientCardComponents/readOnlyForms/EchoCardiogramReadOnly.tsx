@@ -21,20 +21,26 @@ const EchoCardiogramReadOnly = () => {
 
             <div className='grid relative grid-cols-1 gap-y-4 my-4'>
 
-                <ReadFieldStr
-                    label="ФВ ЛЖ(Simpson)"
-                    value={SelectedPatient.echocardiogram.LVEF + '%'}
-                />
+                <div className='flex'>
+                    <span className='w-1/4 mr-6 font-semibold text-slate-800'>ФВ ЛЖ(Simpson)</span>
+                    <span className='w-3/4 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600'>
+                        {SelectedPatient.echocardiogram.LVEF} %
+                    </span>
+                </div>
 
-                <ReadFieldStr
-                    label="КДО ЛЖ"
-                    value={SelectedPatient.echocardiogram.LVEDV + 'мл'}
-                />
+                <div className='flex'>
+                    <span className='w-1/4 mr-6 font-semibold text-slate-800'>КДО ЛЖ</span>
+                    <span className='w-3/4 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600'>
+                        {SelectedPatient.echocardiogram.LVEDV + 'мл'}
+                    </span>
+                </div>
 
-                <ReadFieldStr
-                    label="КСО ЛЖ"
-                    value={SelectedPatient.echocardiogram.LVESV + 'мл'}
-                />
+                <div className='flex'>
+                    <span className='w-1/4 mr-6 font-semibold text-slate-800'>КСО ЛЖ</span>
+                    <span className='w-3/4 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600'>
+                        {SelectedPatient.echocardiogram.LVESV + 'мл'}
+                    </span>
+                </div>
 
                 <ReadFieldStr
                     label="Диаметр восходящего отдела аорты"

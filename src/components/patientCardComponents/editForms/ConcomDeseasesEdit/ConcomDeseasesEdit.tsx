@@ -2,17 +2,16 @@ import React from 'react';
 import {useAppSelector} from "../../../../hooks/redux";
 import {useForm} from "react-hook-form";
 import {patientAPI} from "../../../../services/PatientService";
-import {Race} from "../../../../DataLists/Race";
 import {IPatientUpdate} from "../../../../models/IPatientUpdate";
 import {useAppDispatch} from "../../../../store/store";
 import {useNavigate, useParams} from "react-router-dom";
 import EditFieldStr from "../../../common/EditFieldStr";
 import EditFieldSelect from "../../../common/EditFieldSelect";
 import {Clinics} from "../../../../DataLists/Clinics";
-import EditFieldRadio from "../../../common/EditFieldRadio";
 import MyButton from "../../../common/MyButton";
 import EditFieldBool from "../../../common/EditFieldBool";
-
+import {DiabetesTypeData} from "../../../../DataLists/DiabetesTypeData"
+import {AorticValveData} from "../../../../DataLists/AorticValveData"
 
 const ConcomDeseasesEdit = () => {
     const {user} = useAppSelector(state => state.userReducer)
@@ -30,34 +29,6 @@ const ConcomDeseasesEdit = () => {
 
     } = useForm()
 
-    // const initialAnthropometricData: any = {
-    //     clinicIschHeartDis: SelectedPatient.concom_desease.clinicIschHeartDis,// наличие клиники ишемической болезни сердца?
-    //     acuteMyocardilInfarctionBool: SelectedPatient.concom_desease.acuteMyocardilInfarctionBool, //Были острые инфаркты миокарда в анамнезе
-    //     acuteMyocardilInfarctionNum: SelectedPatient.concom_desease.acuteMyocardilInfarctionNum, //количество острых инфарктов миокарда в анамнезе
-    //     currentMyocardilInfarction: SelectedPatient.concom_desease.currentMyocardilInfarction, //текущий инфаркт миокарда
-    //     diabetes: SelectedPatient.concom_desease.diabetes, // наличие сахарного диабета
-    //     diabetesType: SelectedPatient.concom_desease.diabetesType, // тип сахарного диабета
-    //     cerebrovascularDisease: SelectedPatient.concom_desease.cerebrovascularDisease, //наличие цереброваскулярной болезни
-    //     BCAStenosis: SelectedPatient.concom_desease.BCAStenosis, //гемодинамические значимые стенозы БЦА
-    //     translschAttack: SelectedPatient.concom_desease.translschAttack, // транзисторная ишемическая атака
-    //     ACVA: SelectedPatient.concom_desease.ACVA, // ОНМК в анамнезе
-    //     chronicLungDisease: SelectedPatient.concom_desease.chronicLungDisease, // наличие хронических заболеваний легких
-    //     prevInfectiousDisease: SelectedPatient.concom_desease.prevInfectiousDisease, // наличие инфекционных заболеваний перенесенных ранее
-    //     rhythmConcluctionDisturbances: SelectedPatient.concom_desease.rhythmConcluctionDisturbances, // наличие нарушений ритма и проводимости
-    //     thyroidDisease: SelectedPatient.concom_desease.thyroidDisease, // наличие заболеваний щитовидной железы
-    //     acuteRenalFailure: SelectedPatient.concom_desease.acuteRenalFailure, // наличие острой почечной недостаточности
-    //     chronicRenalFailure: SelectedPatient.concom_desease.chronicRenalFailure, // наличие хранической почечной недостаточности
-    //     oncology: SelectedPatient.concom_desease.oncology, // наличие онкологических заболеваний
-    //     hematologicalDisease: SelectedPatient.concom_desease.hematologicalDisease, // наличие гематологических заболеваний
-    //     pulmonaryEmbolism: SelectedPatient.concom_desease.pulmonaryEmbolism, // ТЭЛА
-    //     chestWallInjury: SelectedPatient.concom_desease.chestWallInjury, // травма грудной клетки
-    //     aorticValve: SelectedPatient.concom_desease.aorticValve, // врожденный двустворчатый или нормальный аортальный клапан
-    //     acquiredAVDisease: SelectedPatient.concom_desease.acquiredAVDisease, // приобретенные пороки аортального клапана
-    //     AVDegenerativeLesions: SelectedPatient.concom_desease.AVDegenerativeLesions, // дегенеративные поражения аортального клапана
-    //     AVInfectiousLesions: SelectedPatient.concom_desease.AVInfectiousLesions, // инфекционные поражения аортального клапана
-    //     AVWTraumaticLesionsb: SelectedPatient.concom_desease.AVWTraumaticLesionsb, // травматические поражения сосудистой стенки аорты
-    //
-    // }
     const [updatePatient, {}] = patientAPI.useUpdatePatientMutation();// {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями
 
     const onSubmit = async (data:any) => {
@@ -142,7 +113,7 @@ const ConcomDeseasesEdit = () => {
                     label="Тип сахарного диабета"
                     defaultValue={SelectedPatient.concom_desease.diabetesType}
                     id={"diabetesType"}
-                    listOfValues={Clinics}
+                    listOfValues={DiabetesTypeData}
                     register={register("diabetesType")}
                 />
 
@@ -248,7 +219,7 @@ const ConcomDeseasesEdit = () => {
                     label="Врожденный двустворчатый или нормальный аортальный клапан"
                     defaultValue={SelectedPatient.concom_desease.aorticValve}
                     id={"aorticValve"}
-                    listOfValues={Clinics}
+                    listOfValues={AorticValveData}
                     register={register("aorticValve")}
                 />
 

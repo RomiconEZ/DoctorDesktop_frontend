@@ -12,6 +12,7 @@ import EditFieldSelect from "../../../common/EditFieldSelect";
 import {PatientStates} from "../../../../DataLists/PatientStateData";
 import EditFieldRadio from "../../../common/EditFieldRadio";
 import MyButton from "../../../common/MyButton";
+import EditFieldBool from "../../../common/EditFieldBool";
 
 
 const ClinicDataEdit = () => {
@@ -30,18 +31,6 @@ const ClinicDataEdit = () => {
 
     } = useForm()
 
-
-    const initialClinicData: any = {
-        main_diag: SelectedPatient.clinical_data.main_diag, // основной диагноз
-        aortic_dissection: SelectedPatient.clinical_data.aortic_dissection, // наличие расслоения аорты
-        intramural_hematoma: SelectedPatient.clinical_data.intramural_hematoma, // наличие интрамуральной гематомы
-        aortic_rupture: SelectedPatient.clinical_data.aortic_rupture, // наличие разрыва аорты
-        patient_state: SelectedPatient.clinical_data.patient_state, // стабильное/нестабильное состояние
-        pain_beh_stern: SelectedPatient.clinical_data.pain_beh_stern, // боли за грудиной
-        interscap_reg_pain: SelectedPatient.clinical_data.interscap_reg_pain, // боли в межлопаточной области
-        conscious_loss: SelectedPatient.clinical_data.conscious_loss, // потеря сознания
-        low_extrem_ischemia: SelectedPatient.clinical_data.low_extrem_ischemia, // ишемия нижних конечностей
-    }
 
     const [updatePatient, {}] = patientAPI.useUpdatePatientMutation();// {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями
 
@@ -87,159 +76,54 @@ const ClinicDataEdit = () => {
                     register={register("patient_state")}
                 />
 
-                <div className="flex flex-row">
-                    <span className="w-1/4 mr-6 font-semibold text-slate-800">Наличие расслоения аорты</span>
+                <EditFieldBool
+                    register={register("aortic_dissection")}
+                    defaultValue={Boolean(SelectedPatient.clinical_data.aortic_dissection)}
+                    label="Наличие расслоения аорты"
+                    id="aortic_dissection"
+                />
 
-                    <EditFieldRadio
-                        register={register("aortic_dissection")}
-                        defaultValue={Boolean(SelectedPatient.clinical_data.aortic_dissection)}
-                        value={1}
-                        label="Да"
-                        id="aortic_dissection_true"
-                        divClassName="w-1/4"
-                    />
+                <EditFieldBool
+                    register={register("intramural_hematoma")}
+                    defaultValue={Boolean(SelectedPatient.clinical_data.intramural_hematoma)}
+                    label="Наличие интрамуральной гематомы"
+                    id="intramural_hematoma"
+                />
 
-                    <EditFieldRadio
-                        register={register("aortic_dissection")}
-                        defaultValue={!Boolean(SelectedPatient.clinical_data.aortic_dissection)}
-                        value={0}
-                        label="Нет"
-                        id="aortic_dissection_false"
-                        divClassName="w-1/4"
-                    />
-                </div>
+                <EditFieldBool
+                    register={register("aortic_rupture")}
+                    defaultValue={Boolean(SelectedPatient.clinical_data.aortic_rupture)}
+                    label="Наличие разрыва аорты"
+                    id="aortic_rupture"
+                />
 
-                <div className="flex flex-row">
-                    <span className="w-1/4 mr-6 font-semibold text-slate-800">Наличие интрамуральной гематомы</span>
+                <EditFieldBool
+                    register={register("pain_beh_stern")}
+                    defaultValue={Boolean(SelectedPatient.clinical_data.pain_beh_stern)}
+                    label="Боли за грудиной"
+                    id="pain_beh_stern"
+                />
 
-                    <EditFieldRadio
-                        register={register("intramural_hematoma")}
-                        defaultValue={Boolean(SelectedPatient.clinical_data.intramural_hematoma)}
-                        value={1}
-                        label="Да"
-                        id="intramural_hematoma_true"
-                        divClassName="w-1/4"
-                    />
+                <EditFieldBool
+                    register={register("interscap_reg_pain")}
+                    defaultValue={Boolean(SelectedPatient.clinical_data.interscap_reg_pain)}
+                    label="Боли в межлопаточной области"
+                    id="interscap_reg_pain"
+                />
 
-                    <EditFieldRadio
-                        register={register("intramural_hematoma")}
-                        defaultValue={!Boolean(SelectedPatient.clinical_data.intramural_hematoma)}
-                        value={0}
-                        label="Нет"
-                        id="intramural_hematoma_false"
-                        divClassName="w-1/4"
-                    />
-                </div>
+                <EditFieldBool
+                    register={register("conscious_loss")}
+                    defaultValue={Boolean(SelectedPatient.clinical_data.conscious_loss)}
+                    label="Потеря сознания"
+                    id="conscious_loss"
+                />
 
-                <div className="flex flex-row">
-                    <span className="w-1/4 mr-6 font-semibold text-slate-800">Наличие разрыва аорты</span>
-
-                    <EditFieldRadio
-                        register={register("aortic_rupture")}
-                        defaultValue={Boolean(SelectedPatient.clinical_data.aortic_rupture)}
-                        value={1}
-                        label="Да"
-                        id="aortic_rupture_true"
-                        divClassName="w-1/4"
-                    />
-
-                    <EditFieldRadio
-                        register={register("aortic_rupture")}
-                        defaultValue={!Boolean(SelectedPatient.clinical_data.aortic_rupture)}
-                        value={0}
-                        label="Нет"
-                        id="aortic_rupture_false"
-                        divClassName="w-1/4"
-                    />
-                </div>
-
-                <div className="flex flex-row">
-                    <span className="w-1/4 mr-6 font-semibold text-slate-800">Боли за грудиной</span>
-
-                    <EditFieldRadio
-                        register={register("pain_beh_stern")}
-                        defaultValue={Boolean(SelectedPatient.clinical_data.pain_beh_stern)}
-                        value={1}
-                        label="Да"
-                        id="pain_beh_stern_true"
-                        divClassName="w-1/4"
-                    />
-
-                    <EditFieldRadio
-                        register={register("pain_beh_stern")}
-                        defaultValue={!Boolean(SelectedPatient.clinical_data.pain_beh_stern)}
-                        value={0}
-                        label="Нет"
-                        id="pain_beh_stern_false"
-                        divClassName="w-1/4"
-                    />
-                </div>
-
-                <div className="flex flex-row">
-                    <span className="w-1/4 mr-6 font-semibold text-slate-800">Боли в межлопаточной области</span>
-
-                    <EditFieldRadio
-                        register={register("interscap_reg_pain")}
-                        defaultValue={Boolean(SelectedPatient.clinical_data.interscap_reg_pain)}
-                        value={1}
-                        label="Да"
-                        id="interscap_reg_pain_true"
-                        divClassName="w-1/4"
-                    />
-
-                    <EditFieldRadio
-                        register={register("interscap_reg_pain")}
-                        defaultValue={!Boolean(SelectedPatient.clinical_data.interscap_reg_pain)}
-                        value={0}
-                        label="Нет"
-                        id="interscap_reg_pain_false"
-                        divClassName="w-1/4"
-                    />
-                </div>
-
-                <div className="flex flex-row">
-                    <span className="w-1/4 mr-6 font-semibold text-slate-800">Потеря сознания</span>
-
-                    <EditFieldRadio
-                        register={register("conscious_loss")}
-                        defaultValue={Boolean(SelectedPatient.clinical_data.conscious_loss)}
-                        value={1}
-                        label="Да"
-                        id="conscious_loss_true"
-                        divClassName="w-1/4"
-                    />
-
-                    <EditFieldRadio
-                        register={register("conscious_loss")}
-                        defaultValue={!Boolean(SelectedPatient.clinical_data.conscious_loss)}
-                        value={0}
-                        label="Нет"
-                        id="conscious_loss_false"
-                        divClassName="w-1/4"
-                    />
-                </div>
-
-                <div className="flex flex-row">
-                    <span className="w-1/4 mr-6 font-semibold text-slate-800">Ишемия нижних конечностей</span>
-
-                    <EditFieldRadio
-                        register={register("low_extrem_ischemia")}
-                        defaultValue={Boolean(SelectedPatient.clinical_data.low_extrem_ischemia)}
-                        value={1}
-                        label="Да"
-                        id="low_extrem_ischemia_true"
-                        divClassName="w-1/4"
-                    />
-
-                    <EditFieldRadio
-                        register={register("low_extrem_ischemia")}
-                        defaultValue={!Boolean(SelectedPatient.clinical_data.low_extrem_ischemia)}
-                        value={0}
-                        label="Нет"
-                        id="low_extrem_ischemia_false"
-                        divClassName="w-1/4"
-                    />
-                </div>
+                <EditFieldBool
+                    register={register("low_extrem_ischemia")}
+                    defaultValue={Boolean(SelectedPatient.clinical_data.low_extrem_ischemia)}
+                    label="Ишемия нижних конечностей"
+                    id="low_extrem_ischemia"
+                />
 
                 <MyButton
                     onClick={() => {

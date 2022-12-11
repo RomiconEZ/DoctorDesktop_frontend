@@ -10,6 +10,8 @@ import EditFieldSelect from "../../../common/EditFieldSelect";
 import EditFieldRadio from "../../../common/EditFieldRadio";
 import MyButton from "../../../common/MyButton";
 import {Clinics} from "../../../../DataLists/Clinics";
+import {BodyTypeData} from "../../../../DataLists/BodyTypeData"
+import EditFieldBool from "../../../common/EditFieldBool";
 
 
 const AnthropometricDataEdit = () => {
@@ -27,21 +29,6 @@ const AnthropometricDataEdit = () => {
         handleSubmit
 
     } = useForm()
-
-
-    const initialAnthropometricData: any = {
-        height: SelectedPatient.anthropometric_data.height, // рост
-        weight: SelectedPatient.anthropometric_data.weight, // вес
-        body_mass_index: SelectedPatient.anthropometric_data.body_mass_index, // индекс массы тела
-        body_surface_area: SelectedPatient.anthropometric_data.body_surface_area, //площадь поверхности тела
-        body_type: SelectedPatient.anthropometric_data.body_type, // тип тела // выбрать из списка
-        connective_tissue_dysplasia: SelectedPatient.anthropometric_data.connective_tissue_dysplasia, // дисплазия соединительных тканей
-        connective_tissue_dysplasia_Marfan: SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Marfan, // синдром Марфана
-        connective_tissue_dysplasia_EhlersDanlos: SelectedPatient.anthropometric_data.connective_tissue_dysplasia_EhlersDanlos, // синдром Элерса-Данло
-        connective_tissue_dysplasia_LoeysDitz: SelectedPatient.anthropometric_data.connective_tissue_dysplasia_LoeysDitz, // синдром Лойеса-Дитц
-        connective_tissue_dysplasia_Terner: SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Terner, // синдром Тернера
-        connective_tissue_dysplasia_Noonan: SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Noonan, // синдром Нуана
-    }
 
     const [updatePatient, {}] = patientAPI.useUpdatePatientMutation();// {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями
 
@@ -109,142 +96,51 @@ const AnthropometricDataEdit = () => {
                         label="Телосложение"
                         defaultValue={SelectedPatient.anthropometric_data.body_type}
                         id={"body_type"}
-                        listOfValues={Clinics}
+                        listOfValues={BodyTypeData}
                         register={register("body_type")}
                     />
 
-                    <div className="flex flex-row">
-                        <span className="w-1/4 mr-6 font-semibold text-slate-800">Дисплазия соединительных тканей</span>
+                    <EditFieldBool
+                        register={register("connective_tissue_dysplasia")}
+                        defaultValue={Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia)}
+                        label="Дисплазия соединительных тканей"
+                        id="connective_tissue_dysplasia"
+                    />
 
-                        <EditFieldRadio
-                            register={register("connective_tissue_dysplasia")}
-                            defaultValue={Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia)}
-                            value={1}
-                            label="Да"
-                            id="connective_tissue_dysplasia_true"
-                            divClassName="w-1/4"
-                        />
+                    <EditFieldBool
+                        register={register("connective_tissue_dysplasia_Marfan")}
+                        defaultValue={Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Marfan)}
+                        label="Синдром Марфана"
+                        id="connective_tissue_dysplasia_Marfan"
+                    />
 
-                        <EditFieldRadio
-                            register={register("connective_tissue_dysplasia")}
-                            defaultValue={!Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia)}
-                            value={0}
-                            label="Нет"
-                            id="connective_tissue_dysplasia_false"
-                            divClassName="w-1/4"
-                        />
-                    </div>
+                    <EditFieldBool
+                        register={register("connective_tissue_dysplasia_EhlersDanlos")}
+                        defaultValue={Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia_EhlersDanlos)}
+                        label="Синдром Элерса-Данло"
+                        id="connective_tissue_dysplasia_EhlersDanlos"
+                    />
 
+                    <EditFieldBool
+                        register={register("connective_tissue_dysplasia_LoeysDitz")}
+                        defaultValue={Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia_LoeysDitz)}
+                        label="Синдром Лойеса-Дитц"
+                        id="connective_tissue_dysplasia_LoeysDitz"
+                    />
 
-                    <div className="flex flex-row">
-                        <span className="w-1/4 mr-6 font-semibold text-slate-800">Синдром Марфана</span>
+                    <EditFieldBool
+                        register={register("connective_tissue_dysplasia_Terner")}
+                        defaultValue={Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Terner)}
+                        label="Синдром Тернера"
+                        id="connective_tissue_dysplasia_Terner"
+                    />
 
-                        <EditFieldRadio
-                            register={register("connective_tissue_dysplasia_Marfan")}
-                            defaultValue={Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Marfan)}
-                            value={1}
-                            label="Да"
-                            id="connective_tissue_dysplasia_Marfan_true"
-                            divClassName="w-1/4"
-                        />
-
-                        <EditFieldRadio
-                            register={register("connective_tissue_dysplasia_Marfan")}
-                            defaultValue={!Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Marfan)}
-                            value={0}
-                            label="Нет"
-                            id="connective_tissue_dysplasia_Marfan_false"
-                            divClassName="w-1/4"
-                        />
-                    </div>
-
-                    <div className="flex flex-row">
-                        <span className="w-1/4 mr-6 font-semibold text-slate-800">Синдром Элерса-Данло</span>
-
-                        <EditFieldRadio
-                            register={register("connective_tissue_dysplasia_EhlersDanlos")}
-                            defaultValue={Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia_EhlersDanlos)}
-                            value={1}
-                            label="Да"
-                            id="connective_tissue_dysplasia_EhlersDanlos_true"
-                            divClassName="w-1/4"
-                        />
-
-                        <EditFieldRadio
-                            register={register("connective_tissue_dysplasia_EhlersDanlos")}
-                            defaultValue={!Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia_EhlersDanlos)}
-                            value={0}
-                            label="Нет"
-                            id="connective_tissue_dysplasia_EhlersDanlos_false"
-                            divClassName="w-1/4"
-                        />
-                    </div>
-
-                    <div className="flex flex-row">
-                        <span className="w-1/4 mr-6 font-semibold text-slate-800">Синдром Лойеса-Дитц</span>
-
-                        <EditFieldRadio
-                            register={register("connective_tissue_dysplasia_LoeysDitz")}
-                            defaultValue={Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia_LoeysDitz)}
-                            value={1}
-                            label="Да"
-                            id="connective_tissue_dysplasia_LoeysDitz_true"
-                            divClassName="w-1/4"
-                        />
-
-                        <EditFieldRadio
-                            register={register("connective_tissue_dysplasia_LoeysDitz")}
-                            defaultValue={!Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia_LoeysDitz)}
-                            value={0}
-                            label="Нет"
-                            id="connective_tissue_dysplasia_LoeysDitz_false"
-                            divClassName="w-1/4"
-                        />
-                    </div>
-
-                    <div className="flex flex-row">
-                        <span className="w-1/4 mr-6 font-semibold text-slate-800">Синдром Тернера</span>
-
-                        <EditFieldRadio
-                            register={register("connective_tissue_dysplasia_Terner")}
-                            defaultValue={Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Terner)}
-                            value={1}
-                            label="Да"
-                            id="connective_tissue_dysplasia_Terner_true"
-                            divClassName="w-1/4"
-                        />
-
-                        <EditFieldRadio
-                            register={register("connective_tissue_dysplasia_Terner")}
-                            defaultValue={!Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Terner)}
-                            value={0}
-                            label="Нет"
-                            id="connective_tissue_dysplasia_Terner_false"
-                            divClassName="w-1/4"
-                        />
-                    </div>
-
-                    <div className="flex flex-row">
-                        <span className="w-1/4 mr-6 font-semibold text-slate-800">Синдром Нуана</span>
-
-                        <EditFieldRadio
-                            register={register("connective_tissue_dysplasia_Noonan")}
-                            defaultValue={Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Noonan)}
-                            value={1}
-                            label="Да"
-                            id="connective_tissue_dysplasia_Noonan_true"
-                            divClassName="w-1/4"
-                        />
-
-                        <EditFieldRadio
-                            register={register("connective_tissue_dysplasia_Noonan")}
-                            defaultValue={!Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Noonan)}
-                            value={0}
-                            label="Нет"
-                            id="connective_tissue_dysplasia_Noonan_false"
-                            divClassName="w-1/4"
-                        />
-                    </div>
+                    <EditFieldBool
+                        register={register("connective_tissue_dysplasia_Noonan")}
+                        defaultValue={Boolean(SelectedPatient.anthropometric_data.connective_tissue_dysplasia_Noonan)}
+                        label="Синдром Нуана"
+                        id="connective_tissue_dysplasia_Noonan"
+                    />
 
                     <MyButton
                         onClick={() => {

@@ -12,6 +12,7 @@ import {Clinics} from "../../../../DataLists/Clinics";
 import {Race} from "../../../../DataLists/Race";
 import EditFieldRadio from "../../../common/EditFieldRadio";
 import MyButton from "../../../common/MyButton";
+import EditFieldBool from "../../../common/EditFieldBool";
 
 
 
@@ -31,26 +32,7 @@ const AnamnesisEdit = () => {
 
     } = useForm()
 
-    const initialAnamnesis: any = {
-        disHeartBloodVesselsFirstLineRelatives: SelectedPatient.anamnesis.disHeartBloodVesselsFirstLineRelatives,
-        relativesConnTissDysplasia: SelectedPatient.anamnesis.relativesConnTissDysplasia,
-        heartSurgeriesPr: SelectedPatient.anamnesis.heartSurgeriesPr,
-        heartSurgeriesType: SelectedPatient.anamnesis.heartSurgeriesType,
-        geneticAnalysisPr: SelectedPatient.anamnesis.geneticAnalysisPr,
-        geneticAnalysisRes: SelectedPatient.anamnesis.geneticAnalysisRes,
-        smokingBool: SelectedPatient.anamnesis.smokingBool,
-        smokingExperience: SelectedPatient.anamnesis.smokingExperience,
-        alkoConsumptionBool:SelectedPatient.anamnesis.alkoConsumptionBool,
-        alkoConsumptionExperince:SelectedPatient.anamnesis.alkoConsumptionExperince,
-        drugConsumptionBool:SelectedPatient.anamnesis.drugConsumptionBool,
-        drugConsumptionExperince:SelectedPatient.anamnesis.drugConsumptionExperince,
-        occupationalHazards: SelectedPatient.anamnesis.occupationalHazards,
-        sports: SelectedPatient.anamnesis.sports,
-        diseaseKnowledge:SelectedPatient.anamnesis.diseaseKnowledge,
-        employed:SelectedPatient.anamnesis.employed,
-        blodThinDrugs:SelectedPatient.anamnesis.blodThinDrugs,
-        disaggregants:SelectedPatient.anamnesis.disaggregants,
-    }
+
     const [updatePatient, {}] = patientAPI.useUpdatePatientMutation();// {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями
 
     const onSubmit = async (data:any) => {
@@ -91,71 +73,26 @@ const AnamnesisEdit = () => {
 
             <div className='grid relative grid-cols-1 gap-y-3 my-4'>
 
-                <div className="flex flex-row">
-                    <span className="w-1/4 mr-6 font-semibold text-slate-800">Заболевания сердца и сосудов у родственников первой линии</span>
+                <EditFieldBool
+                    register={register("disHeartBloodVesselsFirstLineRelatives")}
+                    defaultValue={Boolean(SelectedPatient.anamnesis.disHeartBloodVesselsFirstLineRelatives)}
+                    label="Заболевания сердца и сосудов у родственников первой линии"
+                    id="disHeartBloodVesselsFirstLineRelatives"
+                />
 
-                    <EditFieldRadio
-                        register={register("disHeartBloodVesselsFirstLineRelatives")}
-                        defaultValue={Boolean(SelectedPatient.anamnesis.disHeartBloodVesselsFirstLineRelatives)}
-                        value={1}
-                        label="Да"
-                        id="disHeartBloodVesselsFirstLineRelatives_true"
-                        divClassName="w-1/4"
-                    />
+                <EditFieldBool
+                    register={register("relativesConnTissDysplasia")}
+                    defaultValue={Boolean(SelectedPatient.anamnesis.relativesConnTissDysplasia)}
+                    label="Наличие соединительно-тканевой дисплазии у родстенников"
+                    id="relativesConnTissDysplasia"
+                />
 
-                    <EditFieldRadio
-                        register={register("disHeartBloodVesselsFirstLineRelatives")}
-                        defaultValue={!Boolean(SelectedPatient.anamnesis.disHeartBloodVesselsFirstLineRelatives)}
-                        value={0}
-                        label="Нет"
-                        id="disHeartBloodVesselsFirstLineRelatives_false"
-                        divClassName="w-1/4"
-                    />
-                </div>
-
-                <div className="flex flex-row">
-                    <span className="w-1/4 mr-6 font-semibold text-slate-800">Наличие соединительно-тканевой дисплазии у родстенников</span>
-
-                    <EditFieldRadio
-                        register={register("disHeartBloodVesselsFirstLineRelatives")}
-                        defaultValue={Boolean(SelectedPatient.anamnesis.relativesConnTissDysplasia)}
-                        value={1}
-                        label="Да"
-                        id="relativesConnTissDysplasia_true"
-                        divClassName="w-1/4"
-                    />
-
-                    <EditFieldRadio
-                        register={register("disHeartBloodVesselsFirstLineRelatives")}
-                        defaultValue={!Boolean(SelectedPatient.anamnesis.relativesConnTissDysplasia)}
-                        value={0}
-                        label="Нет"
-                        id="relativesConnTissDysplasia_false"
-                        divClassName="w-1/4"
-                    />
-                </div>
-
-                <div className="flex flex-row">
-                    <span className="w-1/4 mr-6 font-semibold text-slate-800">Наличие операций на сердце в прошлом</span>
-
-                    <EditFieldRadio
-                        register={register("heartSurgeriesPr")}
-                        defaultValue={Boolean(SelectedPatient.anamnesis.heartSurgeriesPr)}
-                        value={1}
-                        label="Да"
-                        id="heartSurgeriesPr_true"
-                        divClassName="w-1/4"
-                    />
-
-                    <EditFieldRadio
-                        register={register("heartSurgeriesPr")}
-                        defaultValue={!Boolean(SelectedPatient.anamnesis.heartSurgeriesPr)}
-                        value={0}
-                        label="Нет"
-                        id="heartSurgeriesPr_false"
-                        divClassName="w-1/4"
-                    />
-                </div>
+                <EditFieldBool
+                    register={register("heartSurgeriesPr")}
+                    defaultValue={Boolean(SelectedPatient.anamnesis.heartSurgeriesPr)}
+                    label="Наличие операций на сердце в прошлом"
+                    id="heartSurgeriesPr"
+                />
 
                 <EditFieldStr
                     label="Тип операций на сердце в прошлом"
@@ -164,27 +101,12 @@ const AnamnesisEdit = () => {
                     id="heartSurgeriesType"
                 />
 
-                <div className="flex flex-row">
-                    <span className="w-1/4 mr-6 font-semibold text-slate-800">Проходил ли генетический анализ</span>
-
-                    <EditFieldRadio
-                        register={register("geneticAnalysisPr")}
-                        defaultValue={Boolean(SelectedPatient.anamnesis.geneticAnalysisPr)}
-                        value={1}
-                        label="Да"
-                        id="geneticAnalysisPr_true"
-                        divClassName="w-1/4"
-                    />
-
-                    <EditFieldRadio
-                        register={register("geneticAnalysisPr")}
-                        defaultValue={!Boolean(SelectedPatient.anamnesis.geneticAnalysisPr)}
-                        value={0}
-                        label="Нет"
-                        id="geneticAnalysisPr_false"
-                        divClassName="w-1/4"
-                    />
-                </div>
+                <EditFieldBool
+                    register={register("geneticAnalysisPr")}
+                    defaultValue={Boolean(SelectedPatient.anamnesis.geneticAnalysisPr)}
+                    label="Проходил ли генетический анализ"
+                    id="geneticAnalysisPr"
+                />
 
                 <EditFieldStr
                     label="Результаты генетического анализа"
@@ -193,27 +115,12 @@ const AnamnesisEdit = () => {
                     id="geneticAnalysisRes"
                 />
 
-                <div className="flex flex-row">
-                    <span className="w-1/4 mr-6 font-semibold text-slate-800">Есть ли опыт курения</span>
-
-                    <EditFieldRadio
-                        register={register("smokingBool")}
-                        defaultValue={Boolean(SelectedPatient.anamnesis.smokingBool)}
-                        value={1}
-                        label="Да"
-                        id="smokingBool_true"
-                        divClassName="w-1/4"
-                    />
-
-                    <EditFieldRadio
-                        register={register("smokingBool")}
-                        defaultValue={!Boolean(SelectedPatient.anamnesis.smokingBool)}
-                        value={0}
-                        label="Нет"
-                        id="smokingBool_false"
-                        divClassName="w-1/4"
-                    />
-                </div>
+                <EditFieldBool
+                    register={register("smokingBool")}
+                    defaultValue={Boolean(SelectedPatient.anamnesis.smokingBool)}
+                    label="Есть ли опыт курения"
+                    id="smokingBool"
+                />
 
                 <EditFieldStr
                     label="Опыт курения"
@@ -222,27 +129,12 @@ const AnamnesisEdit = () => {
                     id="smokingExperience"
                 />
 
-                <div className="flex flex-row">
-                    <span className="w-1/4 mr-6 font-semibold text-slate-800">Есть ли опыт употребления алкоголя</span>
-
-                    <EditFieldRadio
-                        register={register("alkoConsumptionBool")}
-                        defaultValue={Boolean(SelectedPatient.anamnesis.alkoConsumptionBool)}
-                        value={1}
-                        label="Да"
-                        id="alkoConsumptionBool_true"
-                        divClassName="w-1/4"
-                    />
-
-                    <EditFieldRadio
-                        register={register("alkoConsumptionBool")}
-                        defaultValue={!Boolean(SelectedPatient.anamnesis.alkoConsumptionBool)}
-                        value={0}
-                        label="Нет"
-                        id="alkoConsumptionBool_false"
-                        divClassName="w-1/4"
-                    />
-                </div>
+                <EditFieldBool
+                    register={register("alkoConsumptionBool")}
+                    defaultValue={Boolean(SelectedPatient.anamnesis.alkoConsumptionBool)}
+                    label="Есть ли опыт употребления алкоголя"
+                    id="alkoConsumptionBool"
+                />
 
                 <EditFieldStr
                     label="Опыт употребления алкоголя"
@@ -251,27 +143,12 @@ const AnamnesisEdit = () => {
                     id="alkoConsumptionExperince"
                 />
 
-                <div className="flex flex-row">
-                    <span className="w-1/4 mr-6 font-semibold text-slate-800">Есть ли опыт употребления наркотиков</span>
-
-                    <EditFieldRadio
-                        register={register("drugConsumptionBool")}
-                        defaultValue={Boolean(SelectedPatient.anamnesis.drugConsumptionBool)}
-                        value={1}
-                        label="Да"
-                        id="drugConsumptionBool_true"
-                        divClassName="w-1/4"
-                    />
-
-                    <EditFieldRadio
-                        register={register("drugConsumptionBool")}
-                        defaultValue={!Boolean(SelectedPatient.anamnesis.drugConsumptionBool)}
-                        value={0}
-                        label="Нет"
-                        id="drugConsumptionBool_false"
-                        divClassName="w-1/4"
-                    />
-                </div>
+                <EditFieldBool
+                    register={register("drugConsumptionBool")}
+                    defaultValue={Boolean(SelectedPatient.anamnesis.drugConsumptionBool)}
+                    label="Есть ли опыт употребления наркотиков"
+                    id="drugConsumptionBool"
+                />
 
                 <EditFieldStr
                     label="Опыт употребления наркотиков"
@@ -302,71 +179,26 @@ const AnamnesisEdit = () => {
                     id="diseaseKnowledge"
                 />
 
-                <div className="flex flex-row">
-                    <span className="w-1/4 mr-6 font-semibold text-slate-800">Работает</span>
+                <EditFieldBool
+                    register={register("employed")}
+                    defaultValue={Boolean(SelectedPatient.anamnesis.employed)}
+                    label="Работает"
+                    id="employed"
+                />
 
-                    <EditFieldRadio
-                        register={register("employed")}
-                        defaultValue={Boolean(SelectedPatient.anamnesis.employed)}
-                        value={1}
-                        label="Да"
-                        id="employed_true"
-                        divClassName="w-1/4"
-                    />
+                <EditFieldBool
+                    register={register("blodThinDrugs")}
+                    defaultValue={Boolean(SelectedPatient.anamnesis.blodThinDrugs)}
+                    label="Принимает ли кроворазжижающие препараты"
+                    id="blodThinDrugs"
+                />
 
-                    <EditFieldRadio
-                        register={register("employed")}
-                        defaultValue={!Boolean(SelectedPatient.anamnesis.employed)}
-                        value={0}
-                        label="Нет"
-                        id="employed_false"
-                        divClassName="w-1/4"
-                    />
-                </div>
-
-                <div className="flex flex-row">
-                    <span className="w-1/4 mr-6 font-semibold text-slate-800">Принимает ли кроворазжижающие препараты</span>
-
-                    <EditFieldRadio
-                        register={register("blodThinDrugs")}
-                        defaultValue={Boolean(SelectedPatient.anamnesis.blodThinDrugs)}
-                        value={1}
-                        label="Да"
-                        id="blodThinDrugs_true"
-                        divClassName="w-1/4"
-                    />
-
-                    <EditFieldRadio
-                        register={register("blodThinDrugs")}
-                        defaultValue={!Boolean(SelectedPatient.anamnesis.blodThinDrugs)}
-                        value={0}
-                        label="Нет"
-                        id="blodThinDrugs_false"
-                        divClassName="w-1/4"
-                    />
-                </div>
-
-                <div className="flex flex-row">
-                    <span className="w-1/4 mr-6 font-semibold text-slate-800">Принимает ли антиагреганты</span>
-
-                    <EditFieldRadio
-                        register={register("disaggregants")}
-                        defaultValue={Boolean(SelectedPatient.anamnesis.disaggregants)}
-                        value={1}
-                        label="Да"
-                        id="disaggregants_true"
-                        divClassName="w-1/4"
-                    />
-
-                    <EditFieldRadio
-                        register={register("disaggregants")}
-                        defaultValue={!Boolean(SelectedPatient.anamnesis.disaggregants)}
-                        value={0}
-                        label="Нет"
-                        id="disaggregants_false"
-                        divClassName="w-1/4"
-                    />
-                </div>
+                <EditFieldBool
+                    register={register("disaggregants")}
+                    defaultValue={Boolean(SelectedPatient.anamnesis.disaggregants)}
+                    label="Принимает ли антиагреганты"
+                    id="disaggregants"
+                />
 
 
                 <MyButton

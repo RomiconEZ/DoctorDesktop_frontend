@@ -7,9 +7,7 @@ import {NavLink, useParams} from "react-router-dom";
 import Loader from "../common/Loader";
 import {doctorAPI, DoctorForDoctor} from "../../services/DoctorService";
 import {additionalSlice} from "../../store/reducers/AdditionalSlice";
-import {data} from "autoprefixer";
-
-
+import CreateDoctorForm from "../UI/CreateDoctorForm";
 
 const UpdateDoctorPage = () => {
     const {user} = useAppSelector(state => state.userReducer)
@@ -18,38 +16,38 @@ const UpdateDoctorPage = () => {
     const breadcrumbs = useBreadcrumbs(routes);
     const dispatch = useAppDispatch()
     let refetch: boolean = false
-    let data: any
-    let error: any
-    let preloading: any
 
-    const body: DoctorForDoctor = {
-        doctorID: user!.id,
-        selecteddoctorID: params.id
-    }
-    if (doctor.id!==Number(params.id)) {
-        refetch = true
-        const {data, error, isLoading: preloading} = doctorAPI.useFetchSelectedDoctorQuery(body)
-    }
+    const {isLoading, error} = useAppSelector(state => state.userReducer);
 
-    useEffect(() => {
-        if (refetch) {
-            if ((preloading === false) && (data.data != undefined)) {
-                dispatch(additionalSlice.actions.ChangeSelectedDoctor(data.data))
-            }
-        }
-    }, [refetch, preloading])
+    // const body: DoctorForDoctor = {
+    //     doctorID: user!.id,
+    //     selecteddoctorID: params.id
+    // }
+    // if (doctor.id!==Number(params.id)) {
+    //     refetch = true
+    //     const {data, error, isLoading: preloading} = doctorAPI.useFetchSelectedDoctorQuery(body)
+    // }
+    //
+    // useEffect(() => {
+    //     if (refetch) {
+    //         if ((preloading === false) && (data.data != undefined)) {
+    //             dispatch(additionalSlice.actions.ChangeSelectedDoctor(data.data))
+    //         }
+    //     }
+    // }, [refetch, preloading])
 
     return (
-        <div>
-            {preloading && <Loader/>}
+        <div className="ml-5 mb-10">
+            {isLoading && <Loader/>}
             {error && <h1>Произошла ошибка при загрузке</h1>}
             <>
                 {breadcrumbs.map(({ match, breadcrumb }) => (
-                    <NavLink key={match.pathname} to={match.pathname} className="text-azure-my text-xs mr-1">
+                    <NavLink key={match.pathname} to={match.pathname} className="text-our-greenish-300 text-xs mr-1">
                         /{breadcrumb}
                     </NavLink>
                 ))}
             </>
+
             <div>
                 <UpdateDoctorForm />
             </div>

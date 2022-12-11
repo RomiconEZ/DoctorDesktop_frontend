@@ -12,8 +12,8 @@ interface Props {
 //Кастомная кнопка.
 //Описан только вид кнопки. Позицию описывайте в атрибуте className
 const MyButton: React.FC<Props> = ( { children, onClick, className,
-                                        defaultStyle = "bg-transparent text-our-greenish-500 border-our-greenish-500 " +
-                                        "hover:bg-our-greenish-500 hover:text-white hover:border-transparent" } ) => {
+                                        defaultStyle = "hover:bg-our-greenish-500 " +
+                                        "bg-our-greenish-400 text-white hover:border-transparent" } ) => {
     return (
         <button
             onClick={onClick}
