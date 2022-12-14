@@ -14,7 +14,7 @@ const SelectedPatientPage = () => {
     const params = useParams<string>()
     const body: PatientForDoctor = {
         doctorID: user!.id,
-        patientID: Number(params)
+        patientID: params.id
     }
     // let refetch: boolean = false
     // let data: any

@@ -33,7 +33,7 @@ const PersonalDataEdit = () => {
         patronymic: SelectedPatient.personal_data.patronymic,
         birthday: SelectedPatient.personal_data.birthday,
         sex: SelectedPatient.personal_data.sex,
-        region: SelectedPatient.personal_data.region,
+        residenseregion: SelectedPatient.personal_data.residenseregion,
         clinic: SelectedPatient.personal_data.clinic,
         race: SelectedPatient.personal_data.race,
     }
@@ -53,7 +53,7 @@ const PersonalDataEdit = () => {
                     patronymic: data.patronymic,
                     birthday: data.birthday,
                     sex: data.sex,
-                    region: data.region,
+                    residenseregion: data.residenseregion,
                     clinic: data.clinic,
                     race: data.race,
                 }

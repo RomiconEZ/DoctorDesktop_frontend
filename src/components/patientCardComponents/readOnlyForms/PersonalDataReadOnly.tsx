@@ -33,7 +33,7 @@ const PersonalDataReadOnly = () => {
 
                 <div className='flex'>
                     <span className='text-slate-400 w-1/2'>Регион</span>
-                    <span className='text-slate-800 w-1/2'>{SelectedPatient.personal_data.region}</span>
+                    <span className='text-slate-800 w-1/2'>{SelectedPatient.personal_data.residenseregion}</span>
                 </div>
 
                 <div className='flex'>
