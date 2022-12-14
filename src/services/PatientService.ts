@@ -1,7 +1,6 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
+import {createApi} from "@reduxjs/toolkit/dist/query/react";
 import {IPatientCreate} from "../models/IPatientCreate";
 import {IPatientUpdate} from "../models/IPatientUpdate";
-import {API_URL} from "../env_data";
 import {baseQuery} from "./DoctorService";
 
 export interface PaginationPatientsForCertainDoctor
@@ -14,7 +13,7 @@ export interface PaginationPatientsForCertainDoctor
 export interface PatientForDoctor
 {
     doctorID: number
-    patientID: number
+    patientID: any
 }
 export interface DoctorID
 {
@@ -76,7 +75,7 @@ export const patientAPI = createApi({
         updatePatient: build.mutation<any, IPatientUpdate>({ // отправляем только те данные, которые изменяем. И обратно принимаем также только изменившиеся данные
             query: (PatientUpdate) => ({
                 url: `/patients/${PatientUpdate.patientID}`,
-                method: 'PUT',
+                method: 'PATCH',
                 body: PatientUpdate
             }),
             invalidatesTags: ['Patient']

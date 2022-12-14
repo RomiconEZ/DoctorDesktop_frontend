@@ -16,11 +16,10 @@ export interface IPersonal_data_update {
     patronymic?: string,
     birthday?: number | Date,
     sex?: boolean | number,
-    region?: string,
+    residenseregion?: string,
     clinic?: string,
     race?: string,
     version?: number,
-
 }
 
 export interface IAnthropometric_data_update {

@@ -11,7 +11,7 @@ export const initialPatientState: IPatientFull = {
             patronymic: '',
             birthday: 0,
             sex: true,
-            region: '',
+            residenseregion: '',
             clinic: '',
             race: '',
             version: 0,

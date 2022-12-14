@@ -1,11 +1,10 @@
 export interface IPatientCreate{
-    name: string
-    surname: string
+    first_name: string
+    second_name: string
     patronymic: string
     birthdate: number | Date
     race: string
     sex: boolean | number
-    region: string
-    city: string
+    clinic: string,
     residenseregion: string
 }

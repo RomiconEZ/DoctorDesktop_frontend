@@ -22,14 +22,13 @@ const CreatePatientForm = () => {
 
     const initialData: IPatientCreate = {
 
-        name: '',
-        surname: '',
+        first_name: '',
+        second_name: '',
         patronymic: '',
         birthdate: Date.now(),
         sex: true,
         race: 'evr',
-        region: user?.region || 'Северо-западный регион',
-        city: user?.city || 'Санкт-Петербург',
+        clinic: user?.placeOfWork || "СПБГУ",
         residenseregion: user?.region || 'Северо-западный регион',
     }
   const {data, errors, handleInputChange, handleKeyDown, validate} = useForm(initialData, true, validatorConfig);
