@@ -33,6 +33,7 @@ export const additionalSlice = createSlice({
             },
             ChangeSelectedDoctor(state, action: PayloadAction<IDoctorFull>)
             {
+                console.log(action.payload)
                 state.SelectedDoctor = action.payload
             },
 

@@ -14,6 +14,7 @@ import {DatePickerField, InputField, RadioGroup, SelectField} from "../../../com
 import Button from "../../../common/Button";
 import {useNavigate, useParams} from "react-router-dom";
 import {Clinics} from "../../../../DataLists/Clinics";
+import {additionalSlice} from "../../../../store/reducers/AdditionalSlice";
 
 
 
@@ -23,13 +24,15 @@ const PersonalDataEdit = () => {
     const navigate = useNavigate();
     const params = useParams<string>()
     const dispatch = useAppDispatch()
+    let response: any
+
 
 
     const initialPersonalData: any = {
         first_name: SelectedPatient.personal_data.first_name,
         second_name: SelectedPatient.personal_data.second_name,
         patronymic: SelectedPatient.personal_data.patronymic,
-        birthday: (new Date(SelectedPatient.personal_data.birthday)).getMilliseconds(),
+        birthday: (new Date(SelectedPatient.personal_data.birthday)).getTime(),
         sex: SelectedPatient.personal_data.sex,
         residenseregion: SelectedPatient.personal_data.residenseregion,
         clinic: SelectedPatient.personal_data.clinic,
@@ -56,7 +59,11 @@ const PersonalDataEdit = () => {
                     race: data.race,
                 }
             }
-            await updatePatient(UpdatePatientData)
+            response = await updatePatient(UpdatePatientData)
+            if (response.data != undefined) {
+                dispatch(additionalSlice.actions.ChangeSelectedPatient(response.data))
+            }
+
             navigate(`/auth/menu/patients/${SelectedPatient.patientID}/personal-data`)
 
         }

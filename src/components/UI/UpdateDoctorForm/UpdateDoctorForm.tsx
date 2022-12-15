@@ -12,19 +12,27 @@ import {Regions} from "../../../DataLists/Regions";
 import {PlacesOfWork} from "../../../DataLists/PlacesOfWork";
 import {Occupations} from "../../../DataLists/Occupations";
 import {Roles} from "../../../DataLists/Roles";
-import { useAppSelector} from "../../../hooks/redux";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {Cities} from "../../../DataLists/Cities";
+import {additionalSlice} from "../../../store/reducers/AdditionalSlice";
+import {useNavigate} from "react-router-dom";
 
 
 const UpdateDoctorForm = () => {
     const {SelectedDoctor: doctor} = useAppSelector(state => state.additionalReducer)
+    let response: any
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate();
+
+    // console.log((new Date(doctor!.birthdate)).getTime())
+    // console.log(doctor!.birthdate)
 
     const initialData: IDoctorFull = {
         id: doctor!.id,
         name: doctor!.name,
         surname: doctor!.surname,
         patronymic: doctor!.patronymic,
-        birthdate: (new Date(doctor!.birthdate)).getMilliseconds(),
+        birthdate: (new Date(doctor!.birthdate)).getTime(),
         workExperience: doctor!.workExperience,
         sex: doctor!.sex,
         region: doctor!.region,
@@ -41,7 +49,14 @@ const UpdateDoctorForm = () => {
 
     const handleUpdate = async (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        if (validate(data)) {await updateDoctor(data)}
+        if (validate(data)) {
+            response = await updateDoctor(data)
+            if (response != undefined) {
+                dispatch(additionalSlice.actions.ChangeSelectedDoctor(response.data))
+                navigate(`/auth/menu/doctors/${doctor.id}`)
+            }
+
+        }
     }
 
 

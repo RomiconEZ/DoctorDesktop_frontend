@@ -58,7 +58,6 @@ export const doctorAPI = createApi({
                     _doctorID: DoctorForDoctor.doctorID,
                 }
             }),
-            keepUnusedDataFor: 300,
         }),
 
         fetchNumOfDoctors: build.query<any, DoctorID>({

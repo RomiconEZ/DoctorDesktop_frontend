@@ -51,7 +51,6 @@ export const patientAPI = createApi({
                     _doctorID: PatientForDoctor.doctorID,
                 }
             }),
-            keepUnusedDataFor: 300,
         }),
 
         // Получение количества пациентов для доктора

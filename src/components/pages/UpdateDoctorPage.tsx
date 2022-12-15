@@ -7,7 +7,6 @@ import {NavLink, useParams} from "react-router-dom";
 import Loader from "../common/Loader";
 import {doctorAPI, DoctorForDoctor} from "../../services/DoctorService";
 import {additionalSlice} from "../../store/reducers/AdditionalSlice";
-import {data} from "autoprefixer";
 
 
 

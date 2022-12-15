@@ -17,7 +17,6 @@ import ReadFieldBool from "../common/ReadFieldBool";
 const DoctorPage =() =>{
     const {user} = useAppSelector(state => state.userReducer)
     const params = useParams<string>()
-    console.log(params.id)
     const body: DoctorForDoctor = {
         doctorID: user!.id,
         selecteddoctorID: params.id
@@ -37,12 +36,14 @@ const DoctorPage =() =>{
 
 
     useEffect(() => {
-        if ((preloading === false) && (data != undefined))
+
+        if ((preloading === false) && (data != undefined) )
         {
             if (data.data != undefined)
             {
                 dispatch(additionalSlice.actions.ChangeSelectedDoctor(data.data))
             }
+
         }
     }, [preloading])
 
