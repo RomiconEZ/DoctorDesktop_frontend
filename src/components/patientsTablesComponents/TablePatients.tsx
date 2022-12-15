@@ -66,9 +66,9 @@ const TablePatients = () => {
                     <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Дата рождения</th>
                     <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Возраст</th>
                     <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Пол</th>
-                    <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Регион</th>
-                    <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Город</th>
-                    <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Регион обследования</th>
+                    <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Регион проживания</th>
+                    <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Город обследования</th>
+                    <th scope="col" className="text-sm font-medium text-black-dark-my px-6 py-4 text-left">Клиника</th>
                 </tr>
                 </thead>
                 <tbody>

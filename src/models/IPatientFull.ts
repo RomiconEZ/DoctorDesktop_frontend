@@ -17,6 +17,7 @@ export interface IPersonal_data {
     birthday: number | Date,
     sex: boolean | number,
     residenseregion: string,
+    city: string
     clinic: string,
     race: string,
     version: number,

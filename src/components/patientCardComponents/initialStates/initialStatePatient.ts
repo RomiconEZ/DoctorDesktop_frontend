@@ -11,9 +11,10 @@ export const initialPatientState: IPatientFull = {
             patronymic: '',
             birthday: 0,
             sex: true,
-            residenseregion: '',
-            clinic: '',
-            race: '',
+            residenseregion: '-',
+            clinic: '-',
+            city: '-',
+            race: '-',
             version: 0,
         },
         anthropometric_data: {

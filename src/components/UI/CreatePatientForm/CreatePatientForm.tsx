@@ -13,23 +13,23 @@ import {Regions} from "../../../DataLists/Regions";
 import {genderItems} from "../../../DataLists/genderItems";
 import {Race} from "../../../DataLists/Race";
 import {Cities} from "../../../DataLists/Cities";
+import {Clinics} from "../../../DataLists/Clinics";
 
 
 
 const CreatePatientForm = () => {
     const {user} = useAppSelector(state => state.userReducer)
-
+    let NewPatient: IPatientCreate
 
     const initialData: IPatientCreate = {
-
         first_name: '',
         second_name: '',
         patronymic: '',
-        birthdate: Date.now(),
+        birthday: Date.now(),
         sex: true,
         race: 'evr',
-        clinic: user?.placeOfWork || 'СПБГУ',
-        residenseregion: user?.region || 'Северо-западный регион',
+        clinic: user!.placeOfWork,
+        residenseregion: user!.region,
     }
   const {data, errors, handleInputChange, handleKeyDown, validate} = useForm(initialData, true, validatorConfig);
 
@@ -37,33 +37,47 @@ const CreatePatientForm = () => {
 
     const handleCreate = async (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        if (validate(data)) {await createPatient(data)}
+        if (validate(data))
+        {
+            NewPatient = {
+
+                first_name: data.first_name,
+                second_name: data.second_name,
+                patronymic: '',
+                birthday: Date.now(),
+                sex: true,
+                race: 'evr',
+                clinic: user!.placeOfWork,
+                residenseregion: user!.region,
+            }
+
+            await createPatient(NewPatient)}
+        else {console.log(errors)}
     }
 
   return (
       <>
 
         <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
-          <InputField autoFocus name='name' label='Имя'/>
-          <InputField name='surname' label='Фамилия'/>
+          <InputField autoFocus name='first_name' label='Имя'/>
+          <InputField name='second_name' label='Фамилия'/>
             <InputField name='patronymic' label='Отчество'/>
           <RadioGroup name='sex' items={genderItems}/>
+            <SelectField label='Раса' name='race' options={Race}  />
 
             <DatePickerField
-              value={data.birthdate}
+              value={data.birthday}
               onChange={handleInputChange}
               openTo='year'
               mask='__.__.____'
               label='Дата Рождения'
-              name='birthdate'
+              name='birthday'
               minDate={new Date('1900-01-01')}
               renderInput={(params: JSX.IntrinsicAttributes & TextFieldProps) => (
             <TextField {...params} {...(errors?.birthYear && { error: true, helperText: errors?.birthYear })} />
           )}
         />
-            <SelectField label='Регион' name='region' options={Regions}  />
-            <SelectField label='Раса' name='race' options={Race}  />
-            <SelectField label='Город' name='city' options={Cities}  />
+            <SelectField label='Клиника' name='clinic' options={Clinics}  />
             <SelectField label='Регион обследования' name='residenseregion' options={ResidenseRegions}  />
 
             <Button type='submit' onClick={handleCreate} fullWidth disabled={Object.keys(errors).length !== 0}>

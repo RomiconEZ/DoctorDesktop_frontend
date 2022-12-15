@@ -3,9 +3,7 @@ import React from 'react';
 import validatorConfig from './validatorConfig';
 import {TextField, TextFieldProps} from "@mui/material";
 import {useAppSelector} from "../../../../hooks/redux";
-import {additionalSlice} from "../../../../store/reducers/AdditionalSlice";
 import {ResidenseRegions} from "../../../../DataLists/ResidenseRegions";
-import {Regions} from "../../../../DataLists/Regions";
 import {Form, useForm} from "../../../../hooks/useForm";
 import {genderItems} from "../../../../DataLists/genderItems";
 import {patientAPI} from "../../../../services/PatientService";
@@ -76,15 +74,15 @@ const PersonalDataEdit = () => {
                     openTo='year'
                     mask='__.__.____'
                     label='Дата Рождения'
-                    name='birthdate'
+                    name='birthday'
                     minDate={new Date('1900-01-01')}
                     renderInput={(params: JSX.IntrinsicAttributes & TextFieldProps) => (
                         <TextField {...params} {...(errors?.birthYear && { error: true, helperText: errors?.birthYear })} />
                     )}
                 />
-                <SelectField label='Регион' name='region' options={Regions}  />
+                <SelectField label='Регион обследования' name='residenseregion' options={ResidenseRegions}  />
                 <SelectField label='Раса' name='race' options={Race}  />
-                <SelectField label='Город' name='clinic' options={Clinics}  />
+                <SelectField label='Клиника' name='clinic' options={Clinics}  />
 
                 <Button type='submit' onClick={handleUpdate} fullWidth disabled={Object.keys(errors).length !== 0}>
                     Сохранить

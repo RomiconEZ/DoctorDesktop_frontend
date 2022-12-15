@@ -13,13 +13,13 @@ const PatientsList: React.FC<PatientsListProps> = ({ patients }) => {
       <>
         {patients.map(patient => (
             <tr key={patient.id} onClick={() => navigate(`/auth/menu/patients/${patient.id}`)}>
-              <td >{patient.surname + ' ' + patient.name + ' ' + patient.patronymic}</td>
-              <td>{patient.birthdate}</td>
+              <td >{patient.first_name + ' ' + patient.first_name + ' ' + patient.patronymic}</td>
+              <td>{patient.birthday}</td>
               <td>{patient.age}</td>
               <td>{patient.sex}</td>
-              <td>{patient.region}</td>
-              <td>{patient.city}</td>
               <td>{patient.residenseregion}</td>
+                <td>{patient.city}</td>
+                <td>{patient.clinic}</td>
             </tr>
         ))}
       </>
