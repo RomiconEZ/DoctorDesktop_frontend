@@ -82,30 +82,29 @@ const Carousel = () => {
     };
 
     return (
-        <div className="mt-40 ml-40 mr-40 p-5">
-            <Slider {...settings}>
+        <div className="flex flex-row justify-center gap-x-16 mt-44">
 
-                {sliderContent.map((slideContent:ISlideContent) => {
-                    return <div className="mt-100 mr-5 pr-5 pt-30" key={slideContent.id}>
-                        <div className="bg-white rounded-md m-15 pt-10 pr-5 pl-5 pb-5 h-64 w-72 -pr-7 -mr-6">
-                            <h2 className="text-our-greenish-300 font-medium uppercase text-2xl mb-6">{slideContent.title}</h2>
-                            {slideContent.sections.map((linkContent: linkName) => {
-                                return <div key={linkContent.id} className="">
-                                    <ButtonWithIcon
-                                        icon = {arrowRightIcon}
-                                        className="hover:text-our-greenish-400"
-                                    >
-                                        <NavLink to={linkContent.to}>
-                                            {linkContent.name}
-                                        </NavLink>
-                                    </ButtonWithIcon>
-                                </div>
-                            })}
-                        </div>
-
+            {sliderContent.map((slideContent:ISlideContent) => {
+                return <div key={slideContent.id}>
+                    <div className="bg-white rounded-md pt-10 pb-5 px-5 h-72 w-72">
+                        <h2 className="text-our-greenish-300 font-medium uppercase text-2xl mb-6">{slideContent.title}</h2>
+                        {slideContent.sections.map((linkContent: linkName) => {
+                            return <div key={linkContent.id} className="">
+                                <ButtonWithIcon
+                                    icon = {arrowRightIcon}
+                                    className="hover:text-our-greenish-400"
+                                >
+                                    <NavLink to={linkContent.to}>
+                                        {linkContent.name}
+                                    </NavLink>
+                                </ButtonWithIcon>
+                            </div>
+                        })}
                     </div>
-                })}
-            </Slider>
+
+                </div>
+            })}
+
         </div>
     );
 };

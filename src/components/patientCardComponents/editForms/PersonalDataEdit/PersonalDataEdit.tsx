@@ -56,7 +56,7 @@ const PersonalDataEdit = () => {
                 second_name: data.second_name,
                 patronymic: data.patronymic,
                 birthday: data.birthday,
-                sex: data.sex,
+                sex: Number(data.sex),
                 region: data.region,
                 clinic: data.clinic,
                 race: data.race,

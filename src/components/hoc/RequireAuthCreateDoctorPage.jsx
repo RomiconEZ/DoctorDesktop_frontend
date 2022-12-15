@@ -21,7 +21,9 @@ const RequireAuthCreateDoctorPage = ({children}) => {
         return <Navigate to='/login' state={{from: location}} />
     }
 
-    if ((user.role !==4)&&(user.role !==0))
+
+    //было if ((user.role !==4)&&(user.role !==0))
+    if ((user.role !==4)&&(user.role !==2))
     {
         console.log("Переадресация")
         return <Navigate to='/menu' state={{from: location}} />

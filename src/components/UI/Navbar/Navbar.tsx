@@ -11,9 +11,9 @@ const Navbar = () => {
     const dispatch = useAppDispatch()
 
     return (
-        <div className='h-screen w-screen'>
+        <div className='absolute z-[100] h-screen w-screen'>
 
-            <nav className="z-[90] flex w-full justify-between pt-5 pb-4 pr-10 pl-10 bg-our-dark-navbar">
+            <nav className="flex w-full justify-between pt-5 pb-4 pr-10 pl-10 bg-our-dark-navbar">
                 <ul className="flex justify-between items-center gap-x-4">
 
 

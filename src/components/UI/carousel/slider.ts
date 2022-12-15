@@ -182,6 +182,17 @@ export const sliderContent_developer: ISlideContent[] = [
 
                 },
 
+
+                //этой кнопки быть не должно
+                {
+                    id: 2,
+                    name: "Создание доктора",
+                    to: CreateDoctor,
+
+                },
+                //
+
+
             ],
     },
     {

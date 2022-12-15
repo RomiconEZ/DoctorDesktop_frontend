@@ -8,8 +8,10 @@ import MyButton from "../../common/MyButton";
 import {patientAPI} from "../../../services/PatientService";
 import EditFieldBool from "../../common/EditFieldBool";
 import {useNavigate} from "react-router-dom";
-
-
+import EditFieldSelect from "../../common/EditFieldSelect";
+import {Race} from "../../../DataLists/Race";
+import {Regions} from "../../../DataLists/Regions";
+import {Cities} from "../../../DataLists/Cities";
 
 const CreatePatientForm = () => {
     const {user} = useAppSelector(state => state.userReducer)
@@ -73,14 +75,14 @@ const CreatePatientForm = () => {
                             id="patronymic"
                         />
 
-
                         <EditFieldBool
                             register={register("sex")}
                             defaultValue={Boolean(initialData.sex)}
                             label="Пол"
                             id="sex"
+                            label_true="мужской"
+                            label_false="женский"
                         />
-
 
                         <EditFieldStr
                             label="Дата рождения"
@@ -90,31 +92,36 @@ const CreatePatientForm = () => {
                             id="birthday"
                         />
 
-                        <EditFieldStr
+                        <EditFieldSelect
                             label="Раса"
                             defaultValue={initialData.race}
+                            id={"race"}
+                            listOfValues={Race}
                             register={register("race")}
-                            id="race"
                         />
 
-                        <EditFieldStr
+                        <EditFieldSelect
                             label="Регион"
                             defaultValue={initialData.region}
+                            id={"region"}
+                            listOfValues={Regions}
                             register={register("region")}
-                            id="region"
                         />
 
-                        <EditFieldStr
+                        <EditFieldSelect
                             label="Город"
                             defaultValue={initialData.city}
+                            id={"city"}
+                            listOfValues={Cities}
                             register={register("city")}
-                            id="city"
                         />
-                        <EditFieldStr
+
+                        <EditFieldSelect
                             label="Регион обследования"
                             defaultValue={initialData.residenseregion}
+                            id={"residenseregion"}
+                            listOfValues={Regions}
                             register={register("residenseregion")}
-                            id="residenseregion"
                         />
 
                         <MyButton

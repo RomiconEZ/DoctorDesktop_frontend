@@ -14,6 +14,9 @@ import EditFieldStr from "../../common/EditFieldStr";
 import MyButton from "../../common/MyButton";
 import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
+import EditFieldBool from "../../common/EditFieldBool";
+import EditFieldSelect from "../../common/EditFieldSelect";
+import {Roles} from "../../../DataLists/Roles";
 
 
 const UpdateDoctorForm = () => {
@@ -57,10 +60,11 @@ const UpdateDoctorForm = () => {
 
         <form onSubmit={handleSubmit(onSubmit)}>
                 <div  className='p-8 flex justify-center'>
-                    <div className=' w-3/5 pb-20 pt-5 pl-10 rounded-md bg-white h-auto'>
+                    <div className='w-3/5 pb-20 pt-5 pl-10 rounded-md bg-white h-auto'>
 
                         <h1 className='font-medium font-sans text-our-greenish-400 text-2xl pb-4'>Изменение доктора</h1>
                         <div className='grid relative grid-cols-1 gap-y-3 my-4'>
+
                             <EditFieldStr
                                 label="Имя"
                                 defaultValue={initialData.name}
@@ -81,12 +85,7 @@ const UpdateDoctorForm = () => {
                                 register={register("patronymic")}
                                 id="patronymic"
                             />
-                            {/*<EditFieldStr*/}
-                            {/*    label="Почта"*/}
-                            {/*    defaultValue={initialData.workExperience}*/}
-                            {/*    register={register("workExperience")}*/}
-                            {/*    id="workExperience"*/}
-                            {/*/>*/}
+
                             <EditFieldStr
                                 label="Почта"
                                 defaultValue={initialData.email}
@@ -94,67 +93,58 @@ const UpdateDoctorForm = () => {
                                 id="email"
                             />
 
-                            {/*<div className="flex flex-row">*/}
-                            {/*    <span className="w-1/4 mr-6 font-semibold text-slate-800">Пол</span>*/}
+                            <EditFieldBool
+                                register={register("sex")}
+                                defaultValue={Boolean(initialData.sex)}
+                                label="Пол"
+                                id="sex"
+                                label_true="мужской"
+                                label_false="женский"
+                            />
 
-                            {/*    <EditFieldRadio*/}
-                            {/*        register={register("sex")}*/}
-                            {/*        defaultValue={Boolean(genderItems)}*/}
-                            {/*        value={1}*/}
-                            {/*        label="Мужской"*/}
-                            {/*        id="male"*/}
-                            {/*        divClassName="w-1/4"*/}
-                            {/*    />*/}
-
-                            {/*    <EditFieldRadio*/}
-                            {/*        register={register("sex")}*/}
-                            {/*        defaultValue={!Boolean(genderItems)}*/}
-                            {/*        value={0}*/}
-                            {/*        label="Женский"*/}
-                            {/*        id="female"*/}
-                            {/*        divClassName="w-1/4"*/}
-                            {/*    />*/}
-                            {/*</div>*/}
-
-                            {/*<EditFieldStr*/}
-                            {/*    label="Дата рождения"*/}
-                            {/*    defaultValue={initialData.birthdate}*/}
-                            {/*    register={register("birthdate")}*/}
-                            {/*    id="surname"*/}
-                            {/*/>*/}
-                            <EditFieldStr
+                            <EditFieldSelect
                                 label="Регион"
                                 defaultValue={initialData.region}
+                                id={"region"}
+                                listOfValues={Regions}
                                 register={register("region")}
-                                id="region"
                             />
-                            <EditFieldStr
+
+                            <EditFieldSelect
                                 label="Город"
                                 defaultValue={initialData.city}
+                                id={"city"}
+                                listOfValues={Cities}
                                 register={register("city")}
-                                id="city"
                             />
-                            <EditFieldStr
+
+                            <EditFieldSelect
                                 label="Место работы"
                                 defaultValue={initialData.placeOfWork}
+                                id={"placeOfWork"}
+                                listOfValues={PlacesOfWork}
                                 register={register("placeOfWork")}
-                                id="placeOfWork"
                             />
-                            <EditFieldStr
+
+                            <EditFieldSelect
                                 label="Профиль"
                                 defaultValue={initialData.occupation}
+                                id={"occupation"}
+                                listOfValues={Occupations}
                                 register={register("occupation")}
-                                id="occupation"
                             />
-                            {/*<EditFieldStr*/}
-                            {/*    label="Роль"*/}
-                            {/*    defaultValue={initialData.role}*/}
-                            {/*    register={register("role")}*/}
-                            {/*    id="role"*/}
-                            {/*/>*/}
+
+                            <EditFieldSelect
+                                label="Роль"
+                                defaultValue={Roles[initialData.role]}
+                                id={"role"}
+                                listOfValues={Roles}
+                                register={register("role")}
+                            />
+
                             <EditFieldStr
                                 label="Пароль"
-                                defaultValue={"s"}
+                                defaultValue={''}
                                 register={register("password")}
                                 id="password"
                             />
