@@ -29,7 +29,7 @@ const PersonalDataEdit = () => {
         first_name: SelectedPatient.personal_data.first_name,
         second_name: SelectedPatient.personal_data.second_name,
         patronymic: SelectedPatient.personal_data.patronymic,
-        birthday: SelectedPatient.personal_data.birthday,
+        birthday: (new Date(SelectedPatient.personal_data.birthday)).getMilliseconds(),
         sex: SelectedPatient.personal_data.sex,
         residenseregion: SelectedPatient.personal_data.residenseregion,
         clinic: SelectedPatient.personal_data.clinic,

@@ -24,7 +24,7 @@ const UpdateDoctorForm = () => {
         name: doctor!.name,
         surname: doctor!.surname,
         patronymic: doctor!.patronymic,
-        birthdate: doctor!.birthdate,
+        birthdate: (new Date(doctor!.birthdate)).getMilliseconds(),
         workExperience: doctor!.workExperience,
         sex: doctor!.sex,
         region: doctor!.region,

@@ -8,10 +8,9 @@ import {routes} from "../common/BreadCrumb";
 import React, {useEffect} from "react";
 import Loader from "../common/Loader";
 import {doctorsSlice} from "../../store/reducers/DoctorsSlice";
-import ReadFieldStr from "../common/ReadFieldStr";
+import ReadFieldStr from "../common/ReadFieldStr"
+import ReadFieldBool from "../common/ReadFieldBool"
 import MyButton from "../common/MyButton";
-import ReadFieldBool from "../common/ReadFieldBool";
-
 
 
 const DoctorPage =() =>{
@@ -37,12 +36,10 @@ const DoctorPage =() =>{
 
 
     useEffect(() => {
-        if ((preloading === false) && (data != undefined))
+        if ((preloading === false) && (data.data != undefined))
         {
-            if (data.data != undefined)
-            {
-                dispatch(additionalSlice.actions.ChangeSelectedDoctor(data.data))
-            }
+
+            dispatch(additionalSlice.actions.ChangeSelectedDoctor(data.data))
         }
     }, [preloading])
 
