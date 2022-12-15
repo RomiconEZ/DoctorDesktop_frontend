@@ -3,22 +3,23 @@ import React from 'react';
 
 interface Props {
     children?: React.ReactNode;
-    onClick?: () => void;
+    onClick?: any;
     className?: string;
+    defaultStyle?: string
 }
 
 
 //Кастомная кнопка.
 //Описан только вид кнопки. Позицию описывайте в атрибуте className
-const MyButton: React.FC<Props> = ( { children, onClick, className } ) => {
+const MyButton: React.FC<Props> = ( { children, onClick, className,
+                                        defaultStyle = "hover:bg-our-greenish-500 " +
+                                        "bg-our-greenish-400 text-white hover:border-transparent" } ) => {
     return (
         <button
             onClick={onClick}
             className={
-                className + " " +
-                "p-2 bg-transparent text-blue-600 font-semibold border border-blue-600 " +
-                "rounded hover:bg-blue-600 hover:text-white hover:border-transparent " +
-                "transition ease-in duration-200"
+                className + " " + defaultStyle + " " +
+                "p-2 font-semibold border rounded transition ease-in duration-200"
             }
         >
             {children}

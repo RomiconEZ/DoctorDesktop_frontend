@@ -10,18 +10,23 @@ const DoctorsList: React.FC<DoctorListProps> = ({ doctors }) => {
     const navigate = useNavigate();
 
     return (
+        <>
+            {doctors.map(doctor => (
+                <tr
+                    onClick={() => navigate(`/auth/menu/doctors/${doctor.id}`)}
+                    key={doctor.id}
+                    className="transition duration-300 ease-in-out hover:bg-our-gray-main-theme"
+                >
 
-      <>
-      {doctors.map(doctor => (
-            <tr key={doctor.id} onClick={() => navigate(`/auth/menu/doctors/${doctor.id}`)}>
-                <td >{doctor.surname + ' ' + doctor.name + ' ' + doctor.patronymic}</td>
-                <td>{doctor.age}</td>
-                <td>{doctor.workExperience}</td>
-                <td>{doctor.placeOfWork}</td>
-                <td>{doctor.id}</td>
-            </tr>
-        ))}
-      </>
+                    <td className="px-6 py-1 font-semibold text-our-greenish-300">{doctor.surname + ' ' + doctor.name + ' ' + doctor.patronymic}</td>
+                    <td className="px-6 py-1 text-slate-700">{doctor.age}</td>
+                    <td className="px-6 py-1 text-slate-700">{doctor.workExperience}</td>
+                    <td className="px-6 py-1 text-slate-700">{doctor.placeOfWork}</td>
+                    <td className="px-6 py-1 text-slate-700">{doctor.id}</td>
+
+                </tr>
+            ))}
+        </>
   );
 };
 

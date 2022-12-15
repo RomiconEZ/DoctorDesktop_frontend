@@ -39,20 +39,8 @@ const CreatePatientForm = () => {
         e.preventDefault();
         if (validate(data))
         {
-            NewPatient = {
-
-                first_name: data.first_name,
-                second_name: data.second_name,
-                patronymic: '',
-                birthday: Date.now(),
-                sex: true,
-                race: 'evr',
-                clinic: user!.placeOfWork,
-                residenseregion: user!.region,
-            }
-
-            await createPatient(NewPatient)}
-        else {console.log(errors)}
+            await createPatient(data)
+        }
     }
 
   return (

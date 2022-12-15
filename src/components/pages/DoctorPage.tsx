@@ -34,10 +34,12 @@ const DoctorPage =() =>{
 
 
     useEffect(() => {
-        if ((preloading === false) && (data.data != undefined))
+        if ((preloading === false) && (data != undefined))
         {
-
-            dispatch(additionalSlice.actions.ChangeSelectedDoctor(data.data))
+            if (data.data != undefined)
+            {
+                dispatch(additionalSlice.actions.ChangeSelectedDoctor(data.data))
+            }
         }
     }, [preloading])
 

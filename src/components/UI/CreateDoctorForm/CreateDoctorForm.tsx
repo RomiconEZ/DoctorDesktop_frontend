@@ -23,7 +23,7 @@ const CreateDoctorForm = () => {
         name: "",
         surname: "",
         patronymic: "",
-        birthdate: user!.birthdate,
+        birthdate: Date.now(),
         workExperience: 0,
         sex: 1,
         region: user!.region,
@@ -32,7 +32,7 @@ const CreateDoctorForm = () => {
         occupation: user!.occupation,
         email: "",
         password: "",
-        role: -1
+        role: 3
     }
     const {data, errors, handleInputChange, handleKeyDown, validate} = useForm(initialData, true, validatorConfig);
     const [createDoctor, {}] = doctorAPI.useCreateDoctorMutation();// {}-функция, которую мы можем вызвать, чтобы произошла мутация, createPost - объект с полями
