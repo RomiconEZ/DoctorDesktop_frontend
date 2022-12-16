@@ -14,7 +14,7 @@ const SelectedPatientPage = () => {
     const params = useParams<string>()
     const body: PatientForDoctor = {
         doctorID: user!.id,
-        patientID: Number(params)
+        patientID: params.id
     }
     // let refetch: boolean = false
     // let data: any
@@ -39,7 +39,7 @@ const SelectedPatientPage = () => {
     useEffect(() => {
         console.log("Получили пациента")
         console.log(data)
-        if ((preloading === false) && (data.data !== undefined)) {
+        if ((preloading === false) && (data.data != undefined)) {
             dispatch(additionalSlice.actions.ChangeSelectedPatient(data.data as IPatientFull))
         }
 

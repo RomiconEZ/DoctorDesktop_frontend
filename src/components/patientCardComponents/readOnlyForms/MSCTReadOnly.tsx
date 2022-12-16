@@ -24,61 +24,61 @@ const MSCTReadOnly = () => {
 
                 <ReadFieldStr
                     label="Фиброзного кольца аортального клапана"
-                    value={SelectedPatient.MCT.AV_annulus_fibrosis + 'мм'}
+                    value={SelectedPatient.MCT.AV_annulus_fibrosis + ' мм'}
                     spanClassName="w-1/3"
                 />
 
                 <ReadFieldStr
                     label="Синуса Вальсальвы"
-                    value={SelectedPatient.MCT.sinuses_valsalva + 'мм'}
+                    value={SelectedPatient.MCT.sinuses_valsalva + ' мм'}
                     spanClassName="w-1/3"
                 />
 
                 <ReadFieldStr
                     label="Синотубулярного соединения"
-                    value={SelectedPatient.MCT.sinotubular_junction + 'мм'}
+                    value={SelectedPatient.MCT.sinotubular_junction + ' мм'}
                     spanClassName="w-1/3"
                 />
 
                 <ReadFieldStr
                     label="Восходящего отдела аорты на уровне бифуркации легочной артерии"
-                    value={SelectedPatient.MCT.asc_aorta_pulm_art_bif + 'мм'}
+                    value={SelectedPatient.MCT.asc_aorta_pulm_art_bif + ' мм'}
                     spanClassName="w-1/3"
                 />
 
                 <ReadFieldStr
                     label="Восходящего отдела аорты перед БЦС"
-                    value={SelectedPatient.MCT.asc_aorta_before_BCS + 'мм'}
+                    value={SelectedPatient.MCT.asc_aorta_before_BCS + ' мм'}
                     spanClassName="w-1/3"
                 />
 
                 <ReadFieldStr
                     label="Дуги аорты перед ЛОСА"
-                    value={SelectedPatient.MCT.aortic_arch_before_CCA + 'мм'}
+                    value={SelectedPatient.MCT.aortic_arch_before_CCA + ' мм'}
                     spanClassName="w-1/3"
                 />
 
                 <ReadFieldStr
                     label="Дуги аорты перед левой подключичной артерии"
-                    value={SelectedPatient.MCT.aortic_arch_before_LSA + 'мм'}
+                    value={SelectedPatient.MCT.aortic_arch_before_LSA + ' мм'}
                     spanClassName="w-1/3"
                 />
 
                 <ReadFieldStr
                     label="Перешейка"
-                    value={SelectedPatient.MCT.aorticlsthmus + 'мм'}
+                    value={SelectedPatient.MCT.aorticlsthmus + ' мм'}
                     spanClassName="w-1/3"
                 />
 
                 <ReadFieldStr
                     label="Средней части нисходящей аорты"
-                    value={SelectedPatient.MCT.desc_aorta_middle_part + 'мм'}
+                    value={SelectedPatient.MCT.desc_aorta_middle_part + ' мм'}
                     spanClassName="w-1/3"
                 />
 
                 <ReadFieldStr
                     label="Брюшной аорты"
-                    value={SelectedPatient.MCT.abdominal_aorta + 'мм'}
+                    value={SelectedPatient.MCT.abdominal_aorta + ' мм'}
                     spanClassName="w-1/3"
                 />
 

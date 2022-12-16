@@ -40,6 +40,8 @@ const ConcomDeseasesReadOnly = () => {
                     <ReadFieldStr
                         label="Количество инфарктов миокарда"
                         value={SelectedPatient.concom_desease.acuteMyocardilInfarctionNum}
+                        spanClassName="w-1/2"
+
                     />}
 
                 <ReadFieldBool

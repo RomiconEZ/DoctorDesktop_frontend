@@ -1,5 +1,4 @@
 import {NavLink, useNavigate, useParams} from "react-router-dom";
-import {Link} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {additionalSlice} from "../../store/reducers/AdditionalSlice";
 import {doctorAPI, DoctorForDoctor} from "../../services/DoctorService";
@@ -7,7 +6,6 @@ import useBreadcrumbs from "use-react-router-breadcrumbs";
 import {routes} from "../common/BreadCrumb";
 import React, {useEffect} from "react";
 import Loader from "../common/Loader";
-import {doctorsSlice} from "../../store/reducers/DoctorsSlice";
 import ReadFieldStr from "../common/ReadFieldStr";
 import MyButton from "../common/MyButton";
 import ReadFieldBool from "../common/ReadFieldBool";
@@ -53,17 +51,17 @@ const DoctorPage =() =>{
             {preloading && <Loader/>}
             {error && <h1>Произошла ошибка при загрузке</h1>}
 
-            <>
-                {breadcrumbs.map(({ match, breadcrumb }) => (
-                    <NavLink key={match.pathname} to={match.pathname} className="text-our-greenish-300 text-xs mr-1">
-                        /{breadcrumb}
-                    </NavLink>
-                ))}
-            </>
+
             {!preloading &&
                 <div className="flex justify-center items-center flex-wrap mt-30 ">
                     <div className="w-2/3 bg-white shadow-sm p-7 rounded-lg mt-10">
-
+                        <>
+                            {breadcrumbs.map(({ match, breadcrumb }) => (
+                                <NavLink key={match.pathname} to={match.pathname} className="text-our-greenish-300 text-xs mr-1">
+                                    /{breadcrumb}
+                                </NavLink>
+                            ))}
+                        </>
                         <div className="grid grid-cols-1 gap-y-4 pt-4 ml-6">
 
                             <ReadFieldStr
@@ -90,6 +88,7 @@ const DoctorPage =() =>{
 
                             <div className=' flex'>
                                 <span className=' w-1/4 mr-6 font-semibold text-slate-800'>Пользовательский режим</span>
+                                {user?.role===0 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Demo-роль</span>}
                                 {user?.role===1 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Врач</span>}
                                 {user?.role===2 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Разработчик</span>}
                                 {user?.role===3 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Соразработчик</span>}

@@ -4,21 +4,23 @@ import {DatePickerField, InputField, RadioGroup, SelectField} from '../../common
 import validatorConfig from './validatorConfig';
 import {Form, useForm} from "../../../hooks/useForm";
 import {IPatientCreate} from "../../../models/IPatientCreate";
-
 import {patientAPI} from "../../../services/PatientService";
 import Button from "../../common/Button";
 import {useAppSelector} from "../../../hooks/redux";
 import {ResidenseRegions} from "../../../DataLists/ResidenseRegions";
-import {Regions} from "../../../DataLists/Regions";
 import {genderItems} from "../../../DataLists/genderItems";
 import {Race} from "../../../DataLists/Race";
-import {Cities} from "../../../DataLists/Cities";
 import {Clinics} from "../../../DataLists/Clinics";
+import {NavLink} from "react-router-dom";
+import useBreadcrumbs from "use-react-router-breadcrumbs";
+import {routes} from "../../common/BreadCrumb";
 
 
 
 const CreatePatientForm = () => {
     const {user} = useAppSelector(state => state.userReducer)
+    const breadcrumbs = useBreadcrumbs(routes);
+
     let NewPatient: IPatientCreate
 
     const initialData: IPatientCreate = {
@@ -26,8 +28,8 @@ const CreatePatientForm = () => {
         second_name: '',
         patronymic: '',
         birthday: Date.now(),
-        sex: true,
-        race: 'evr',
+        sex: 1,
+        race: '',
         clinic: user!.placeOfWork,
         residenseregion: user!.region,
     }
@@ -47,7 +49,13 @@ const CreatePatientForm = () => {
       <>
           <div className='p-8 flex justify-center'>
           <div className='w-3/5 pb-20 pt-5 pl-10 rounded-md bg-white h-auto'>
-
+              <>
+                  {breadcrumbs.map(({ match, breadcrumb }) => (
+                      <NavLink key={match.pathname} to={match.pathname} className="text-our-greenish-300 text-xs mr-1">
+                          /{breadcrumb}
+                      </NavLink>
+                  ))}
+              </>
               <h1 className='font-medium font-sans text-our-greenish-400 text-2xl pb-4'>Создание пациента</h1>
               <div className='grid relative grid-cols-1 gap-y-3 my-4'>
         <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>

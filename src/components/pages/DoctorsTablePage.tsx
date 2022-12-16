@@ -8,6 +8,7 @@ import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {doctorsSlice} from "../../store/reducers/DoctorsSlice";
 import {doctorAPI, PaginationDoctors} from "../../services/DoctorService";
 import ButtonWithIcon from "../common/ButtonWithIcon";
+import {updateIcon} from "../common/icons";
 
 const DoctorsTablePage = () => {
 
@@ -61,14 +62,11 @@ const DoctorsTablePage = () => {
                 </>
 
 
-                {/*<ButtonWithIcon*/}
-                {/*    onClick={()=>RefetchRequest}*/}
-                {/*    icon={updateIcon}*/}
-                {/*    classNameSvg="fill-transparent"*/}
-                {/*>*/}
-                {/*    обновить*/}
-                {/*</ButtonWithIcon>*/}
-
+                <ButtonWithIcon
+                    onClick={()=>RefetchRequest}
+                    icon={updateIcon}
+                >
+                </ButtonWithIcon>
 
                 <TableDoctors/>
             </div>

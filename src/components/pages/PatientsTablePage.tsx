@@ -8,6 +8,8 @@ import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 
 import {PaginationPatientsForCertainDoctor, patientAPI} from "../../services/PatientService";
 import {patientsSlice} from "../../store/reducers/PatientsSlice";
+import ButtonWithIcon from "../common/ButtonWithIcon";
+import {updateIcon} from "../common/icons";
 
 const PatientsTablePage = () =>{
     const breadcrumbs = useBreadcrumbs(routes);
@@ -23,7 +25,11 @@ const PatientsTablePage = () =>{
 
     const dispatch = useAppDispatch()
 
-
+    const RefetchRequest = (e: React.FormEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        console.log("Обновление таблицы пациентов")
+        refetch()
+    }
 
     useEffect(() => {
         dispatch(patientsSlice.actions.patientsRequested())
@@ -53,13 +59,11 @@ const PatientsTablePage = () =>{
                         </NavLink>
                     ))}
                 </>
-                {/*<ButtonWithIcon*/}
-                {/*    onClick={()=>RefetchRequest}*/}
-                {/*    icon={updateIcon}*/}
-                {/*    classNameSvg="fill-transparent"*/}
-                {/*>*/}
-                {/*    обновить*/}
-                {/*</ButtonWithIcon>*/}
+                <ButtonWithIcon
+                    onClick={()=>RefetchRequest}
+                    icon={updateIcon}
+                >
+                </ButtonWithIcon>
                 <TablePatients/>
             </div>
         </div>

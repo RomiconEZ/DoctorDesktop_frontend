@@ -19,11 +19,11 @@ const CreateDoctorPage = () => {
             {isLoading && <Loader/>}
             {error && <h1>Произошла ошибка при загрузке</h1>}
             <>
-            {breadcrumbs.map(({ match, breadcrumb }) => (
-                <NavLink key={match.pathname} to={match.pathname} className="text-azure-my text-xs mr-1">
-                    /{breadcrumb}
-                </NavLink>
-            ))}
+                {breadcrumbs.map(({ match, breadcrumb }) => (
+                    <NavLink key={match.pathname} to={match.pathname} className="text-our-greenish-300 text-xs mr-1">
+                        /{breadcrumb}
+                    </NavLink>
+                ))}
             </>
 
             <div>

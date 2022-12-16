@@ -54,6 +54,7 @@ const SelfPage =() => {
 
                             <div className=' flex'>
                                 <span className=' w-1/4 mr-6 font-semibold text-slate-800'>Пользовательский режим</span>
+                                {user?.role===0 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Demo-роль</span>}
                                 {user?.role===1 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Врач</span>}
                                 {user?.role===2 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Разработчик</span>}
                                 {user?.role===3 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Соразработчик</span>}
