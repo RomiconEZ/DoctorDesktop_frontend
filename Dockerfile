@@ -1,11 +1,11 @@
 FROM node:14 as client
 
-WORKDIR /app/client
+WORKDIR /app
 
-COPY client/package.json /app/client
+COPY package.json /app
 
 RUN npm install
 
-COPY client /app/client
+COPY . /app
 
-RUN npm run build
+CMD ["npm", "start"]

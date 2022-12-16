@@ -95,7 +95,7 @@ const CreateDoctorForm = () => {
                             <InputField name='email' label='Почта'/>
                             <InputFieldWithPassword name='password' label='Пароль' type='password'/>
 
-                                <Button type='submit' onClick={handleCreate} className="w-1/5 absolute right-44 -bottom-20"
+                                <Button type='submit' onClick={handleCreate} className="w-1/5 absolute right-45 -bottom-10"
                                     disabled={Object.keys(errors).length !== 0}>
                                 Создать
                             </Button>

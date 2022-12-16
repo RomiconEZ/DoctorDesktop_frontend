@@ -5,6 +5,7 @@ import {patientAPI, PatientForDoctor} from "../../services/PatientService";
 import {additionalSlice} from "../../store/reducers/AdditionalSlice";
 import {IPatientFull} from "../../models/IPatientFull";
 import Sidebar from "./Sidebar";
+import Loader from "../common/Loader";
 
 const SelectedPatientPage = () => {
     const {user} = useAppSelector(state => state.userReducer)
@@ -47,6 +48,8 @@ const SelectedPatientPage = () => {
 
 
     return (
+        <>
+        {preloading && <Loader/>}
         <div className="flex flex-row h-full mt-5 w-screen gap-x-10 justify-start items-start">
 
             <div className="w-1/5 ml-10 mt-5 pb-5 h-fit rounded-md flex justify-center bg-our-dark-navbar">
@@ -58,6 +61,7 @@ const SelectedPatientPage = () => {
             </main>
 
         </div>
+        </>
     )
 
 

@@ -51,8 +51,6 @@ const DoctorPage =() =>{
             {preloading && <Loader/>}
             {error && <h1>Произошла ошибка при загрузке</h1>}
 
-
-            {!preloading &&
                 <div className="flex justify-center items-center flex-wrap mt-30 ">
                     <div className="w-2/3 bg-white shadow-sm p-7 rounded-lg mt-10">
                         <>
@@ -137,7 +135,7 @@ const DoctorPage =() =>{
 
 
                 </div>
-            }
+
 
         </div>
 

@@ -80,7 +80,7 @@ const CreatePatientForm = () => {
             <SelectField label='Клиника' name='clinic' options={Clinics}  />
             <SelectField label='Регион обследования' name='residenseregion' options={ResidenseRegions}  />
 
-            <Button type='submit' onClick={handleCreate} className="w-1/5 absolute right-44 -bottom-20" disabled={Object.keys(errors).length !== 0}>
+            <Button type='submit' onClick={handleCreate} className="w-1/5 absolute right-45 -bottom-10" disabled={Object.keys(errors).length !== 0}>
           Создать
         </Button>
       </Form>
