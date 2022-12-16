@@ -12,6 +12,7 @@ import {DatePickerField, InputField, RadioGroup} from "../../../common/Fields";
 import Button from "../../../common/Button";
 import {useNavigate, useParams} from "react-router-dom";
 import {yesNo} from "../../../../DataLists/yesNo";
+import {additionalSlice} from "../../../../store/reducers/AdditionalSlice";
 
 
 
@@ -22,6 +23,8 @@ const AnamnesisEdit = () => {
     const navigate = useNavigate();
     const params = useParams<string>()
     const dispatch = useAppDispatch()
+    let response: any
+
 
 
     const initialAnamnesis: any = {
@@ -76,12 +79,19 @@ const AnamnesisEdit = () => {
 
                 }
             }
-            await updatePatient(UpdatePatientData)
+            response = await updatePatient(UpdatePatientData)
+            if (response.data != undefined) {
+                dispatch(additionalSlice.actions.ChangeSelectedPatient(response.data))
+            }
             navigate(`/auth/menu/patients/${SelectedPatient.patientID}/anamnesis`)
 
         }
     }
     return (
+        <div className='p-8 mb-16'>
+            <h1 className='font-medium font-sans  text-our-greenish-400 text-2xl pb-4'>Анамнез режим редактирования</h1>
+
+            <div className='grid relative grid-cols-1 gap-y-3 my-4'>
         <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
             <InputField autoFocus name='disHeartBloodVesselsFirstLineRelatives' label='Заболевания сердца и сосудов у родственников первой линии'/>
             <RadioGroup name='relativesConnTissDysplasia' label='Наличие соединительно-тканевой дисплазии у родстенников' items={yesNo}/>
@@ -122,10 +132,13 @@ const AnamnesisEdit = () => {
 
 
 
-            <Button type='submit' onClick={handleUpdate} fullWidth disabled={Object.keys(errors).length !== 0}>
+            <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-44 -bottom-20" disabled={Object.keys(errors).length !== 0}>
                 Сохранить
             </Button>
         </Form>
+            </div>
+
+        </div>
     );
 };
 

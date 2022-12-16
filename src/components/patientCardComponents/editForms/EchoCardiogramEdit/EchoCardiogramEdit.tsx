@@ -14,6 +14,7 @@ import {AorticRegurgitationDegreeData} from "../../../../DataLists/AorticRegurgi
 import {MitralInsuffDegreeData} from "../../../../DataLists/MitralInsuffDegreeData";
 import {MitralStenDegreeData} from "../../../../DataLists/MitralStenDegreeData";
 import {TricuspiDegreeData} from "../../../../DataLists/TricuspiDegreeData";
+import {additionalSlice} from "../../../../store/reducers/AdditionalSlice";
 
 
 
@@ -23,6 +24,8 @@ const EchoCardiogramEdit = () => {
     const navigate = useNavigate();
     const params = useParams<string>()
     const dispatch = useAppDispatch()
+    let response: any
+
 
 
     const initialEchocardiogram: any = {
@@ -81,12 +84,19 @@ const EchoCardiogramEdit = () => {
                     trialSeptalDefectPr: data.trialSeptalDefectPr, // наличие дефекта межпредсердной перегородки
                     }
             }
-            await updatePatient(UpdatePatientData)
+            response = await updatePatient(UpdatePatientData)
+            if (response.data != undefined) {
+                dispatch(additionalSlice.actions.ChangeSelectedPatient(response.data))
+            }
             navigate(`/auth/menu/patients/${SelectedPatient.patientID}/echocardiogram`)
 
         }
     }
     return (
+        <div className='p-8 mb-16'>
+            <h1 className='font-medium font-sans  text-our-greenish-400 text-2xl pb-4'>ЭхоКГ режим редактирования</h1>
+
+            <div className='grid relative grid-cols-1 gap-y-3 my-4'>
         <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
             <InputField name='LVEF' label='ФВ ЛЖ(Simpson),%'/>
             <InputField name='LVEDV' label='КДО ЛЖ, мл'/>
@@ -114,10 +124,13 @@ const EchoCardiogramEdit = () => {
 
             <RadioGroup name='trialSeptalDefectPr' label='Наличие дефекта межпредсердной перегородки' items={yesNo}/>
 
-            <Button type='submit' onClick={handleUpdate} fullWidth disabled={Object.keys(errors).length !== 0}>
+            <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-44 -bottom-20" disabled={Object.keys(errors).length !== 0}>
                 Сохранить
             </Button>
         </Form>
+            </div>
+
+        </div>
     );
 };
 

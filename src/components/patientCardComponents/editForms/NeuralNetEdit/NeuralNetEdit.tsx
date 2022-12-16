@@ -23,6 +23,7 @@ const NeuralNetEdit = () => {
     const navigate = useNavigate();
     const params = useParams<string>()
     const dispatch = useAppDispatch()
+    let response: any
 
 
     const initialAnthropometricData: any = {
@@ -38,19 +39,29 @@ const NeuralNetEdit = () => {
                 patientID: SelectedPatient.patientID,
                 employee_id: user!.id,
             }
-            await updatePatient(UpdatePatientData)
+            response =await updatePatient(UpdatePatientData)
+            if (response.data != undefined) {
+                dispatch(additionalSlice.actions.ChangeSelectedPatient(response.data))
+            }
             navigate(`/auth/menu/patients/${SelectedPatient.patientID}/neural-net`)
 
         }
     }
     return (
         <>
+            <div className='p-8 mb-16'>
+                <h1 className='font-medium font-sans  text-our-greenish-400 text-2xl pb-4'>Данные нейросети режим редактирования</h1>
+
+                <div className='grid relative grid-cols-1 gap-y-3 my-4'>
             <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
 
-                <Button type='submit' onClick={handleUpdate} fullWidth disabled={Object.keys(errors).length !== 0}>
+                <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-44 -bottom-20" disabled={Object.keys(errors).length !== 0}>
                     Сохранить
                 </Button>
             </Form>
+                </div>
+
+            </div>
         </>
     );
 };

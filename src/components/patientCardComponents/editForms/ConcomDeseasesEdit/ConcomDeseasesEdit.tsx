@@ -1,15 +1,9 @@
 import React from 'react';
 
 import validatorConfig from './validatorConfig';
-import {TextField, TextFieldProps} from "@mui/material";
 import {useAppSelector} from "../../../../hooks/redux";
-import {additionalSlice} from "../../../../store/reducers/AdditionalSlice";
-import {ResidenseRegions} from "../../../../DataLists/ResidenseRegions";
-import {Regions} from "../../../../DataLists/Regions";
 import {Form, useForm} from "../../../../hooks/useForm";
-import {genderItems} from "../../../../DataLists/genderItems";
 import {patientAPI} from "../../../../services/PatientService";
-import {Race} from "../../../../DataLists/Race";
 import {IPatientUpdate} from "../../../../models/IPatientUpdate";
 import {useAppDispatch} from "../../../../store/store";
 import {DatePickerField, InputField, RadioGroup, SelectField} from "../../../common/Fields";
@@ -18,6 +12,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {yesNo} from "../../../../DataLists/yesNo";
 import {AorticValveData} from "../../../../DataLists/AorticValveData";
 import {DiabetesTypeData} from "../../../../DataLists/DiabetesTypeData";
+import {additionalSlice} from "../../../../store/reducers/AdditionalSlice";
 
 
 
@@ -29,6 +24,8 @@ const ConcomDeseasesEdit = () => {
     const navigate = useNavigate();
     const params = useParams<string>()
     const dispatch = useAppDispatch()
+    let response: any
+
 
 
     const initialAnthropometricData: any = {
@@ -97,12 +94,19 @@ const ConcomDeseasesEdit = () => {
                     AVWTraumaticLesionsb: data.AVWTraumaticLesionsb, // травматические поражения сосудистой стенки аорты
                 }
             }
-            await updatePatient(UpdatePatientData)
+            response =await updatePatient(UpdatePatientData)
+            if (response.data != undefined) {
+                dispatch(additionalSlice.actions.ChangeSelectedPatient(response.data))
+            }
             navigate(`/auth/menu/patients/${SelectedPatient.patientID}/concom-deseases`)
 
         }
     }
     return (
+        <div className='p-8 mb-16'>
+            <h1 className='font-medium font-sans  text-our-greenish-400 text-2xl pb-4'>Сопутствующие заболевания режим редактирования</h1>
+
+            <div className='grid relative grid-cols-1 gap-y-3 my-4'>
         <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
             <RadioGroup name='clinicIschHeartDis' label='Наличие клиники ишемической болезни сердца' items={yesNo}/>
             <RadioGroup name='acuteMyocardilInfarctionBool' label='Острые инфаркты миокарда в анамнезе' items={yesNo}/>
@@ -129,10 +133,13 @@ const ConcomDeseasesEdit = () => {
             <RadioGroup name='AVDegenerativeLesions' label='Дегенеративные поражения аортального клапана' items={yesNo}/>
             <RadioGroup name='AVInfectiousLesions' label='Инфекционные поражения аортального клапана' items={yesNo}/>
             <RadioGroup name='AVWTraumaticLesionsb' label='Травматические поражения сосудистой стенки аорты' items={yesNo}/>
-            <Button type='submit' onClick={handleUpdate} fullWidth disabled={Object.keys(errors).length !== 0}>
+            <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-44 -bottom-20" disabled={Object.keys(errors).length !== 0}>
                 Сохранить
             </Button>
         </Form>
+            </div>
+
+        </div>
     );
 };
 export default ConcomDeseasesEdit;
