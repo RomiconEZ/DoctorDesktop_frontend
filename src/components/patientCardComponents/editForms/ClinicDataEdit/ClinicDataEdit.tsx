@@ -81,7 +81,7 @@ const ClinicDataEdit = () => {
             <RadioGroup name='interscap_reg_pain' label='Боли в межлопаточной области' items={yesNo}/>
             <RadioGroup name='conscious_loss' label='Потеря сознания' items={yesNo}/>
             <RadioGroup name='low_extrem_ischemia' label='Ишемия нижних конечностей' items={yesNo}/>
-            <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-44 -bottom-20" disabled={Object.keys(errors).length !== 0}>
+            <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-34 -bottom-16" disabled={Object.keys(errors).length !== 0}>
                 Сохранить
             </Button>
         </Form>

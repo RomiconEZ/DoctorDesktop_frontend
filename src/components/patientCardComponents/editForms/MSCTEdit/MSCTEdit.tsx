@@ -71,7 +71,7 @@ const MSCTEdit = () => {
 
         <div className='p-8 mb-16'>
             <h1 className='font-medium font-sans  text-our-greenish-400 text-2xl pb-4'>МСКТ режим редактирования</h1>
-            <h2 className='font-medium font-sans  text-our-greenish-400 text-2xl pb-4'>Диаметр в мм на уровне:</h2>
+            <h2 className='font-medium font-sans  text-our-dark-navbar text-xl pb-4'>Диаметр в мм на уровне:</h2>
             <div className='grid relative grid-cols-1 gap-y-3 my-4'>
         <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
             <InputField autoFocus name='AV_annulus_fibrosis' label='Фиброзного кольца аортального клапана'/>
@@ -85,7 +85,7 @@ const MSCTEdit = () => {
             <InputField autoFocus name='desc_aorta_middle_part' label='Средней части нисходящей аорты'/>
             <InputField autoFocus name='abdominal_aorta' label='Брюшной аорты'/>
 
-            <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-44 -bottom-20" disabled={Object.keys(errors).length !== 0}>
+            <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-34 -bottom-16" disabled={Object.keys(errors).length !== 0}>
                 Сохранить
             </Button>
         </Form>

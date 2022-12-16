@@ -133,7 +133,7 @@ const ConcomDeseasesEdit = () => {
             <RadioGroup name='AVDegenerativeLesions' label='Дегенеративные поражения аортального клапана' items={yesNo}/>
             <RadioGroup name='AVInfectiousLesions' label='Инфекционные поражения аортального клапана' items={yesNo}/>
             <RadioGroup name='AVWTraumaticLesionsb' label='Травматические поражения сосудистой стенки аорты' items={yesNo}/>
-            <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-44 -bottom-20" disabled={Object.keys(errors).length !== 0}>
+            <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-34 -bottom-16" disabled={Object.keys(errors).length !== 0}>
                 Сохранить
             </Button>
         </Form>

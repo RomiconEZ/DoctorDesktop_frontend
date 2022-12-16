@@ -79,7 +79,7 @@ const MSCTReadOnly = () => {
 
                 <MyButton
                     onClick={()=>navigate(`edit`)}
-                    className="w-1/5 absolute right-60 -bottom-16"
+                    className="w-1/5 absolute right-45 -bottom-16"
 
                 >
                     Редактировать

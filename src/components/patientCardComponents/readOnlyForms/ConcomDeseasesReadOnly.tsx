@@ -199,7 +199,7 @@ const ConcomDeseasesReadOnly = () => {
 
                 <MyButton
                     onClick={()=>navigate(`edit`)}
-                    className="w-1/5 absolute right-0 -bottom-16"
+                    className="w-1/5 absolute right-45 -bottom-16"
                 >
                     Редактировать
                 </MyButton>

@@ -8,8 +8,7 @@ import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 
 import {PaginationPatientsForCertainDoctor, patientAPI} from "../../services/PatientService";
 import {patientsSlice} from "../../store/reducers/PatientsSlice";
-import ButtonWithIcon from "../common/ButtonWithIcon";
-import {updateIcon} from "../common/icons";
+import Button from "../common/Button";
 
 const PatientsTablePage = () =>{
     const breadcrumbs = useBreadcrumbs(routes);
@@ -59,11 +58,9 @@ const PatientsTablePage = () =>{
                         </NavLink>
                     ))}
                 </>
-                <ButtonWithIcon
-                    onClick={()=>RefetchRequest}
-                    icon={updateIcon}
-                >
-                </ButtonWithIcon>
+                <Button onClick={RefetchRequest} className="w-1/12 absolute top-0 right-0 ">
+                    обновить
+                </Button>
                 <TablePatients/>
             </div>
         </div>

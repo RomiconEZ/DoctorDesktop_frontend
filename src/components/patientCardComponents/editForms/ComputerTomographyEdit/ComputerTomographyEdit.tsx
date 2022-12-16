@@ -50,7 +50,7 @@ const ComputerTomographyEdit = () => {
             <div className='grid relative grid-cols-1 gap-y-3 my-4'>
             <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
 
-                <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-44 -bottom-20" disabled={Object.keys(errors).length !== 0}>
+                <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-34 -bottom-16" disabled={Object.keys(errors).length !== 0}>
                     Сохранить
                 </Button>
         </Form>

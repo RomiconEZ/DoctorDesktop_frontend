@@ -7,8 +7,7 @@ import Loader from "../common/Loader";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {doctorsSlice} from "../../store/reducers/DoctorsSlice";
 import {doctorAPI, PaginationDoctors} from "../../services/DoctorService";
-import ButtonWithIcon from "../common/ButtonWithIcon";
-import {updateIcon} from "../common/icons";
+
 
 const DoctorsTablePage = () => {
 
@@ -46,6 +45,7 @@ const DoctorsTablePage = () => {
     const RefetchRequest = (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
         refetch()
+        console.log("Обновление списка пациентов")
     }
     return(
         <div className="flex justify-center">
@@ -62,11 +62,9 @@ const DoctorsTablePage = () => {
                 </>
 
 
-                <ButtonWithIcon
-                    onClick={()=>RefetchRequest}
-                    icon={updateIcon}
-                >
-                </ButtonWithIcon>
+                <button onClick={RefetchRequest}>
+                    обновить
+                </button>
 
                 <TableDoctors/>
             </div>

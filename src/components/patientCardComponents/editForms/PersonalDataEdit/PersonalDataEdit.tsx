@@ -95,7 +95,7 @@ const PersonalDataEdit = () => {
                 <SelectField label='Раса' name='race' options={Race}  />
                 <SelectField label='Клиника' name='clinic' options={Clinics}  />
 
-                <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-44 -bottom-20" disabled={Object.keys(errors).length !== 0}>
+                <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-34 -bottom-16" disabled={Object.keys(errors).length !== 0}>
                     Сохранить
                 </Button>
         </Form>

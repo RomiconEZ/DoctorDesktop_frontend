@@ -124,7 +124,7 @@ const EchoCardiogramEdit = () => {
 
             <RadioGroup name='trialSeptalDefectPr' label='Наличие дефекта межпредсердной перегородки' items={yesNo}/>
 
-            <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-44 -bottom-20" disabled={Object.keys(errors).length !== 0}>
+            <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-34 -bottom-16" disabled={Object.keys(errors).length !== 0}>
                 Сохранить
             </Button>
         </Form>
