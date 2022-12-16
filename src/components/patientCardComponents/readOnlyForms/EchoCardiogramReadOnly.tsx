@@ -12,8 +12,6 @@ const EchoCardiogramReadOnly = () => {
     const {SelectedPatient} = useAppSelector(state => state.additionalReducer)
     const navigate = useNavigate();
 
-    const dispatch = useAppDispatch()
-
     return (
 
         <div className='p-8 mb-16'>
