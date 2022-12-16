@@ -12,19 +12,12 @@ import Loader from "../common/Loader";
 const CreateDoctorPage = () => {
     const {isLoading, error} = useAppSelector(state => state.userReducer);
 
-    const breadcrumbs = useBreadcrumbs(routes);
 
     return (
         <div className="ml-5 mb-10">
             {isLoading && <Loader/>}
             {error && <h1>Произошла ошибка при загрузке</h1>}
-            <>
-                {breadcrumbs.map(({ match, breadcrumb }) => (
-                    <NavLink key={match.pathname} to={match.pathname} className="text-our-greenish-300 text-xs mr-1">
-                        /{breadcrumb}
-                    </NavLink>
-                ))}
-            </>
+
 
             <div>
                 <CreateDoctorForm />

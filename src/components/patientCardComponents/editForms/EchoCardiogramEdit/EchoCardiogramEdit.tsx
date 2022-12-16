@@ -108,19 +108,19 @@ const EchoCardiogramEdit = () => {
             <InputField name='peakSpeedAV' label='Пиковая скорость на аортальном клапане, м/с'/>
             <InputField name='AVPressureGradientMax' label='Градиент давления на аортальном клапане(максимальный), мм рт ст'/>
             <InputField name='AVPressureGradientMean' label='Градиент давления на аортальном клапане(средний), мм рт ст'/>
-            <SelectField label='aorticRegurgitationDegree' name='Степень аортальной регургитации' options={AorticRegurgitationDegreeData} />
+            <SelectField name='aorticRegurgitationDegree' label='Степень аортальной регургитации' options={AorticRegurgitationDegreeData} />
             <InputField name='pulmArterySysBP' label='Систолическое давление в легочной артерии, мм рт ст'/>
 
             <RadioGroup name='mitralInsuffBool' label='Наличие митральной недостаточности' items={yesNo}/>
-            <SelectField label='mitralInsuffDegree' name='Степень митральной недостаточности' options={MitralInsuffDegreeData} />
+            <SelectField name='mitralInsuffDegree' label='Степень митральной недостаточности' options={MitralInsuffDegreeData} />
 
 
             <RadioGroup name='mitralStenBool' label='Наличие митрального стеноза' items={yesNo}/>
-            <SelectField label='mitralStenDegree' name='Степень митрального стеноза' options={MitralStenDegreeData} />
+            <SelectField name='mitralStenDegree' label='Степень митрального стеноза' options={MitralStenDegreeData} />
 
 
             <RadioGroup name='tricuspiBool' label='Наличие трикуспидальной недостаточности' items={yesNo}/>
-            <SelectField label='tricuspiDegree' name='Степень митральной недостаточности' options={TricuspiDegreeData} />
+            <SelectField name='tricuspiDegree' label='Степень митральной недостаточности' options={TricuspiDegreeData} />
 
             <RadioGroup name='trialSeptalDefectPr' label='Наличие дефекта межпредсердной перегородки' items={yesNo}/>
 

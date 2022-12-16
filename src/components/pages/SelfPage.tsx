@@ -18,15 +18,15 @@ const SelfPage =() => {
         <div className="ml-5 mb-10">
             {isLoading && <Loader/>}
             {error && <h1>Произошла ошибка при загрузке</h1>}
-            {breadcrumbs.map(({ match, breadcrumb }) => (
-                <NavLink key={match.pathname} to={match.pathname} className="text-our-greenish-300 text-xs mr-1">
-                    /{breadcrumb}
-                </NavLink>
-            ))}
 
             {user!=null ?
                 <div className="flex justify-center items-center flex-wrap mt-30 ">
                     <div className="w-2/3 bg-white shadow-sm p-7 rounded-lg mt-10">
+                        {breadcrumbs.map(({ match, breadcrumb }) => (
+                            <NavLink key={match.pathname} to={match.pathname} className="text-our-greenish-300 text-xs mr-1">
+                                /{breadcrumb}
+                            </NavLink>
+                        ))}
 
                         <div className="grid grid-cols-1 gap-y-4 pt-4 ml-6">
 

@@ -110,7 +110,7 @@ function Form({ children, handleChange, data, errors, handleKeyDown, ...rest }: 
   });
 
   return (
-    <form className='form' {...rest}>
+    <form className='grid relative grid-cols-1 gap-y-3 my-4' {...rest}>
       {clonedElements}
     </form>
   );

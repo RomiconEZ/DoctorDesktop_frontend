@@ -14,13 +14,17 @@ import {Occupations} from "../../../DataLists/Occupations";
 import {Regions} from "../../../DataLists/Regions";
 import {Cities} from "../../../DataLists/Cities";
 import {genderItems} from "../../../DataLists/genderItems";
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
+import useBreadcrumbs from "use-react-router-breadcrumbs";
+import {routes} from "../../common/BreadCrumb";
 
 
 
 const CreateDoctorForm = () => {
     const user = useAppSelector(state => state.userReducer.user)
     const navigate = useNavigate();
+    const breadcrumbs = useBreadcrumbs(routes);
+
     const initialData: IDoctorCreate = {
         name: "",
         surname: "",
@@ -47,9 +51,16 @@ const CreateDoctorForm = () => {
     const InputFieldWithPassword = useMemo(() => withPassword(InputField), []);
 
         return (
-            <>
+
                 <div  className='p-8 flex justify-center'>
                     <div className='w-3/5 pb-20 pt-5 pl-10 rounded-md bg-white h-auto'>
+                        <>
+                            {breadcrumbs.map(({ match, breadcrumb }) => (
+                                <NavLink key={match.pathname} to={match.pathname} className="text-our-greenish-300 text-xs mr-1">
+                                    /{breadcrumb}
+                                </NavLink>
+                            ))}
+                        </>
 
                         <h1 className='font-medium font-sans text-our-greenish-400 text-2xl pb-4'>Создание доктора</h1>
                         <div className='grid relative grid-cols-1 gap-y-3 my-4'>
@@ -93,7 +104,7 @@ const CreateDoctorForm = () => {
                 </div>
             </div>
         </div>
-            </>
+
         );
 };
 

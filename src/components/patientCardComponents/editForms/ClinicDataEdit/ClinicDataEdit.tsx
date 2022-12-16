@@ -76,7 +76,7 @@ const ClinicDataEdit = () => {
             <RadioGroup name='aortic_dissection' label='Наличие расслоения аортый' items={yesNo}/>
             <RadioGroup name='intramural_hematoma' label='Наличие интрамуральной гематомы' items={yesNo}/>
             <RadioGroup name='aortic_rupture' label='Наличие разрыва аорты' items={yesNo}/>
-            <SelectField label='patient_state' name='Состояние' options={PatientStateData}  />
+            <SelectField name='patient_state' label='Состояние'  options={PatientStateData}  />
             <RadioGroup name='pain_beh_stern' label='Боли за грудиной' items={yesNo}/>
             <RadioGroup name='interscap_reg_pain' label='Боли в межлопаточной области' items={yesNo}/>
             <RadioGroup name='conscious_loss' label='Потеря сознания' items={yesNo}/>

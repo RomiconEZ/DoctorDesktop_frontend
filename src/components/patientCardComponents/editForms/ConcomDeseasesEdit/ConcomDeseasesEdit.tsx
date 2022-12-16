@@ -110,10 +110,10 @@ const ConcomDeseasesEdit = () => {
         <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
             <RadioGroup name='clinicIschHeartDis' label='Наличие клиники ишемической болезни сердца' items={yesNo}/>
             <RadioGroup name='acuteMyocardilInfarctionBool' label='Острые инфаркты миокарда в анамнезе' items={yesNo}/>
-            <InputField name='acuteMyocardilInfarctionNum' label='количество острых инфарктов миокарда в анамнезе'/>
+            <InputField name='acuteMyocardilInfarctionNum' label='Количество острых инфарктов миокарда в анамнезе'/>
             <RadioGroup name='currentMyocardilInfarction' label='Текущий инфаркт миокарда' items={yesNo}/>
             <RadioGroup name='diabetes' label='Наличие сахарного диабета' items={yesNo}/>
-            <SelectField label='diabetesType' name='Тип сахарного диабета' options={DiabetesTypeData} />
+            <SelectField name='diabetesType' label='Тип сахарного диабета' options={DiabetesTypeData} />
             <RadioGroup name='cerebrovascularDisease' label='Наличие цереброваскулярной болезни' items={yesNo}/>
             <RadioGroup name='BCAStenosis' label='Гемодинамические значимые стенозы БЦА' items={yesNo}/>
             <RadioGroup name='translschAttack' label='Транзисторная ишемическая атака' items={yesNo}/>
@@ -128,7 +128,7 @@ const ConcomDeseasesEdit = () => {
             <RadioGroup name='hematologicalDisease' label='Наличие гематологических заболеваний' items={yesNo}/>
             <RadioGroup name='pulmonaryEmbolism' label='ТЭЛА' items={yesNo}/>
             <RadioGroup name='chestWallInjury' label='Травма грудной клетки' items={yesNo}/>
-            <SelectField label='aorticValve' name='Врожденный двустворчатый или нормальный аортальный клапан' options={AorticValveData} />
+            <SelectField name='aorticValve' label='Врожденный двустворчатый или нормальный аортальный клапан' options={AorticValveData} />
             <RadioGroup name='acquiredAVDisease' label='Приобретенные пороки аортального клапана' items={yesNo}/>
             <RadioGroup name='AVDegenerativeLesions' label='Дегенеративные поражения аортального клапана' items={yesNo}/>
             <RadioGroup name='AVInfectiousLesions' label='Инфекционные поражения аортального клапана' items={yesNo}/>
