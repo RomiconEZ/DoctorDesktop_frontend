@@ -5,7 +5,8 @@ import useBreadcrumbs from "use-react-router-breadcrumbs";
 import {routes} from "../common/BreadCrumb";
 import React from "react";
 import Loader from "../common/Loader";
-
+import ReadFieldStr from "../common/ReadFieldStr"
+import ReadFieldBool from "../common/ReadFieldBool"
 
 
 const SelfPage =() => {
@@ -17,57 +18,84 @@ const SelfPage =() => {
         <div className="ml-5 mb-10">
             {isLoading && <Loader/>}
             {error && <h1>Произошла ошибка при загрузке</h1>}
-                {breadcrumbs.map(({ match, breadcrumb }) => (
-                    <NavLink key={match.pathname} to={match.pathname} className="text-azure-my text-xs mr-1">
-                        /{breadcrumb}
-                    </NavLink>
-                ))}
-            <div className="flex justify-center items-center flex-wrap columns-1 mt-5">
-                <div className=" justify-center items-center grid columns-1 gap-y-4">
+            {breadcrumbs.map(({ match, breadcrumb }) => (
+                <NavLink key={match.pathname} to={match.pathname} className="text-our-greenish-300 text-xs mr-1">
+                    /{breadcrumb}
+                </NavLink>
+            ))}
 
-                    <div className="flex justify-between space-x-5">
-                        <div className="font-medium">Фамилия Имя Отчество</div>
-                        <div>{user?.surname + ' ' + user?.name + ' ' + user?.patronymic} </div>
-                    </div>
-                    <div className="flex justify-between">
-                        <span className="font-medium">Дата рождения</span>
-                        <span>{user?.birthdate} </span>
-                    </div>
-                    <div className="flex justify-between">
-                        <span className="font-medium">Пол</span>
-                        <span>{user?.sex} </span>
-                    </div>
+            {user!=null ?
+                <div className="flex justify-center items-center flex-wrap mt-30 ">
+                    <div className="w-2/3 bg-white shadow-sm p-7 rounded-lg mt-10">
 
-                    <div className="flex justify-between">
-                        <span className="font-medium">Должность</span>
-                        <span>{user?.occupation} </span>
-                    </div>
-                    <div className="flex justify-between">
-                        <span className="font-medium">Пользовательский режим</span>
-                        <span>{user?.role} </span>
-                    </div>
-                    <div className="flex justify-between">
-                        <span className="font-medium">Стаж работы</span>
-                        <span>{user?.workExperience}{(user != undefined) && (user?.workExperience <= 4) ? 'года' : 'лет'}  </span>
-                    </div>
-                    <div className="flex justify-between">
-                        <span className="font-medium">Регион</span>
-                        <span>{user?.region} </span>
-                    </div>
-                    <div className="flex justify-between">
-                        <span className="font-medium">Город</span>
-                        <span>{user?.city} </span>
-                    </div>
-                    <div className="flex justify-between">
-                        <span className="font-medium">Учереждение</span>
-                        <span>{user?.placeOfWork} </span>
-                    </div>
-                    <div className="flex justify-between">
-                        <span className="font-medium">Профиль</span>
-                        <span>{user?.role} </span>
+                        <div className="grid grid-cols-1 gap-y-4 pt-4 ml-6">
+
+                            <ReadFieldStr
+                                label="Фамилия Имя Отчество"
+                                value={user?.surname + ' ' + user?.name + ' ' + user?.patronymic}
+                            />
+
+                            <ReadFieldStr
+                                label="Дата рождения"
+                                value={user?.birthdate}
+                            />
+
+                            <ReadFieldBool
+                                label="Пол"
+                                boolValue={user?.sex}
+                                trueOption="мужской"
+                                falseOption="женский"
+                            />
+
+                            <ReadFieldStr
+                                label="Должность"
+                                value={user?.occupation}
+                            />
+
+                            <div className=' flex'>
+                                <span className=' w-1/4 mr-6 font-semibold text-slate-800'>Пользовательский режим</span>
+                                {user?.role===1 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Врач</span>}
+                                {user?.role===2 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Разработчик</span>}
+                                {user?.role===3 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Соразработчик</span>}
+                                {user?.role===4 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Администратор</span>}
+                                {user?.role===5 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Регистратура</span>}
+                                {user?.role===6 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Врач-эксперт</span>}
+                                {user?.role===6 && <span className="w-1/2 py-2 pl-6 rounded-md bg-our-gray-main-theme font-semibold text-slate-600">Data-администратор</span>}
+                            </div>
+
+                            <ReadFieldStr
+                                label="Стаж работы"
+                                value={`
+                                ${user?.workExperience} 
+                                ${user?.workExperience % 10 == 1 ? ' год' : ''}
+                                ${user?.workExperience % 10 > 1 && user?.workExperience % 10 <= 4 ? ' года' : ''}
+                                ${user?.workExperience % 10 > 4 ? ' лет' : ''}
+                            `}
+                            />
+
+                            <ReadFieldStr
+                                label="Регион"
+                                value={user?.region}
+                            />
+
+                            <ReadFieldStr
+                                label="Город"
+                                value={user?.city}
+                            />
+
+                            <ReadFieldStr
+                                label="Учреждение"
+                                value={user?.placeOfWork}
+                            />
+
+                        </div>
                     </div>
                 </div>
-            </div>
+                :
+                <h1>user undefined!</h1>
+            }
+
+
         </div>
 
     )

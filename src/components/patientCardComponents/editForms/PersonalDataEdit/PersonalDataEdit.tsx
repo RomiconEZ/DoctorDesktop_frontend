@@ -69,6 +69,10 @@ const PersonalDataEdit = () => {
         }
     }
     return (
+        <div className='p-8 mb-16'>
+            <h1 className='font-medium font-sans  text-our-greenish-400 text-2xl pb-4'>Персональные данные режим редактирования</h1>
+
+            <div className='grid relative grid-cols-1 gap-y-3 my-4'>
             <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
                 <InputField autoFocus name='first_name' label='Имя'/>
                 <InputField name='second_name' label='Фамилия'/>
@@ -91,10 +95,13 @@ const PersonalDataEdit = () => {
                 <SelectField label='Раса' name='race' options={Race}  />
                 <SelectField label='Клиника' name='clinic' options={Clinics}  />
 
-                <Button type='submit' onClick={handleUpdate} fullWidth disabled={Object.keys(errors).length !== 0}>
+                <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-44 -bottom-20" disabled={Object.keys(errors).length !== 0}>
                     Сохранить
                 </Button>
         </Form>
+            </div>
+
+        </div>
     );
 };
 

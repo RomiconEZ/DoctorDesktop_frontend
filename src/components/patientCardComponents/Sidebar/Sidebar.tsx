@@ -1,51 +1,86 @@
-
-import { MenuItem, MenuList } from '@mui/material';
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import {NavLink, useNavigate} from 'react-router-dom';
+import SidebarButton from "./SidebarButton";
+import {useAppSelector} from "../../../hooks/redux";
+import {additionalSlice} from "../../../store/reducers/AdditionalSlice";
+import {IPatientFull} from "../../../models/IPatientFull";
 
 const Sidebar = () => {
+    const {SelectedPatient} = useAppSelector(state => state.additionalReducer)
+    const navigate = useNavigate();
+    useEffect(() => {
+        navigate(`personal-data`)
+    }, [])
 
-  return (
-    <MenuList className='sidebar'>
-      <MenuItem component={NavLink} className='sidebar-menu__item' to={`personal-data`}>
-        {/*<AccountCircleIcon />*/}
-        Персональные данные
-      </MenuItem>
-        <MenuItem component={NavLink} className='sidebar-menu__item' to={`computer-aided-tomography`}>
-        {/*<StarBorderIcon />*/}
-        Компьютерная томография
-      </MenuItem>
-      <MenuItem component={NavLink} className='sidebar-menu__item' to={`anthropometric-data`} >
-        {/*<FavoriteBorderIcon />*/}
-        Антропометрия
-      </MenuItem>
-      <MenuItem component={NavLink} className='sidebar-menu__item' to={`clinic-data`}>
-        {/*<BookmarkBorderIcon />*/}
-        Клинические данные
-      </MenuItem>
-      <MenuItem component={NavLink} className='sidebar-menu__item' to={`anamnesis`}>
-        {/*<SettingsIcon />*/}
-        Анамнез
-      </MenuItem>
 
-        <MenuItem component={NavLink} className='sidebar-menu__item' to={`concom-deseases`}>
-            {/*<SettingsIcon />*/}
-            Сопутствующие заболевания
-        </MenuItem>
-        <MenuItem component={NavLink} className='sidebar-menu__item' to={`echocardiogram`}>
-            {/*<SettingsIcon />*/}
-            ЭХОГК
-        </MenuItem>
-        <MenuItem component={NavLink} className='sidebar-menu__item' to={`msct`}>
-            {/*<SettingsIcon />*/}
-            МСКТ
-        </MenuItem>
-        <MenuItem component={NavLink} className='sidebar-menu__item' to={`neural-net`}>
-            {/*<SettingsIcon />*/}
-            Нейронная сеть
-        </MenuItem>
-    </MenuList>
-  );
+    return (
+        <ul className='w-4/5 h-full flex flex-col mt-5 pb-5 gap-y-4 overflow-hidden'>
+
+            <li>
+                <span className="italic font-semibold text-sm text-slate-400">Пациент</span>
+                <h1 className='font-medium font-sans text-our-greenish-500 text-xl pb-2'>
+                    {SelectedPatient.personal_data.second_name + ' ' +
+                    SelectedPatient.personal_data.first_name + ' ' +
+                        SelectedPatient.personal_data.patronymic}
+                </h1>
+            </li>
+
+            <li>
+                <SidebarButton>
+                    <NavLink className="focus:text-white" to="personal-data">Персональные данные</NavLink>
+                </SidebarButton>
+            </li>
+
+            <li>
+                <SidebarButton>
+                    <NavLink className="focus:text-white" to="computer-aided-tomography">Компьютерная томография</NavLink>
+                </SidebarButton>
+            </li>
+
+            <li>
+                <SidebarButton>
+                    <NavLink className="focus:text-white" to="anthropometric-data">Антропометрия</NavLink>
+                </SidebarButton>
+            </li>
+
+            <li>
+                <SidebarButton>
+                    <NavLink className="focus:text-white" to="clinic-data">Клинические данные</NavLink>
+                </SidebarButton>
+            </li>
+
+            <li>
+                <SidebarButton>
+                    <NavLink className="focus:text-white" to="anamnesis">Анамнез</NavLink>
+                </SidebarButton>
+            </li>
+
+            <li>
+                <SidebarButton>
+                    <NavLink className="focus:text-white" to="concom-deseases">Сопутствующие заболевания</NavLink>
+                </SidebarButton>
+            </li>
+
+            <li>
+                <SidebarButton>
+                    <NavLink className="focus:text-white" to="echocardiogram">ЭХОГК</NavLink>
+                </SidebarButton>
+            </li>
+
+            <li>
+                <SidebarButton>
+                    <NavLink className="focus:text-white" to="msct">МСКТ</NavLink>
+                </SidebarButton>
+            </li>
+
+            <li>
+                <SidebarButton>
+                    <NavLink className="focus:text-white" to="neural-net">Нейронная сеть</NavLink>
+                </SidebarButton>
+            </li>
+
+        </ul>
+    );
 };
 
 export default Sidebar;

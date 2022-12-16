@@ -45,7 +45,11 @@ const CreatePatientForm = () => {
 
   return (
       <>
+          <div className='p-8 flex justify-center'>
+          <div className='w-3/5 pb-20 pt-5 pl-10 rounded-md bg-white h-auto'>
 
+              <h1 className='font-medium font-sans text-our-greenish-400 text-2xl pb-4'>Создание пациента</h1>
+              <div className='grid relative grid-cols-1 gap-y-3 my-4'>
         <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
           <InputField autoFocus name='first_name' label='Имя'/>
           <InputField name='second_name' label='Фамилия'/>
@@ -68,10 +72,14 @@ const CreatePatientForm = () => {
             <SelectField label='Клиника' name='clinic' options={Clinics}  />
             <SelectField label='Регион обследования' name='residenseregion' options={ResidenseRegions}  />
 
-            <Button type='submit' onClick={handleCreate} fullWidth disabled={Object.keys(errors).length !== 0}>
+            <Button type='submit' onClick={handleCreate} className="w-1/5 absolute right-44 -bottom-20" disabled={Object.keys(errors).length !== 0}>
           Создать
         </Button>
       </Form>
+              </div>
+
+          </div>
+          </div>
     </>
   );
 };

@@ -14,7 +14,7 @@ const SelectedPatientPage = () => {
     const params = useParams<string>()
     const body: PatientForDoctor = {
         doctorID: user!.id,
-        patientID: params.id
+        patientID: Number(params)
     }
     // let refetch: boolean = false
     // let data: any
@@ -39,23 +39,24 @@ const SelectedPatientPage = () => {
     useEffect(() => {
         console.log("Получили пациента")
         console.log(data)
-        if ((preloading === false) && (data.data != undefined)) {
-                dispatch(additionalSlice.actions.ChangeSelectedPatient(data.data as IPatientFull))
-            }
+        if ((preloading === false) && (data.data !== undefined)) {
+            dispatch(additionalSlice.actions.ChangeSelectedPatient(data.data as IPatientFull))
+        }
 
     }, [preloading])
 
 
     return (
-        <div className="container mx-auto bg-slate-300">
-            <div className="flex flex-row flex-wrap py-4">
+        <div className="flex flex-row h-full mt-5 w-screen gap-x-10 justify-start items-start">
 
-                <aside className='mr-12'>
-                    <Sidebar />
-                </aside>
-
-                <main className='bg-white relative w-full sm:w-2/3 md:w-3/4 pt-1 px-2'> <Outlet /> </main>
+            <div className="w-1/5 ml-10 mt-5 pb-5 h-fit rounded-md flex justify-center bg-our-dark-navbar">
+                <Sidebar />
             </div>
+
+            <main className='w-3/5 mt-5 rounded-md bg-white h-auto'>
+                <Outlet />
+            </main>
+
         </div>
     )
 

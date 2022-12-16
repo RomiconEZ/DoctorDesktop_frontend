@@ -1,6 +1,9 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {useNavigate} from "react-router-dom";
+import ReadFieldStr from "../../common/ReadFieldStr";
+import ReadFieldBool from "../../common/ReadFieldBool";
+import MyButton from "../../common/MyButton";
 
 
 const ClinicDataReadOnly = () => {
@@ -10,72 +13,78 @@ const ClinicDataReadOnly = () => {
     const dispatch = useAppDispatch()
     return (
 
-        <div className='p-8'>
-            <h1 className='font-medium text-lg text-slate-800 pb-4'>Клинические данные режим чтения</h1>
+        <div className='p-8 mb-16'>
+            <h1 className='font-medium font-sans  text-our-greenish-400 text-2xl pb-4'>Клинические данные режим чтения</h1>
 
-            <div className='grid grid-cols-2 gap-y-3 mb-4'>
+            <div className='grid relative grid-cols-1 gap-y-3 my-4'>
 
-                <div className='col-span-2 flex'>
-                    <span className='text-slate-400 w-1/4'>Основной диагноз</span>
-                    <span className='text-slate-800'>{SelectedPatient.clinical_data.main_diag}</span>
-                </div>
+                <ReadFieldStr
+                    label="Основной диагноз"
+                    value={SelectedPatient.clinical_data.main_diag}
+                />
 
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'></span>
-                    <span className='text-slate-400 w-1/2'>Наличие расслоения аорты</span>
-                    {SelectedPatient.clinical_data.aortic_dissection!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.clinical_data.aortic_dissection!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'></span>
-                    <span className='text-slate-400 w-1/2'>Наличие интрамуральной гематомы</span>
-                    {SelectedPatient.clinical_data.intramural_hematoma!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.clinical_data.intramural_hematoma!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'></span>
-                    <span className='text-slate-400 w-1/2'>Наличие разрыва аорты</span>
-                    {SelectedPatient.clinical_data.aortic_rupture!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.clinical_data.aortic_rupture!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='col-span-2 flex'>
-                    <span className='text-slate-400 w-1/4'>Состояние</span>
-                    <span className='text-slate-800'>{SelectedPatient.clinical_data.patient_state}</span>
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'></span>
-                    <span className='text-slate-400 w-1/2'>Боли за грудиной</span>
-                    {SelectedPatient.clinical_data.pain_beh_stern!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.clinical_data.pain_beh_stern!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'></span>
-                    <span className='text-slate-400 w-1/2'>Боли в межлопаточной области</span>
-                    {SelectedPatient.clinical_data.interscap_reg_pain!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.clinical_data.interscap_reg_pain!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'></span>
-                    <span className='text-slate-400 w-1/2'>Потеря сознания</span>
-                    {SelectedPatient.clinical_data.conscious_loss!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.clinical_data.conscious_loss!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
-                <div className='flex'>
-                    <span className='text-slate-400 w-1/2'></span>
-                    <span className='text-slate-400 w-1/2'>Ишемия нижних конечностей</span>
-                    {SelectedPatient.clinical_data.low_extrem_ischemia!==0 && <span className='text-slate-800 w-1/2'>да</span> }
-                    {SelectedPatient.clinical_data.low_extrem_ischemia!==1 && <span className='text-slate-800 w-1/2'>нет</span> }
-                </div>
+                <ReadFieldBool
+                    labelClassName="w-1/4"
+                    valueClassName="w-1/2"
+                    label="Наличие расслоения аорты"
+                    boolValue={SelectedPatient.clinical_data.aortic_dissection}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/4"
+                    valueClassName="w-1/2"
+                    label="Наличие интрамуральной гематомы"
+                    boolValue={SelectedPatient.clinical_data.intramural_hematoma}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/4"
+                    valueClassName="w-1/2"
+                    label="Наличие разрыва аорты"
+                    boolValue={SelectedPatient.clinical_data.aortic_rupture}
+                />
+
+                <ReadFieldStr
+                    label="Состояние"
+                    value={SelectedPatient.clinical_data.patient_state}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/4"
+                    valueClassName="w-1/2"
+                    label="Боли за грудиной"
+                    boolValue={SelectedPatient.clinical_data.pain_beh_stern}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/4"
+                    valueClassName="w-1/2"
+                    label="Боли в межлопаточной области"
+                    boolValue={SelectedPatient.clinical_data.interscap_reg_pain}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/4"
+                    valueClassName="w-1/2"
+                    label="Потеря сознания"
+                    boolValue={SelectedPatient.clinical_data.conscious_loss}
+                />
+
+                <ReadFieldBool
+                    labelClassName="w-1/4"
+                    valueClassName="w-1/2"
+                    label="Ишемия нижних конечностей"
+                    boolValue={SelectedPatient.clinical_data.low_extrem_ischemia}
+                />
+
+                <MyButton
+                    onClick={()=>navigate(`edit`)}
+                    className="w-1/5 absolute right-44 -bottom-16"
+                >
+                    Редактировать
+                </MyButton>
+
             </div>
-
-            <button
-                onClick={()=>navigate(`edit`)}
-                className="relative mt-8 bottom-2 left-3/4 p-2 bg-transparent
-                text-blue-600 font-semibold border border-blue-600
-                rounded hover:bg-blue-600 hover:text-white hover:border-transparent
-                transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0">
-                Редактировать
-            </button>
 
         </div>
     );

@@ -14,11 +14,13 @@ import {Occupations} from "../../../DataLists/Occupations";
 import {Regions} from "../../../DataLists/Regions";
 import {Cities} from "../../../DataLists/Cities";
 import {genderItems} from "../../../DataLists/genderItems";
+import {useNavigate} from "react-router-dom";
 
 
 
 const CreateDoctorForm = () => {
     const user = useAppSelector(state => state.userReducer.user)
+    const navigate = useNavigate();
     const initialData: IDoctorCreate = {
         name: "",
         surname: "",
@@ -46,7 +48,12 @@ const CreateDoctorForm = () => {
 
         return (
             <>
-                <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
+                <div  className='p-8 flex justify-center'>
+                    <div className='w-3/5 pb-20 pt-5 pl-10 rounded-md bg-white h-auto'>
+
+                        <h1 className='font-medium font-sans text-our-greenish-400 text-2xl pb-4'>Создание доктора</h1>
+                        <div className='grid relative grid-cols-1 gap-y-3 my-4'>
+                            <Form data={data} errors={errors} handleChange={handleInputChange} handleKeyDown={handleKeyDown}>
                             <InputField autoFocus name='name' label='Имя'/>
                             <InputField name="surname" label='Фамилия'/>
                             <InputField name="patronymic" label='Отчество'/>
@@ -76,11 +83,16 @@ const CreateDoctorForm = () => {
 
                             <InputField name='email' label='Почта'/>
                             <InputFieldWithPassword name='password' label='Пароль' type='password'/>
-                            <Button type='submit' onClick={handleCreate} fullWidth
+
+                                <Button type='submit' onClick={handleCreate} className="w-1/5 absolute right-44 -bottom-20"
                                     disabled={Object.keys(errors).length !== 0}>
                                 Создать
                             </Button>
+
                 </Form>
+                </div>
+            </div>
+        </div>
             </>
         );
 };

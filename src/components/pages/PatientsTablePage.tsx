@@ -21,7 +21,6 @@ const PatientsTablePage = () =>{
 
     const {data, error, isLoading: preloading, refetch}  = patientAPI.useFetchPatientsQuery(body)
 
-    const isLoading = useAppSelector(state => state.patientsReducer.isLoading);
     const dispatch = useAppDispatch()
 
 
@@ -34,7 +33,6 @@ const PatientsTablePage = () =>{
 
         if ((preloading === false) && (data.data != undefined))
         {
-            console.log("Получили с сервера пациентов")
             dispatch(patientsSlice.actions.patientsReceived(Array.from(data.data)))
         }
     }, [preloading])

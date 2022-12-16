@@ -3,6 +3,7 @@ import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
 import {additionalSlice} from "../../../store/reducers/AdditionalSlice";
 import {useNavigate} from "react-router-dom";
+import MyButton from "../../common/MyButton";
 
 
 
@@ -15,17 +16,15 @@ const ComputerTomographyReadOnly = () => {
     const birthday = new Date(SelectedPatient.personal_data.birthday)
     return (
 
-        <div className='p-8'>
-            <h1 className='font-medium text-lg text-slate-800 pb-4'>Компьютерная томография режим чтения</h1>
+        <div className='p-8 mb-16 relative'>
+            <h1 className='font-medium font-sans  text-our-greenish-400 text-2xl pb-4'>Компьютерная томография режим чтения</h1>
 
-            <button
-                onClick={()=>navigate(`edit`)}
-                className="relative mt-8 bottom-2 left-3/4 p-2 bg-transparent
-                text-blue-600 font-semibold border border-blue-600
-                rounded hover:bg-blue-600 hover:text-white hover:border-transparent
-                transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0">
-                Редактировать
-            </button>
+            {/*<MyButton*/}
+            {/*    onClick={()=>navigate(`edit`)}*/}
+            {/*    className="w-1/5 absolute right-44 -bottom-16"*/}
+            {/*>*/}
+            {/*    Редактировать*/}
+            {/*</MyButton>*/}
 
         </div>
     );
