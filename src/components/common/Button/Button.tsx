@@ -14,7 +14,7 @@ const Button: React.FC<ButtonProps> = ({ size, color, variant, onClick, type, ro
             onClick={onClick}
             className={rounded ? 'button-circle' : 'button'}
             sx={{
-                background: variant === 'outlined' ? 'transparent' : 'hover:bg-our-greenish-500 bg-our-greenish-400 text-white hover:border-transparent',
+                background: variant === 'outlined' ? 'transparent' : '#39acac',
             }}
             {...rest}
         >

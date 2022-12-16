@@ -7,6 +7,7 @@ import Loader from "../common/Loader";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {doctorsSlice} from "../../store/reducers/DoctorsSlice";
 import {doctorAPI, PaginationDoctors} from "../../services/DoctorService";
+import Button from "../common/Button";
 
 
 const DoctorsTablePage = () => {
@@ -62,9 +63,9 @@ const DoctorsTablePage = () => {
                 </>
 
 
-                <button onClick={RefetchRequest}>
+                <Button onClick={RefetchRequest} className="w-1/12 absolute top-0 right-0 ">
                     обновить
-                </button>
+                </Button>
 
                 <TableDoctors/>
             </div>
