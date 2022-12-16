@@ -24,7 +24,6 @@ import MyButton from "../../common/MyButton";
 const CreatePatientForm = () => {
     const {user} = useAppSelector(state => state.userReducer)
 
-
     const initialData: IPatientCreate = {
 
         name: '',
@@ -108,12 +107,12 @@ const CreatePatientForm = () => {
                       />
                   </div>
 
-                  <EditFieldStr
-                  label="Дата рождения"
-                  defaultValue={initialData.surname}
-                  register={register("surname")}
-                  id="surname"
-              />
+              {/*    <EditFieldStr*/}
+              {/*    label="Дата рождения"*/}
+              {/*    defaultValue={initialData.birthdate}*/}
+              {/*    register={register("birthdate")}*/}
+              {/*    id="birthdate"*/}
+              {/*/>*/}
                   <EditFieldStr
                       label="Раса"
                       defaultValue={initialData.race}
