@@ -6,7 +6,7 @@ import {Form, useForm} from "../../../../hooks/useForm";
 import {patientAPI} from "../../../../services/PatientService";
 import {IPatientUpdate} from "../../../../models/IPatientUpdate";
 import {useAppDispatch} from "../../../../store/store";
-import {DatePickerField, InputField, RadioGroup, SelectField} from "../../../common/Fields";
+import {InputField, RadioGroup, SelectField} from "../../../common/Fields";
 import Button from "../../../common/Button";
 import {useNavigate, useParams} from "react-router-dom";
 import {yesNo} from "../../../../DataLists/yesNo";
@@ -19,7 +19,7 @@ const ClinicDataEdit = () => {
     const {user} = useAppSelector(state => state.userReducer)
     const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
     const navigate = useNavigate();
-    const params = useParams<string>()
+    // const params = useParams<string>()
     const dispatch = useAppDispatch()
     let response: any
 
@@ -59,7 +59,7 @@ const ClinicDataEdit = () => {
                 }
             }
             response =await updatePatient(UpdatePatientData)
-            if (response.data != undefined) {
+            if (response.data !== undefined) {
                 dispatch(additionalSlice.actions.ChangeSelectedPatient(response.data))
             }
             navigate(`/auth/menu/patients/${SelectedPatient.patientID}/clinic-data`)

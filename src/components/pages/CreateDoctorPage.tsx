@@ -1,9 +1,6 @@
 import React from 'react';
 import {useAppSelector} from "../../hooks/redux";
 import CreateDoctorForm from "../UI/CreateDoctorForm";
-import useBreadcrumbs from "use-react-router-breadcrumbs";
-import {NavLink} from "react-router-dom";
-import {routes} from "../common/BreadCrumb";
 import Loader from "../common/Loader";
 
 

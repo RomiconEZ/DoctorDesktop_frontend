@@ -1,5 +1,4 @@
 import React from 'react';
-import Loader from "../common/Loader";
 import {useAppSelector} from "../../hooks/redux";
 
 const NotFound = () => {

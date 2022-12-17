@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Link, RouterProvider, createBrowserRouter, createRoutesFromElements, Navigate} from 'react-router-dom';
+import {Route, RouterProvider, createBrowserRouter, createRoutesFromElements, Navigate} from 'react-router-dom';
 import Navbar from "./components/UI/Navbar/Navbar";
 import NotFoundPage from "./components/pages/NotFoundPage";
 import Root from "./components/UI/Root";

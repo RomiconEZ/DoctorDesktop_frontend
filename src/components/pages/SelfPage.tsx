@@ -68,7 +68,7 @@ const SelfPage =() => {
                                 label="Стаж работы"
                                 value={`
                                 ${user?.workExperience} 
-                                ${user?.workExperience % 10 == 1 ? ' год' : ''}
+                                ${user?.workExperience % 10 === 1 ? ' год' : ''}
                                 ${user?.workExperience % 10 > 1 && user?.workExperience % 10 <= 4 ? ' года' : ''}
                                 ${user?.workExperience % 10 > 4 ? ' лет' : ''}
                             `}

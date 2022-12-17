@@ -1,7 +1,6 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
-import {additionalSlice} from "../../../store/reducers/AdditionalSlice";
 import {useNavigate} from "react-router-dom";
 import ReadFieldStr from "../../common/ReadFieldStr";
 import ReadFieldBool from "../../common/ReadFieldBool";

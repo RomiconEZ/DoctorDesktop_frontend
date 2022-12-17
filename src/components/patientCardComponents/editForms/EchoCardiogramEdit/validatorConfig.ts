@@ -1,4 +1,3 @@
-import {IPersonal_data_update} from "../../../../models/IPatientUpdate";
 import {ValidatorConfigType} from "../../../../utils/validator";
 import {IEchocardiogram} from "../../../../models/IPatientFull";
 

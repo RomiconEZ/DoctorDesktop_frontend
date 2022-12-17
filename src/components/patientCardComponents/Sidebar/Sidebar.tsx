@@ -2,8 +2,6 @@ import React, {useEffect} from 'react';
 import {NavLink, useNavigate} from 'react-router-dom';
 import SidebarButton from "./SidebarButton";
 import {useAppSelector} from "../../../hooks/redux";
-import {additionalSlice} from "../../../store/reducers/AdditionalSlice";
-import {IPatientFull} from "../../../models/IPatientFull";
 
 const Sidebar = () => {
     const {SelectedPatient} = useAppSelector(state => state.additionalReducer)

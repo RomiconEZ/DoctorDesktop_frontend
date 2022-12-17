@@ -1,9 +1,6 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-
-import {additionalSlice} from "../../../store/reducers/AdditionalSlice";
 import {useNavigate} from "react-router-dom";
-import MyButton from "../../common/MyButton";
 
 
 
@@ -11,9 +8,8 @@ const ComputerTomographyReadOnly = () => {
     const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
     const navigate = useNavigate();
 
-    const dispatch = useAppDispatch()
+    // const dispatch = useAppDispatch()
 
-    const birthday = new Date(SelectedPatient.personal_data.birthday)
     return (
 
         <div className='p-8 mb-16 relative'>

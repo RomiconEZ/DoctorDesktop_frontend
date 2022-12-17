@@ -1,5 +1,4 @@
 import React from "react";
-import Slider from "react-slick";
 import {
     sliderContent_admin,
     sliderContent_codeveloper, sliderContent_dataadmin, sliderContent_demo,
@@ -12,7 +11,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {NextArrow, PrevArrow} from "./Arrows";
 import ButtonWithIcon from "../../common/ButtonWithIcon";
-import {addUserIcon, arrowRightIcon} from "../../common/icons";
+import {arrowRightIcon} from "../../common/icons";
 
 export interface ISlideContent {
     title: string;

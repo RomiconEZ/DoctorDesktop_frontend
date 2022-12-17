@@ -1,27 +1,21 @@
 import React from 'react';
 
 import validatorConfig from './validatorConfig';
-import {TextField, TextFieldProps} from "@mui/material";
 import {useAppSelector} from "../../../../hooks/redux";
 import {additionalSlice} from "../../../../store/reducers/AdditionalSlice";
-import {ResidenseRegions} from "../../../../DataLists/ResidenseRegions";
-import {Regions} from "../../../../DataLists/Regions";
 import {Form, useForm} from "../../../../hooks/useForm";
-import {genderItems} from "../../../../DataLists/genderItems";
 import {patientAPI} from "../../../../services/PatientService";
-import {Race} from "../../../../DataLists/Race";
 import {IPatientUpdate} from "../../../../models/IPatientUpdate";
 import {useAppDispatch} from "../../../../store/store";
-import {DatePickerField, InputField, RadioGroup, SelectField} from "../../../common/Fields";
 import Button from "../../../common/Button";
-import {useNavigate, useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 
 const NeuralNetEdit = () => {
     const {user} = useAppSelector(state => state.userReducer)
     const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
     const navigate = useNavigate();
-    const params = useParams<string>()
+    // const params = useParams<string>()
     const dispatch = useAppDispatch()
     let response: any
 
@@ -40,7 +34,7 @@ const NeuralNetEdit = () => {
                 employee_id: user!.id,
             }
             response =await updatePatient(UpdatePatientData)
-            if (response.data != undefined) {
+            if (response.data !== undefined) {
                 dispatch(additionalSlice.actions.ChangeSelectedPatient(response.data))
             }
             navigate(`/auth/menu/patients/${SelectedPatient.patientID}/neural-net`)

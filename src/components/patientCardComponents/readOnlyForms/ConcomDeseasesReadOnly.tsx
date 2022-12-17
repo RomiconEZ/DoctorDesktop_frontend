@@ -1,7 +1,6 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
-import {additionalSlice} from "../../../store/reducers/AdditionalSlice";
 import {useNavigate} from "react-router-dom";
 import ReadFieldBool from "../../common/ReadFieldBool";
 import ReadFieldStr from "../../common/ReadFieldStr";
@@ -13,9 +12,7 @@ const ConcomDeseasesReadOnly = () => {
     const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
     const navigate = useNavigate();
 
-    const dispatch = useAppDispatch()
-
-    const birthday = new Date(SelectedPatient.personal_data.birthday)
+    // const dispatch = useAppDispatch()
     return (
 
         <div className='p-8 mb-16'>

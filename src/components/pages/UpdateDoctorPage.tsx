@@ -1,9 +1,8 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import UpdateDoctorForm from "../UI/UpdateDoctorForm";
-import useBreadcrumbs from "use-react-router-breadcrumbs";
-import {routes} from "../common/BreadCrumb";
-import {NavLink, useParams} from "react-router-dom";
+
+import {useParams} from "react-router-dom";
 import Loader from "../common/Loader";
 import {doctorAPI, DoctorForDoctor} from "../../services/DoctorService";
 import {additionalSlice} from "../../store/reducers/AdditionalSlice";

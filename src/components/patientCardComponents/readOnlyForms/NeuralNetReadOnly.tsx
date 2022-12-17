@@ -2,15 +2,14 @@ import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 
 import {useNavigate} from "react-router-dom";
-import MyButton from "../../common/MyButton";
 
 
 
 const NeuralNetReadOnly = () => {
-    const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
-
-    const dispatch = useAppDispatch()
-    const navigate = useNavigate();
+    // const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
+    //
+    // const dispatch = useAppDispatch()
+    // const navigate = useNavigate();
 
     return (
 

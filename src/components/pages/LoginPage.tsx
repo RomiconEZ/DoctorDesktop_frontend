@@ -1,7 +1,7 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useAppSelector} from "../../hooks/redux";
 import {useAppDispatch} from "../../store/store";
-import {checkAuth, login, logout} from "../../store/reducers/ActionCreators";
+import {checkAuth} from "../../store/reducers/ActionCreators";
 import LoginForm from "../UI/LoginForm";
 import {useNavigate} from "react-router-dom";
 import Loader from "../common/Loader";

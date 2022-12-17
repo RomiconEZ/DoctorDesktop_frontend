@@ -14,7 +14,7 @@ const DoctorsTablePage = () => {
 
 
     const breadcrumbs = useBreadcrumbs(routes);
-    let refetch_data
+    // let refetch_data
     const {user} = useAppSelector(state => state.userReducer);
     const body: PaginationDoctors = {
         doctorID: user!.id | 0,
@@ -24,7 +24,7 @@ const DoctorsTablePage = () => {
 
     const {data, error, isLoading: preloading, refetch}  = doctorAPI.useFetchDoctorsQuery(body)
 
-    const isLoading = useAppSelector(state => state.doctorsReducer.isLoading);
+    // const isLoading = useAppSelector(state => state.doctorsReducer.isLoading);
     const dispatch = useAppDispatch()
 
 
@@ -35,7 +35,7 @@ const DoctorsTablePage = () => {
 
     useEffect(() => {
 
-        if ((preloading === false) && (data.data != undefined))
+        if ((preloading === false) && (data.data !== undefined))
         {
 
             dispatch(doctorsSlice.actions.doctorsReceived(Array.from(data.data)))

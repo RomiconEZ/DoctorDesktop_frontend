@@ -35,9 +35,9 @@ const DoctorPage =() =>{
 
     useEffect(() => {
 
-        if ((preloading === false) && (data != undefined) )
+        if ((preloading === false) && (data !== undefined) )
         {
-            if (data.data != undefined)
+            if (data.data !== undefined)
             {
                 dispatch(additionalSlice.actions.ChangeSelectedDoctor(data.data))
             }
@@ -100,7 +100,7 @@ const DoctorPage =() =>{
                                 label="Стаж работы"
                                 value={`
                                 ${doctor.workExperience} 
-                                ${doctor.workExperience % 10 == 1 ? ' год' : ''}
+                                ${doctor.workExperience % 10 === 1 ? ' год' : ''}
                                 ${doctor.workExperience % 10 > 1 && doctor.workExperience % 10 <= 4 ? ' года' : ''}
                                 ${doctor.workExperience % 10 > 4 ? ' лет' : ''}
                             `}
@@ -124,8 +124,8 @@ const DoctorPage =() =>{
 
                         <MyButton
                             onClick={handleNavigate}
-                            className="relative left-1/2 mt-4 "
-                        >
+                            // className="relative left-1/2 mt-4 "
+                            className="relative w-1/5 right-45 mt-4">
                             Редактировать
                         </MyButton>
 

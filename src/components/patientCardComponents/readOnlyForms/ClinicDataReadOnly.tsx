@@ -10,7 +10,7 @@ const ClinicDataReadOnly = () => {
     const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
     const navigate = useNavigate();
 
-    const dispatch = useAppDispatch()
+    // const dispatch = useAppDispatch()
     return (
 
         <div className='p-8 mb-16'>

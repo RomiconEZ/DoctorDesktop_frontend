@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, useTheme } from '@mui/styles';
+import { withStyles} from '@mui/styles';
 import Typography from '@mui/material/Typography';
 
 import Stack from '@mui/material/Stack';

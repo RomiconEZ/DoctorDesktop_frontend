@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Link, Outlet, useParams} from "react-router-dom";
+import {Outlet, useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {patientAPI, PatientForDoctor} from "../../services/PatientService";
 import {additionalSlice} from "../../store/reducers/AdditionalSlice";
@@ -40,7 +40,7 @@ const SelectedPatientPage = () => {
     useEffect(() => {
         console.log("Получили пациента")
         console.log(data)
-        if ((preloading === false) && (data.data != undefined)) {
+        if ((preloading === false) && (data.data !== undefined)) {
             dispatch(additionalSlice.actions.ChangeSelectedPatient(data.data as IPatientFull))
         }
 

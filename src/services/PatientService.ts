@@ -1,7 +1,6 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
+import {createApi} from "@reduxjs/toolkit/dist/query/react";
 import {IPatientCreate} from "../models/IPatientCreate";
 import {IPatientUpdate} from "../models/IPatientUpdate";
-import {API_URL} from "../env_data";
 import {baseQuery} from "./DoctorService";
 
 export interface PaginationPatientsForCertainDoctor

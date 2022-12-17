@@ -1,6 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IDoctorShort} from "../../models/IDoctorShort";
-import {useAppSelector} from "../../hooks/redux";
 import {RootState} from "../store";
 
 interface DoctorTableState {

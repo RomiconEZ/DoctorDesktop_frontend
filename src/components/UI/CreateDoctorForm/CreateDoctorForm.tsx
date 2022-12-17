@@ -22,7 +22,7 @@ import {routes} from "../../common/BreadCrumb";
 
 const CreateDoctorForm = () => {
     const user = useAppSelector(state => state.userReducer.user)
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const breadcrumbs = useBreadcrumbs(routes);
 
     const initialData: IDoctorCreate = {
@@ -53,7 +53,7 @@ const CreateDoctorForm = () => {
         return (
 
                 <div  className='p-8 flex justify-center'>
-                    <div className='w-3/5 pb-20 pt-5 pl-10 rounded-md bg-white h-auto'>
+                    <div className='w-3/5 pb-10 pt-5 pl-10 pr-10 rounded-md bg-white h-auto'>
                         <>
                             {breadcrumbs.map(({ match, breadcrumb }) => (
                                 <NavLink key={match.pathname} to={match.pathname} className="text-our-greenish-300 text-xs mr-1">

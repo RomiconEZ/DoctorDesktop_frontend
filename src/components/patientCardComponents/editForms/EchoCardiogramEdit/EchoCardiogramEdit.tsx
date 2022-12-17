@@ -6,7 +6,7 @@ import {Form, useForm} from "../../../../hooks/useForm";
 import {patientAPI} from "../../../../services/PatientService";
 import {IPatientUpdate} from "../../../../models/IPatientUpdate";
 import {useAppDispatch} from "../../../../store/store";
-import {DatePickerField, InputField, RadioGroup, SelectField} from "../../../common/Fields";
+import {InputField, RadioGroup, SelectField} from "../../../common/Fields";
 import Button from "../../../common/Button";
 import {useNavigate, useParams} from "react-router-dom";
 import {yesNo} from "../../../../DataLists/yesNo";
@@ -22,7 +22,7 @@ const EchoCardiogramEdit = () => {
     const {user} = useAppSelector(state => state.userReducer)
     const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
     const navigate = useNavigate();
-    const params = useParams<string>()
+    // const params = useParams<string>()
     const dispatch = useAppDispatch()
     let response: any
 

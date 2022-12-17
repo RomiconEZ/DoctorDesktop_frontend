@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { API_URL } from '../env_data';
-import {AuthResponse} from "../models/response/AuthResponse";
 import AuthService from "../services/AuthService";
 
 

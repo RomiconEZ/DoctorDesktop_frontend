@@ -16,7 +16,7 @@ const ComputerTomographyEdit = () => {
     const {user} = useAppSelector(state => state.userReducer)
     const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
     const navigate = useNavigate();
-    const params = useParams<string>()
+    // const params = useParams<string>()
     const dispatch = useAppDispatch()
     let response: any
 
@@ -36,7 +36,7 @@ const ComputerTomographyEdit = () => {
                 employee_id: user!.id,
             }
             response =await updatePatient(UpdatePatientData)
-            if (response.data != undefined) {
+            if (response.data !== undefined) {
                 dispatch(additionalSlice.actions.ChangeSelectedPatient(response.data))
             }
             navigate(`/auth/menu/patients/${SelectedPatient.patientID}/computer-aided-tomography`)

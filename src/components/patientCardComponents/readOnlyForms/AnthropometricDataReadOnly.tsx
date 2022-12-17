@@ -1,7 +1,6 @@
 import React from 'react';
-import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
+import {useAppSelector} from "../../../hooks/redux";
 
-import {additionalSlice} from "../../../store/reducers/AdditionalSlice";
 import {useNavigate} from "react-router-dom";
 import ReadFieldStr from "../../common/ReadFieldStr";
 import ReadFieldBool from "../../common/ReadFieldBool";
@@ -12,7 +11,7 @@ const AnthropometricDataReadOnly = () => {
     const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
     const navigate = useNavigate();
 
-    const dispatch = useAppDispatch()
+    // const dispatch = useAppDispatch()
     return (
 
         <div className='p-8 mb-16'>

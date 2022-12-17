@@ -1,6 +1,5 @@
 import { useLocation, Navigate } from 'react-router-dom';
-import {useContext} from "react";
-import {Context} from "../../index";
+
 import {useAppSelector} from "../../hooks/redux";
 
 // doctor - 1

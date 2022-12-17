@@ -54,7 +54,7 @@ const UpdateDoctorForm = () => {
         e.preventDefault();
         if (validate(data)) {
             response = await updateDoctor(data)
-            if (response != undefined) {
+            if (response !== undefined) {
                 dispatch(additionalSlice.actions.ChangeSelectedDoctor(response.data))
                 navigate(`/auth/menu/doctors/${doctor.id}`)
             }
@@ -66,7 +66,7 @@ const UpdateDoctorForm = () => {
     return (
       <>
           <div  className='p-8 flex justify-center'>
-              <div className='w-3/5 pb-20 pt-5 pl-10 rounded-md bg-white h-auto'>
+              <div className='w-3/5 pb-10 pt-5 pl-10 pr-10 rounded-md bg-white h-auto'>
                   <>
                       {breadcrumbs.map(({ match, breadcrumb }) => (
                           <NavLink key={match.pathname} to={match.pathname} className="text-our-greenish-300 text-xs mr-1">
@@ -105,7 +105,7 @@ const UpdateDoctorForm = () => {
 
             <InputField name='email' label='Почта' />
 
-            <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-44 -bottom-20" disabled={Object.keys(errors).length !== 0}>
+            <Button type='submit' onClick={handleUpdate} className="w-1/5 absolute right-45 -bottom-10" disabled={Object.keys(errors).length !== 0}>
           Обновить
         </Button>
       </Form>

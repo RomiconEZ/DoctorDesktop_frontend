@@ -8,7 +8,7 @@ import MyButton from "../../common/MyButton";
 
 const PersonalDataReadOnly = () => {
     const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
-    const dispatch = useAppDispatch()
+    // const dispatch = useAppDispatch()
     const navigate = useNavigate();
     console.log(JSON.stringify(SelectedPatient.personal_data))
     return (

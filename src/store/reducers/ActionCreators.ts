@@ -1,9 +1,7 @@
-import axios from "axios";
-import {IUser} from "../../models/IUser";
+
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import AuthService from "../../services/AuthService";
-import {AuthResponse} from "../../models/response/AuthResponse";
-import {API_URL} from "../../env_data";
+
 
 // axios.defaults.timeout = 1000;
 

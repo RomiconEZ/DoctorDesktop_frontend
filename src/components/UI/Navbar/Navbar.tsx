@@ -1,5 +1,5 @@
 import React from 'react';
-import {Outlet, Link, NavLink} from "react-router-dom";
+import {Outlet,NavLink} from "react-router-dom";
 import {useAppSelector} from "../../../hooks/redux";
 import {useAppDispatch} from "../../../store/store";
 import {logout} from "../../../store/reducers/ActionCreators";
@@ -7,7 +7,7 @@ import ButtonWithIcon from "../../common/ButtonWithIcon";
 import {logOutIcon, tableIcon, userIcon, menuIcon} from "../../common/icons";
 
 const Navbar = () => {
-    const {user, isAuth} = useAppSelector(state => state.userReducer)
+    const {user} = useAppSelector(state => state.userReducer)
     const dispatch = useAppDispatch()
 
     return (

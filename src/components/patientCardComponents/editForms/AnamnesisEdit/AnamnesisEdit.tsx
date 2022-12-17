@@ -21,7 +21,7 @@ const AnamnesisEdit = () => {
     const {user} = useAppSelector(state => state.userReducer)
     const {SelectedPatient, IsEditButtonPressed} = useAppSelector(state => state.additionalReducer)
     const navigate = useNavigate();
-    const params = useParams<string>()
+    // const params = useParams<string>()
     const dispatch = useAppDispatch()
     let response: any
 
@@ -80,7 +80,7 @@ const AnamnesisEdit = () => {
                 }
             }
             response = await updatePatient(UpdatePatientData)
-            if (response.data != undefined) {
+            if (response.data !== undefined) {
                 dispatch(additionalSlice.actions.ChangeSelectedPatient(response.data))
             }
             navigate(`/auth/menu/patients/${SelectedPatient.patientID}/anamnesis`)

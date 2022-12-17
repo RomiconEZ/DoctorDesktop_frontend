@@ -36,7 +36,7 @@ const PatientsTablePage = () =>{
 
     useEffect(() => {
 
-        if ((preloading === false) && (data.data != undefined))
+        if ((preloading === false) && (data.data !== undefined))
         {
             dispatch(patientsSlice.actions.patientsReceived(Array.from(data.data)))
         }
