@@ -14,7 +14,7 @@
 #FROM node as builder
 #
 ## Create app directory
-#WORKDIR /usr/src/app
+#WORKDIR /app
 #
 ## Install app dependencies
 #COPY package*.json ./
@@ -28,37 +28,38 @@
 #FROM node:slim
 #
 ## Create app directory
-#WORKDIR /usr/src/app
+#WORKDIR /app
 #
 ## Install app dependencies
 #COPY package*.json ./
 #
 #RUN npm ci --production
 #
-#COPY --from=builder /usr/src/app/dist ./dist
+#COPY --from=builder /app/dist ./dist
 #
 #EXPOSE 8080
 #CMD [ "node", "dist/index.js" ]
 
 
-FROM node:15-alpine AS builder
 
-WORKDIR /app
-
-COPY package.json package.json
-
-RUN npm install
-
-COPY . .
-
-RUN npm run build
-
-FROM nginx:alpine
-
-WORKDIR /usr/share/nginx/html
-
-RUN rm -rf *
-
-COPY --from=builder /app/dist .
-
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+#FROM node:15-alpine AS builder
+#
+#WORKDIR /app
+#
+#COPY package.json package.json
+#
+#RUN npm install
+#
+#COPY . .
+#
+#RUN npm run build
+#
+#FROM nginx:alpine
+#
+#WORKDIR /usr/share/nginx/html
+#
+#RUN rm -rf *
+#
+#COPY --from=builder /app/dist .
+#
+#ENTRYPOINT ["nginx", "-g", "daemon off;"]

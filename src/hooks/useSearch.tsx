@@ -13,7 +13,8 @@ export default function useSearch<T>(data: Array<T>, config: { searchBy: string 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   useEffect(() => {
-    if (debouncedSearchTerm) {
+    if ((debouncedSearchTerm) && (data != undefined))
+    {
       setIsSearching(true);
       const dataFiltered = data.filter((item: any) =>
         item[config.searchBy].toString().toLowerCase().includes(debouncedSearchTerm.toLowerCase())

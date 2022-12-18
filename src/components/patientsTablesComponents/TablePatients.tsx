@@ -22,7 +22,7 @@ const TablePatients = () => {
 
     // const { searchFilters, handleResetSearchFilters } = useFiltersQuery();
     const { filteredData, searchTerm, setSearchTerm, handleChangeSearch } = useSearch(entities, {
-        searchBy: 'surname', // пока поиск только по id
+        searchBy: 'second_name',
     });
     const { sortedItems, sortBy, setSortBy } = useSort(filteredData || [], { path: 'age', order: 'desc' });
     const {
