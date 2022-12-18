@@ -59,3 +59,7 @@ https://drawsql.app/teams/frontbackend/diagrams/pirogproject - здесь фин
 ## СУБД
 MySQL
 # Тестирование
+
+
+docker build . -t web
+docker run -it --rm -d -p 8080:80/tcp --name website web 
